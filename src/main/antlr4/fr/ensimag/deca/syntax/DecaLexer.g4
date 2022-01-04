@@ -12,5 +12,75 @@ options {
 }
 
 // Deca lexer rules.
-DUMMY_TOKEN: .; // A FAIRE : Règle bidon qui reconnait tous les caractères.
-                // A FAIRE : Il faut la supprimer et la remplacer par les vraies règles.
+fragment FILENAME : (LETTER + DIGIT + '.' + '-' + '_')+;
+WS  :   ( '\t'
+        | '\r'
+        | '\n'
+        ) {
+              skip();
+          }
+    ;
+COMMENT : '/*' .*? '*/'{ skip(); };
+INCLUDE : '#include' (' ')* '"' FILENAME '"';
+ELSE : 'else';
+IF : 'if';
+SPACE : ' ' {skip();};
+ELSEIF : 'else' SPACE 'if';
+ASM : 'asm';
+CLASS : 'class';
+EXTENDS : 'extends';
+FALSE : 'false';
+INSTANCEOF : 'instanceof';
+NEW : 'new';
+NULL : 'null';
+READINT : 'readInt';
+READFLOAT : 'readFloat';
+PRINT : 'print';
+PRINTLN : 'println';
+PRINTLNX : 'printlnx';
+PRINTX : 'printx';
+PROTECTED : 'protected';
+RETURN : 'return';
+THIS : 'this';
+TRUE : 'true';
+WHILE : 'while';
+LOWER : '<';
+HIGHER : '>';
+EQUALS : '=';
+PLUS : '+';
+MINUS : '-';
+TIMES : '*';
+BACKSLASH : '/';
+PERCENTAGE : '%';
+DOT : '.';
+COMMA : ',';
+OPARENT : '(';
+CPARENT : ')';
+OBRACE : '{';
+CBRACE : '}';
+EXCLAMATION_POINT : '!';
+SEMI : ';';
+DOUBLE_EQUAL : '==';
+NEQ : '!=';
+LEQ : '>=';
+GEQ : '<=';
+AND : '&&';
+OR : '||';
+fragment LETTER :'a'..'z' | 'A'..'Z';
+fragment DIGIT : '0'..'9';
+IDENT : (LETTER | '$' | '_')(LETTER | DIGIT | '$' | '_')*;
+fragment POSITIVE_DIGIT : '1'..'9';
+INT : '0' | POSITIVE_DIGIT DIGIT*;
+fragment NUM : DIGIT+;
+fragment SIGN : '+' | '-' | ' ';
+fragment EXP : ('E' | 'e') SIGN NUM;
+fragment DEC : NUM '.' NUM;
+FLOATDEC : (DEC | DEC EXP) ('F' | 'f' | ' ');
+fragment DIGITHEX : '0'..'9' | 'A'..'F' | 'a'..'f';
+fragment NUMHEX : DIGITHEX|;
+fragment FLOATHEX : ('0x' | '0X') NUMHEX '.' NUMHEX ('P' | 'p') SIGN NUM ('F' | 'f' | ' ');
+FLOAT : FLOATDEC | FLOATHEX;
+fragment STRING_CAR : ~('\n'|'"'|'\\');
+STRING : '"' (STRING_CAR | '\\"' | '\\\\')* '"';
+fragment EOL : '\n';
+MULTI_LINE_STRING : '"' (STRING_CAR | EOL | '\\"' | '\\\\')* '"';
