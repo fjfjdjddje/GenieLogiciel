@@ -80,18 +80,25 @@ list_decl_var[ListDeclVar l, AbstractIdentifier t]
     : dv1=decl_var[$t] {
         $l.add($dv1.tree);
         } (COMMA dv2=decl_var[$t] {
+            $l.add($dv2.tree);
         }
       )*
     ;
 
 decl_var[AbstractIdentifier t] returns[AbstractDeclVar tree]
 @init   {
+            AbstractIdentifier x = t;
+            AbstractIdentifier y;
+            AbstractExpr initia;
         }
     : i=ident {
+        y = $i.tree;
         }
       (EQUALS e=expr {
+          initia = $e.tree;
         }
       )? {
+          $tree = new DeclVar(x, y, initia);
         }
     ;
 
@@ -148,10 +155,13 @@ if_then_else returns[IfThenElse tree]
 
 list_expr returns[ListExpr tree]
 @init   {
+        $tree = new ListExpr();
         }
-    : (e1=expr {
+    : (e1=literal {
+            $tree.add($e1.tree);
         }
        (COMMA e2=expr {
+            $tree.add($e2.tree);
         }
        )* )?
     ;
@@ -159,6 +169,7 @@ list_expr returns[ListExpr tree]
 expr returns[AbstractExpr tree]
     : assign_expr {
             assert($assign_expr.tree != null);
+            $tree = $assign_expr.tree;
         }
     ;
 
@@ -287,6 +298,7 @@ unary_expr returns[AbstractExpr tree]
 select_expr returns[AbstractExpr tree]
     : e=primary_expr {
             assert($e.tree != null);
+            $tree = $e.tree;
         }
     | e1=select_expr DOT i=ident {
             assert($e1.tree != null);
@@ -326,6 +338,7 @@ primary_expr returns[AbstractExpr tree]
         }
     | literal {
             assert($literal.tree != null);
+            $tree = $literal.tree;
         }
     ;
 
@@ -341,6 +354,7 @@ literal returns[AbstractExpr tree]
     | fd=FLOAT {
         }
     | STRING {
+        $tree = new StringLiteral($STRING.text);
         }
     | TRUE {
         }
