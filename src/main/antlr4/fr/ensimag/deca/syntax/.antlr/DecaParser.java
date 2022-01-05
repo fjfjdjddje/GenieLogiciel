@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Generated from /user/0/.base/aittalea/home/Projet_GL/src/main/antlr4/fr/ensimag/deca/syntax/DecaParser.g4 by ANTLR 4.8
+=======
+// Generated from /user/2/.base/hassouk/home/Projet_GL/src/main/antlr4/fr/ensimag/deca/syntax/DecaParser.g4 by ANTLR 4.8
+>>>>>>> 4e705c63745e859b5c2fa3df6512261794a3e4ca
 
     import fr.ensimag.deca.tree.*;
     import java.io.PrintStream;
@@ -23,11 +27,20 @@ public class DecaParser extends AbstractDecaParser {
 		WS=1, COMMENT=2, INCLUDE=3, ELSE=4, IF=5, SPACE=6, ELSEIF=7, ASM=8, CLASS=9, 
 		EXTENDS=10, FALSE=11, INSTANCEOF=12, NEW=13, NULL=14, READINT=15, READFLOAT=16, 
 		PRINT=17, PRINTLN=18, PRINTLNX=19, PRINTX=20, PROTECTED=21, RETURN=22, 
+<<<<<<< HEAD
 		THIS=23, TRUE=24, WHILE=25, LT=26, GT=27, EQEQ=28, EQUALS=29, PLUS=30, 
 		MINUS=31, TIMES=32, BACKSLASH=33, PERCENT=34, DOT=35, COMMA=36, OPARENT=37, 
 		CPARENT=38, OBRACE=39, CBRACE=40, EXCLAM=41, SEMI=42, NEQ=43, LEQ=44, 
 		GEQ=45, AND=46, OR=47, IDENT=48, INT=49, FLOATDEC=50, FLOAT=51, STRING=52, 
 		MULTI_LINE_STRING=53, SLASH=54;
+=======
+		THIS=23, TRUE=24, WHILE=25, LOWER=26, HIGHER=27, EQUALS=28, PLUS=29, MINUS=30, 
+		TIMES=31, BACKSLASH=32, PERCENTAGE=33, DOT=34, COMMA=35, OPARENT=36, CPARENT=37, 
+		OBRACE=38, CBRACE=39, EXCLAMATION_POINT=40, SEMI=41, DOUBLE_EQUAL=42, 
+		NEQ=43, LEQ=44, GEQ=45, AND=46, OR=47, IDENT=48, INT=49, FLOATDEC=50, 
+		FLOAT=51, STRING=52, MULTI_LINE_STRING=53, EQEQ=54, GT=55, LT=56, SLASH=57, 
+		PERCENT=58, EXCLAM=59;
+>>>>>>> 4e705c63745e859b5c2fa3df6512261794a3e4ca
 	public static final int
 		RULE_prog = 0, RULE_main = 1, RULE_block = 2, RULE_list_decl = 3, RULE_decl_var_set = 4, 
 		RULE_list_decl_var = 5, RULE_decl_var = 6, RULE_list_inst = 7, RULE_inst = 8, 
@@ -57,9 +70,15 @@ public class DecaParser extends AbstractDecaParser {
 			null, null, null, null, "'else'", "'if'", "' '", null, "'asm'", "'class'", 
 			"'extends'", "'false'", "'instanceof'", "'new'", "'null'", "'readInt'", 
 			"'readFloat'", "'print'", "'println'", "'printlnx'", "'printx'", "'protected'", 
+<<<<<<< HEAD
 			"'return'", "'this'", "'true'", "'while'", "'<'", "'>'", "'=='", "'='", 
 			"'+'", "'-'", "'*'", "'/'", "'%'", "'.'", "','", "'('", "')'", "'{'", 
 			"'}'", "'!'", "';'", "'!='", "'>='", "'<='", "'&&'", "'||'"
+=======
+			"'return'", "'this'", "'true'", "'while'", "'<'", "'>'", "'='", "'+'", 
+			"'-'", "'*'", "'/'", "'%'", "'.'", "','", "'('", "')'", "'{'", "'}'", 
+			"'!'", "';'", "'=='", "'!='", "'>='", "'<='", "'&&'", "'||'"
+>>>>>>> 4e705c63745e859b5c2fa3df6512261794a3e4ca
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -68,10 +87,18 @@ public class DecaParser extends AbstractDecaParser {
 			null, "WS", "COMMENT", "INCLUDE", "ELSE", "IF", "SPACE", "ELSEIF", "ASM", 
 			"CLASS", "EXTENDS", "FALSE", "INSTANCEOF", "NEW", "NULL", "READINT", 
 			"READFLOAT", "PRINT", "PRINTLN", "PRINTLNX", "PRINTX", "PROTECTED", "RETURN", 
+<<<<<<< HEAD
 			"THIS", "TRUE", "WHILE", "LT", "GT", "EQEQ", "EQUALS", "PLUS", "MINUS", 
 			"TIMES", "BACKSLASH", "PERCENT", "DOT", "COMMA", "OPARENT", "CPARENT", 
 			"OBRACE", "CBRACE", "EXCLAM", "SEMI", "NEQ", "LEQ", "GEQ", "AND", "OR", 
 			"IDENT", "INT", "FLOATDEC", "FLOAT", "STRING", "MULTI_LINE_STRING", "SLASH"
+=======
+			"THIS", "TRUE", "WHILE", "LOWER", "HIGHER", "EQUALS", "PLUS", "MINUS", 
+			"TIMES", "BACKSLASH", "PERCENTAGE", "DOT", "COMMA", "OPARENT", "CPARENT", 
+			"OBRACE", "CBRACE", "EXCLAMATION_POINT", "SEMI", "DOUBLE_EQUAL", "NEQ", 
+			"LEQ", "GEQ", "AND", "OR", "IDENT", "INT", "FLOATDEC", "FLOAT", "STRING", 
+			"MULTI_LINE_STRING", "EQEQ", "GT", "LT", "SLASH", "PERCENT", "EXCLAM"
+>>>>>>> 4e705c63745e859b5c2fa3df6512261794a3e4ca
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -537,7 +564,11 @@ public class DecaParser extends AbstractDecaParser {
 			setState(127);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
+<<<<<<< HEAD
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IF) | (1L << FALSE) | (1L << NEW) | (1L << NULL) | (1L << READINT) | (1L << READFLOAT) | (1L << PRINT) | (1L << PRINTLN) | (1L << PRINTLNX) | (1L << PRINTX) | (1L << RETURN) | (1L << THIS) | (1L << TRUE) | (1L << WHILE) | (1L << MINUS) | (1L << OPARENT) | (1L << EXCLAM) | (1L << SEMI) | (1L << IDENT) | (1L << INT) | (1L << FLOAT) | (1L << STRING))) != 0)) {
+=======
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IF) | (1L << FALSE) | (1L << NEW) | (1L << NULL) | (1L << READINT) | (1L << READFLOAT) | (1L << PRINT) | (1L << PRINTLN) | (1L << PRINTLNX) | (1L << PRINTX) | (1L << RETURN) | (1L << THIS) | (1L << TRUE) | (1L << WHILE) | (1L << MINUS) | (1L << OPARENT) | (1L << SEMI) | (1L << IDENT) | (1L << INT) | (1L << FLOAT) | (1L << STRING) | (1L << EXCLAM))) != 0)) {
+>>>>>>> 4e705c63745e859b5c2fa3df6512261794a3e4ca
 				{
 				{
 				setState(122);
@@ -616,11 +647,18 @@ public class DecaParser extends AbstractDecaParser {
 			case TRUE:
 			case MINUS:
 			case OPARENT:
+<<<<<<< HEAD
 			case EXCLAM:
+=======
+>>>>>>> 4e705c63745e859b5c2fa3df6512261794a3e4ca
 			case IDENT:
 			case INT:
 			case FLOAT:
 			case STRING:
+<<<<<<< HEAD
+=======
+			case EXCLAM:
+>>>>>>> 4e705c63745e859b5c2fa3df6512261794a3e4ca
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(130);
@@ -947,7 +985,11 @@ public class DecaParser extends AbstractDecaParser {
 			setState(225);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
+<<<<<<< HEAD
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << FALSE) | (1L << NEW) | (1L << NULL) | (1L << READINT) | (1L << READFLOAT) | (1L << THIS) | (1L << TRUE) | (1L << MINUS) | (1L << OPARENT) | (1L << EXCLAM) | (1L << IDENT) | (1L << INT) | (1L << FLOAT) | (1L << STRING))) != 0)) {
+=======
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << FALSE) | (1L << NEW) | (1L << NULL) | (1L << READINT) | (1L << READFLOAT) | (1L << THIS) | (1L << TRUE) | (1L << MINUS) | (1L << OPARENT) | (1L << IDENT) | (1L << INT) | (1L << FLOAT) | (1L << STRING) | (1L << EXCLAM))) != 0)) {
+>>>>>>> 4e705c63745e859b5c2fa3df6512261794a3e4ca
 				{
 				setState(214);
 				((List_exprContext)_localctx).e1 = expr();
@@ -3102,7 +3144,11 @@ public class DecaParser extends AbstractDecaParser {
 	}
 
 	public static final String _serializedATN =
+<<<<<<< HEAD
 		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\38\u0235\4\2\t\2\4"+
+=======
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3=\u0235\4\2\t\2\4"+
+>>>>>>> 4e705c63745e859b5c2fa3df6512261794a3e4ca
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -3154,6 +3200,7 @@ public class DecaParser extends AbstractDecaParser {
 		">\u01f6\3\2\2\2@\u01f8\3\2\2\2B\u0200\3\2\2\2D\u020a\3\2\2\2F\u0228\3"+
 		"\2\2\2H\u022e\3\2\2\2J\u0230\3\2\2\2LM\5\64\33\2MN\5\4\3\2NO\7\2\2\3O"+
 		"P\b\2\1\2P\3\3\2\2\2QV\b\3\1\2RS\5\6\4\2ST\b\3\1\2TV\3\2\2\2UQ\3\2\2\2"+
+<<<<<<< HEAD
 		"UR\3\2\2\2V\5\3\2\2\2WX\7)\2\2XY\5\b\5\2YZ\5\20\t\2Z[\7*\2\2[\\\b\4\1"+
 		"\2\\\7\3\2\2\2]_\5\n\6\2^]\3\2\2\2_b\3\2\2\2`^\3\2\2\2`a\3\2\2\2a\t\3"+
 		"\2\2\2b`\3\2\2\2cd\5.\30\2de\5\f\7\2ef\7,\2\2f\13\3\2\2\2gh\5\16\b\2h"+
@@ -3190,11 +3237,53 @@ public class DecaParser extends AbstractDecaParser {
 		"\u00d3\5\20\t\2\u00d3\u00d4\7*\2\2\u00d4\u00d5\b\13\1\2\u00d5\u00d7\3"+
 		"\2\2\2\u00d6\u00d0\3\2\2\2\u00d6\u00d7\3\2\2\2\u00d7\25\3\2\2\2\u00d8"+
 		"\u00d9\5\30\r\2\u00d9\u00e0\b\f\1\2\u00da\u00db\7&\2\2\u00db\u00dc\5\30"+
+=======
+		"UR\3\2\2\2V\5\3\2\2\2WX\7(\2\2XY\5\b\5\2YZ\5\20\t\2Z[\7)\2\2[\\\b\4\1"+
+		"\2\\\7\3\2\2\2]_\5\n\6\2^]\3\2\2\2_b\3\2\2\2`^\3\2\2\2`a\3\2\2\2a\t\3"+
+		"\2\2\2b`\3\2\2\2cd\5.\30\2de\5\f\7\2ef\7+\2\2f\13\3\2\2\2gh\5\16\b\2h"+
+		"o\b\7\1\2ij\7%\2\2jk\5\16\b\2kl\b\7\1\2ln\3\2\2\2mi\3\2\2\2nq\3\2\2\2"+
+		"om\3\2\2\2op\3\2\2\2p\r\3\2\2\2qo\3\2\2\2rs\5\62\32\2sx\b\b\1\2tu\7\36"+
+		"\2\2uv\5\30\r\2vw\b\b\1\2wy\3\2\2\2xt\3\2\2\2xy\3\2\2\2yz\3\2\2\2z{\b"+
+		"\b\1\2{\17\3\2\2\2|}\5\22\n\2}~\b\t\1\2~\u0080\3\2\2\2\177|\3\2\2\2\u0080"+
+		"\u0083\3\2\2\2\u0081\177\3\2\2\2\u0081\u0082\3\2\2\2\u0082\21\3\2\2\2"+
+		"\u0083\u0081\3\2\2\2\u0084\u0085\5\30\r\2\u0085\u0086\7+\2\2\u0086\u0087"+
+		"\b\n\1\2\u0087\u00b8\3\2\2\2\u0088\u0089\7+\2\2\u0089\u00b8\b\n\1\2\u008a"+
+		"\u008b\7\23\2\2\u008b\u008c\7&\2\2\u008c\u008d\5\26\f\2\u008d\u008e\7"+
+		"\'\2\2\u008e\u008f\7+\2\2\u008f\u0090\b\n\1\2\u0090\u00b8\3\2\2\2\u0091"+
+		"\u0092\7\24\2\2\u0092\u0093\7&\2\2\u0093\u0094\5\26\f\2\u0094\u0095\7"+
+		"\'\2\2\u0095\u0096\7+\2\2\u0096\u0097\b\n\1\2\u0097\u00b8\3\2\2\2\u0098"+
+		"\u0099\7\26\2\2\u0099\u009a\7&\2\2\u009a\u009b\5\26\f\2\u009b\u009c\7"+
+		"\'\2\2\u009c\u009d\7+\2\2\u009d\u009e\b\n\1\2\u009e\u00b8\3\2\2\2\u009f"+
+		"\u00a0\7\25\2\2\u00a0\u00a1\7&\2\2\u00a1\u00a2\5\26\f\2\u00a2\u00a3\7"+
+		"\'\2\2\u00a3\u00a4\7+\2\2\u00a4\u00a5\b\n\1\2\u00a5\u00b8\3\2\2\2\u00a6"+
+		"\u00a7\5\24\13\2\u00a7\u00a8\b\n\1\2\u00a8\u00b8\3\2\2\2\u00a9\u00aa\7"+
+		"\33\2\2\u00aa\u00ab\7&\2\2\u00ab\u00ac\5\30\r\2\u00ac\u00ad\7\'\2\2\u00ad"+
+		"\u00ae\7(\2\2\u00ae\u00af\5\20\t\2\u00af\u00b0\7)\2\2\u00b0\u00b1\b\n"+
+		"\1\2\u00b1\u00b8\3\2\2\2\u00b2\u00b3\7\30\2\2\u00b3\u00b4\5\30\r\2\u00b4"+
+		"\u00b5\7+\2\2\u00b5\u00b6\b\n\1\2\u00b6\u00b8\3\2\2\2\u00b7\u0084\3\2"+
+		"\2\2\u00b7\u0088\3\2\2\2\u00b7\u008a\3\2\2\2\u00b7\u0091\3\2\2\2\u00b7"+
+		"\u0098\3\2\2\2\u00b7\u009f\3\2\2\2\u00b7\u00a6\3\2\2\2\u00b7\u00a9\3\2"+
+		"\2\2\u00b7\u00b2\3\2\2\2\u00b8\23\3\2\2\2\u00b9\u00ba\7\7\2\2\u00ba\u00bb"+
+		"\7&\2\2\u00bb\u00bc\5\30\r\2\u00bc\u00bd\7\'\2\2\u00bd\u00be\7(\2\2\u00be"+
+		"\u00bf\5\20\t\2\u00bf\u00c0\7)\2\2\u00c0\u00cd\b\13\1\2\u00c1\u00c2\7"+
+		"\6\2\2\u00c2\u00c3\7\7\2\2\u00c3\u00c4\7&\2\2\u00c4\u00c5\5\30\r\2\u00c5"+
+		"\u00c6\7\'\2\2\u00c6\u00c7\7(\2\2\u00c7\u00c8\5\20\t\2\u00c8\u00c9\7)"+
+		"\2\2\u00c9\u00ca\b\13\1\2\u00ca\u00cc\3\2\2\2\u00cb\u00c1\3\2\2\2\u00cc"+
+		"\u00cf\3\2\2\2\u00cd\u00cb\3\2\2\2\u00cd\u00ce\3\2\2\2\u00ce\u00d6\3\2"+
+		"\2\2\u00cf\u00cd\3\2\2\2\u00d0\u00d1\7\6\2\2\u00d1\u00d2\7(\2\2\u00d2"+
+		"\u00d3\5\20\t\2\u00d3\u00d4\7)\2\2\u00d4\u00d5\b\13\1\2\u00d5\u00d7\3"+
+		"\2\2\2\u00d6\u00d0\3\2\2\2\u00d6\u00d7\3\2\2\2\u00d7\25\3\2\2\2\u00d8"+
+		"\u00d9\5\30\r\2\u00d9\u00e0\b\f\1\2\u00da\u00db\7%\2\2\u00db\u00dc\5\30"+
+>>>>>>> 4e705c63745e859b5c2fa3df6512261794a3e4ca
 		"\r\2\u00dc\u00dd\b\f\1\2\u00dd\u00df\3\2\2\2\u00de\u00da\3\2\2\2\u00df"+
 		"\u00e2\3\2\2\2\u00e0\u00de\3\2\2\2\u00e0\u00e1\3\2\2\2\u00e1\u00e4\3\2"+
 		"\2\2\u00e2\u00e0\3\2\2\2\u00e3\u00d8\3\2\2\2\u00e3\u00e4\3\2\2\2\u00e4"+
 		"\27\3\2\2\2\u00e5\u00e6\5\32\16\2\u00e6\u00e7\b\r\1\2\u00e7\31\3\2\2\2"+
+<<<<<<< HEAD
 		"\u00e8\u00ef\5\34\17\2\u00e9\u00ea\b\16\1\2\u00ea\u00eb\7\37\2\2\u00eb"+
+=======
+		"\u00e8\u00ef\5\34\17\2\u00e9\u00ea\b\16\1\2\u00ea\u00eb\7\36\2\2\u00eb"+
+>>>>>>> 4e705c63745e859b5c2fa3df6512261794a3e4ca
 		"\u00ec\5\32\16\2\u00ec\u00ed\b\16\1\2\u00ed\u00f0\3\2\2\2\u00ee\u00f0"+
 		"\b\16\1\2\u00ef\u00e9\3\2\2\2\u00ef\u00ee\3\2\2\2\u00f0\33\3\2\2\2\u00f1"+
 		"\u00f2\b\17\1\2\u00f2\u00f3\5\36\20\2\u00f3\u00f4\b\17\1\2\u00f4\u00fc"+
@@ -3207,6 +3296,7 @@ public class DecaParser extends AbstractDecaParser {
 		"\u0103\3\2\2\2\u0109\u010c\3\2\2\2\u010a\u0108\3\2\2\2\u010a\u010b\3\2"+
 		"\2\2\u010b\37\3\2\2\2\u010c\u010a\3\2\2\2\u010d\u010e\b\21\1\2\u010e\u010f"+
 		"\5\"\22\2\u010f\u0110\b\21\1\2\u0110\u011d\3\2\2\2\u0111\u0112\f\4\2\2"+
+<<<<<<< HEAD
 		"\u0112\u0113\7\36\2\2\u0113\u0114\5\"\22\2\u0114\u0115\b\21\1\2\u0115"+
 		"\u011c\3\2\2\2\u0116\u0117\f\3\2\2\u0117\u0118\7-\2\2\u0118\u0119\5\""+
 		"\22\2\u0119\u011a\b\21\1\2\u011a\u011c\3\2\2\2\u011b\u0111\3\2\2\2\u011b"+
@@ -3257,6 +3347,58 @@ public class DecaParser extends AbstractDecaParser {
 		"\u01a9\7(\2\2\u01a9\u01aa\b\27\1\2\u01aa\u01b7\3\2\2\2\u01ab\u01ac\7\'"+
 		"\2\2\u01ac\u01ad\5.\30\2\u01ad\u01ae\7(\2\2\u01ae\u01af\7\'\2\2\u01af"+
 		"\u01b0\5\30\r\2\u01b0\u01b1\7(\2\2\u01b1\u01b2\b\27\1\2\u01b2\u01b7\3"+
+=======
+		"\u0112\u0113\78\2\2\u0113\u0114\5\"\22\2\u0114\u0115\b\21\1\2\u0115\u011c"+
+		"\3\2\2\2\u0116\u0117\f\3\2\2\u0117\u0118\7-\2\2\u0118\u0119\5\"\22\2\u0119"+
+		"\u011a\b\21\1\2\u011a\u011c\3\2\2\2\u011b\u0111\3\2\2\2\u011b\u0116\3"+
+		"\2\2\2\u011c\u011f\3\2\2\2\u011d\u011b\3\2\2\2\u011d\u011e\3\2\2\2\u011e"+
+		"!\3\2\2\2\u011f\u011d\3\2\2\2\u0120\u0121\b\22\1\2\u0121\u0122\5$\23\2"+
+		"\u0122\u0123\b\22\1\2\u0123\u013f\3\2\2\2\u0124\u0125\f\7\2\2\u0125\u0126"+
+		"\7.\2\2\u0126\u0127\5$\23\2\u0127\u0128\b\22\1\2\u0128\u013e\3\2\2\2\u0129"+
+		"\u012a\f\6\2\2\u012a\u012b\7/\2\2\u012b\u012c\5$\23\2\u012c\u012d\b\22"+
+		"\1\2\u012d\u013e\3\2\2\2\u012e\u012f\f\5\2\2\u012f\u0130\79\2\2\u0130"+
+		"\u0131\5$\23\2\u0131\u0132\b\22\1\2\u0132\u013e\3\2\2\2\u0133\u0134\f"+
+		"\4\2\2\u0134\u0135\7:\2\2\u0135\u0136\5$\23\2\u0136\u0137\b\22\1\2\u0137"+
+		"\u013e\3\2\2\2\u0138\u0139\f\3\2\2\u0139\u013a\7\16\2\2\u013a\u013b\5"+
+		".\30\2\u013b\u013c\b\22\1\2\u013c\u013e\3\2\2\2\u013d\u0124\3\2\2\2\u013d"+
+		"\u0129\3\2\2\2\u013d\u012e\3\2\2\2\u013d\u0133\3\2\2\2\u013d\u0138\3\2"+
+		"\2\2\u013e\u0141\3\2\2\2\u013f\u013d\3\2\2\2\u013f\u0140\3\2\2\2\u0140"+
+		"#\3\2\2\2\u0141\u013f\3\2\2\2\u0142\u0143\b\23\1\2\u0143\u0144\5&\24\2"+
+		"\u0144\u0145\b\23\1\2\u0145\u0152\3\2\2\2\u0146\u0147\f\4\2\2\u0147\u0148"+
+		"\7\37\2\2\u0148\u0149\5&\24\2\u0149\u014a\b\23\1\2\u014a\u0151\3\2\2\2"+
+		"\u014b\u014c\f\3\2\2\u014c\u014d\7 \2\2\u014d\u014e\5&\24\2\u014e\u014f"+
+		"\b\23\1\2\u014f\u0151\3\2\2\2\u0150\u0146\3\2\2\2\u0150\u014b\3\2\2\2"+
+		"\u0151\u0154\3\2\2\2\u0152\u0150\3\2\2\2\u0152\u0153\3\2\2\2\u0153%\3"+
+		"\2\2\2\u0154\u0152\3\2\2\2\u0155\u0156\b\24\1\2\u0156\u0157\5(\25\2\u0157"+
+		"\u0158\b\24\1\2\u0158\u016a\3\2\2\2\u0159\u015a\f\5\2\2\u015a\u015b\7"+
+		"!\2\2\u015b\u015c\5(\25\2\u015c\u015d\b\24\1\2\u015d\u0169\3\2\2\2\u015e"+
+		"\u015f\f\4\2\2\u015f\u0160\7;\2\2\u0160\u0161\5(\25\2\u0161\u0162\b\24"+
+		"\1\2\u0162\u0169\3\2\2\2\u0163\u0164\f\3\2\2\u0164\u0165\7<\2\2\u0165"+
+		"\u0166\5(\25\2\u0166\u0167\b\24\1\2\u0167\u0169\3\2\2\2\u0168\u0159\3"+
+		"\2\2\2\u0168\u015e\3\2\2\2\u0168\u0163\3\2\2\2\u0169\u016c\3\2\2\2\u016a"+
+		"\u0168\3\2\2\2\u016a\u016b\3\2\2\2\u016b\'\3\2\2\2\u016c\u016a\3\2\2\2"+
+		"\u016d\u016e\7 \2\2\u016e\u016f\5(\25\2\u016f\u0170\b\25\1\2\u0170\u0179"+
+		"\3\2\2\2\u0171\u0172\7=\2\2\u0172\u0173\5(\25\2\u0173\u0174\b\25\1\2\u0174"+
+		"\u0179\3\2\2\2\u0175\u0176\5*\26\2\u0176\u0177\b\25\1\2\u0177\u0179\3"+
+		"\2\2\2\u0178\u016d\3\2\2\2\u0178\u0171\3\2\2\2\u0178\u0175\3\2\2\2\u0179"+
+		")\3\2\2\2\u017a\u017b\b\26\1\2\u017b\u017c\5,\27\2\u017c\u017d\b\26\1"+
+		"\2\u017d\u018c\3\2\2\2\u017e\u017f\f\3\2\2\u017f\u0180\7$\2\2\u0180\u0181"+
+		"\5\62\32\2\u0181\u0188\b\26\1\2\u0182\u0183\7&\2\2\u0183\u0184\5\26\f"+
+		"\2\u0184\u0185\7\'\2\2\u0185\u0186\b\26\1\2\u0186\u0189\3\2\2\2\u0187"+
+		"\u0189\b\26\1\2\u0188\u0182\3\2\2\2\u0188\u0187\3\2\2\2\u0189\u018b\3"+
+		"\2\2\2\u018a\u017e\3\2\2\2\u018b\u018e\3\2\2\2\u018c\u018a\3\2\2\2\u018c"+
+		"\u018d\3\2\2\2\u018d+\3\2\2\2\u018e\u018c\3\2\2\2\u018f\u0190\5\62\32"+
+		"\2\u0190\u0191\b\27\1\2\u0191\u01b7\3\2\2\2\u0192\u0193\5\62\32\2\u0193"+
+		"\u0194\7&\2\2\u0194\u0195\5\26\f\2\u0195\u0196\7\'\2\2\u0196\u0197\b\27"+
+		"\1\2\u0197\u01b7\3\2\2\2\u0198\u0199\7&\2\2\u0199\u019a\5\30\r\2\u019a"+
+		"\u019b\7\'\2\2\u019b\u019c\b\27\1\2\u019c\u01b7\3\2\2\2\u019d\u019e\7"+
+		"\21\2\2\u019e\u019f\7&\2\2\u019f\u01a0\7\'\2\2\u01a0\u01b7\b\27\1\2\u01a1"+
+		"\u01a2\7\22\2\2\u01a2\u01a3\7&\2\2\u01a3\u01a4\7\'\2\2\u01a4\u01b7\b\27"+
+		"\1\2\u01a5\u01a6\7\17\2\2\u01a6\u01a7\5\62\32\2\u01a7\u01a8\7&\2\2\u01a8"+
+		"\u01a9\7\'\2\2\u01a9\u01aa\b\27\1\2\u01aa\u01b7\3\2\2\2\u01ab\u01ac\7"+
+		"&\2\2\u01ac\u01ad\5.\30\2\u01ad\u01ae\7\'\2\2\u01ae\u01af\7&\2\2\u01af"+
+		"\u01b0\5\30\r\2\u01b0\u01b1\7\'\2\2\u01b1\u01b2\b\27\1\2\u01b2\u01b7\3"+
+>>>>>>> 4e705c63745e859b5c2fa3df6512261794a3e4ca
 		"\2\2\2\u01b3\u01b4\5\60\31\2\u01b4\u01b5\b\27\1\2\u01b5\u01b7\3\2\2\2"+
 		"\u01b6\u018f\3\2\2\2\u01b6\u0192\3\2\2\2\u01b6\u0198\3\2\2\2\u01b6\u019d"+
 		"\3\2\2\2\u01b6\u01a1\3\2\2\2\u01b6\u01a5\3\2\2\2\u01b6\u01ab\3\2\2\2\u01b6"+
@@ -3272,13 +3414,18 @@ public class DecaParser extends AbstractDecaParser {
 		"\1\2\u01d0\u01d2\3\2\2\2\u01d1\u01ce\3\2\2\2\u01d2\u01d5\3\2\2\2\u01d3"+
 		"\u01d1\3\2\2\2\u01d3\u01d4\3\2\2\2\u01d4\65\3\2\2\2\u01d5\u01d3\3\2\2"+
 		"\2\u01d6\u01d7\7\13\2\2\u01d7\u01d8\5\62\32\2\u01d8\u01d9\58\35\2\u01d9"+
+<<<<<<< HEAD
 		"\u01da\7)\2\2\u01da\u01db\5:\36\2\u01db\u01dc\7*\2\2\u01dc\u01dd\b\34"+
+=======
+		"\u01da\7(\2\2\u01da\u01db\5:\36\2\u01db\u01dc\7)\2\2\u01dc\u01dd\b\34"+
+>>>>>>> 4e705c63745e859b5c2fa3df6512261794a3e4ca
 		"\1\2\u01dd\67\3\2\2\2\u01de\u01df\7\f\2\2\u01df\u01e0\5\62\32\2\u01e0"+
 		"\u01e1\b\35\1\2\u01e1\u01e4\3\2\2\2\u01e2\u01e4\b\35\1\2\u01e3\u01de\3"+
 		"\2\2\2\u01e3\u01e2\3\2\2\2\u01e49\3\2\2\2\u01e5\u01e6\5D#\2\u01e6\u01e7"+
 		"\b\36\1\2\u01e7\u01ea\3\2\2\2\u01e8\u01ea\5<\37\2\u01e9\u01e5\3\2\2\2"+
 		"\u01e9\u01e8\3\2\2\2\u01ea\u01ed\3\2\2\2\u01eb\u01e9\3\2\2\2\u01eb\u01ec"+
 		"\3\2\2\2\u01ec;\3\2\2\2\u01ed\u01eb\3\2\2\2\u01ee\u01ef\5> \2\u01ef\u01f0"+
+<<<<<<< HEAD
 		"\5.\30\2\u01f0\u01f1\5@!\2\u01f1\u01f2\7,\2\2\u01f2=\3\2\2\2\u01f3\u01f7"+
 		"\b \1\2\u01f4\u01f5\7\27\2\2\u01f5\u01f7\b \1\2\u01f6\u01f3\3\2\2\2\u01f6"+
 		"\u01f4\3\2\2\2\u01f7?\3\2\2\2\u01f8\u01fd\5B\"\2\u01f9\u01fa\7&\2\2\u01fa"+
@@ -3296,6 +3443,25 @@ public class DecaParser extends AbstractDecaParser {
 		"\7&\2\2\u0220\u0221\5J&\2\u0221\u0222\b$\1\2\u0222\u0224\3\2\2\2\u0223"+
 		"\u021f\3\2\2\2\u0224\u0227\3\2\2\2\u0225\u0223\3\2\2\2\u0225\u0226\3\2"+
 		"\2\2\u0226\u0229\3\2\2\2\u0227\u0225\3\2\2\2\u0228\u021d\3\2\2\2\u0228"+
+=======
+		"\5.\30\2\u01f0\u01f1\5@!\2\u01f1\u01f2\7+\2\2\u01f2=\3\2\2\2\u01f3\u01f7"+
+		"\b \1\2\u01f4\u01f5\7\27\2\2\u01f5\u01f7\b \1\2\u01f6\u01f3\3\2\2\2\u01f6"+
+		"\u01f4\3\2\2\2\u01f7?\3\2\2\2\u01f8\u01fd\5B\"\2\u01f9\u01fa\7%\2\2\u01fa"+
+		"\u01fc\5B\"\2\u01fb\u01f9\3\2\2\2\u01fc\u01ff\3\2\2\2\u01fd\u01fb\3\2"+
+		"\2\2\u01fd\u01fe\3\2\2\2\u01feA\3\2\2\2\u01ff\u01fd\3\2\2\2\u0200\u0201"+
+		"\5\62\32\2\u0201\u0206\b\"\1\2\u0202\u0203\7\36\2\2\u0203\u0204\5\30\r"+
+		"\2\u0204\u0205\b\"\1\2\u0205\u0207\3\2\2\2\u0206\u0202\3\2\2\2\u0206\u0207"+
+		"\3\2\2\2\u0207\u0208\3\2\2\2\u0208\u0209\b\"\1\2\u0209C\3\2\2\2\u020a"+
+		"\u020b\5.\30\2\u020b\u020c\5\62\32\2\u020c\u020d\7&\2\2\u020d\u020e\5"+
+		"F$\2\u020e\u0219\7\'\2\2\u020f\u0210\5\6\4\2\u0210\u0211\b#\1\2\u0211"+
+		"\u021a\3\2\2\2\u0212\u0213\7\n\2\2\u0213\u0214\7&\2\2\u0214\u0215\5H%"+
+		"\2\u0215\u0216\7\'\2\2\u0216\u0217\7+\2\2\u0217\u0218\b#\1\2\u0218\u021a"+
+		"\3\2\2\2\u0219\u020f\3\2\2\2\u0219\u0212\3\2\2\2\u021a\u021b\3\2\2\2\u021b"+
+		"\u021c\b#\1\2\u021cE\3\2\2\2\u021d\u021e\5J&\2\u021e\u0225\b$\1\2\u021f"+
+		"\u0220\7%\2\2\u0220\u0221\5J&\2\u0221\u0222\b$\1\2\u0222\u0224\3\2\2\2"+
+		"\u0223\u021f\3\2\2\2\u0224\u0227\3\2\2\2\u0225\u0223\3\2\2\2\u0225\u0226"+
+		"\3\2\2\2\u0226\u0229\3\2\2\2\u0227\u0225\3\2\2\2\u0228\u021d\3\2\2\2\u0228"+
+>>>>>>> 4e705c63745e859b5c2fa3df6512261794a3e4ca
 		"\u0229\3\2\2\2\u0229G\3\2\2\2\u022a\u022b\7\66\2\2\u022b\u022f\b%\1\2"+
 		"\u022c\u022d\7\67\2\2\u022d\u022f\b%\1\2\u022e\u022a\3\2\2\2\u022e\u022c"+
 		"\3\2\2\2\u022fI\3\2\2\2\u0230\u0231\5.\30\2\u0231\u0232\5\62\32\2\u0232"+
