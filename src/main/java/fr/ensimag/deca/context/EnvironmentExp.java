@@ -28,12 +28,19 @@ public class EnvironmentExp {
     // d'empilement).
 
     EnvironmentExp parentEnvironment;
-    Map<Symbol,ExpDefinition> currentEnvironment =new HashMap<Symbol,ExpDefinition>();
+    protected Map<Symbol,Definition> currentEnvironment =new HashMap<Symbol,Definition>();
     
     public EnvironmentExp(EnvironmentExp parentEnvironment) {
         this.parentEnvironment = parentEnvironment;
     }
 
+    public Map<Symbol,Definition> getCurrentEnvironment(){
+        return this.currentEnvironment;
+    }
+
+    public void setCurrentEnvironment(Map<Symbol,Definition> r){
+        this.currentEnvironment=r;
+    }
     public static class DoubleDefException extends Exception {
         private static final long serialVersionUID = -2733379901827316441L;
     }
@@ -42,7 +49,7 @@ public class EnvironmentExp {
      * Return the definition of the symbol in the environment, or null if the
      * symbol is undefined.
      */
-    public ExpDefinition get(Symbol key) {
+    public Definition get(Symbol key) {
         //throw new UnsupportedOperationException("not yet implemented");
         EnvironmentExp current= this;
         while(!current.currentEnvironment.containsKey(key)){

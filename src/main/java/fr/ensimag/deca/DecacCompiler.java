@@ -1,8 +1,13 @@
 package fr.ensimag.deca;
 
+import fr.ensimag.deca.context.Definition;
+import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.TypeDefinition;
 import fr.ensimag.deca.syntax.DecaLexer;
 import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.tools.DecacInternalError;
+import fr.ensimag.deca.tools.SymbolTable;
+import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.deca.tree.AbstractProgram;
 import fr.ensimag.deca.tree.LocationException;
 import fr.ensimag.ima.pseudocode.AbstractLine;
@@ -14,6 +19,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Map;
+
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.apache.log4j.Logger;
@@ -35,16 +42,26 @@ import org.apache.log4j.Logger;
  */
 public class DecacCompiler {
     private static final Logger LOG = Logger.getLogger(DecacCompiler.class);
-    
+    protected EnvironmentExp envTypes= new EnvironmentExp(null);;
+    protected SymbolTable table = new SymbolTable();
     /**
      * Portable newline character.
      */
     private static final String nl = System.getProperty("line.separator", "\n");
-
+    
+    public SymbolTable getSymbolTable(){
+        return table;
+    }
+    
     public DecacCompiler(CompilerOptions compilerOptions, File source) {
         super();
         this.compilerOptions = compilerOptions;
         this.source = source;
+        Map<Symbol,Definition> typeEnv = envTypes.getCurrentEnvironment();
+        typeEnv.put(table.create("void"), new TypeDefinition(new VoidType( table.create("void")), new Location(0,0," ")));
+        typeEnv.put(table.create("boolean"),new TypeDefinition(new BooleanType( table.create("boolean")), new Location(0,0," ")));
+        typeEnv.put(table.create("float"),new TypeDefinition(new FloatType( table.create("float")), new Location(0,0," ")));
+        typeEnv.put(table.create("int"),new TypeDefinition(new IntType( table.create("int")), new Location(0,0," ")));
     }
 
     /**

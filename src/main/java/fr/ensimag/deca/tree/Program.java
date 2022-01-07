@@ -1,13 +1,24 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.deca.context.ContextualError;
-import fr.ensimag.deca.context.EnvironmentExp;
-import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.ima.pseudocode.instructions.*;
 import java.io.PrintStream;
+import java.util.Map;
+
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
+
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.context.BooleanType;
+import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.Definition;
+import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.FloatType;
+import fr.ensimag.deca.context.IntType;
+import fr.ensimag.deca.context.TypeDefinition;
+import fr.ensimag.deca.context.VoidType;
+import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.deca.tools.SymbolTable;
+import fr.ensimag.deca.tools.SymbolTable.Symbol;
+import fr.ensimag.ima.pseudocode.instructions.HALT;
 
 /**
  * Deca complete program (class definition plus main block)
@@ -19,11 +30,14 @@ public class Program extends AbstractProgram {
     private static final Logger LOG = Logger.getLogger(Program.class);
     protected EnvironmentExp envTypes = new EnvironmentExp(null);
     
+    
     public Program(ListDeclClass classes, AbstractMain main) {
         Validate.notNull(classes);
         Validate.notNull(main);
         this.classes = classes;
         this.main = main;
+        
+        //typeEnv.put(new Symbol("Object"),);    
     }
     public ListDeclClass getClasses() {
         return classes;
@@ -38,6 +52,7 @@ public class Program extends AbstractProgram {
     public void verifyProgram(DecacCompiler compiler) throws ContextualError {
         LOG.debug("verify program: start");
         //throw new UnsupportedOperationException("not yet implemented");
+
         //classes.verifyListClass(compiler);
         main.verifyMain(compiler);
         LOG.debug("verify program: end");
