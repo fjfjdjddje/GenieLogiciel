@@ -1,4 +1,7 @@
 package fr.ensimag.deca.context;
+import java.lang.*;
+import java.util.HashMap;
+import java.util.Map;
 
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 
@@ -25,6 +28,7 @@ public class EnvironmentExp {
     // d'empilement).
 
     EnvironmentExp parentEnvironment;
+    Map<Symbol,ExpDefinition> currentEnvironment =new HashMap<Symbol,ExpDefinition>();
     
     public EnvironmentExp(EnvironmentExp parentEnvironment) {
         this.parentEnvironment = parentEnvironment;
@@ -39,7 +43,17 @@ public class EnvironmentExp {
      * symbol is undefined.
      */
     public ExpDefinition get(Symbol key) {
-        throw new UnsupportedOperationException("not yet implemented");
+        //throw new UnsupportedOperationException("not yet implemented");
+        EnvironmentExp current= this;
+        while(!current.currentEnvironment.containsKey(key)){
+            if(current!= null){
+                current=current.parentEnvironment;
+            }else{
+                throw new IllegalArgumentException("Symbol not found ");
+            }
+        }
+        return current.currentEnvironment.get(key);
+        
     }
 
     /**
@@ -53,12 +67,16 @@ public class EnvironmentExp {
      *            Name of the symbol to define
      * @param def
      *            Definition of the symbol
-     * @throws DoubleDefException
-     *             if the symbol is already defined at the "current" dictionary
+     * @throws Exception
      *
      */
-    public void declare(Symbol name, ExpDefinition def) throws DoubleDefException {
-        throw new UnsupportedOperationException("not yet implemented");
+    public void declare(Symbol name, ExpDefinition def) throws Exception {
+        //throw new UnsupportedOperationException("not yet implemented");
+        if(this.currentEnvironment.containsKey(name)){
+            throw new Exception("DoubleDefException");
+        }else{
+            this.currentEnvironment.put(name,def);
+        }
     }
 
 }
