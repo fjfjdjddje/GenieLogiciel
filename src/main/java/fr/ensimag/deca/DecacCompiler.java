@@ -1,19 +1,5 @@
 package fr.ensimag.deca;
 
-import fr.ensimag.deca.context.Definition;
-import fr.ensimag.deca.context.EnvironmentExp;
-import fr.ensimag.deca.context.TypeDefinition;
-import fr.ensimag.deca.syntax.DecaLexer;
-import fr.ensimag.deca.syntax.DecaParser;
-import fr.ensimag.deca.tools.DecacInternalError;
-import fr.ensimag.deca.tools.SymbolTable;
-import fr.ensimag.deca.tools.SymbolTable.Symbol;
-import fr.ensimag.deca.tree.AbstractProgram;
-import fr.ensimag.deca.tree.LocationException;
-import fr.ensimag.ima.pseudocode.AbstractLine;
-import fr.ensimag.ima.pseudocode.IMAProgram;
-import fr.ensimag.ima.pseudocode.Instruction;
-import fr.ensimag.ima.pseudocode.Label;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -24,6 +10,26 @@ import java.util.Map;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.apache.log4j.Logger;
+
+import fr.ensimag.deca.context.BooleanType;
+import fr.ensimag.deca.context.Definition;
+import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.FloatType;
+import fr.ensimag.deca.context.IntType;
+import fr.ensimag.deca.context.TypeDefinition;
+import fr.ensimag.deca.context.VoidType;
+import fr.ensimag.deca.syntax.DecaLexer;
+import fr.ensimag.deca.syntax.DecaParser;
+import fr.ensimag.deca.tools.DecacInternalError;
+import fr.ensimag.deca.tools.SymbolTable;
+import fr.ensimag.deca.tools.SymbolTable.Symbol;
+import fr.ensimag.deca.tree.AbstractProgram;
+import fr.ensimag.deca.tree.Location;
+import fr.ensimag.deca.tree.LocationException;
+import fr.ensimag.ima.pseudocode.AbstractLine;
+import fr.ensimag.ima.pseudocode.IMAProgram;
+import fr.ensimag.ima.pseudocode.Instruction;
+import fr.ensimag.ima.pseudocode.Label;
 
 /**
  * Decac compiler instance.
