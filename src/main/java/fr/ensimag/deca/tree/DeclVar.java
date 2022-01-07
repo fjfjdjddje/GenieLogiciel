@@ -42,7 +42,11 @@ public class DeclVar extends AbstractDeclVar {
                 if(localEnv.getCurrentEnvironment().containsKey(varName.getName())){
                     throw new ContextualError("Varable deja déclaré", varName.getLocation());
                 }else{
-                    localEnv.declare(varName.getName(),varName.getExpDefinition());
+                    try{
+                        localEnv.declare(varName.getName(),varName.getExpDefinition());}
+                    catch (Exception e){
+                       System.out.println("Error");
+                    }
                 }
                 
     }

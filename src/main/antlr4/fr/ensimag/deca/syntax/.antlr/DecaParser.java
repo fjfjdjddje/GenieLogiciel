@@ -1,4 +1,4 @@
-// Generated from /user/9/.base/boussemy/home/Projet_GL/src/main/antlr4/fr/ensimag/deca/syntax/DecaParser.g4 by ANTLR 4.8
+// Generated from /user/2/hassouk/Projet_GL/src/main/antlr4/fr/ensimag/deca/syntax/DecaParser.g4 by ANTLR 4.8
 
     import fr.ensimag.deca.tree.*;
     import java.io.PrintStream;
@@ -274,7 +274,7 @@ public class DecaParser extends AbstractDecaParser {
 			            assert(((BlockContext)_localctx).list_inst.tree != null);
 			            ((BlockContext)_localctx).decls =  ((BlockContext)_localctx).list_decl.tree;
 			            ((BlockContext)_localctx).insts =  ((BlockContext)_localctx).list_inst.tree;
-			            
+
 			        
 			}
 		}
@@ -500,14 +500,14 @@ public class DecaParser extends AbstractDecaParser {
 				((Decl_varContext)_localctx).e = expr();
 
 				          initia1 = new Initialization(((Decl_varContext)_localctx).e.tree);
-				          
+
 				        
 				}
 			}
 
 
 			         ((Decl_varContext)_localctx).tree =  new DeclVar(t, ((Decl_varContext)_localctx).i.tree, initia1);
-			          
+
 			        
 			}
 		}
@@ -1080,7 +1080,7 @@ public class DecaParser extends AbstractDecaParser {
 				            if (! (((Assign_exprContext)_localctx).e.tree instanceof AbstractLValue)) {
 				                throw new InvalidLValue(this, _localctx);
 				            }
-				            
+
 				        
 				setState(232);
 				match(EQUALS);
@@ -1089,6 +1089,7 @@ public class DecaParser extends AbstractDecaParser {
 
 				            assert(((Assign_exprContext)_localctx).e.tree != null);
 				            assert(((Assign_exprContext)_localctx).e2.tree != null);
+
 				        
 				}
 				break;
@@ -1182,6 +1183,7 @@ public class DecaParser extends AbstractDecaParser {
 
 					                      assert(((Or_exprContext)_localctx).e1.tree != null);
 					                      assert(((Or_exprContext)_localctx).e2.tree != null);
+					                      ((Or_exprContext)_localctx).tree =  new Or(((Or_exprContext)_localctx).e1.tree, ((Or_exprContext)_localctx).e2.tree);
 					                 
 					}
 					} 
@@ -1265,8 +1267,10 @@ public class DecaParser extends AbstractDecaParser {
 					setState(259);
 					((And_exprContext)_localctx).e2 = eq_neq_expr(0);
 
-					                      assert(((And_exprContext)_localctx).e1.tree != null);                         
+					                      assert(((And_exprContext)_localctx).e1.tree != null);
 					                      assert(((And_exprContext)_localctx).e2.tree != null);
+					                      ((And_exprContext)_localctx).tree =  new And(((And_exprContext)_localctx).e1.tree, ((And_exprContext)_localctx).e2.tree);
+
 					                  
 					}
 					} 
@@ -1357,6 +1361,7 @@ public class DecaParser extends AbstractDecaParser {
 
 						                      assert(((Eq_neq_exprContext)_localctx).e1.tree != null);
 						                      assert(((Eq_neq_exprContext)_localctx).e2.tree != null);
+						                      ((Eq_neq_exprContext)_localctx).tree =  new Equals(((Eq_neq_exprContext)_localctx).e1.tree, ((Eq_neq_exprContext)_localctx).e2.tree);
 						                  
 						}
 						break;
@@ -1375,6 +1380,8 @@ public class DecaParser extends AbstractDecaParser {
 
 						                      assert(((Eq_neq_exprContext)_localctx).e1.tree != null);
 						                      assert(((Eq_neq_exprContext)_localctx).e2.tree != null);
+						                      ((Eq_neq_exprContext)_localctx).tree =  new NotEquals(((Eq_neq_exprContext)_localctx).e1.tree, ((Eq_neq_exprContext)_localctx).e2.tree);
+
 						                  
 						}
 						break;
@@ -1474,6 +1481,7 @@ public class DecaParser extends AbstractDecaParser {
 
 						                      assert(((Inequality_exprContext)_localctx).e1.tree != null);
 						                      assert(((Inequality_exprContext)_localctx).e2.tree != null);
+						                      ((Inequality_exprContext)_localctx).tree =  new LowerOrEqual(((Inequality_exprContext)_localctx).e1.tree, ((Inequality_exprContext)_localctx).e2.tree);
 						                  
 						}
 						break;
@@ -1492,6 +1500,7 @@ public class DecaParser extends AbstractDecaParser {
 
 						                      assert(((Inequality_exprContext)_localctx).e1.tree != null);
 						                      assert(((Inequality_exprContext)_localctx).e2.tree != null);
+						                      ((Inequality_exprContext)_localctx).tree =  new GreaterOrEqual(((Inequality_exprContext)_localctx).e1.tree, ((Inequality_exprContext)_localctx).e2.tree);
 						                  
 						}
 						break;
@@ -1510,6 +1519,7 @@ public class DecaParser extends AbstractDecaParser {
 
 						                      assert(((Inequality_exprContext)_localctx).e1.tree != null);
 						                      assert(((Inequality_exprContext)_localctx).e2.tree != null);
+						                      ((Inequality_exprContext)_localctx).tree =  new Greater(((Inequality_exprContext)_localctx).e1.tree, ((Inequality_exprContext)_localctx).e2.tree);
 						                  
 						}
 						break;
@@ -1528,6 +1538,7 @@ public class DecaParser extends AbstractDecaParser {
 
 						                      assert(((Inequality_exprContext)_localctx).e1.tree != null);
 						                      assert(((Inequality_exprContext)_localctx).e2.tree != null);
+						                      ((Inequality_exprContext)_localctx).tree =  new Lower(((Inequality_exprContext)_localctx).e1.tree, ((Inequality_exprContext)_localctx).e2.tree);
 						                  
 						}
 						break;
@@ -1638,6 +1649,7 @@ public class DecaParser extends AbstractDecaParser {
 
 						                      assert(((Sum_exprContext)_localctx).e1.tree != null);
 						                      assert(((Sum_exprContext)_localctx).e2.tree != null);
+						                      ((Sum_exprContext)_localctx).tree =  new Plus(((Sum_exprContext)_localctx).e1.tree, ((Sum_exprContext)_localctx).e2.tree);
 						                  
 						}
 						break;
@@ -1656,6 +1668,7 @@ public class DecaParser extends AbstractDecaParser {
 
 						                      assert(((Sum_exprContext)_localctx).e1.tree != null);
 						                      assert(((Sum_exprContext)_localctx).e2.tree != null);
+						                      ((Sum_exprContext)_localctx).tree =  new Minus(((Sum_exprContext)_localctx).e1.tree, ((Sum_exprContext)_localctx).e2.tree);
 						                  
 						}
 						break;
@@ -1747,8 +1760,9 @@ public class DecaParser extends AbstractDecaParser {
 						setState(345);
 						((Mult_exprContext)_localctx).e2 = unary_expr();
 
-						                      assert(((Mult_exprContext)_localctx).e1.tree != null);                                         
+						                      assert(((Mult_exprContext)_localctx).e1.tree != null);
 						                      assert(((Mult_exprContext)_localctx).e2.tree != null);
+						                      ((Mult_exprContext)_localctx).tree =  new Multiply(((Mult_exprContext)_localctx).e1.tree, ((Mult_exprContext)_localctx).e2.tree);
 						                  
 						}
 						break;
@@ -1765,8 +1779,9 @@ public class DecaParser extends AbstractDecaParser {
 						setState(350);
 						((Mult_exprContext)_localctx).e2 = unary_expr();
 
-						                      assert(((Mult_exprContext)_localctx).e1.tree != null);                                         
+						                      assert(((Mult_exprContext)_localctx).e1.tree != null);
 						                      assert(((Mult_exprContext)_localctx).e2.tree != null);
+						                      ((Mult_exprContext)_localctx).tree =  new Divide(((Mult_exprContext)_localctx).e1.tree, ((Mult_exprContext)_localctx).e2.tree);
 						                  
 						}
 						break;
@@ -1783,8 +1798,9 @@ public class DecaParser extends AbstractDecaParser {
 						setState(355);
 						((Mult_exprContext)_localctx).e2 = unary_expr();
 
-						                      assert(((Mult_exprContext)_localctx).e1.tree != null);                                                                          
+						                      assert(((Mult_exprContext)_localctx).e1.tree != null);
 						                      assert(((Mult_exprContext)_localctx).e2.tree != null);
+						                      ((Mult_exprContext)_localctx).tree =  new Modulo(((Mult_exprContext)_localctx).e1.tree, ((Mult_exprContext)_localctx).e2.tree);
 						                  
 						}
 						break;
@@ -1843,7 +1859,8 @@ public class DecaParser extends AbstractDecaParser {
 				((Unary_exprContext)_localctx).e = unary_expr();
 
 				            assert(((Unary_exprContext)_localctx).e.tree != null);
-				            
+				            ((Unary_exprContext)_localctx).tree =  new UnaryMinus(((Unary_exprContext)_localctx).e.tree);
+
 				        
 				}
 				break;
@@ -1856,6 +1873,7 @@ public class DecaParser extends AbstractDecaParser {
 				((Unary_exprContext)_localctx).e = unary_expr();
 
 				            assert(((Unary_exprContext)_localctx).e.tree != null);
+				            ((Unary_exprContext)_localctx).tree =  new Not(((Unary_exprContext)_localctx).e.tree);
 				        
 				}
 				break;

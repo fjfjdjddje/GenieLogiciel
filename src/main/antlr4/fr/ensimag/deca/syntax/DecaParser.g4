@@ -35,7 +35,7 @@ options {
     protected AbstractProgram parseProgram() {
         return prog().tree;
     }
-    public SymbolTable tableSymb = new SymbolTable();
+    public static SymbolTable tableSymb = new SymbolTable();
 }
 
 prog returns[AbstractProgram tree]
@@ -120,7 +120,7 @@ list_inst returns[ListInst tree]
 inst returns[AbstractInst tree]
     : e1=expr SEMI {
             assert($e1.tree != null);
-
+            
         }
     | SEMI {
         }
@@ -395,7 +395,7 @@ literal returns[AbstractExpr tree]
         $tree = new IntLiteral(Integer.parseInt($INT.getText()));
         }
     | fd=FLOAT {
-
+       
         }
     | STRING {
         $tree = new StringLiteral($STRING.text);
