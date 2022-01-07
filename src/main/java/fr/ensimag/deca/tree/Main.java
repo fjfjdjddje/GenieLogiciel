@@ -1,8 +1,9 @@
 package fr.ensimag.deca.tree;
-
+import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.VoidType;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
@@ -30,7 +31,7 @@ public class Main extends AbstractMain {
     protected void verifyMain(DecacCompiler compiler) throws ContextualError {
         LOG.debug("verify Main: start");
         declVariables.verifyListDeclVariable(compiler, envExpr, null);
-        insts.verifyListInst(compiler, envExpr, null, new VoidType());
+        insts.verifyListInst(compiler, envExpr, null, new VoidType(DecaParser.tableSymb.create("void")));
         // A FAIRE: Appeler méthodes "verify*" de ListDeclVarSet et ListInst.
         // Vous avez le droit de changer le profil fourni pour ces méthodes
         // (mais ce n'est à priori pas nécessaire).

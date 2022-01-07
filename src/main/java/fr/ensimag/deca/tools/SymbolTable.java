@@ -17,7 +17,11 @@ import java.util.Map;
  */
 public class SymbolTable {
     private Map<String, Symbol> map = new HashMap<String, Symbol>();
-
+    
+    
+    public Map<String, Symbol> getMap(){
+        return this.map;
+    }
     /**
      * Create or reuse a symbol.
      * 

@@ -35,7 +35,7 @@ options {
     protected AbstractProgram parseProgram() {
         return prog().tree;
     }
-    public SymbolTable tableSymb = new SymbolTable();
+    public static SymbolTable tableSymb = new SymbolTable();
 }
 
 prog returns[AbstractProgram tree]

@@ -2,6 +2,8 @@
 
     import fr.ensimag.deca.tree.*;
     import java.io.PrintStream;
+    import fr.ensimag.deca.tools.*;
+
 
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -124,6 +126,7 @@ public class DecaParser extends AbstractDecaParser {
 	    protected AbstractProgram parseProgram() {
 	        return prog().tree;
 	    }
+	    public static SymbolTable tableSymb = new SymbolTable();
 
 	public DecaParser(TokenStream input) {
 		super(input);
@@ -640,6 +643,7 @@ public class DecaParser extends AbstractDecaParser {
 				match(SEMI);
 
 				            assert(((InstContext)_localctx).e1.tree != null);
+				            
 				        
 				}
 				break;
@@ -667,6 +671,7 @@ public class DecaParser extends AbstractDecaParser {
 				match(SEMI);
 
 				            assert(((InstContext)_localctx).list_expr.tree != null);
+				            ((InstContext)_localctx).tree =  new Print(false, ((InstContext)_localctx).list_expr.tree);
 				        
 				}
 				break;
@@ -704,6 +709,7 @@ public class DecaParser extends AbstractDecaParser {
 				match(SEMI);
 
 				            assert(((InstContext)_localctx).list_expr.tree != null);
+				            ((InstContext)_localctx).tree =  new Print(true, ((InstContext)_localctx).list_expr.tree);
 				        
 				}
 				break;
@@ -722,6 +728,7 @@ public class DecaParser extends AbstractDecaParser {
 				match(SEMI);
 
 				            assert(((InstContext)_localctx).list_expr.tree != null);
+				            ((InstContext)_localctx).tree =  new Println(true, ((InstContext)_localctx).list_expr.tree);
 				        
 				}
 				break;
@@ -2207,6 +2214,7 @@ public class DecaParser extends AbstractDecaParser {
 			((TypeContext)_localctx).ident = ident();
 
 			            assert(((TypeContext)_localctx).ident.tree != null);
+			            ((TypeContext)_localctx).tree =  ((TypeContext)_localctx).ident.tree ;
 			        
 			}
 		}
@@ -2223,6 +2231,7 @@ public class DecaParser extends AbstractDecaParser {
 
 	public static class LiteralContext extends ParserRuleContext {
 		public AbstractExpr tree;
+		public Token INT;
 		public Token fd;
 		public Token STRING;
 		public TerminalNode INT() { return getToken(DecaParser.INT, 0); }
@@ -2249,8 +2258,9 @@ public class DecaParser extends AbstractDecaParser {
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(441);
-				match(INT);
+				((LiteralContext)_localctx).INT = match(INT);
 
+				        ((LiteralContext)_localctx).tree =  new IntLiteral(Integer.parseInt(((LiteralContext)_localctx).INT.getText()));
 				        
 				}
 				break;
@@ -2260,6 +2270,7 @@ public class DecaParser extends AbstractDecaParser {
 				setState(443);
 				((LiteralContext)_localctx).fd = match(FLOAT);
 
+				       
 				        
 				}
 				break;
@@ -2326,6 +2337,7 @@ public class DecaParser extends AbstractDecaParser {
 
 	public static class IdentContext extends ParserRuleContext {
 		public AbstractIdentifier tree;
+		public Token IDENT;
 		public TerminalNode IDENT() { return getToken(DecaParser.IDENT, 0); }
 		public IdentContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2340,8 +2352,9 @@ public class DecaParser extends AbstractDecaParser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(457);
-			match(IDENT);
+			((IdentContext)_localctx).IDENT = match(IDENT);
 
+			        ((IdentContext)_localctx).tree =  new Identifier(tableSymb.create((((IdentContext)_localctx).IDENT!=null?((IdentContext)_localctx).IDENT.getText():null)));
 			        
 			}
 		}

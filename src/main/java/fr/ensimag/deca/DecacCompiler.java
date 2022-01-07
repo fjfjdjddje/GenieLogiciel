@@ -70,6 +70,9 @@ public class DecacCompiler {
         typeEnv.put(table.create("int"),new TypeDefinition(new IntType( table.create("int")), new Location(0,0," ")));
     }
 
+    public EnvironmentExp getEnvTypes(){
+        return this.envTypes;
+    }
     /**
      * Source file associated with this compiler instance.
      */

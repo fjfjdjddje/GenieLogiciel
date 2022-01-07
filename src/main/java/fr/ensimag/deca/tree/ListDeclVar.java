@@ -17,6 +17,7 @@ public class ListDeclVar extends TreeList<AbstractDeclVar> {
     @Override
     public void decompile(IndentPrintStream s) {
         throw new UnsupportedOperationException("Not yet implemented");
+
     }
 
     /**
@@ -33,7 +34,9 @@ public class ListDeclVar extends TreeList<AbstractDeclVar> {
      */    
     void verifyListDeclVariable(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-                
+                for( AbstractDeclVar declvariable : this.getList()){
+                    declvariable.verifyDeclVar(compiler, localEnv, currentClass);
+                }
     }
 
 

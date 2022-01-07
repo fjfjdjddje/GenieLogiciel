@@ -1,12 +1,15 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import java.io.PrintStream;
+import java.util.Properties;
+
 import org.apache.commons.lang.Validate;
 
 /**
@@ -33,6 +36,15 @@ public class DeclVar extends AbstractDeclVar {
     protected void verifyDeclVar(DecacCompiler compiler,
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
+                if(!compiler.getEnvTypes().getCurrentEnvironment().containsKey(type.getName())){
+                    throw new ContextualError("Ce type n'existe pas", type.getLocation());
+                }
+                if(localEnv.getCurrentEnvironment().containsKey(varName.getName())){
+                    throw new ContextualError("Varable deja déclaré", varName.getLocation());
+                }else{
+                    localEnv.declare(varName.getName(),varName.getExpDefinition());
+                }
+                
     }
 
     

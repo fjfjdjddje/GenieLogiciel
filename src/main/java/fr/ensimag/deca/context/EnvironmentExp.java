@@ -56,7 +56,8 @@ public class EnvironmentExp {
             if(current!= null){
                 current=current.parentEnvironment;
             }else{
-                throw new IllegalArgumentException("Symbol not found ");
+                return null;
+                //throw new IllegalArgumentException("Symbol not found ");
             }
         }
         return current.currentEnvironment.get(key);
