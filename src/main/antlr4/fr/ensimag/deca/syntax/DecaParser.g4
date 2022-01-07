@@ -26,6 +26,8 @@ options {
 @header {
     import fr.ensimag.deca.tree.*;
     import java.io.PrintStream;
+    import fr.ensimag.deca.tools.*;
+
 }
 
 @members {
@@ -33,6 +35,7 @@ options {
     protected AbstractProgram parseProgram() {
         return prog().tree;
     }
+    public SymbolTable tableSymb = new SymbolTable();
 }
 
 prog returns[AbstractProgram tree]
@@ -117,11 +120,13 @@ list_inst returns[ListInst tree]
 inst returns[AbstractInst tree]
     : e1=expr SEMI {
             assert($e1.tree != null);
+            
         }
     | SEMI {
         }
     | PRINT OPARENT list_expr CPARENT SEMI {
             assert($list_expr.tree != null);
+            $tree = new Print(false, $list_expr.tree);
         }
     | PRINTLN OPARENT list_expr CPARENT SEMI {
             assert($list_expr.tree != null);
@@ -129,9 +134,11 @@ inst returns[AbstractInst tree]
         }
     | PRINTX OPARENT list_expr CPARENT SEMI {
             assert($list_expr.tree != null);
+            $tree = new Print(true, $list_expr.tree);
         }
     | PRINTLNX OPARENT list_expr CPARENT SEMI {
             assert($list_expr.tree != null);
+            $tree = new Println(true, $list_expr.tree);
         }
     | if_then_else {
             assert($if_then_else.tree != null);
@@ -360,13 +367,16 @@ primary_expr returns[AbstractExpr tree]
 type returns[AbstractIdentifier tree]
     : ident {
             assert($ident.tree != null);
+            $tree = $ident.tree ;
         }
     ;
 
 literal returns[AbstractExpr tree]
     : INT {
+        $tree = new IntLiteral(Integer.parseInt($INT.getText()));
         }
     | fd=FLOAT {
+       
         }
     | STRING {
         $tree = new StringLiteral($STRING.text);
@@ -383,6 +393,7 @@ literal returns[AbstractExpr tree]
 
 ident returns[AbstractIdentifier tree]
     : IDENT {
+        $tree = new Identifier(tableSymb.create($IDENT.text));
         }
     ;
 
