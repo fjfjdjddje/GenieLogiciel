@@ -1,0 +1,15 @@
+// Description:
+//    Programme effectuant l'opération de modulo de façon incorrecte
+//
+// Resultats: Erruer de syntaxe
+//
+//
+// Historique:
+//    cree le 01/01/2022
+
+{
+        int x = 30;
+	int y = 4;
+
+	println(%xy);
+}

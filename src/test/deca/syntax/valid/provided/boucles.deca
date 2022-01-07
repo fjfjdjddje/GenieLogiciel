@@ -1,0 +1,18 @@
+// Description:
+//    Programme faisant usage d'une boucle
+//
+// Resultats: 5
+//6
+//7
+//8
+//9
+//
+// Historique:
+//    cree le 01/01/2022
+
+{
+        int j = 5;
+        while(j < 10){
+        	println(j);
+        }
+}

@@ -1,0 +1,15 @@
+// Description:
+//    Programme qui utilise l'opérande + d'une façon incorrecte.
+//
+// Resultats:
+//    Ligne 14 : Erreur de syntaxe
+//
+// Historique:
+//    cree le 01/01/2022
+
+{
+        int a = 2;
+        int b = 3;
+        int z;
+        z = a ++ b;
+}

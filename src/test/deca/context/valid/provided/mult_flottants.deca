@@ -1,0 +1,13 @@
+// Description:
+//    Programme faisant la multiplication entre deux flottants
+//
+// Resultats: 9.3
+//
+// Historique:
+//    cree le 01/01/2022
+
+{
+        float x = 3.0;
+        float y = 3.1;
+        println(x*y);
+}

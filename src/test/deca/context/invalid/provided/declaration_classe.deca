@@ -1,0 +1,18 @@
+// Description:
+//    Programme créant une classe héritée sans l'existence de la classe mère.
+//
+// Resultats:
+//    Ligne 11 : Erreur contextuelle ( la classe mère n'existe pas )
+//
+// Historique:
+//    cree le 01/01/2022
+
+{
+	public class Bouftou extends Mouton{
+		protected String shape;
+		public void Mouton(String nom, int age, String couleur){
+			this.shape = shape
+		}
+	}
+
+}

@@ -1,0 +1,13 @@
+// Description:
+//    Programme faisant correctement l'incrémentation.
+//
+// Resultats: 4
+//
+// Historique:
+//    cree le 01/01/2022
+
+{
+        int x = 3;
+	x++;
+	println(x);
+}

@@ -1,0 +1,15 @@
+// Description:
+//    Programme ayant un paramètre non utilisé.
+//
+// Resultats:
+//    Ligne 11 : Erreur contextuelle
+//
+// Historique:
+//    cree le 01/01/2022
+
+{
+        void equals(int x, int y, int z){
+        	return x == z;
+        }
+
+}

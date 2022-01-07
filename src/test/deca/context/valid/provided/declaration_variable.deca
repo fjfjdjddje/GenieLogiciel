@@ -1,0 +1,11 @@
+// Description:
+//    Programme faisant la déclaration d'une variable deux fois d'affilée.
+//
+// Resultats:
+// Historique:
+//    cree le 01/01/2022
+
+{
+        int x = 3;
+        int y = 6;
+}
