@@ -41,7 +41,6 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
         } else if(typeRightOperand.isString()){
             throw new ContextualError("String not supported for arithmetic operation", getRightOperand().getLocation());
         } else{ 
-            //Type typeAllLeft= getLeftOperand().verifyExpr(compiler, localEnv, currentClass) );
             return typeRightOperand;
         }
     }
