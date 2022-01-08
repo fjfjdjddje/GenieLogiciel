@@ -99,10 +99,12 @@ decl_var[AbstractIdentifier t] returns[AbstractDeclVar tree]
         }
       (EQUALS e=expr {
           initia1 = new Initialization($e.tree);
+          setLocation($tree, $e.start);
 
         }
       )? {
          $tree = new DeclVar(t, $i.tree, initia1);
+         setLocation($tree, $i.start);
 
         }
     ;
@@ -197,6 +199,7 @@ assign_expr returns[AbstractExpr tree]
         EQUALS e2=assign_expr {
             assert($e.tree != null);
             assert($e2.tree != null);
+            
 
         }
       | /* epsilon */ {
@@ -413,6 +416,7 @@ literal returns[AbstractExpr tree]
 ident returns[AbstractIdentifier tree]
     : IDENT {
         $tree = new Identifier(tableSymb.create($IDENT.text));
+        setLocation($tree, $IDENT);
         }
     ;
 

@@ -36,7 +36,7 @@ public class DeclVar extends AbstractDeclVar {
     protected void verifyDeclVar(DecacCompiler compiler,
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
-                if(!compiler.getEnvTypes().getCurrentEnvironment().containsKey(type.getName())){
+                if(!(compiler.getEnvTypes().getCurrentEnvironment().containsKey(type.getName()))){
                     throw new ContextualError("Ce type n'existe pas", type.getLocation());
                 }
                 if(localEnv.getCurrentEnvironment().containsKey(varName.getName())){

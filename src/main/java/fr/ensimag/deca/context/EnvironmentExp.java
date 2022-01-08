@@ -38,8 +38,8 @@ public class EnvironmentExp {
         return this.currentEnvironment;
     }
 
-    public void setCurrentEnvironment(Map<Symbol,Definition> r){
-        this.currentEnvironment=r;
+    public void setCurrentEnvironment(Map<Symbol,Definition> currentEnv){
+        this.currentEnvironment=currentEnv;
     }
     public static class DoubleDefException extends Exception {
         private static final long serialVersionUID = -2733379901827316441L;

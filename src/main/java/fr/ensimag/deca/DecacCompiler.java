@@ -49,25 +49,24 @@ import fr.ensimag.ima.pseudocode.Label;
 public class DecacCompiler {
     private static final Logger LOG = Logger.getLogger(DecacCompiler.class);
     protected EnvironmentExp envTypes= new EnvironmentExp(null);;
-    protected SymbolTable table = new SymbolTable();
     /**
      * Portable newline character.
      */
     private static final String nl = System.getProperty("line.separator", "\n");
     
-    public SymbolTable getSymbolTable(){
-        return table;
-    }
+    //public SymbolTable getSymbolTable(){
+      //  return table;
+    //}
     
     public DecacCompiler(CompilerOptions compilerOptions, File source) {
         super();
         this.compilerOptions = compilerOptions;
         this.source = source;
         Map<Symbol,Definition> typeEnv = envTypes.getCurrentEnvironment();
-        typeEnv.put(table.create("void"), new TypeDefinition(new VoidType( table.create("void")), new Location(0,0," ")));
-        typeEnv.put(table.create("boolean"),new TypeDefinition(new BooleanType( table.create("boolean")), new Location(0,0," ")));
-        typeEnv.put(table.create("float"),new TypeDefinition(new FloatType( table.create("float")), new Location(0,0," ")));
-        typeEnv.put(table.create("int"),new TypeDefinition(new IntType( table.create("int")), new Location(0,0," ")));
+        typeEnv.put(DecaParser.tableSymb.create("void"), new TypeDefinition(new VoidType(DecaParser.tableSymb.create("void")), new Location(0,0," ")));
+        typeEnv.put(DecaParser.tableSymb.create("boolean"),new TypeDefinition(new BooleanType(DecaParser.tableSymb.create("boolean")), new Location(0,0," ")));
+        typeEnv.put(DecaParser.tableSymb.create("float"),new TypeDefinition(new FloatType(DecaParser.tableSymb.create("float")), new Location(0,0," ")));
+        typeEnv.put(DecaParser.tableSymb.create("int"),new TypeDefinition(new IntType(DecaParser.tableSymb.create("int")), new Location(0,0," ")));
     }
 
     public EnvironmentExp getEnvTypes(){
