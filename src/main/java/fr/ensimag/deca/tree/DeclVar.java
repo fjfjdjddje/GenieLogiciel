@@ -45,10 +45,11 @@ public class DeclVar extends AbstractDeclVar {
                     try{
                         localEnv.declare(varName.getName(),varName.getExpDefinition());}
                     catch (Exception e){
-                       System.out.println("Error");
+                       System.out.println("Error en declaration de variable dans l'environnement");
                     }
                 }
-                
+                this.initialization.verifyInitialization(compiler, this.type.getType(), localEnv, currentClass);
+
     }
 
     

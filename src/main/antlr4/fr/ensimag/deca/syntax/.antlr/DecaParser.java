@@ -1,4 +1,4 @@
-// Generated from /user/2/hassouk/Projet_GL/src/main/antlr4/fr/ensimag/deca/syntax/DecaParser.g4 by ANTLR 4.8
+// Generated from /user/9/.base/boussemy/home/Projet_GL/src/main/antlr4/fr/ensimag/deca/syntax/DecaParser.g4 by ANTLR 4.8
 
     import fr.ensimag.deca.tree.*;
     import java.io.PrintStream;
@@ -500,6 +500,7 @@ public class DecaParser extends AbstractDecaParser {
 				((Decl_varContext)_localctx).e = expr();
 
 				          initia1 = new Initialization(((Decl_varContext)_localctx).e.tree);
+				          setLocation(_localctx.tree, (((Decl_varContext)_localctx).e!=null?(((Decl_varContext)_localctx).e.start):null));
 
 				        
 				}
@@ -507,6 +508,7 @@ public class DecaParser extends AbstractDecaParser {
 
 
 			         ((Decl_varContext)_localctx).tree =  new DeclVar(t, ((Decl_varContext)_localctx).i.tree, initia1);
+			         setLocation(_localctx.tree, (((Decl_varContext)_localctx).i!=null?(((Decl_varContext)_localctx).i.start):null));
 
 			        
 			}
@@ -1089,6 +1091,7 @@ public class DecaParser extends AbstractDecaParser {
 
 				            assert(((Assign_exprContext)_localctx).e.tree != null);
 				            assert(((Assign_exprContext)_localctx).e2.tree != null);
+				            
 
 				        
 				}
@@ -2373,6 +2376,7 @@ public class DecaParser extends AbstractDecaParser {
 			((IdentContext)_localctx).IDENT = match(IDENT);
 
 			        ((IdentContext)_localctx).tree =  new Identifier(tableSymb.create((((IdentContext)_localctx).IDENT!=null?((IdentContext)_localctx).IDENT.getText():null)));
+			        setLocation(_localctx.tree, ((IdentContext)_localctx).IDENT);
 			        
 			}
 		}

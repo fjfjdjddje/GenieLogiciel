@@ -16,6 +16,7 @@ import fr.ensimag.deca.context.Definition;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.FloatType;
 import fr.ensimag.deca.context.IntType;
+import fr.ensimag.deca.context.StringType;
 import fr.ensimag.deca.context.TypeDefinition;
 import fr.ensimag.deca.context.VoidType;
 import fr.ensimag.deca.syntax.DecaLexer;
@@ -67,6 +68,7 @@ public class DecacCompiler {
         typeEnv.put(DecaParser.tableSymb.create("boolean"),new TypeDefinition(new BooleanType(DecaParser.tableSymb.create("boolean")), new Location(0,0," ")));
         typeEnv.put(DecaParser.tableSymb.create("float"),new TypeDefinition(new FloatType(DecaParser.tableSymb.create("float")), new Location(0,0," ")));
         typeEnv.put(DecaParser.tableSymb.create("int"),new TypeDefinition(new IntType(DecaParser.tableSymb.create("int")), new Location(0,0," ")));
+        typeEnv.put(DecaParser.tableSymb.create("string"),new TypeDefinition(new StringType(DecaParser.tableSymb.create("string")), new Location(0,0," ")));
     }
 
     public EnvironmentExp getEnvTypes(){

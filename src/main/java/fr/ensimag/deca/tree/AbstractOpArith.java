@@ -21,6 +21,28 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        //throw new UnsupportedOperationException("not yet implemented");
+        Type typeLeftOperand =  super.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
+        Type typeRightOperand =  super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
+        if(typeLeftOperand.isVoid()){
+            throw new ContextualError("Void not supported for arithmetic operation", getLeftOperand().getLocation());
+        } else if(typeLeftOperand.isBoolean()){
+            throw new ContextualError("Boolean not supported for arithmetic operation", getLeftOperand().getLocation());
+        } else if(typeLeftOperand.isClass()){
+            throw new ContextualError("Class not supported for arithmetic operation", getLeftOperand().getLocation());
+        } else if(typeLeftOperand.isString()){
+            throw new ContextualError("String not supported for arithmetic operation", getLeftOperand().getLocation());
+        } else if(typeRightOperand.isVoid()){
+            throw new ContextualError("Void not supported for arithmetic operation", getRightOperand().getLocation());
+        } else if(typeRightOperand.isBoolean()){
+            throw new ContextualError("Boolean not supported for arithmetic operation", getRightOperand().getLocation());
+        } else if(typeRightOperand.isClass()){
+            throw new ContextualError("Class not supported for arithmetic operation", getRightOperand().getLocation());
+        } else if(typeRightOperand.isString()){
+            throw new ContextualError("String not supported for arithmetic operation", getRightOperand().getLocation());
+        } else{ 
+            //Type typeAllLeft= getLeftOperand().verifyExpr(compiler, localEnv, currentClass) );
+            return typeRightOperand;
+        }
     }
 }
