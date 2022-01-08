@@ -15,8 +15,12 @@ import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
+import fr.ensimag.deca.tools.SymbolTable;
 import java.io.PrintStream;
+import java.util.Map;
+
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.ObjectUtils.Null;
 import org.apache.log4j.Logger;
 
 /**
@@ -169,11 +173,12 @@ public class Identifier extends AbstractIdentifier {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-        this.verifyType(compiler);
+
         if(!localEnv.getCurrentEnvironment().containsKey(this.name)){
             throw new ContextualError("Identifiant N'est pas déclaré", this.getLocation());
         }else{
-            return this.definition.getType();
+            //this.verifyType(compiler);
+            return localEnv.get(this.name).getType();
         }
     }
 
@@ -183,12 +188,19 @@ public class Identifier extends AbstractIdentifier {
      */
     @Override
     public Type verifyType(DecacCompiler compiler) throws ContextualError {
-        //throw new UnsupportedOperationException("not yet implemented");
-        if(!compiler.getEnvTypes().getCurrentEnvironment().containsValue(this.definition)){
-            throw new ContextualError("Type not found", this.getLocation());
-        }else{
-            return this.definition.getType();
+        throw new UnsupportedOperationException("not yet implemented");
+        //if(!compiler.getEnvTypes().getCurrentEnvironment().containsKey(this.definition.)){
+        /* boolean found =false;
+        
+        for(Map.Entry<Symbol, Definition> mapentry : compiler.getEnvTypes().getCurrentEnvironment().entrySet()){
+            if(mapentry.getValue().getType().equals(this.definition.getType())){
+                found=true;
+            }
         }
+        if(!found){
+            throw new ContextualError("Type not found", this.getLocation());
+        }
+        return this.definition.getType(); */
     }
     
     

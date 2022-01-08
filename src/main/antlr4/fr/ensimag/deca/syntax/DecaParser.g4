@@ -24,8 +24,11 @@ options {
 
 // which packages should be imported?
 @header {
+    import fr.ensimag.deca.*;
     import fr.ensimag.deca.tree.*;
     import java.io.PrintStream;
+    import java.util.Map;
+    import fr.ensimag.deca.tools.SymbolTable.Symbol;
     import fr.ensimag.deca.tools.*;
     import fr.ensimag.deca.context.*;
     
@@ -42,6 +45,7 @@ options {
 
 prog returns[AbstractProgram tree]
     : list_classes main EOF {
+            
             assert($list_classes.tree != null);
             assert($main.tree != null);
             $tree = new Program($list_classes.tree, $main.tree);
@@ -101,7 +105,7 @@ decl_var[AbstractIdentifier t] returns[AbstractDeclVar tree]
         }
       (EQUALS e=expr {
           initia1 = new Initialization($e.tree);
-          $tree = new DeclVar(t, $i.tree, initia1);
+          $tree = new DeclVar($t, $i.tree, initia1);
           setLocation($tree, $e.start);
 
         }
@@ -458,6 +462,12 @@ literal returns[AbstractExpr tree]
 ident returns[AbstractIdentifier tree]
     : IDENT {
         $tree = new Identifier(tableSymb.create($IDENT.text));
+        for(Map.Entry<Symbol,Definition> mapentry : DecacCompiler.envTypes.getCurrentEnvironment().entrySet()){
+            if($IDENT.text.equals(mapentry.getKey().getName())){
+                $tree.setType(mapentry.getValue().getType());
+                break;
+            }
+        }
         setLocation($tree, $IDENT);
         }
     ;

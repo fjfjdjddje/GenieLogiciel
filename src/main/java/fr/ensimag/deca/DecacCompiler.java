@@ -49,7 +49,7 @@ import fr.ensimag.ima.pseudocode.Label;
  */
 public class DecacCompiler {
     private static final Logger LOG = Logger.getLogger(DecacCompiler.class);
-    protected EnvironmentExp envTypes= new EnvironmentExp(null);;
+    public static EnvironmentExp envTypes= new EnvironmentExp(null);;
     /**
      * Portable newline character.
      */

@@ -1,4 +1,8 @@
 {
-   int x=b+c+a;
+   int a;
+   int b;
+   float t;
+   int c;
+   int x=b+c+t+a;
    
 }

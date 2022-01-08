@@ -33,7 +33,7 @@ public abstract class AbstractExpr extends AbstractInst {
         return type;
     }
 
-    protected void setType(Type type) {
+    public void setType(Type type) {
         Validate.notNull(type);
         this.type = type;
     }
