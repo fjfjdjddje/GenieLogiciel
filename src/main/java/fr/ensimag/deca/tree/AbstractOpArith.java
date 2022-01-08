@@ -40,7 +40,8 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
             throw new ContextualError("Class not supported for arithmetic operation", getRightOperand().getLocation());
         } else if(typeRightOperand.isString()){
             throw new ContextualError("String not supported for arithmetic operation", getRightOperand().getLocation());
-        } else{ 
+        } else/*  if( typeLeftOperand.isFloat()) */{
+            //else{ 
             return typeRightOperand;
         }
     }
