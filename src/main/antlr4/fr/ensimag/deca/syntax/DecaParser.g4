@@ -129,9 +129,12 @@ list_inst returns[ListInst tree]
 inst returns[AbstractInst tree]
     : e1=expr SEMI {
             assert($e1.tree != null);
-
+            $tree = $e1.tree;
+            setLocation($tree, $e1.start); 
         }
     | SEMI {
+        $tree = new NoOperation();
+        setLocation($tree, $SEMI);
         }
     | PRINT OPARENT list_expr CPARENT SEMI {
             assert($list_expr.tree != null);
@@ -161,6 +164,8 @@ inst returns[AbstractInst tree]
     | WHILE OPARENT condition=expr CPARENT OBRACE body=list_inst CBRACE {
             assert($condition.tree != null);
             assert($body.tree != null);
+            $tree = new While($condition.tree, $body.tree);
+            setLocation($tree, $WHILE);
         }
     | RETURN expr SEMI {
             assert($expr.tree != null);
@@ -175,12 +180,16 @@ if_then_else returns[IfThenElse tree]
 }
     : if1=IF OPARENT condition=expr CPARENT OBRACE li_if=list_inst CBRACE {
         $tree = new IfThenElse($expr.tree, $li_if.tree, elseBranch);
+        setLocation($tree, $if1);
+
+
         }
       (ELSE elsif=IF OPARENT elsif_cond=expr CPARENT OBRACE elsif_li=list_inst CBRACE {
         }
       )*
       (ELSE OBRACE li_else=list_inst CBRACE {
           $tree = new IfThenElse($expr.tree, $li_if.tree, $li_else.tree);
+          setLocation($tree, $li_else.start);
         }
       )?
     ;
