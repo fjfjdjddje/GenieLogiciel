@@ -1,8 +1,8 @@
 {
    int a;
-  
+   boolean b1;
+   boolean b2;
+   boolean c;
+   c=b1||a;
    float t;
-   int c;
-   int x=b+c+t+a;
-   
 }

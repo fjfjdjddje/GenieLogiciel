@@ -83,6 +83,11 @@ public abstract class AbstractExpr extends AbstractInst {
             Type expectedType)
             throws ContextualError {
         throw new UnsupportedOperationException("not yet implemented");
+        /* if(!expectedType.sameType(this.verifyExpr(compiler, localEnv, currentClass))){
+            throw new ContextualError("Assignement of Different Types", this.getLocation());
+        }else{
+
+        } */
     }
     
     
@@ -105,7 +110,10 @@ public abstract class AbstractExpr extends AbstractInst {
      */
     void verifyCondition(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        //throw new UnsupportedOperationException("not yet implemented");
+        if(!this.verifyExpr(compiler, localEnv, currentClass).isBoolean()){
+            throw new ContextualError("This condition is not a bool", this.getLocation());
+        }
     }
 
     /**

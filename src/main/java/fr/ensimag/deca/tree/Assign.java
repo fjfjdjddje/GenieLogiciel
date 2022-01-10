@@ -35,6 +35,7 @@ public class Assign extends AbstractBinaryExpr {
         if(!typeLeftExpr.sameType(typeRightExpr)){
             throw new ContextualError("Assign for different types", this.getLocation());
         }
+        verifyRValue(compiler, localEnv, currentClass, typeLeftExpr);
         return typeLeftExpr;
     }
 
