@@ -1,0 +1,14 @@
+/*/ Description:
+//    Programme effectuant l'opération or de façon incorrecte.
+//
+// Resultats:
+//    3
+//
+// Historique:
+//    cree le 01/01/2022*/
+
+{
+        boolean a = true;
+        int b = 5;
+        boolean c = a && b;
+}

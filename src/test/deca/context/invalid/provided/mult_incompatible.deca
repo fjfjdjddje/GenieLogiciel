@@ -12,6 +12,6 @@
    int b;
    boolean c;
 
-   // Doit etre refuse.
-   c = a*b;
+   /* Doit etre refuse.*/
+   a = b*c;
 }

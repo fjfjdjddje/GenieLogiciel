@@ -8,7 +8,7 @@
 
 {
         int j = 5;
-        while(j < 4){
+        while(j == true){
         	println(j);
         }
 }

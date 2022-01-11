@@ -1,5 +1,5 @@
 /*/ Description:
-//    Programme qui utilise une fonction sans nom.
+//    Programme qui utilise une variable ayant un type indéfini.
 //
 // Resultats:
 //    Ligne 11 : Erreur contextuelle
@@ -8,8 +8,6 @@
 //    cree le 01/01/2022*/
 
 {
-        void (int x, int y){
-        	return x-y;
-        }
-
+        toto x;
+        int y;
 }

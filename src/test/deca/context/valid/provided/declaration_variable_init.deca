@@ -1,10 +1,11 @@
 /*/ Description:
-//    Programme faisant la déclaration d'une variable 
+//    Declaration variable avec initialisation
 //
 // Resultats:
+// 
 // Historique:
 //    cree le 01/01/2022*/
 
 {
-        int x;
+   int a = 5;
 }

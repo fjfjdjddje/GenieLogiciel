@@ -1,0 +1,14 @@
+/*/ Description:
+//    Programme utilisant une condition if de façon incorrecte.
+//
+// Resultats: Ligne 11 Erreur contextuelle
+//
+// Historique:
+//    cree le 01/01/2022*/
+
+{
+	string j = "blabla";
+        if(j == 2){
+        	println(j);
+        }
+}

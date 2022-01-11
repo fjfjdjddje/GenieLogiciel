@@ -22,7 +22,7 @@ public abstract class AbstractOpBool extends AbstractBinaryExpr {
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
         Type typeLeftOperand =  super.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
-        Type typeRightOperand =  super.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
+        Type typeRightOperand =  super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
         if(typeLeftOperand.isVoid()){
             throw new ContextualError("Void not supported for boolean operation", getLeftOperand().getLocation());
         } else if(typeLeftOperand.isFloat()){
