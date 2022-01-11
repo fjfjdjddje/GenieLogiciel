@@ -1,5 +1,10 @@
 package fr.ensimag.deca.tree;
-
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.ima.pseudocode.instructions.WINT;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.ADD;
 
 /**
  * @author gl46
@@ -15,4 +20,14 @@ public class Plus extends AbstractOpArith {
     protected String getOperatorName() {
         return "+";
     }
+        @Override
+    public void genCodeOperation(DecacCompiler compiler) {
+        // TODO Auto-generated method stub
+        System.out.println("debut opergencode");
+        super.getLeftOperand().codeGenPrint(compiler);
+        super.getRightOperand().codeGenPrint(compiler);
+        System.out.println("fin opergencode");
+        compiler.addInstruction(new ADD(Register.getR(2), Register.R1));
+        compiler.addInstruction(new WINT());
+    }  
 }
