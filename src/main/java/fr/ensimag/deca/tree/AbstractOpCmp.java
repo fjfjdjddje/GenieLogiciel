@@ -34,22 +34,31 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
           if(!typeLeftOperand.sameType(typeRightOperand)){
             if(!((typeLeftOperand.isInt() && typeRightOperand.isFloat()) || (typeLeftOperand.isFloat() && typeRightOperand.isInt()))){
                 throw new ContextualError("Comparaison incorrecte: types incompatibles", this.getLocation());
+            }else{
+                if(typeLeftOperand.isInt()){
+                    setLeftOperand(new ConvFloat(super.getLeftOperand()));
+                }else{
+                    setRightOperand(new ConvFloat(super.getRightOperand()));
+                }
             }
         }
         }
         else{
             if(typeLeftOperand.isString()){
                 throw new ContextualError("String not supported for inequality operations", super.getLeftOperand().getLocation());
-        }   else if(typeRightOperand.isString()){
-                throw new ContextualError("String not supported for inequality operation", super.getRightOperand().getLocation());
-        } 
-           else if(typeLeftOperand.isBoolean()){
+            } else if(typeRightOperand.isString()){
+                throw new ContextualError("String not supported for inequality operations", super.getRightOperand().getLocation());
+            } else if(typeLeftOperand.isBoolean()){
                 throw new ContextualError("Booleans not supported for inequality operations", super.getLeftOperand().getLocation());
-        }   else if(typeRightOperand.isBoolean()){
+            } else if(typeRightOperand.isBoolean()){
                 throw new ContextualError("Booleans not supported for inequality operations", super.getRightOperand().getLocation());
-        } 
-
-            
+            } else{
+                if(typeLeftOperand.isFloat() && typeRightOperand.isInt()){
+                    setRightOperand(new ConvFloat(super.getRightOperand()));
+                } else if(typeLeftOperand.isInt() && typeRightOperand.isFloat()){
+                    setLeftOperand(new ConvFloat(super.getLeftOperand()));
+                }
+            } 
         }
         return new BooleanType(DecaParser.tableSymb.create("boolean"));
     }

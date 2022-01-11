@@ -45,10 +45,17 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
             throw new ContextualError("String not supported for arithmetic operation", getRightOperand().getLocation());
         } else {
             System.out.println("VerifyExpr OpArith End:");
-            if(typeLeftOperand.isFloat() || typeRightOperand.isFloat()){
+            if(typeLeftOperand.isFloat() && typeRightOperand.isInt()){
+                setRightOperand(new ConvFloat(super.getRightOperand()));
                 return new FloatType(DecaParser.tableSymb.create("float"));
+            } else if(typeLeftOperand.isInt() && typeRightOperand.isFloat()){
+                setLeftOperand(new ConvFloat(super.getLeftOperand()));
+                return new FloatType(DecaParser.tableSymb.create("float"));
+            }else if(typeLeftOperand.isFloat() && typeRightOperand.isFloat()){
+                return new FloatType(DecaParser.tableSymb.create("float"));
+            }else{
+                return new IntType(DecaParser.tableSymb.create("int"));
             }
-            return new IntType(DecaParser.tableSymb.create("int"));
         }   
     }
 }

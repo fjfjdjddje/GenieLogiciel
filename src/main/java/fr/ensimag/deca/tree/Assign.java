@@ -32,12 +32,8 @@ public class Assign extends AbstractBinaryExpr {
         //throw new UnsupportedOperationException("not yet implemented");
         System.out.println("verifyExpr Assign debut:");
         Type typeLeftExpr = super.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
-        Type typeRightExpr = super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
-        
-       if(!typeLeftExpr.sameType(typeRightExpr)){
-            if(!(typeLeftExpr.isFloat() && typeRightExpr.isInt())){
-                throw new ContextualError("Assign incorrect: types différents", this.getLocation());
-            }}
+        AbstractExpr rValue = super.getRightOperand().verifyRValue(compiler, localEnv, currentClass,typeLeftExpr);
+        setRightOperand(rValue);
         System.out.println("verifyExpr Assign fin:");
         //verifyRValue(compiler, localEnv, currentClass, typeLeftExpr);
         return typeLeftExpr;
