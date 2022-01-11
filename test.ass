@@ -1,0 +1,6 @@
+; start main program
+; Main program
+; Beginning of main instructions:
+	WSTR """hi"""
+	HALT
+; end main program

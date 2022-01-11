@@ -43,6 +43,7 @@ public class IntLiteral extends AbstractExpr {
     protected void codeGenPrint(DecacCompiler compiler) {
     	compiler.addInstruction(new LOAD(new ImmediateInteger(value), Register.getR(i)));
         i++;
+        if (i == 3){i = 1;}
     }
 
 

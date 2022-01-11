@@ -27,7 +27,7 @@ public class FloatLiteral extends AbstractExpr {
     public float getValue() {
         return value;
     }
-
+    public static int i = 1;
     private float value;
 
     public FloatLiteral(float value) {
@@ -39,8 +39,9 @@ public class FloatLiteral extends AbstractExpr {
     }
     @Override
     protected void codeGenPrint(DecacCompiler compiler) {
-    	compiler.addInstruction(new LOAD(new ImmediateFloat(value), Register.R1));
-        compiler.addInstruction(new WFLOAT());
+    	compiler.addInstruction(new LOAD(new ImmediateFloat(value), Register.getR(i)));
+        i++;
+        //compiler.addInstruction(new WFLOAT());
     }
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,

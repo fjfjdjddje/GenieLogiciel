@@ -3,6 +3,7 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.ImmediateInteger;
 import fr.ensimag.ima.pseudocode.instructions.WINT;
+import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.ADD;
 
@@ -22,12 +23,13 @@ public class Plus extends AbstractOpArith {
     }
         @Override
     public void genCodeOperation(DecacCompiler compiler) {
-        // TODO Auto-generated method stub
-        System.out.println("debut opergencode");
         super.getLeftOperand().codeGenPrint(compiler);
         super.getRightOperand().codeGenPrint(compiler);
-        System.out.println("fin opergencode");
         compiler.addInstruction(new ADD(Register.getR(2), Register.R1));
-        compiler.addInstruction(new WINT());
+        if (super.getLeftOperand() instanceof FloatLiteral){
+            compiler.addInstruction(new WFLOAT());
+        }else{
+            compiler.addInstruction(new WINT());
+        }  
     }  
 }

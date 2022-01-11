@@ -154,8 +154,8 @@ public class DecacCompiler {
         String destFile = sourceFile.substring(0,sourceFile.lastIndexOf('.'))+".ass";
         // A FAIRE: calculer le nom du fichier .ass à partir du nom du
         // A FAIRE: fichier .deca.
-        System.out.println(sourceFile);
-        destFile = "test.ass";
+        //System.out.println(sourceFile);
+        //destFile = "test.ass";
         PrintStream err = System.err;
         PrintStream out = System.out;
         LOG.debug("Compiling file " + sourceFile + " to assembly file " + destFile);
