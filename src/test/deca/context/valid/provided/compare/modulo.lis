@@ -1,0 +1,22 @@
+`> [9, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [9, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [10, 12] DeclVar
+      |  ||  +> [10, 8] Identifier (int)
+      |  ||  +> [10, 12] Identifier (x)
+      |  ||  |  definition: variable defined at [10, 12], type=int
+      |  ||  `> Initialization
+      |  ||     `> [10, 16] Int (30)
+      |  []> [11, 12] DeclVar
+      |      +> [11, 8] Identifier (int)
+      |      +> [11, 12] Identifier (y)
+      |      |  definition: variable defined at [11, 12], type=int
+      |      `> Initialization
+      |         `> [11, 16] Int (3)
+      `> ListInst [List with 1 elements]
+         []> [12, 16] Println
+             `> [12, 16] ListExpr [List with 1 elements]
+                []> [12, 16] Modulo
+                    +> [12, 16] Identifier (x)
+                    `> [12, 18] Identifier (y)

@@ -28,11 +28,11 @@ public class ListInst extends TreeList<AbstractInst> {
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-                System.out.println("verify listInst: start");
+                //System.out.println("verify listInst: start");
                 for( AbstractInst instruction : this.getList()){
                     instruction.verifyInst(compiler, localEnv, currentClass,returnType);
                 }
-                System.out.println("verify listInst: end");
+                //System.out.println("verify listInst: end");
     }
 
     public void codeGenListInst(DecacCompiler compiler) {

@@ -21,11 +21,11 @@ public abstract class AbstractOpBool extends AbstractBinaryExpr {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-        System.out.println("Opbool: begin");
+        //System.out.println("Opbool: begin");
         Type typeLeftOperand =  super.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
         Type typeRightOperand =  super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
-        System.out.println("left"+typeLeftOperand);
-        System.out.println("right"+typeRightOperand);
+        //System.out.println("left"+typeLeftOperand);
+        //System.out.println("right"+typeRightOperand);
         
         if(typeLeftOperand.isVoid()){
             throw new ContextualError("Void not supported for boolean operation", getLeftOperand().getLocation());
@@ -48,7 +48,7 @@ public abstract class AbstractOpBool extends AbstractBinaryExpr {
         } else if(typeRightOperand.isInt()){
             throw new ContextualError("Int not supported for boolean operation", getRightOperand().getLocation());
         } else{ 
-            System.out.println("Opbool: end");
+            //System.out.println("Opbool: end");
             return typeLeftOperand;
         }
         

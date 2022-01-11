@@ -47,7 +47,7 @@ public class FloatLiteral extends AbstractExpr {
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
         if (this.value > Math.pow(2, 32)){throw new ContextualError("Débordement lors d'une opération sur des flottants", this.getLocation());}
-        System.out.println("VerifyExpr FloatLiteral:");
+       // System.out.println("VerifyExpr FloatLiteral:");
         return new FloatType(DecaParser.tableSymb.create("float"));       
     }
 

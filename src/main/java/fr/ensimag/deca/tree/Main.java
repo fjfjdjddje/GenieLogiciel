@@ -29,13 +29,13 @@ public class Main extends AbstractMain {
     
     @Override
     protected void verifyMain(DecacCompiler compiler) throws ContextualError {
-        LOG.debug("verify Main: start");
+        //LOG.debug("verify Main: start");
         declVariables.verifyListDeclVariable(compiler, envExpr, null);
         insts.verifyListInst(compiler, envExpr, null, new VoidType(DecaParser.tableSymb.create("void")));
         // A FAIRE: Appeler méthodes "verify*" de ListDeclVarSet et ListInst.
         // Vous avez le droit de changer le profil fourni pour ces méthodes
         // (mais ce n'est à priori pas nécessaire).
-        LOG.debug("verify Main: end");
+        //LOG.debug("verify Main: end");
         //throw new UnsupportedOperationException("not yet implemented");
     }
 

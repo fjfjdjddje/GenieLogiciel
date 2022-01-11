@@ -52,7 +52,7 @@ public class DeclVar extends AbstractDeclVar {
                         Definition def= new VariableDefinition(this.type.getType(),this.varName.getLocation() );
                         this.varName.setDefinition(def);
                         localEnv.declare(varName.getName(),varName.getExpDefinition());
-                        System.out.println(localEnv.getCurrentEnvironment());
+                        //System.out.println(localEnv.getCurrentEnvironment());
                     }catch (Exception e){
                        System.out.println("Error en declaration de variable dans l'environnement");
                     }

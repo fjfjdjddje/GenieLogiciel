@@ -1,16 +1,15 @@
 /*/ Description:
-//    Programme faisant correctement l'opération de modulo
+//    Affectation et typage
 //
-// Resultats: 2
-//
+// Resultats:
+//    Ligne 15: Affectation de types incompatibles.
 //
 // Historique:
 //    cree le 01/01/2022*/
+{
+   int a;
+   boolean b;
 
-{	
-	int z,x;
-	if(-z<=-5.4+x){
-
-	}
+   // Doit etre refuse.
+   a = b;
 }
-

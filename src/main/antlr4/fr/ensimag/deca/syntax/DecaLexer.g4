@@ -34,7 +34,7 @@ WS  :   ( '\t'
               skip();
           }
     ;
-COMMENT : '/*' .*? '*/'{ skip(); };
+COMMENT : ('/*' .*? '*/' | '//' ~('\n')*){ skip(); };
 INCLUDE : '#include' (' ')* '"' FILENAME '"';
 ELSE : 'else';
 IF : 'if';

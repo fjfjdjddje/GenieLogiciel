@@ -36,14 +36,14 @@ public class Initialization extends AbstractInitialization {
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-        System.out.println("VerifyInitialization Begin:");
+        //System.out.println("VerifyInitialization Begin:");
         Type expressionType = this.expression.verifyExpr(compiler, localEnv, currentClass);
         if(!expressionType.sameType(t)){
             if(!(expressionType.isInt() && t.isFloat())){
                 throw new ContextualError("Initialisation incorrecte: types différents", this.expression.getLocation());
             }
         }
-         System.out.println("VerifyInitialization End:");
+         //System.out.println("VerifyInitialization End:");
         
     }
 

@@ -31,7 +31,7 @@ options {
     import fr.ensimag.deca.tools.SymbolTable.Symbol;
     import fr.ensimag.deca.tools.*;
     import fr.ensimag.deca.context.*;
-    
+
 
 }
 
@@ -45,7 +45,7 @@ options {
 
 prog returns[AbstractProgram tree]
     : list_classes main EOF {
-            
+
             assert($list_classes.tree != null);
             assert($main.tree != null);
             $tree = new Program($list_classes.tree, $main.tree);
@@ -130,7 +130,7 @@ inst returns[AbstractInst tree]
     : e1=expr SEMI {
             assert($e1.tree != null);
             $tree = $e1.tree;
-            setLocation($tree, $e1.start); 
+            setLocation($tree, $e1.start);
         }
     | SEMI {
         $tree = new NoOperation();
@@ -425,8 +425,12 @@ primary_expr returns[AbstractExpr tree]
             setLocation($tree, $expr.start);
         }
     | READINT OPARENT CPARENT {
+            $tree = new ReadInt();
+            setLocation($tree, $READINT);
         }
     | READFLOAT OPARENT CPARENT {
+            $tree = new ReadFloat();
+            setLocation($tree, $READFLOAT);
         }
     | NEW ident OPARENT CPARENT {
             assert($ident.tree != null);

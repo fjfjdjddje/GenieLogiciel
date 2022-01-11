@@ -21,13 +21,13 @@ public class Modulo extends AbstractOpArith {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-        System.out.println("Modulo verify expr: begin");
+        //System.out.println("Modulo verify expr: begin");
         Type typeLeftOperande= super.getLeftOperand().verifyExpr(compiler, localEnv,currentClass);
         Type typeRightOperande= super.getRightOperand().verifyExpr(compiler,localEnv, currentClass);
         if(!typeLeftOperande.isInt() || !typeRightOperande.isInt()){
             throw new ContextualError("Modulo is not defined for this type", this.getLocation());
         } else {
-            System.out.println("Modulo verify expr: end");
+            //System.out.println("Modulo verify expr: end");
             return typeLeftOperande;
         }
     }

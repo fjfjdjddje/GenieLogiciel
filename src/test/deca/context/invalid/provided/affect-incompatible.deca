@@ -3,13 +3,14 @@
 //
 // Resultats:
 //    Ligne 15: Affectation de types incompatibles.
-// 
+//
 // Historique:
 //    cree le 01/01/2022*/
 {
    int a;
    boolean b;
 
-   // Doit etre refuse.
+   /* Doit etre refuse.*/
+
    a = b;
 }

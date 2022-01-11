@@ -25,7 +25,7 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-        System.out.println("VerifyExpr OpArith Begin:");
+        //System.out.println("VerifyExpr OpArith Begin:");
         Type typeLeftOperand =  super.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
         Type typeRightOperand =  super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
         if(typeLeftOperand.isVoid()){
@@ -45,7 +45,7 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
         } else if(typeRightOperand.isString()){
             throw new ContextualError("String not supported for arithmetic operation", getRightOperand().getLocation());
         } else {
-            System.out.println("VerifyExpr OpArith End:");
+            //System.out.println("VerifyExpr OpArith End:");
             if(typeLeftOperand.isFloat() && typeRightOperand.isInt()){
                 setRightOperand(new ConvFloat(super.getRightOperand()));
                 return new FloatType(DecaParser.tableSymb.create("float"));
