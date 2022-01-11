@@ -42,7 +42,7 @@ public abstract class AbstractExpr extends AbstractInst {
     @Override
     protected void checkDecoration() {
         if (getType() == null) {
-            throw new DecacInternalError("Expression " + decompile() + " has no Type decoration");
+            //throw new DecacInternalError("Expression " + decompile() + " has no Type decoration");
         }
     }
 
@@ -129,7 +129,8 @@ public abstract class AbstractExpr extends AbstractInst {
      * @param compiler
      */
     protected void codeGenPrint(DecacCompiler compiler) {
-        throw new UnsupportedOperationException("not yet implemented");
+        //throw new UnsupportedOperationException("not yet implemented");
+        ((AbstractOpArith)this).genCodeOperation(compiler);
     }
 
     @Override

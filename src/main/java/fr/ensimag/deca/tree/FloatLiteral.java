@@ -8,6 +8,11 @@ import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.ImmediateFloat;
+import fr.ensimag.ima.pseudocode.instructions.WINT;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
+import fr.ensimag.ima.pseudocode.Register;
 import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
 
@@ -32,7 +37,11 @@ public class FloatLiteral extends AbstractExpr {
                 "literal values cannot be NaN");
         this.value = value;
     }
-
+    @Override
+    protected void codeGenPrint(DecacCompiler compiler) {
+    	compiler.addInstruction(new LOAD(new ImmediateFloat(value), Register.R1));
+        compiler.addInstruction(new WFLOAT());
+    }
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {

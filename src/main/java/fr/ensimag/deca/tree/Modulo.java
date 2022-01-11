@@ -1,5 +1,5 @@
 package fr.ensimag.deca.tree;
-
+import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
@@ -32,6 +32,8 @@ public class Modulo extends AbstractOpArith {
         }
     }
 
+    @Override
+    public void genCodeOperation(DecacCompiler compiler){}
 
     @Override
     protected String getOperatorName() {
