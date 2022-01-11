@@ -1,6 +1,8 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.context.BooleanType;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
@@ -20,7 +22,36 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        //throw new UnsupportedOperationException("not yet implemented");
+        Type typeLeftOperand =  super.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
+        Type typeRightOperand =  super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
+        if(typeLeftOperand.isVoid()){
+            throw new ContextualError("Void not supported for comparison operation", super.getLeftOperand().getLocation());
+        } else if(typeRightOperand.isVoid()){
+            throw new ContextualError("Void not supported for comparison operation", super.getRightOperand().getLocation());
+        } 
+        if(this instanceof AbstractOpExactCmp){
+          if(!typeLeftOperand.sameType(typeRightOperand)){
+            if(!((typeLeftOperand.isInt() && typeRightOperand.isFloat()) || (typeLeftOperand.isFloat() && typeRightOperand.isInt()))){
+                throw new ContextualError("Comparaison incorrecte: types incompatibles", this.getLocation());
+            }
+        }
+        }
+        else{
+            if(typeLeftOperand.isString()){
+                throw new ContextualError("String not supported for inequality operations", super.getLeftOperand().getLocation());
+        }   else if(typeRightOperand.isString()){
+                throw new ContextualError("String not supported for inequality operation", super.getRightOperand().getLocation());
+        } 
+           else if(typeLeftOperand.isBoolean()){
+                throw new ContextualError("Booleans not supported for inequality operations", super.getLeftOperand().getLocation());
+        }   else if(typeRightOperand.isBoolean()){
+                throw new ContextualError("Booleans not supported for inequality operations", super.getRightOperand().getLocation());
+        } 
+
+            
+        }
+        return new BooleanType(DecaParser.tableSymb.create("boolean"));
     }
 
 

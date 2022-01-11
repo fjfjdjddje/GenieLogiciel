@@ -173,13 +173,15 @@ public class Identifier extends AbstractIdentifier {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-
+        System.out.println("VerifyExpr Identifier Begin:");
         if(!localEnv.getCurrentEnvironment().containsKey(this.name)){
             throw new ContextualError("Identifiant N'est pas déclaré", this.getLocation());
         }else{
-            //this.verifyType(compiler);
+            System.out.println("VerifyExpr Identifier End:");
+            //System.out.println(localEnv.get(this.name).getType().getName());
             return localEnv.get(this.name).getType();
         }
+        
     }
 
     /**

@@ -1,10 +1,10 @@
-// Description:
+/*/ Description:
 //    Affectation et typage
 //
 // Resultats:
 // 
 // Historique:
-//    cree le 01/01/2022
+//    cree le 01/01/2022*/
 
 {
    int a;

@@ -1,11 +1,11 @@
-// Description:
+/*/ Description:
 //    Programme minimaliste déclarant une classe.
 //
 // Resultats:
 //    Crée la classe Mouton
 //
 // Historique:
-//    cree le 01/01/2022
+//    cree le 01/01/2022*/
 
 {
 	public class Mouton{

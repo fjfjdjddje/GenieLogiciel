@@ -1,6 +1,8 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.context.IntType;
+import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
@@ -29,7 +31,8 @@ public class IntLiteral extends AbstractExpr {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-        return this.getType();
+        System.out.println("VerifyExpr IntLiteral:");
+        return new IntType(DecaParser.tableSymb.create("int"));
     }
 
 

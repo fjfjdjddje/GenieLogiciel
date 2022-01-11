@@ -1,11 +1,11 @@
-// Description:
+/*/ Description:
 //    Programme faisant la déclaration d'une fonction en l'utilisant.
 //
 // Resultats: true
 //    
 //
 // Historique:
-//    cree le 01/01/2022
+//    cree le 01/01/2022*/
 
 {
         public bool equals(int x, int y){

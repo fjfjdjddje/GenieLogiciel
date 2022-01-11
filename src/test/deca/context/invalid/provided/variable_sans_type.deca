@@ -1,11 +1,11 @@
-// Description:
+/*/ Description:
 //    Programme qui utilise une variable sans type.
 //
 // Resultats:
 //    Ligne 11 : Erreur contextuelle
 //
 // Historique:
-//    cree le 01/01/2022
+//    cree le 01/01/2022*/
 
 {
         x;

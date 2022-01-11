@@ -1,11 +1,11 @@
-// Description:
+/*/ Description:
 //    Programme omettant le point virgule.
 //
 // Resultats:
 //    Ligne 11 : Erreur de syntaxe
 //
 // Historique:
-//    cree le 01/01/2022
+//    cree le 01/01/2022*/
 
 {
         println("Hello")

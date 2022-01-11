@@ -1,11 +1,11 @@
-// Description:
+/*/ Description:
 //    Programme qui utilise une fonction sans nom.
 //
 // Resultats:
 //    Ligne 11 : Erreur contextuelle
 //
 // Historique:
-//    cree le 01/01/2022
+//    cree le 01/01/2022*/
 
 {
         void (int x, int y){

@@ -1,8 +1,16 @@
+/*/ Description:
+//    Programme faisant correctement l'opération de modulo
+//
+// Resultats: 2
+//
+//
+// Historique:
+//    cree le 01/01/2022*/
+
 {
-   int a;
-   boolean b1;
-   boolean b2;
-   boolean c;
-   c=b1||a;
-   float t;
+        int x = 30;
+	int y = 4;
+	int r;
+	r = x%y;
+	println(r);
 }

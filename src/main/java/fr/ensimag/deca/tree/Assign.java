@@ -30,12 +30,16 @@ public class Assign extends AbstractBinaryExpr {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
+        System.out.println("verifyExpr Assign debut:");
         Type typeLeftExpr = super.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
         Type typeRightExpr = super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
-        if(!typeLeftExpr.sameType(typeRightExpr)){
-            throw new ContextualError("Assign for different types", this.getLocation());
-        }
-        verifyRValue(compiler, localEnv, currentClass, typeLeftExpr);
+        
+       if(!typeLeftExpr.sameType(typeRightExpr)){
+            if(!(typeLeftExpr.isFloat() && typeRightExpr.isInt())){
+                throw new ContextualError("Assign incorrect: types différents", this.getLocation());
+            }}
+        System.out.println("verifyExpr Assign fin:");
+        //verifyRValue(compiler, localEnv, currentClass, typeLeftExpr);
         return typeLeftExpr;
     }
 

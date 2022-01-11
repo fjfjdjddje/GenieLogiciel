@@ -1,10 +1,10 @@
-// Description:
+/*/ Description:
 //    Programme utilisant une boucle while de façon incorrecte.
 //
 // Resultats: Ligne 11 Erreur de syntaxe
 //
 // Historique:
-//    cree le 01/01/2022
+//    cree le 01/01/2022*/
 
 {
         int j = 5;

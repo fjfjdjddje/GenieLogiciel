@@ -1,11 +1,11 @@
-// Description:
+/*/ Description:
 //    Programme ayant un attribut manquant en constructeur.
 //
 // Resultats:
 //    Ligne 17 : Erreur contextuelle
 //
 // Historique:
-//    cree le 01/01/2022
+//    cree le 01/01/2022*/
 
 {
         public class Humain{

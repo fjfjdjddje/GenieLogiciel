@@ -1,6 +1,8 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.context.FloatType;
+import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
@@ -35,8 +37,9 @@ public class FloatLiteral extends AbstractExpr {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-        //if (this.value > Math.pow(2, 32)){throw new ContextualError("Débordement lors d'une opération sur des flottants", this.getLocation());}
-        return this.getType();        
+        if (this.value > Math.pow(2, 32)){throw new ContextualError("Débordement lors d'une opération sur des flottants", this.getLocation());}
+        System.out.println("VerifyExpr FloatLiteral:");
+        return new FloatType(DecaParser.tableSymb.create("float"));       
     }
 
 

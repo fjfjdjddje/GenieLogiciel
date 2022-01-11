@@ -1,4 +1,4 @@
-// Description:
+/*/ Description:
 //    Programme faisant usage d'une boucle
 //
 // Resultats: 5
@@ -8,7 +8,7 @@
 //9
 //
 // Historique:
-//    cree le 01/01/2022
+//    cree le 01/01/2022*/
 
 {
         int j = 5;
