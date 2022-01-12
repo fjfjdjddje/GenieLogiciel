@@ -37,13 +37,16 @@ public class IntLiteral extends AbstractExpr {
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
         //System.out.println("VerifyExpr IntLiteral:");
-        return new IntType(DecaParser.tableSymb.create("int"));
+        Type t = new IntType(DecaParser.tableSymb.create("int"));
+        this.setType(t);
+        return t;
     }
     @Override
-    protected void codeGenPrint(DecacCompiler compiler) {
+    protected int codeGenPrint(DecacCompiler compiler) {
+        int i = Register.getEmptyReg();
     	compiler.addInstruction(new LOAD(new ImmediateInteger(value), Register.getR(i)));
-        i++;
-        if (i == 3){i = 1;}
+        Register.getR(i).setIsFull(true);
+        return i;
     }
 
 

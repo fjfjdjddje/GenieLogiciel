@@ -1,6 +1,14 @@
 ; start main program
 ; Main program
 ; Beginning of main instructions:
-	WSTR """hi"""
+	LOAD #5, R2
+	LOAD #3, R3
+	LOAD #2, R4
+	LOAD #1, R5
+	ADD R5, R4
+	ADD R4, R3
+	ADD R3, R2
+	LOAD R2, R1
+	WINT
 	HALT
 ; end main program

@@ -38,10 +38,11 @@ public class FloatLiteral extends AbstractExpr {
         this.value = value;
     }
     @Override
-    protected void codeGenPrint(DecacCompiler compiler) {
+    protected int codeGenPrint(DecacCompiler compiler) {
+        int i = Register.getEmptyReg();
     	compiler.addInstruction(new LOAD(new ImmediateFloat(value), Register.getR(i)));
-        i++;
-        //compiler.addInstruction(new WFLOAT());
+        Register.getR(i).setIsFull(true);
+        return i;
     }
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
@@ -49,7 +50,9 @@ public class FloatLiteral extends AbstractExpr {
         //throw new UnsupportedOperationException("not yet implemented");
         if (this.value > Math.pow(2, 32)){throw new ContextualError("Débordement lors d'une opération sur des flottants", this.getLocation());}
        // System.out.println("VerifyExpr FloatLiteral:");
-        return new FloatType(DecaParser.tableSymb.create("float"));       
+       Type t = new FloatType(DecaParser.tableSymb.create("float"));
+       this.setType(t);
+       return t;
     }
 
 

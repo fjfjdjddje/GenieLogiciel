@@ -60,8 +60,10 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
                 }
             } 
         }
-        return new BooleanType(DecaParser.tableSymb.create("boolean"));
-    }
+        Type t= new BooleanType(DecaParser.tableSymb.create("boolean"));
+        this.setType(t);
+        return t;
+}
 
 
 }

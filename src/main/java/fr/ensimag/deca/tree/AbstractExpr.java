@@ -7,6 +7,10 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.ima.pseudocode.instructions.WINT;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.Label;
 import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
@@ -25,7 +29,7 @@ public abstract class AbstractExpr extends AbstractInst {
     boolean isImplicit() {
         return false;
     }
-
+    public static int i = 1;
     /**
      * Get the type decoration associated to this expression (i.e. the type computed by contextual verification).
      */
@@ -128,9 +132,11 @@ public abstract class AbstractExpr extends AbstractInst {
      *
      * @param compiler
      */
-    protected void codeGenPrint(DecacCompiler compiler) {
+    public  abstract int genCodeOperation(DecacCompiler compiler);
+    protected int codeGenPrint(DecacCompiler compiler) {
         //throw new UnsupportedOperationException("not yet implemented");
-        ((AbstractOpArith)this).genCodeOperation(compiler);
+        return this.genCodeOperation(compiler);
+        
     }
 
     @Override

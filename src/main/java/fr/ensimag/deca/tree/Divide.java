@@ -17,6 +17,6 @@ public class Divide extends AbstractOpArith {
         return "/";
     }
     @Override
-    public void genCodeOperation(DecacCompiler compiler){}
+    public int genCodeOperation(DecacCompiler compiler){return 0;}
     
 }

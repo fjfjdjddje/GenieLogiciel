@@ -176,6 +176,7 @@ public class Identifier extends AbstractIdentifier {
         if(!localEnv.getCurrentEnvironment().containsKey(this.name)){
             throw new ContextualError("Identifiant N'est pas déclaré", this.getLocation());
         }else{
+            this.setType(localEnv.get(this.name).getType());
             return localEnv.get(this.name).getType();
         }
         

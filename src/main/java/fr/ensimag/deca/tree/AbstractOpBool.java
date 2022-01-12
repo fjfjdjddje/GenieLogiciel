@@ -1,7 +1,9 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.context.BooleanType;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
@@ -49,8 +51,10 @@ public abstract class AbstractOpBool extends AbstractBinaryExpr {
             throw new ContextualError("Int not supported for boolean operation", getRightOperand().getLocation());
         } else{ 
             //System.out.println("Opbool: end");
-            return typeLeftOperand;
-        }
+            Type t= new BooleanType(DecaParser.tableSymb.create("boolean"));
+            this.setType(t);
+            return t;
+    }
         
 
     }

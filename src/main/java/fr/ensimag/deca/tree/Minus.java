@@ -16,17 +16,22 @@ public class Minus extends AbstractOpArith {
         super(leftOperand, rightOperand);
     }
     @Override
-    public void genCodeOperation(DecacCompiler compiler) {
+    public int genCodeOperation(DecacCompiler compiler) {
         super.getLeftOperand().codeGenPrint(compiler);
         super.getRightOperand().codeGenPrint(compiler);
-        compiler.addInstruction(new SUB(Register.getR(2), Register.R1));
+        int reg1= Register.getEmptyReg();
+        Register.getR(reg1).setIsFull(true);
+        int reg2= Register.getEmptyReg();
+        Register.getR(reg2).setIsFull(true);
+        compiler.addInstruction(new SUB(Register.getR(reg2), Register.getR(reg1)));
+        Register.getR(reg2).setIsFull(false);
         if (super.getLeftOperand() instanceof FloatLiteral){
             compiler.addInstruction(new WFLOAT());
         }else{
             compiler.addInstruction(new WINT());
-        }  
+        } 
+        return reg1; 
     } 
-
     @Override
     protected String getOperatorName() {
         return "-";

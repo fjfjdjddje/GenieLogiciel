@@ -7,6 +7,10 @@ import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.ima.pseudocode.instructions.WINT;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.Register;
 
 /**
  * Arithmetic binary operations (+, -, /, ...)
@@ -19,13 +23,13 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
     public AbstractOpArith(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
-    //public abstract void genCodeOperation(DecacCompiler compiler);
-    public  abstract void genCodeOperation(DecacCompiler compiler);
+    
+    public  abstract int  genCodeOperation(DecacCompiler compiler);
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-        //System.out.println("VerifyExpr OpArith Begin:");
+        System.out.println("VerifyExpr OpArith Begin:");
         Type typeLeftOperand =  super.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
         Type typeRightOperand =  super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
         if(typeLeftOperand.isVoid()){
@@ -45,17 +49,25 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
         } else if(typeRightOperand.isString()){
             throw new ContextualError("String not supported for arithmetic operation", getRightOperand().getLocation());
         } else {
-            //System.out.println("VerifyExpr OpArith End:");
+            System.out.println("VerifyExpr OpArith End:");
             if(typeLeftOperand.isFloat() && typeRightOperand.isInt()){
                 setRightOperand(new ConvFloat(super.getRightOperand()));
-                return new FloatType(DecaParser.tableSymb.create("float"));
+                Type t= new FloatType(DecaParser.tableSymb.create("float"));
+                this.setType(t);
+                return t;
             } else if(typeLeftOperand.isInt() && typeRightOperand.isFloat()){
                 setLeftOperand(new ConvFloat(super.getLeftOperand()));
-                return new FloatType(DecaParser.tableSymb.create("float"));
+                Type t= new FloatType(DecaParser.tableSymb.create("float"));
+                this.setType(t);
+                return t;
             }else if(typeLeftOperand.isFloat() && typeRightOperand.isFloat()){
-                return new FloatType(DecaParser.tableSymb.create("float"));
+                Type t= new FloatType(DecaParser.tableSymb.create("float"));
+                this.setType(t);
+                return t;
             }else{
-                return new IntType(DecaParser.tableSymb.create("int"));
+                Type t= new IntType(DecaParser.tableSymb.create("int"));
+                this.setType(t);
+                return t;
             }
         }   
     }

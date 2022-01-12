@@ -8,6 +8,7 @@ package fr.ensimag.ima.pseudocode;
  */
 public class Register extends DVal {
     private String name;
+    private Boolean isFull = false;
     protected Register(String name) {
         this.name = name;
     }
@@ -16,7 +17,12 @@ public class Register extends DVal {
     public String toString() {
         return name;
     }
-
+    public Boolean getIsFull() {
+        return isFull;
+    }
+    public void setIsFull(Boolean isFull) {
+        this.isFull = isFull;
+    }
     /**
      * Global Base register
      */
@@ -54,5 +60,13 @@ public class Register extends DVal {
             res[i] = new GPRegister("R" + i, i);
         }
         return res;
+    }
+    public static int getEmptyReg(){
+        for (int i = 2; i <= 15; i++) {
+            if(!R[i].getIsFull()){
+                return i;
+            }
+        }
+        return -1;
     }
 }

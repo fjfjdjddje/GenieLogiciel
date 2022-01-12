@@ -31,7 +31,9 @@ public class BooleanLiteral extends AbstractExpr {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-        return new BooleanType(DecaParser.tableSymb.create("boolean"));
+        Type t = new BooleanType(DecaParser.tableSymb.create("boolean"));
+        this.setType(t);
+        return t;
     }
 
 

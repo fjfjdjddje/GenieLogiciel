@@ -37,12 +37,15 @@ public class StringLiteral extends AbstractStringLiteral {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-        return new StringType(DecaParser.tableSymb.create("string"));
+        Type t = new StringType(DecaParser.tableSymb.create("string"));
+        this.setType(t);
+        return t;
     }
 
     @Override
-    protected void codeGenPrint(DecacCompiler compiler) {
+    protected int codeGenPrint(DecacCompiler compiler) {
         compiler.addInstruction(new WSTR(new ImmediateString(value)));
+        return 0;
     }
 
     @Override

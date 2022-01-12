@@ -10,6 +10,8 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.instructions.WINT;
 import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.Label;
 import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
@@ -50,12 +52,15 @@ public abstract class AbstractPrint extends AbstractInst {
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
         for (AbstractExpr a : getArguments().getList()) {
-            a.codeGenPrint(compiler);
-            if (a instanceof IntLiteral){
-                compiler.addInstruction(new WINT());
-            }else if( a instanceof FloatLiteral){
-                compiler.addInstruction(new WFLOAT());
-            }
+            int i = a.codeGenPrint(compiler);
+                if (a instanceof IntLiteral){
+                    compiler.addInstruction(new WINT());
+                }else if(a instanceof FloatLiteral){
+                    compiler.addInstruction(new WFLOAT());
+                }
+            compiler.addInstruction(new LOAD(Register.getR(i), Register.getR(1)));
+            compiler.addInstruction(new WINT());
+
         }
     }
 

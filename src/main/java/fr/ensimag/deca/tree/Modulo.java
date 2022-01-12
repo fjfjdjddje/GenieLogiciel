@@ -33,7 +33,7 @@ public class Modulo extends AbstractOpArith {
     }
 
     @Override
-    public void genCodeOperation(DecacCompiler compiler){}
+    public int genCodeOperation(DecacCompiler compiler){return 0;}
 
     @Override
     protected String getOperatorName() {
