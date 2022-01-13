@@ -60,6 +60,10 @@ public class DeclVar extends AbstractDeclVar {
                 this.initialization.verifyInitialization(compiler, this.type.getType(), localEnv, currentClass);
 
     }
+    @Override
+    public void codeGenDeclVar(DecacCompiler compiler){
+        
+    }
 
     
     @Override

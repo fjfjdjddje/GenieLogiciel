@@ -5,7 +5,9 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
-
+import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.ima.pseudocode.instructions.REM;
+import fr.ensimag.ima.pseudocode.Register;
 /**
  *
  * @author gl46
@@ -33,7 +35,14 @@ public class Modulo extends AbstractOpArith {
     }
 
     @Override
-    public int genCodeOperation(DecacCompiler compiler){return 0;}
+    public int genCodeOperation(DecacCompiler compiler){
+        int reg2 = super.getRightOperand().codeGenPrint(compiler);   
+        Register.getR(reg2).setIsFull(true);
+        int reg1 = super.getLeftOperand().codeGenPrint(compiler);
+        compiler.addInstruction(new REM(Register.getR(reg2), Register.getR(reg1)));
+        Register.getR(reg2).setIsFull(false);
+        return reg1; 
+    }
 
     @Override
     protected String getOperatorName() {

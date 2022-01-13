@@ -26,10 +26,10 @@ public class Plus extends AbstractOpArith {
 
     //@Override
     public int genCodeOperation(DecacCompiler compiler) {
-        int reg1= super.getRightOperand().codeGenPrint(compiler);
-        Register.getR(reg1).setIsFull(true);
-        int reg2= super.getLeftOperand().codeGenPrint(compiler);
+        int reg2 = super.getRightOperand().codeGenPrint(compiler);   
         Register.getR(reg2).setIsFull(true);
+        int reg1 = super.getLeftOperand().codeGenPrint(compiler);
+        Register.getR(reg1).setIsFull(true);
         compiler.addInstruction(new ADD(Register.getR(reg2), Register.getR(reg1)));
         Register.getR(reg2).setIsFull(false);
         return reg1; 
