@@ -16,7 +16,7 @@ public class Multiply extends AbstractOpArith {
         super(leftOperand, rightOperand);
     }
     @Override
-    public int genCodeOperation(DecacCompiler compiler) {
+    public int codeGenExpr(DecacCompiler compiler) {
         int reg2 = super.getRightOperand().codeGenPrint(compiler);   
         Register.getR(reg2).setIsFull(true);
         int reg1 = super.getLeftOperand().codeGenPrint(compiler);

@@ -1,11 +1,12 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.context.Type;
+import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
-import fr.ensimag.deca.context.Definition;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.ima.pseudocode.instructions.STORE;
 
 /**
  * Assignment, i.e. lvalue = expr.
@@ -43,6 +44,19 @@ public class Assign extends AbstractBinaryExpr {
     @Override
     protected String getOperatorName() {
         return "=";
+    }
+
+    @Override
+    public void codeGenInst(DecacCompiler compiler) {
+        int reg = super.getRightOperand().codeGenExpr(compiler);
+        compiler.addInstruction(new STORE(Register.getR(reg),((Identifier)(super.getLeftOperand())).getExpDefinition().getOperand()));
+        Register.getR(reg).setIsFull(true);
+    }
+
+    @Override
+    public int codeGenExpr(DecacCompiler compiler) {
+        // TODO Auto-generated method stub
+        return 0;
     }
 
 }

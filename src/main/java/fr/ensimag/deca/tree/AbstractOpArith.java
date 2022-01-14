@@ -24,7 +24,6 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
         super(leftOperand, rightOperand);
     }
     
-    public  abstract int  genCodeOperation(DecacCompiler compiler);
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {

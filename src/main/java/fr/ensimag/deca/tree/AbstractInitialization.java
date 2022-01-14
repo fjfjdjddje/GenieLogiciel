@@ -22,6 +22,7 @@ public abstract class AbstractInitialization extends Tree {
      * @param currentClass 
      *          corresponds to the "class" attribute (null in the main bloc).
      */
+    public abstract int codeGenIntialisation(DecacCompiler compiler);
     protected abstract void verifyInitialization(DecacCompiler compiler,
             Type t, EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError;

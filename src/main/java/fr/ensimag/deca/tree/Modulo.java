@@ -35,10 +35,11 @@ public class Modulo extends AbstractOpArith {
     }
 
     @Override
-    public int genCodeOperation(DecacCompiler compiler){
-        int reg2 = super.getRightOperand().codeGenPrint(compiler);   
+    public int codeGenExpr(DecacCompiler compiler){
+        int reg1 = super.getLeftOperand().codeGenExpr(compiler);
+        Register.getR(reg1).setIsFull(true);
+        int reg2 = super.getRightOperand().codeGenExpr(compiler);   
         Register.getR(reg2).setIsFull(true);
-        int reg1 = super.getLeftOperand().codeGenPrint(compiler);
         compiler.addInstruction(new REM(Register.getR(reg2), Register.getR(reg1)));
         Register.getR(reg2).setIsFull(false);
         return reg1; 

@@ -16,6 +16,11 @@ import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.deca.tools.SymbolTable;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.Operand;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+
 import java.io.PrintStream;
 import java.util.Map;
 
@@ -34,7 +39,7 @@ public class Identifier extends AbstractIdentifier {
     @Override
     protected void checkDecoration() {
         if (getDefinition() == null) {
-            throw new DecacInternalError("Identifier " + this.getName() + " has no attached Definition");
+            //throw new DecacInternalError("Identifier " + this.getName() + " has no attached Definition");
         }
     }
 
@@ -173,10 +178,13 @@ public class Identifier extends AbstractIdentifier {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-        if(!localEnv.getCurrentEnvironment().containsKey(this.name)){
+            
+            
+            if(!localEnv.getCurrentEnvironment().containsKey(this.name)){
             throw new ContextualError("Identifiant N'est pas déclaré", this.getLocation());
         }else{
             this.setType(localEnv.get(this.name).getType());
+            this.setDefinition(localEnv.getCurrentEnvironment().get(this.name));
             return localEnv.get(this.name).getType();
         }
         
@@ -188,7 +196,14 @@ public class Identifier extends AbstractIdentifier {
      */
     @Override
     public Type verifyType(DecacCompiler compiler) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        //throw new UnsupportedOperationException("not yet implemented");
+        if(!(compiler.getEnvTypes().getCurrentEnvironment().containsKey(this.getType().getName()))){
+            throw new ContextualError("Ce type n'existe pas", this.getLocation());
+        }
+        if(this.getType().isVoid()){
+            throw new ContextualError("Void cannot be declared as a variable", this.getLocation());
+        }
+        return this.getType();
         //if(!compiler.getEnvTypes().getCurrentEnvironment().containsKey(this.definition.)){
         /* boolean found =false;
         
@@ -238,4 +253,22 @@ public class Identifier extends AbstractIdentifier {
         }
     }
 
+   /* @Override
+    public int codeGenPrint(DecacCompiler compiler) {
+        int reg = Register.getEmptyReg();
+        compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(), Register.getR(reg)));
+        return reg;
+        //return ((RegisterOffset)((AbstractIdentifier)this).getExpDefinition().getOperand()).getOffset();
+    }
+    public Operand codeGenOperation1(DecacCompiler compiler) {
+
+        return int;
+    }*/
+
+    @Override
+    public int codeGenExpr(DecacCompiler compiler) {
+        int reg = Register.getEmptyReg();
+        compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(), Register.getR(reg)));
+        return reg;
+    }
 }

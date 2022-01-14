@@ -102,10 +102,12 @@ decl_var[AbstractIdentifier t] returns[AbstractDeclVar tree]
         }
     : i=ident {
         initia1 = new NoInitialization();
+        
         }
       (EQUALS e=expr {
           initia1 = new Initialization($e.tree);
           $tree = new DeclVar($t, $i.tree, initia1);
+          setLocation(initia1, $EQUALS);
           setLocation($tree, $e.start);
 
         }
@@ -177,6 +179,10 @@ inst returns[AbstractInst tree]
 if_then_else returns[IfThenElse tree]
 @init {
      ListInst elseBranch = new ListInst();
+     ListInst elseBranch2 = new ListInst();
+     IfThenElse newTree = null;
+     int i = 0;
+     
 }
     : if1=IF OPARENT condition=expr CPARENT OBRACE li_if=list_inst CBRACE {
         $tree = new IfThenElse($expr.tree, $li_if.tree, elseBranch);
@@ -185,10 +191,19 @@ if_then_else returns[IfThenElse tree]
 
         }
       (ELSE elsif=IF OPARENT elsif_cond=expr CPARENT OBRACE elsif_li=list_inst CBRACE {
+          newTree = new IfThenElse($expr.tree, $elsif_li.tree, elseBranch2);
+          elseBranch.add(newTree);
+          elseBranch2 = elseBranch;
+          i++;
+          
         }
       )*
       (ELSE OBRACE li_else=list_inst CBRACE {
-          $tree = new IfThenElse($expr.tree, $li_if.tree, $li_else.tree);
+          if(i == 0 ){ 
+              $tree.setBranch($list_inst.tree);
+           }else{ 
+              newTree.setBranch($list_inst.tree);
+            }
           setLocation($tree, $li_else.start);
         }
       )?
@@ -204,6 +219,7 @@ list_expr returns[ListExpr tree]
         }
        (COMMA e2=expr {
             $tree.add($e2.tree);
+            setLocation($tree, $e2.start);
         }
        )* )?
     ;

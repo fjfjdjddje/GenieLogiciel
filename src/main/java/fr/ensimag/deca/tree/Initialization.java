@@ -46,7 +46,11 @@ public class Initialization extends AbstractInitialization {
          //System.out.println("VerifyInitialization End:");
         
     }
-
+    @Override
+    public int codeGenIntialisation(DecacCompiler compiler){
+        return getExpression().codeGenExpr(compiler);
+        
+    }
 
     @Override
     public void decompile(IndentPrintStream s) {

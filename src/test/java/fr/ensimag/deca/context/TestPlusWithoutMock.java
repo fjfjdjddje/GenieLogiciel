@@ -59,6 +59,12 @@ public class TestPlusWithoutMock {
         public void checkProperUse() {
             assertTrue(hasBeenVerified, "verifyExpr has not been called");
         }
+
+        @Override
+        public int genCodeOperation(DecacCompiler compiler) {
+            // TODO Auto-generated method stub
+            return 0;
+        }
     }
 
     @Test

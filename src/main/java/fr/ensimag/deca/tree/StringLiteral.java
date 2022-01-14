@@ -68,4 +68,10 @@ public class StringLiteral extends AbstractStringLiteral {
         return "StringLiteral (" + value + ")";
     }
 
+    @Override
+    public int codeGenExpr(DecacCompiler compiler) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
 }

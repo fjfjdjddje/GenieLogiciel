@@ -10,6 +10,10 @@ import fr.ensimag.deca.context.Definition;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.ExpDefinition;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.Operand;
+import fr.ensimag.ima.pseudocode.instructions.STORE;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
 import java.io.PrintStream;
 import java.util.Properties;
 
@@ -21,7 +25,6 @@ import org.apache.commons.lang.Validate;
  */
 public class DeclVar extends AbstractDeclVar {
 
-    
     final private AbstractIdentifier type;
     final private AbstractIdentifier varName;
     final private AbstractInitialization initialization;
@@ -39,30 +42,34 @@ public class DeclVar extends AbstractDeclVar {
     protected void verifyDeclVar(DecacCompiler compiler,
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
-                if(!(compiler.getEnvTypes().getCurrentEnvironment().containsKey(type.getName()))){
-                    throw new ContextualError("Ce type n'existe pas", type.getLocation());
-                }
+                this.type.verifyType(compiler);
                 if(localEnv.getCurrentEnvironment().containsKey(varName.getName())){
-                    throw new ContextualError("Varable deja déclaré", varName.getLocation());
-                }else{
-                    if(this.type.getType().isVoid()){
-                        throw new ContextualError("Void cannot be declared as a variable", this.getLocation());
-                    }
+                    throw new ContextualError("Variable deja déclaré", varName.getLocation());
+                }
                     try{
-                        Definition def= new VariableDefinition(this.type.getType(),this.varName.getLocation() );
+                        Definition def= new VariableDefinition(this.type.getType(),this.varName.getLocation());
+
                         this.varName.setDefinition(def);
+                        this.varName.setType(this.type.getType());
+        
+                        RegisterOffset GB3 = new RegisterOffset(RegisterOffset.lastReg, Register.GB);
+                        this.varName.getExpDefinition().setOperand(GB3);
+                        RegisterOffset.lastReg ++;
+                        //def.setOperand();
                         localEnv.declare(varName.getName(),varName.getExpDefinition());
                         //System.out.println(localEnv.getCurrentEnvironment());
                     }catch (Exception e){
                        System.out.println("Error en declaration de variable dans l'environnement");
                     }
-                }
+                
                 this.initialization.verifyInitialization(compiler, this.type.getType(), localEnv, currentClass);
 
     }
     @Override
-    public void codeGenDeclVar(DecacCompiler compiler){
-        
+    public void codeGenDeclVariable(DecacCompiler compiler){
+        int regIntia = this.initialization.codeGenIntialisation(compiler);
+        compiler.addInstruction(new STORE(Register.getR(regIntia), varName.getExpDefinition().getOperand()));
+        Register.getR(regIntia).setIsFull(false);
     }
 
     

@@ -1,10 +1,7 @@
 package fr.ensimag.deca.tree;
 import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.ima.pseudocode.ImmediateInteger;
-import fr.ensimag.ima.pseudocode.instructions.WINT;
-import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
-import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.QUO;
+import fr.ensimag.ima.pseudocode.instructions.DIV;
 import fr.ensimag.ima.pseudocode.Register;
 /**
  *
@@ -22,14 +19,21 @@ public class Divide extends AbstractOpArith {
         return "/";
     }
     @Override
-    public int genCodeOperation(DecacCompiler compiler){
-        int reg2 = super.getRightOperand().codeGenPrint(compiler);   
-        Register.getR(reg2).setIsFull(true);
+    public int codeGenExpr(DecacCompiler compiler){
         int reg1 = super.getLeftOperand().codeGenPrint(compiler);
         Register.getR(reg1).setIsFull(true);
-        compiler.addInstruction(new QUO(Register.getR(reg2), Register.getR(reg1)));
+        int reg2 = super.getRightOperand().codeGenPrint(compiler);   
+        Register.getR(reg2).setIsFull(true);
+        if(super.getLeftOperand().getType().isFloat()){
+            compiler.addInstruction(new DIV(Register.getR(reg2), Register.getR(reg1)));
+        }else{
+            compiler.addInstruction(new QUO(Register.getR(reg2), Register.getR(reg1)));
+        }
+
         Register.getR(reg2).setIsFull(false);
         return reg1; 
     }
+
+
     
 }

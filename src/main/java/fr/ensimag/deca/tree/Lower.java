@@ -1,5 +1,10 @@
 package fr.ensimag.deca.tree;
+import fr.ensimag.ima.pseudocode.instructions.SLT;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
 
+
+import fr.ensimag.deca.DecacCompiler;
 
 /**
  *
@@ -17,5 +22,18 @@ public class Lower extends AbstractOpIneq {
     protected String getOperatorName() {
         return "<";
     }
+
+
+    @Override
+    public int codeGenExpr(DecacCompiler compiler) {
+        int reg1 = super.getLeftOperand().codeGenPrint(compiler);
+        Register.getR(reg1).setIsFull(true);
+        int reg2 = super.getRightOperand().codeGenPrint(compiler);   
+        Register.getR(reg2).setIsFull(true);
+        compiler.addInstruction(new CMP(Register.getR(reg2), Register.getR(reg1)));
+        compiler.addInstruction(new SLT(Register.getR(reg2)));
+        Register.getR(reg1).setIsFull(false);
+        return reg2;
+    } 
 
 }

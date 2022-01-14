@@ -7,9 +7,12 @@ package fr.ensimag.ima.pseudocode;
  * @date 01/01/2022
  */
 public class RegisterOffset extends DAddr {
+    public static int lastReg = 3;
+
     public int getOffset() {
         return offset;
     }
+
     public Register getRegister() {
         return register;
     }

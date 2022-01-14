@@ -52,15 +52,16 @@ public abstract class AbstractPrint extends AbstractInst {
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
         for (AbstractExpr a : getArguments().getList()) {
-            int i = a.codeGenPrint(compiler);
-                if (a instanceof IntLiteral){
-                    compiler.addInstruction(new WINT());
-                }else if(a instanceof FloatLiteral){
-                    compiler.addInstruction(new WFLOAT());
-                }
+            int i = a.codeGenExpr(compiler);
             compiler.addInstruction(new LOAD(Register.getR(i), Register.getR(1)));
-            compiler.addInstruction(new WINT());
-
+            if (a.getType().isInt()){
+                compiler.addInstruction(new WINT());
+            }else if(a.getType().isFloat()){
+                compiler.addInstruction(new WFLOAT());
+            }else{
+                compiler.addInstruction(new WINT());
+            }
+            
         }
     }
 

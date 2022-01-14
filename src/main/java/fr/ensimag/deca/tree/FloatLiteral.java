@@ -37,13 +37,13 @@ public class FloatLiteral extends AbstractExpr {
                 "literal values cannot be NaN");
         this.value = value;
     }
-    @Override
-    protected int codeGenPrint(DecacCompiler compiler) {
+   // @Override
+   /* protected int codeGenPrint(DecacCompiler compiler) {
         int i = Register.getEmptyReg();
     	compiler.addInstruction(new LOAD(new ImmediateFloat(value), Register.getR(i)));
         Register.getR(i).setIsFull(true);
         return i;
-    }
+    }*/
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
@@ -74,6 +74,14 @@ public class FloatLiteral extends AbstractExpr {
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         // leaf node => nothing to do
+    }
+
+    @Override
+    public int codeGenExpr(DecacCompiler compiler) {
+        int i = Register.getEmptyReg();
+    	compiler.addInstruction(new LOAD(new ImmediateFloat(value), Register.getR(i)));
+        Register.getR(i).setIsFull(true);
+        return i;
     }
 
 }

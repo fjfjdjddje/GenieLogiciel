@@ -7,5 +7,7 @@
 // Historique:
 //    cree le 01/01/2022*/
 {
-   print(1+2+3+5);
+  int i = 1;
+  float y = 5.03;
+  print(5.0/3);
 }

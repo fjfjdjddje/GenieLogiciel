@@ -42,5 +42,10 @@ public class ReadFloat extends AbstractReadExpr {
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         // leaf node => nothing to do
     }
+    @Override
+    public int codeGenExpr(DecacCompiler compiler) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 
 }

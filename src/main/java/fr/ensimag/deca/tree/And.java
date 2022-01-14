@@ -1,5 +1,8 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.MUL;
+import fr.ensimag.deca.DecacCompiler;
 
 /**
  *
@@ -15,6 +18,17 @@ public class And extends AbstractOpBool {
     @Override
     protected String getOperatorName() {
         return "&&";
+    }
+
+    @Override
+    public int codeGenExpr(DecacCompiler compiler) {
+        int reg1 = super.getLeftOperand().codeGenExpr(compiler);
+        Register.getR(reg1).setIsFull(true);
+        int reg2 = super.getRightOperand().codeGenExpr(compiler);   
+        Register.getR(reg2).setIsFull(true);
+        compiler.addInstruction(new MUL(Register.getR(reg2), Register.getR(reg1)));
+        Register.getR(reg2).setIsFull(false);
+        return reg1;  
     }
 
 

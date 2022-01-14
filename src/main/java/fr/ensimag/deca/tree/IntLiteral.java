@@ -40,14 +40,14 @@ public class IntLiteral extends AbstractExpr {
         Type t = new IntType(DecaParser.tableSymb.create("int"));
         this.setType(t);
         return t;
-    }
+    }/*
     @Override
     protected int codeGenPrint(DecacCompiler compiler) {
         int i = Register.getEmptyReg();
     	compiler.addInstruction(new LOAD(new ImmediateInteger(value), Register.getR(i)));
         Register.getR(i).setIsFull(true);
         return i;
-    }
+    }*/
 
 
     @Override
@@ -68,6 +68,14 @@ public class IntLiteral extends AbstractExpr {
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         // leaf node => nothing to do
+    }
+
+    @Override
+    public int codeGenExpr(DecacCompiler compiler) {
+        int i = Register.getEmptyReg();
+    	compiler.addInstruction(new LOAD(new ImmediateInteger(value), Register.getR(i)));
+        Register.getR(i).setIsFull(true);
+        return i;
     }
 
 }
