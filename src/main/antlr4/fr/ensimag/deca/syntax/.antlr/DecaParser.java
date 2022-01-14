@@ -882,6 +882,7 @@ public class DecaParser extends AbstractDecaParser {
 
 		     ListInst elseBranch = new ListInst();
 		     IfThenElse newTree = null;
+		     int i = 0;
 		     
 
 		int _la;
@@ -934,8 +935,9 @@ public class DecaParser extends AbstractDecaParser {
 					          ListInst elseBranch2 = new ListInst();
 					          newTree = new IfThenElse(((If_then_elseContext)_localctx).expr.tree, ((If_then_elseContext)_localctx).elsif_li.tree, elseBranch2);
 					          elseBranch.add(newTree);
-					          ((If_then_elseContext)_localctx).tree =  newTree;
-					          setLocation(newTree,((If_then_elseContext)_localctx).elsif);          
+					          elseBranch = elseBranch2;
+					          setLocation(newTree,((If_then_elseContext)_localctx).elsif);  
+					          i++;        
 					        
 					}
 					} 
@@ -958,7 +960,11 @@ public class DecaParser extends AbstractDecaParser {
 				setState(209);
 				match(CBRACE);
 
-				           _localctx.tree.setBranch(((If_then_elseContext)_localctx).list_inst.tree);
+				          if(i == 0){ 
+				                _localctx.tree.setBranch(((If_then_elseContext)_localctx).list_inst.tree);
+				           }else{
+				                newTree.setBranch(((If_then_elseContext)_localctx).list_inst.tree);
+				            }
 				           setLocation(_localctx.tree, ((If_then_elseContext)_localctx).ELSE);
 				        
 				}

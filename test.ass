@@ -5,7 +5,7 @@
 	STORE R2, 3(GB)
 debutWhile1:
 	LOAD 3(GB), R2
-	LOAD #10, R3
+	LOAD #15, R3
 	CMP R3, R2
 	SLT R3
 	LOAD #0, R2
@@ -15,25 +15,62 @@ debutWhile1:
 	LOAD #1, R3
 	ADD R3, R2
 	STORE R2, 3(GB)
-	LOAD #5, R3
-	LOAD 3(GB), R4
+	LOAD 3(GB), R3
+	LOAD #5, R4
 	CMP R4, R3
 	SLT R4
+	LOAD #0, R3
+	CMP R3, R4
+	BEQ debutSinon1
+	WSTR """je suis dans if"""
+	LOAD R0, R1
+	WNL
 	LOAD 3(GB), R3
-	LOAD #8, R5
-	CMP R5, R3
-	SLT R5
-	MUL R5, R4
-	LOAD #0, R5
-	CMP R4, R5
+	LOAD R3, R1
+	WINT
+	WNL
+	BRA finSinon
+debutSinon1:
+	LOAD 3(GB), R3
+	LOAD #5, R4
+	CMP R4, R3
+	SEQ R4
+	LOAD #0, R3
+	CMP R3, R4
 	BEQ debutSinon2
-	WSTR """inférieur a 8"""
+	WSTR """je suis dans elseif1"""
 	LOAD R0, R1
-	BRA finSinon2
+	WNL
+	LOAD 3(GB), R3
+	LOAD R3, R1
+	WINT
+	WNL
+	BRA finSinon
 debutSinon2:
-	WSTR """yesssssssssssssss"""
+	LOAD 3(GB), R3
+	LOAD #6, R4
+	CMP R4, R3
+	SEQ R4
+	LOAD #0, R3
+	CMP R3, R4
+	BEQ debutSinon3
+	WSTR """je suis dans elseif2"""
 	LOAD R0, R1
-finSinon2:
+	WNL
+	LOAD 3(GB), R3
+	LOAD R3, R1
+	WINT
+	WNL
+	BRA finSinon
+debutSinon3:
+	WSTR """je suis dans else"""
+	LOAD R0, R1
+	WNL
+	LOAD 3(GB), R3
+	LOAD R3, R1
+	WINT
+	WNL
+finSinon:
 	BRA debutWhile1
 finWhile1:
 	HALT

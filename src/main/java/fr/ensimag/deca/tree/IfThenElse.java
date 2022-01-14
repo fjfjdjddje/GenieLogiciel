@@ -32,7 +32,7 @@ public class IfThenElse extends AbstractInst {
         this.thenBranch = thenBranch;
         this.elseBranch = elseBranch;
     }
-    public static int it2 = 1;
+    public static int it2 = 0;
     public void setBranch(ListInst elseBranch){
         this.elseBranch = elseBranch;
     }
@@ -44,19 +44,22 @@ public class IfThenElse extends AbstractInst {
                 thenBranch.verifyListInst(compiler, localEnv, currentClass, returnType);
                 elseBranch.verifyListInst(compiler, localEnv, currentClass, returnType);
     }
-
+    Label lab2 = new Label("finSinon");
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
         //throw new UnsupportedOperationException("not yet implemented");
         it2++;
+        System.out.println(it2);    
         Label lab1 = new Label("debutSinon"+it2);
-        Label lab2 = new Label("finSinon"+it2);
         ((Condition)this.condition).codeGenCond(compiler,lab1);
         thenBranch.codeGenListInst(compiler);
         compiler.addInstruction(new BRA(lab2));
         compiler.addLabel(lab1);
         elseBranch.codeGenListInst(compiler);
-        compiler.addLabel(lab2);
+        it2 --;
+        if (it2 == 1){
+            compiler.addLabel(lab2);
+        }
     }
 
     @Override

@@ -6,12 +6,20 @@
 //
 // Historique:
 //    cree le 01/01/2022*/
-{ int i = 0;
-
-  while(i<10){
-  i = i+1;
-  if(true){print("inférieur a 2");}
-  //else if(5<i && i<8){print("inférieur a 8");}
-  else{print("yesssssssssssssss");}
-  }
-}
+{
+int i = 0;
+while(i<15){
+i = i+1;
+if(i<5){
+println("je suis dans if");
+println(i);}
+else if(i == 5){
+println("je suis dans elseif1");
+println(i);}
+else if(i == 6){
+println("je suis dans elseif2");
+println(i);}
+else{println("je suis dans else");
+println(i);}
+ }
+ }
