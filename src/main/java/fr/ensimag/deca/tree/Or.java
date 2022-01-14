@@ -32,14 +32,11 @@ public class Or extends AbstractOpBool {
         Register.getR(reg1).setIsFull(true);
         int reg2 = super.getRightOperand().codeGenExpr(compiler);   
         Register.getR(reg2).setIsFull(true);
-        int reg3 = Register.getEmptyReg();  
-        Register.getR(reg3).setIsFull(true);
-        compiler.addInstruction(new LOAD(new ImmediateInteger(1),Register.getR(reg3)));
         compiler.addInstruction(new ADD(Register.getR(reg2), Register.getR(reg1)));
-        compiler.addInstruction(new CMP(Register.getR(reg3), Register.getR(reg1)));
+        compiler.addInstruction(new LOAD(new ImmediateInteger(1),Register.getR(reg2)));
+        compiler.addInstruction(new CMP(Register.getR(reg2), Register.getR(reg1)));
         compiler.addInstruction(new SGE(Register.getR(reg1)));
         Register.getR(reg2).setIsFull(false);
-        Register.getR(reg3).setIsFull(false);
         return reg1;
     }
 
@@ -49,17 +46,14 @@ public class Or extends AbstractOpBool {
         Register.getR(reg1).setIsFull(true);
         int reg2 = super.getRightOperand().codeGenExpr(compiler);   
         Register.getR(reg2).setIsFull(true);
-        int reg3 = Register.getEmptyReg();  
-        Register.getR(reg3).setIsFull(true);
-        compiler.addInstruction(new LOAD(new ImmediateInteger(1),Register.getR(reg3)));
         compiler.addInstruction(new ADD(Register.getR(reg2), Register.getR(reg1)));
-        compiler.addInstruction(new CMP(Register.getR(reg3), Register.getR(reg1)));
+        compiler.addInstruction(new LOAD(new ImmediateInteger(1),Register.getR(reg2)));
+        compiler.addInstruction(new CMP(Register.getR(reg2), Register.getR(reg1)));
         compiler.addInstruction(new SGE(Register.getR(reg1)));
         compiler.addInstruction(new LOAD(new ImmediateInteger(0),Register.getR(reg2)));
         compiler.addInstruction(new CMP(Register.getR(reg1),Register.getR(reg2)));
         compiler.addInstruction(new BEQ(lab2));
         Register.getR(reg2).setIsFull(false);
-        Register.getR(reg3).setIsFull(false);
         Register.getR(reg1).setIsFull(false);
         return -1;
     }

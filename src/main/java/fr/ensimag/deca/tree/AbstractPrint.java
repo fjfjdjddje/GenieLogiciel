@@ -54,6 +54,7 @@ public abstract class AbstractPrint extends AbstractInst {
         for (AbstractExpr a : getArguments().getList()) {
             int i = a.codeGenExpr(compiler);
             compiler.addInstruction(new LOAD(Register.getR(i), Register.getR(1)));
+            Register.getR(i).setIsFull(false);
             if (a.getType().isInt()){
                 compiler.addInstruction(new WINT());
             }else if(a.getType().isFloat()){

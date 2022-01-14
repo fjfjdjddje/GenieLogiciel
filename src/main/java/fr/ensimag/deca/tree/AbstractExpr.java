@@ -106,7 +106,7 @@ public abstract class AbstractExpr extends AbstractInst {
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-        Type typeOfReturn = this.verifyExpr(compiler, localEnv, currentClass);
+    this.verifyExpr(compiler, localEnv, currentClass);
     }
 
     /**

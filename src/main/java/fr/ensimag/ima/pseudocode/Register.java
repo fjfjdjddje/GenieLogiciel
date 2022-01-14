@@ -1,5 +1,8 @@
 package fr.ensimag.ima.pseudocode;
 
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.ima.pseudocode.instructions.PUSH;
+
 /**
  * Register operand (including special registers like SP).
  * 
@@ -9,9 +12,22 @@ package fr.ensimag.ima.pseudocode;
 public class Register extends DVal {
     private String name;
     private Boolean isFull = false;
+    private int nbrPushed = 0;
+    public static int regToPush = 2;
+
     protected Register(String name) {
         this.name = name;
     }
+
+    public int getNbrPushed() {
+        return nbrPushed;
+    }
+
+    public void setNbrPushed(int nbrPushed) {
+        this.nbrPushed = nbrPushed;
+    }
+
+
 
     @Override
     public String toString() {
@@ -61,12 +77,17 @@ public class Register extends DVal {
         }
         return res;
     }
-    public static int getEmptyReg(){
-        for (int i = 2; i <= 15; i++) {
+    public static int getEmptyReg(DecacCompiler compiler){
+        for (int i = 2; i <= 5; i++) {
             if(!R[i].getIsFull()){
                 return i;
             }
         }
-        return -1;
+        compiler.addInstruction(new PUSH(R[regToPush]));
+        R[regToPush].setNbrPushed(R[regToPush].getNbrPushed()+1);
+        int res  = regToPush;
+        regToPush++;
+        if (regToPush == 6){regToPush =2;}
+        return res;   
     }
 }
