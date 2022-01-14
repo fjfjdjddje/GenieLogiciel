@@ -180,31 +180,23 @@ if_then_else returns[IfThenElse tree]
 @init {
      ListInst elseBranch = new ListInst();
      IfThenElse newTree = null;
-     int i = 0;
      
 }
     : if1=IF OPARENT condition=expr CPARENT OBRACE li_if=list_inst CBRACE {
         $tree = new IfThenElse($expr.tree, $li_if.tree, elseBranch);
         setLocation($tree, $if1);
-
-
         }
       (ELSE elsif=IF OPARENT elsif_cond=expr CPARENT OBRACE elsif_li=list_inst CBRACE {
           ListInst elseBranch2 = new ListInst();
-          newTree = new IfThenElse($expr.tree, $elsif_li.tree, elseBranch2));
+          newTree = new IfThenElse($expr.tree, $elsif_li.tree, elseBranch2);
           elseBranch.add(newTree);
-          setLocation(newTree,$elsif);
-          i++;
-          
+          $tree = newTree;
+          setLocation(newTree,$elsif);          
         }
       )*
       (ELSE OBRACE li_else=list_inst CBRACE {
-          if(i == 0 ){ 
-              $tree.setBranch($list_inst.tree);
-           }/*else{ 
-              newTree.setBranch($list_inst.tree);
-            }*/
-          setLocation($tree, $li_else.start);
+           $tree.setBranch($list_inst.tree);
+           setLocation($tree, $ELSE);
         }
       )?
     ;

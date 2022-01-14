@@ -60,12 +60,13 @@ public class DecaParser extends AbstractDecaParser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, null, null, null, "'else'", "'if'", "' '", null, "'asm'", "'class'", 
-			"'extends'", "'false'", "'instanceof'", "'new'", "'null'", "'readInt'", 
-			"'readFloat'", "'print'", "'println'", "'printlnx'", "'printx'", "'protected'", 
-			"'return'", "'this'", "'true'", "'while'", "'<'", "'>'", "'=='", "'='", 
-			"'+'", "'-'", "'*'", "'/'", "'%'", "','", "'('", "')'", "'{'", "'}'", 
-			"'!'", "';'", "'!='", "'>='", "'<='", "'&&'", "'||'", null, null, "'.'"
+			null, null, null, null, "'else'", "'if'", "' '", "'elseif'", "'asm'", 
+			"'class'", "'extends'", "'false'", "'instanceof'", "'new'", "'null'", 
+			"'readInt'", "'readFloat'", "'print'", "'println'", "'printlnx'", "'printx'", 
+			"'protected'", "'return'", "'this'", "'true'", "'while'", "'<'", "'>'", 
+			"'=='", "'='", "'+'", "'-'", "'*'", "'/'", "'%'", "','", "'('", "')'", 
+			"'{'", "'}'", "'!'", "';'", "'!='", "'>='", "'<='", "'&&'", "'||'", null, 
+			null, "'.'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -828,6 +829,7 @@ public class DecaParser extends AbstractDecaParser {
 		public ExprContext expr;
 		public List_instContext li_if;
 		public List_instContext list_inst;
+		public Token ELSE;
 		public Token elsif;
 		public ExprContext elsif_cond;
 		public List_instContext elsif_li;
@@ -880,7 +882,6 @@ public class DecaParser extends AbstractDecaParser {
 
 		     ListInst elseBranch = new ListInst();
 		     IfThenElse newTree = null;
-		     int i = 0;
 		     
 
 		int _la;
@@ -905,8 +906,6 @@ public class DecaParser extends AbstractDecaParser {
 
 			        ((If_then_elseContext)_localctx).tree =  new IfThenElse(((If_then_elseContext)_localctx).expr.tree, ((If_then_elseContext)_localctx).li_if.tree, elseBranch);
 			        setLocation(_localctx.tree, ((If_then_elseContext)_localctx).if1);
-
-
 			        
 			setState(203);
 			_errHandler.sync(this);
@@ -916,7 +915,7 @@ public class DecaParser extends AbstractDecaParser {
 					{
 					{
 					setState(191);
-					match(ELSE);
+					((If_then_elseContext)_localctx).ELSE = match(ELSE);
 					setState(192);
 					((If_then_elseContext)_localctx).elsif = match(IF);
 					setState(193);
@@ -933,11 +932,10 @@ public class DecaParser extends AbstractDecaParser {
 					match(CBRACE);
 
 					          ListInst elseBranch2 = new ListInst();
-					          newTree = new IfThenElse(((If_then_elseContext)_localctx).expr.tree, ((If_then_elseContext)_localctx).elsif_li.tree, elseBranch2));
+					          newTree = new IfThenElse(((If_then_elseContext)_localctx).expr.tree, ((If_then_elseContext)_localctx).elsif_li.tree, elseBranch2);
 					          elseBranch.add(newTree);
-					          setLocation(newTree,((If_then_elseContext)_localctx).elsif);
-					          i++;
-					          
+					          ((If_then_elseContext)_localctx).tree =  newTree;
+					          setLocation(newTree,((If_then_elseContext)_localctx).elsif);          
 					        
 					}
 					} 
@@ -952,7 +950,7 @@ public class DecaParser extends AbstractDecaParser {
 			if (_la==ELSE) {
 				{
 				setState(206);
-				match(ELSE);
+				((If_then_elseContext)_localctx).ELSE = match(ELSE);
 				setState(207);
 				match(OBRACE);
 				setState(208);
@@ -960,12 +958,8 @@ public class DecaParser extends AbstractDecaParser {
 				setState(209);
 				match(CBRACE);
 
-				          if(i == 0 ){ 
-				              _localctx.tree.setBranch(((If_then_elseContext)_localctx).list_inst.tree);
-				           }/*else{ 
-				              newTree.setBranch(((If_then_elseContext)_localctx).list_inst.tree);
-				            }*/
-				          setLocation(_localctx.tree, (((If_then_elseContext)_localctx).li_else!=null?(((If_then_elseContext)_localctx).li_else.start):null));
+				           _localctx.tree.setBranch(((If_then_elseContext)_localctx).list_inst.tree);
+				           setLocation(_localctx.tree, ((If_then_elseContext)_localctx).ELSE);
 				        
 				}
 			}

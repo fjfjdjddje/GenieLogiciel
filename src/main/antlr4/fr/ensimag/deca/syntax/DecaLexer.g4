@@ -39,7 +39,7 @@ INCLUDE : '#include' (' ')* '"' FILENAME '"';
 ELSE : 'else';
 IF : 'if';
 SPACE : ' ' {skip();};
-ELSEIF : 'else' SPACE 'if';
+ELSEIF : 'elseif';
 ASM : 'asm';
 CLASS : 'class';
 EXTENDS : 'extends';

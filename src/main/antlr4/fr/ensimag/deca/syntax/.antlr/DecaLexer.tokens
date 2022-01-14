@@ -53,6 +53,7 @@ MULTI_LINE_STRING=52
 'else'=4
 'if'=5
 ' '=6
+'elseif'=7
 'asm'=8
 'class'=9
 'extends'=10

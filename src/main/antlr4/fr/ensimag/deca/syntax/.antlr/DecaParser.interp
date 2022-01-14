@@ -6,7 +6,7 @@ null
 'else'
 'if'
 ' '
-null
+'elseif'
 'asm'
 'class'
 'extends'
