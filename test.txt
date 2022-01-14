@@ -6,8 +6,9 @@
 //
 // Historique:
 //    cree le 01/01/2022*/
-{
-  int i = 1;
-  float y = 5.03;
-  print(5.0/3);
+{ int i = 20;
+boolean z = true;
+  if(i >20){print("karim zamel");}
+  elseif(z){print("NOOOOOOOOO");}
+  else{print("yes");}
 }

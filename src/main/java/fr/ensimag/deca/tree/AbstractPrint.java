@@ -58,7 +58,7 @@ public abstract class AbstractPrint extends AbstractInst {
                 compiler.addInstruction(new WINT());
             }else if(a.getType().isFloat()){
                 compiler.addInstruction(new WFLOAT());
-            }else{
+            }else if (a.getType().isBoolean()){
                 compiler.addInstruction(new WINT());
             }
             

@@ -70,7 +70,7 @@ public class StringLiteral extends AbstractStringLiteral {
 
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
-        // TODO Auto-generated method stub
+        compiler.addInstruction(new WSTR(new ImmediateString(value)));
         return 0;
     }
 

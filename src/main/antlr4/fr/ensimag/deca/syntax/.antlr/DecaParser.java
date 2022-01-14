@@ -32,7 +32,7 @@ public class DecaParser extends AbstractDecaParser {
 		PRINT=17, PRINTLN=18, PRINTLNX=19, PRINTX=20, PROTECTED=21, RETURN=22, 
 		THIS=23, TRUE=24, WHILE=25, LT=26, GT=27, EQEQ=28, EQUALS=29, PLUS=30, 
 		MINUS=31, TIMES=32, SLASH=33, PERCENT=34, COMMA=35, OPARENT=36, CPARENT=37, 
-		OBRACE=38, CBRACE=39, EXCLAM=40, SEMI=41, NEQ=42, LEQ=43, GEQ=44, AND=45, 
+		OBRACE=38, CBRACE=39, EXCLAM=40, SEMI=41, NEQ=42, GEQ=43, LEQ=44, AND=45, 
 		OR=46, IDENT=47, FLOAT=48, DOT=49, INT=50, STRING=51, MULTI_LINE_STRING=52;
 	public static final int
 		RULE_prog = 0, RULE_main = 1, RULE_block = 2, RULE_list_decl = 3, RULE_decl_var_set = 4, 
@@ -76,7 +76,7 @@ public class DecaParser extends AbstractDecaParser {
 			"READFLOAT", "PRINT", "PRINTLN", "PRINTLNX", "PRINTX", "PROTECTED", "RETURN", 
 			"THIS", "TRUE", "WHILE", "LT", "GT", "EQEQ", "EQUALS", "PLUS", "MINUS", 
 			"TIMES", "SLASH", "PERCENT", "COMMA", "OPARENT", "CPARENT", "OBRACE", 
-			"CBRACE", "EXCLAM", "SEMI", "NEQ", "LEQ", "GEQ", "AND", "OR", "IDENT", 
+			"CBRACE", "EXCLAM", "SEMI", "NEQ", "GEQ", "LEQ", "AND", "OR", "IDENT", 
 			"FLOAT", "DOT", "INT", "STRING", "MULTI_LINE_STRING"
 		};
 	}
@@ -879,7 +879,6 @@ public class DecaParser extends AbstractDecaParser {
 		enterRule(_localctx, 18, RULE_if_then_else);
 
 		     ListInst elseBranch = new ListInst();
-		     ListInst elseBranch2 = new ListInst();
 		     IfThenElse newTree = null;
 		     int i = 0;
 		     
@@ -933,9 +932,10 @@ public class DecaParser extends AbstractDecaParser {
 					setState(198);
 					match(CBRACE);
 
-					          newTree = new IfThenElse(((If_then_elseContext)_localctx).expr.tree, ((If_then_elseContext)_localctx).elsif_li.tree, elseBranch2);
+					          ListInst elseBranch2 = new ListInst();
+					          newTree = new IfThenElse(((If_then_elseContext)_localctx).expr.tree, ((If_then_elseContext)_localctx).elsif_li.tree, elseBranch2));
 					          elseBranch.add(newTree);
-					          elseBranch2 = elseBranch;
+					          setLocation(newTree,((If_then_elseContext)_localctx).elsif);
 					          i++;
 					          
 					        
@@ -962,9 +962,9 @@ public class DecaParser extends AbstractDecaParser {
 
 				          if(i == 0 ){ 
 				              _localctx.tree.setBranch(((If_then_elseContext)_localctx).list_inst.tree);
-				           }else{ 
+				           }/*else{ 
 				              newTree.setBranch(((If_then_elseContext)_localctx).list_inst.tree);
-				            }
+				            }*/
 				          setLocation(_localctx.tree, (((If_then_elseContext)_localctx).li_else!=null?(((If_then_elseContext)_localctx).li_else.start):null));
 				        
 				}
@@ -2165,7 +2165,7 @@ public class DecaParser extends AbstractDecaParser {
 				setState(397);
 				((Primary_exprContext)_localctx).ident = ident();
 
-				            assert(((Primary_exprContext)_localctx).ident.tree != null);
+				            //assert(((Primary_exprContext)_localctx).ident.tree != null);
 				            ((Primary_exprContext)_localctx).tree =  ((Primary_exprContext)_localctx).ident.tree;
 				            setLocation(_localctx.tree, (((Primary_exprContext)_localctx).ident!=null?(((Primary_exprContext)_localctx).ident.start):null));
 				        
@@ -2198,7 +2198,7 @@ public class DecaParser extends AbstractDecaParser {
 				setState(408);
 				match(CPARENT);
 
-				            assert(((Primary_exprContext)_localctx).expr.tree != null);
+				            //assert(((Primary_exprContext)_localctx).expr.tree != null);
 				            ((Primary_exprContext)_localctx).tree =  ((Primary_exprContext)_localctx).expr.tree;
 				            setLocation(_localctx.tree, (((Primary_exprContext)_localctx).expr!=null?(((Primary_exprContext)_localctx).expr.start):null));
 				        
@@ -2277,7 +2277,7 @@ public class DecaParser extends AbstractDecaParser {
 				setState(433);
 				((Primary_exprContext)_localctx).literal = literal();
 
-				            assert(((Primary_exprContext)_localctx).literal.tree != null);
+				            //assert(((Primary_exprContext)_localctx).literal.tree != null);
 				            ((Primary_exprContext)_localctx).tree =  ((Primary_exprContext)_localctx).literal.tree;
 				            setLocation(_localctx.tree, (((Primary_exprContext)_localctx).literal!=null?(((Primary_exprContext)_localctx).literal.start):null));
 				        
@@ -3380,8 +3380,8 @@ public class DecaParser extends AbstractDecaParser {
 		"\u0116\3\2\2\2\u011c\u011f\3\2\2\2\u011d\u011b\3\2\2\2\u011d\u011e\3\2"+
 		"\2\2\u011e!\3\2\2\2\u011f\u011d\3\2\2\2\u0120\u0121\b\22\1\2\u0121\u0122"+
 		"\5$\23\2\u0122\u0123\b\22\1\2\u0123\u013f\3\2\2\2\u0124\u0125\f\7\2\2"+
-		"\u0125\u0126\7-\2\2\u0126\u0127\5$\23\2\u0127\u0128\b\22\1\2\u0128\u013e"+
-		"\3\2\2\2\u0129\u012a\f\6\2\2\u012a\u012b\7.\2\2\u012b\u012c\5$\23\2\u012c"+
+		"\u0125\u0126\7.\2\2\u0126\u0127\5$\23\2\u0127\u0128\b\22\1\2\u0128\u013e"+
+		"\3\2\2\2\u0129\u012a\f\6\2\2\u012a\u012b\7-\2\2\u012b\u012c\5$\23\2\u012c"+
 		"\u012d\b\22\1\2\u012d\u013e\3\2\2\2\u012e\u012f\f\5\2\2\u012f\u0130\7"+
 		"\35\2\2\u0130\u0131\5$\23\2\u0131\u0132\b\22\1\2\u0132\u013e\3\2\2\2\u0133"+
 		"\u0134\f\4\2\2\u0134\u0135\7\34\2\2\u0135\u0136\5$\23\2\u0136\u0137\b"+

@@ -179,7 +179,6 @@ inst returns[AbstractInst tree]
 if_then_else returns[IfThenElse tree]
 @init {
      ListInst elseBranch = new ListInst();
-     ListInst elseBranch2 = new ListInst();
      IfThenElse newTree = null;
      int i = 0;
      
@@ -191,9 +190,10 @@ if_then_else returns[IfThenElse tree]
 
         }
       (ELSE elsif=IF OPARENT elsif_cond=expr CPARENT OBRACE elsif_li=list_inst CBRACE {
-          newTree = new IfThenElse($expr.tree, $elsif_li.tree, elseBranch2);
+          ListInst elseBranch2 = new ListInst();
+          newTree = new IfThenElse($expr.tree, $elsif_li.tree, elseBranch2));
           elseBranch.add(newTree);
-          elseBranch2 = elseBranch;
+          setLocation(newTree,$elsif);
           i++;
           
         }
@@ -201,9 +201,9 @@ if_then_else returns[IfThenElse tree]
       (ELSE OBRACE li_else=list_inst CBRACE {
           if(i == 0 ){ 
               $tree.setBranch($list_inst.tree);
-           }else{ 
+           }/*else{ 
               newTree.setBranch($list_inst.tree);
-            }
+            }*/
           setLocation($tree, $li_else.start);
         }
       )?
@@ -427,7 +427,7 @@ select_expr returns[AbstractExpr tree]
 
 primary_expr returns[AbstractExpr tree]
     : ident {
-            assert($ident.tree != null);
+            //assert($ident.tree != null);
             $tree = $ident.tree;
             setLocation($tree, $ident.start);
         }
@@ -436,7 +436,7 @@ primary_expr returns[AbstractExpr tree]
             assert($m.tree != null);
         }
     | OPARENT expr CPARENT {
-            assert($expr.tree != null);
+            //assert($expr.tree != null);
             $tree = $expr.tree;
             setLocation($tree, $expr.start);
         }
@@ -456,7 +456,7 @@ primary_expr returns[AbstractExpr tree]
             assert($expr.tree != null);
         }
     | literal {
-            assert($literal.tree != null);
+            //assert($literal.tree != null);
             $tree = $literal.tree;
             setLocation($tree, $literal.start);
         }

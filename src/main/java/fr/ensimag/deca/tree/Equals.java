@@ -32,30 +32,28 @@ public class Equals extends AbstractOpExactCmp {
 
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
-        int reg1 = super.getLeftOperand().codeGenPrint(compiler);
+        int reg1 = super.getLeftOperand().codeGenExpr(compiler);
         Register.getR(reg1).setIsFull(true);
-        int reg2 = super.getRightOperand().codeGenPrint(compiler);   
+        int reg2 = super.getRightOperand().codeGenExpr(compiler);   
         Register.getR(reg2).setIsFull(true);
         compiler.addInstruction(new CMP(Register.getR(reg2), Register.getR(reg1)));
         compiler.addInstruction(new SEQ(Register.getR(reg2)));
         Register.getR(reg1).setIsFull(false);
         return reg2;
     } 
-    public int codeGenCond(DecacCompiler compiler) {
+    public int codeGenCond(DecacCompiler compiler, Label lab2) {
         int reg1 = super.getLeftOperand().codeGenPrint(compiler);
         Register.getR(reg1).setIsFull(true);
         int reg2 = super.getRightOperand().codeGenPrint(compiler);   
         Register.getR(reg2).setIsFull(true);
         compiler.addInstruction(new CMP(Register.getR(reg2), Register.getR(reg1)));
-        int reg3 = Register.getEmptyReg();
-        Register.getR(reg3).setIsFull(true);
-        compiler.addInstruction(new LOAD(new ImmediateInteger(1), Register.getR(reg3)));
-        compiler.addInstruction(new BEQ(new Label("Egal")));
-        compiler.addInstruction(new SUB(new ImmediateInteger(1), Register.getR(reg3)));
-        compiler.addLabel(new Label("Egal"));
-        Register.getR(reg2).setIsFull(false);
+        compiler.addInstruction(new SEQ(Register.getR(reg2)));
+        compiler.addInstruction(new LOAD(new ImmediateInteger(0),Register.getR(reg1)));
+        compiler.addInstruction(new CMP(Register.getR(reg1),Register.getR(reg2)));
+        compiler.addInstruction(new BEQ(lab2));
         Register.getR(reg1).setIsFull(false);
-        return reg3;
+        Register.getR(reg2).setIsFull(false);
+        return 0;
     }   
     
 }

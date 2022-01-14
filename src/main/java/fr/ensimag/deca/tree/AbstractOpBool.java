@@ -13,12 +13,11 @@ import fr.ensimag.deca.context.EnvironmentExp;
  * @author gl46
  * @date 01/01/2022
  */
-public abstract class AbstractOpBool extends AbstractBinaryExpr {
+public abstract class AbstractOpBool extends AbstractBinaryExpr implements Condition {
 
     public AbstractOpBool(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
-
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {

@@ -17,6 +17,7 @@ import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.deca.tools.SymbolTable;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Operand;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
@@ -34,7 +35,7 @@ import org.apache.log4j.Logger;
  * @author gl46
  * @date 01/01/2022
  */
-public class Identifier extends AbstractIdentifier {
+public class Identifier extends AbstractIdentifier implements Condition {
     
     @Override
     protected void checkDecoration() {
@@ -264,7 +265,9 @@ public class Identifier extends AbstractIdentifier {
 
         return int;
     }*/
-
+    public  int codeGenCond(DecacCompiler compiler, Label lab2){
+        return 0;
+    }
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
         int reg = Register.getEmptyReg();

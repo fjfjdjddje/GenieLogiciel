@@ -6,6 +6,9 @@ import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.instructions.BRA;
+
 import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
 
@@ -29,6 +32,7 @@ public class IfThenElse extends AbstractInst {
         this.thenBranch = thenBranch;
         this.elseBranch = elseBranch;
     }
+    public static int it2 = 1;
     public void setBranch(ListInst elseBranch){
         this.elseBranch = elseBranch;
     }
@@ -43,7 +47,16 @@ public class IfThenElse extends AbstractInst {
 
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
-        throw new UnsupportedOperationException("not yet implemented");
+        //throw new UnsupportedOperationException("not yet implemented");
+        it2++;
+        Label lab1 = new Label("debutSinon"+it2);
+        Label lab2 = new Label("finSinon"+it2);
+        ((Condition)this.condition).codeGenCond(compiler,lab1);
+        thenBranch.codeGenListInst(compiler);
+        compiler.addInstruction(new BRA(lab2));
+        compiler.addLabel(lab1);
+        elseBranch.codeGenListInst(compiler);
+        compiler.addLabel(lab2);
     }
 
     @Override

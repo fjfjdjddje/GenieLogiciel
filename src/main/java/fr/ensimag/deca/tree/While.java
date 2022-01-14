@@ -6,6 +6,7 @@ import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.instructions.BRA;
 import fr.ensimag.ima.pseudocode.Label;
 import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
@@ -18,7 +19,7 @@ import org.apache.commons.lang.Validate;
 public class While extends AbstractInst {
     private AbstractExpr condition;
     private ListInst body;
-
+    static int it = 0;
     public AbstractExpr getCondition() {
         return condition;
     }
@@ -36,7 +37,17 @@ public class While extends AbstractInst {
 
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
-        throw new UnsupportedOperationException("not yet implemented");
+        it ++;
+        //throw new UnsupportedOperationException("not yet implemented");
+        Label lab1 = new Label("debutWhile"+it);
+        Label lab2 = new Label("finWhile"+it);
+        compiler.addLabel(lab1);
+        int reg = ((Condition)condition).codeGenCond(compiler, lab2);
+        for (AbstractInst i : body.getList()) {
+            i.codeGenInst(compiler);
+        } 
+        compiler.addInstruction(new BRA(lab1));
+        compiler.addLabel(lab2);
     }
 
     @Override
