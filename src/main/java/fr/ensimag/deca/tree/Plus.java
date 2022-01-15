@@ -2,6 +2,7 @@ package fr.ensimag.deca.tree;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.ADD;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.POP;
 
 
@@ -29,22 +30,22 @@ public class Plus extends AbstractOpArith {
         Register.getR(reg1).setIsFull(true);
         int reg2 = super.getRightOperand().codeGenExpr(compiler);   
         Register.getR(reg2).setIsFull(true);
-        if(Register.getR(reg2).getNbrPushed()!=0){
+        int reg3 = 0;
+        while(reg2 == reg1){
+            reg3 = Register.getEmptyReg(compiler);
+            compiler.addInstruction(new LOAD(Register.getR(reg2),Register.getR(reg3)));
+            compiler.addInstruction(new POP(Register.getR(reg2)));
+            Register.getR(reg2).setNbrPushed(Register.getR(reg2).getNbrPushed()-1);
+            reg1 = reg3;
+        }
         compiler.addInstruction(new ADD(Register.getR(reg2), Register.getR(reg1)));
+        if(Register.getR(reg2).getNbrPushed()!=0){
         compiler.addInstruction(new POP(Register.getR(reg2)));
         Register.getR(reg2).setNbrPushed(Register.getR(reg2).getNbrPushed()-1);
-        System.out.println("yo");
-        return reg1;}
-        else if(Register.getR(reg1).getNbrPushed()!=0){
-            compiler.addInstruction(new ADD(Register.getR(reg1), Register.getR(reg2)));
-            compiler.addInstruction(new POP(Register.getR(reg1)));
-            Register.getR(reg1).setNbrPushed(Register.getR(reg1).getNbrPushed()-1);
-            System.out.println("yo");
-            return reg2;}
+        }
         else{
-            compiler.addInstruction(new ADD(Register.getR(reg2), Register.getR(reg1)));
             Register.getR(reg2).setIsFull(false);
-            return reg1;
-        }     
+        }
+        return reg1;
     }    
 }
