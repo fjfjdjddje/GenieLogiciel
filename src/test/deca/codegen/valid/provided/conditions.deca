@@ -3,15 +3,15 @@
     string grade;
 
     if (testscore >= 90){
-        grade = 'A';
+        grade = "A";
     } else if (testscore >= 80) {
-        grade = 'B';
+        grade = "B";
     } else if (testscore >= 70) {
-        grade = 'C';
+        grade = "C";
     } else if (testscore >= 60) {
-        grade = 'D';
+        grade = "D";
     } else {
-        grade = 'F';
+        grade = "F";
     }
     println("Grade = ", grade);
 }
