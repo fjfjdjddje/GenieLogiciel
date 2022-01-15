@@ -1,0 +1,15 @@
+{
+    int a= readInt();
+    int b= readInt();
+    int x= readFloat();
+    int y= readFloat();
+    float z;
+    z = a*x;
+    printlnx(z);
+    z = a/x;
+    printlnx(z);
+    z = -y;
+    printlnx(z);
+    z =  b;
+    printlnx(z);
+}
