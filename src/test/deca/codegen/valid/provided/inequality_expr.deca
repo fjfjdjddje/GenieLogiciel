@@ -1,0 +1,33 @@
+//Test des programmes contenants des operations arithmétiques sur des entiers et float 
+
+{   
+    //INT
+    int a = 20 ;
+    int b = 30 ;
+    boolean t = a < b;
+    t = a <= b ;
+    print(t,"==true");
+    t = a != b ;
+    print(t,"==true");
+    boolean f = a > b;
+    f = a >= b ;
+    print(f,"==false");
+    f = a == b ;
+    print(f,"==false");
+    
+    //FLOAT
+    float x = 20 ;
+    float y = 30 ;
+    t = x < y;
+    print(t,"==true");
+    t = x <= y ;
+    print(t,"==true");
+    t = x != y ;
+    print(t,"==true");
+    f = x > y;
+    print(f,"==false");
+    f = x >= y ;
+    print(f,"==false");
+    f = x == y ;
+    print(f,"==false");
+}

@@ -1,0 +1,15 @@
+{
+    int nombres = 20;
+
+    int a = 0;
+    int b = 1;
+    int total = 0;
+    int i=0;
+    print("Les 100 premiers nombres de la suite de Fibonacci sont :");
+    while(i<nombres){
+        print(total," ");
+        a = b;
+        b = total;
+        total = a + b;
+    }
+}

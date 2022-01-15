@@ -1,0 +1,12 @@
+{
+    int r=1;
+    int a=0;
+    string s = "Le nombre est";
+    while(r<10){
+        while(a<10){
+            print(s,r*a);
+            a=a+1;
+        }
+        r=r+1;
+    }
+}
