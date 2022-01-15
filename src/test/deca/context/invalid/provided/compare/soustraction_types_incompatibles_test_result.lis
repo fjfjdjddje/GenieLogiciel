@@ -1,0 +1,2 @@
+VerifyExpr OpArith Begin:
+./src/test/deca/context/invalid/provided/soustraction_types_incompatibles.deca:13:16: String not supported for arithmetic operation

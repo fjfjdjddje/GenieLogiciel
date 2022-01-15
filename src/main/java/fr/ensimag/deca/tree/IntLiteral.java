@@ -75,7 +75,6 @@ public class IntLiteral extends AbstractExpr {
         int i = Register.getEmptyReg(compiler);
     	compiler.addInstruction(new LOAD(new ImmediateInteger(value), Register.getR(i)));
         Register.getR(i).setIsFull(true);
-        System.out.println("hhhhhhhhhhhhhhhh");
         return i;
     }
 

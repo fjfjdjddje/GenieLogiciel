@@ -1,0 +1,7 @@
+{
+    int i;
+    int j;
+    if(i = j){
+        print("ok");
+    }
+}

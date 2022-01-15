@@ -78,7 +78,7 @@ public class Register extends DVal {
         return res;
     }
     public static int getEmptyReg(DecacCompiler compiler){
-        for (int i = 2; i <= 5; i++) {
+        for (int i = 2; i <= 3; i++) {
             if(!R[i].getIsFull()){
                 return i;
             }
@@ -87,7 +87,7 @@ public class Register extends DVal {
         R[regToPush].setNbrPushed(R[regToPush].getNbrPushed()+1);
         int res  = regToPush;
         regToPush++;
-        if (regToPush == 6){regToPush =2;}
+        if (regToPush == 4){regToPush =2;}
         return res;   
     }
 }

@@ -12,6 +12,7 @@ import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.instructions.BEQ;
 import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.POP;
 
 /**
  *
@@ -45,15 +46,35 @@ public class Not extends AbstractUnaryExpr implements Condition{
     public int codeGenCond(DecacCompiler compiler,Label lab2){
         int reg1 = super.getOperand().codeGenExpr(compiler);
         Register.getR(reg1).setIsFull(true);
-        int reg2 = Register.getEmptyReg();
+        int reg2 = Register.getEmptyReg(compiler);
         Register.getR(reg2).setIsFull(true);
+        int reg3 = 0;
+        while(reg2 == reg1){
+            reg3 = Register.getEmptyReg(compiler);
+            compiler.addInstruction(new LOAD(Register.getR(reg2),Register.getR(reg3)));
+            compiler.addInstruction(new POP(Register.getR(reg2)));
+            Register.getR(reg2).setNbrPushed(Register.getR(reg2).getNbrPushed()-1);
+            reg1 = reg3;
+        }
         compiler.addInstruction(new ADD(new ImmediateInteger(1), Register.getR(reg1)));
         compiler.addInstruction(new REM(new ImmediateInteger(2), Register.getR(reg1)));
         compiler.addInstruction(new LOAD(new ImmediateInteger(0),Register.getR(reg2)));
         compiler.addInstruction(new CMP(Register.getR(reg1),Register.getR(reg2)));
         compiler.addInstruction(new BEQ(lab2));
-        Register.getR(reg1).setIsFull(false);
-        Register.getR(reg2).setIsFull(false);
+        if(Register.getR(reg2).getNbrPushed()!=0){
+            compiler.addInstruction(new POP(Register.getR(reg2)));
+            Register.getR(reg2).setNbrPushed(Register.getR(reg2).getNbrPushed()-1);
+            }
+        else{
+                Register.getR(reg2).setIsFull(false);
+            }
+        if(Register.getR(reg1).getNbrPushed()!=0){
+                compiler.addInstruction(new POP(Register.getR(reg1)));
+                Register.getR(reg1).setNbrPushed(Register.getR(reg1).getNbrPushed()-1);
+                }
+        else{
+                    Register.getR(reg1).setIsFull(false);
+                }
         return 0;
     }
     @Override

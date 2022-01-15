@@ -1,0 +1,24 @@
+VerifyExpr OpArith Begin:
+VerifyExpr OpArith End:
+`> [9, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [9, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [10, 12] DeclVar
+      |      +> [10, 8] Identifier (int)
+      |      +> [10, 12] Identifier (x)
+      |      |  definition: variable defined at [10, 12], type=int
+      |      `> Initialization
+      |         `> [10, 16] Int (3)
+      |            type: int
+      `> ListInst [List with 2 elements]
+         []> [11, 1] Assign
+         ||  +> [11, 1] Identifier (x)
+         ||  `> [11, 5] Plus
+         ||     type: int
+         ||     +> [11, 5] Identifier (x)
+         ||     `> [11, 7] Int (1)
+         ||        type: int
+         []> [12, 9] Println
+             `> [12, 9] ListExpr [List with 1 elements]
+                []> [12, 9] Identifier (x)

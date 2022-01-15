@@ -1,0 +1,2 @@
+VerifyExpr OpArith Begin:
+./src/test/deca/context/invalid/provided/mult_incompatible.deca:16:9: Boolean not supported for arithmetic operation
