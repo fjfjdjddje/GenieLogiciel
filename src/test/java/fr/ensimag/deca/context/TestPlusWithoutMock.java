@@ -61,10 +61,11 @@ public class TestPlusWithoutMock {
         }
 
         @Override
-        public int genCodeOperation(DecacCompiler compiler) {
+        public int codeGenExpr(DecacCompiler compiler) {
             // TODO Auto-generated method stub
             return 0;
         }
+
     }
 
     @Test

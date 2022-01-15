@@ -1,0 +1,10 @@
+//Ce programme test toutes les declarations possible de variables
+
+{
+    int a = 4;
+    float b = 5;
+    float b = 5.458;
+    boolean t = true;
+    boolean f = false;
+    string s ="STRING";
+}

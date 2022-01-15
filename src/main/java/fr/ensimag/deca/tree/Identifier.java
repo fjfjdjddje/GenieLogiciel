@@ -270,7 +270,7 @@ public class Identifier extends AbstractIdentifier implements Condition {
     }
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
-        int reg = Register.getEmptyReg();
+        int reg = Register.getEmptyReg(compiler);
         compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(), Register.getR(reg)));
         return reg;
     }

@@ -45,7 +45,7 @@ public class Not extends AbstractUnaryExpr implements Condition{
     public int codeGenCond(DecacCompiler compiler,Label lab2){
         int reg1 = super.getOperand().codeGenExpr(compiler);
         Register.getR(reg1).setIsFull(true);
-        int reg2 = Register.getEmptyReg();
+        int reg2 = Register.getEmptyReg(compiler);
         Register.getR(reg2).setIsFull(true);
         compiler.addInstruction(new ADD(new ImmediateInteger(1), Register.getR(reg1)));
         compiler.addInstruction(new REM(new ImmediateInteger(2), Register.getR(reg1)));

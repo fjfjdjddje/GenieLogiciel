@@ -39,7 +39,7 @@ public class ConvFloat extends AbstractUnaryExpr {
     public int codeGenExpr(DecacCompiler compiler) {
         int reg1 = super.getOperand().codeGenExpr(compiler);
         Register.getR(reg1).setIsFull(true);
-        int reg2 = Register.getEmptyReg();
+        int reg2 = Register.getEmptyReg(compiler);
         Register.getR(reg2).setIsFull(true);
         compiler.addInstruction(new FLOAT(Register.getR(reg1),Register.getR(reg2)));
         Register.getR(reg1).setIsFull(false);

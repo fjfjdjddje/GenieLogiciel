@@ -1,0 +1,23 @@
+//Test des programmes contenants des operations arithmétiques sur des entiers et float 
+
+{   
+    //INT
+    int a = 20 ;
+    int b = 30 ;
+    boolean t = a < b;
+    t = a <= b ;
+    t = a != b ;
+    boolean f = a > b;
+    f = a >= b ;
+    f = a == b ;
+    
+    //FLOAT
+    float x = 20 ;
+    float y = 30 ;
+    t = x < y;
+    t = x <= y ;
+    t = x != y ;
+    f = x > y;
+    f = x >= y ;
+    f = x == y ;
+}

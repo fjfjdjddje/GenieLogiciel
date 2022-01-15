@@ -48,7 +48,7 @@ public class ReadInt extends AbstractReadExpr {
     }
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
-        int reg = Register.getEmptyReg();
+        int reg = Register.getEmptyReg(compiler);
         Register.getR(reg).setIsFull(true);
         compiler.addInstruction(new RINT());
         compiler.addInstruction(new LOAD(Register.getR(1),Register.getR(reg)));

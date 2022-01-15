@@ -1,0 +1,17 @@
+//Test des programmes contenants des operations booleannes sur des entiers 
+{
+    boolean t = true;
+    boolean f = false;
+    //and_expr
+    boolean and1 = t && f;
+    boolean and2 = !t && f;
+    boolean and2 = !t && f && f && t;
+    boolean ou1 = t || f ;
+    boolean ou2 = t || !f ;
+    //eq_neq_expr
+    boolean eq = t == f;
+    boolean neq = t != f;
+    
+}
+
+

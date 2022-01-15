@@ -1,0 +1,28 @@
+{
+    //INT
+    int a;
+    int b;
+    int c;
+    a=b;
+    a=b+a-b-b-b--a;
+    a=c*b%a;
+    c=a/b;
+
+    //FLOAT
+    float x;
+    float y;
+    float z;
+    x=y;
+    x=y*z/x;
+    z=y+x-x--x+y+z-y;
+
+    //BOOLEAN
+    boolean t;
+    boolean f;
+    boolean r;
+    t = f;
+    t = f || r;
+    f = (f && r) == t;
+    t = f && r ;
+
+}

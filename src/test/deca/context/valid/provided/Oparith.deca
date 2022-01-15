@@ -1,0 +1,16 @@
+//Test des programmes contenants des operations arithmétiques sur des entiers 
+{
+    int a=5;
+    int b=20;
+    //sum_expr
+    int add = a+b;
+    int sous=b-a;
+    int invsous=a-b;
+    int sous2=-a-b;
+    //mult_expr
+    int mul = a*b;
+    int mult2=  -----a*b;
+    int div= a/b;
+    int invdiv = -a/b;
+    int modulo = b%a;
+}
