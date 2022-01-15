@@ -5,7 +5,7 @@
     //and_expr
     boolean and1 = t && f;
     boolean and2 = !t && f;
-    boolean and2 = !t && f && f && t;
+    boolean and3 = !t && f && f && t;
     boolean ou1 = t || f ;
     boolean ou2 = t || !f ;
     //eq_neq_expr
