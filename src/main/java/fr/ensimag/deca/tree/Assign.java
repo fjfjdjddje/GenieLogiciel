@@ -51,13 +51,8 @@ public class Assign extends AbstractBinaryExpr {
     public void codeGenInst(DecacCompiler compiler) {
         int reg = super.getRightOperand().codeGenExpr(compiler);
         compiler.addInstruction(new STORE(Register.getR(reg),((Identifier)(super.getLeftOperand())).getExpDefinition().getOperand()));
-        if(Register.getR(reg).getNbrPushed()!=0){
-            compiler.addInstruction(new POP(Register.getR(reg)));
-            Register.getR(reg).setNbrPushed(Register.getR(reg).getNbrPushed()-1);
-            }
-        else{
-                Register.getR(reg).setIsFull(false);
-            }
+        if(!Register.getR(reg).getIsPushed()){
+            Register.getR(reg).setIsFull(false);}
     }
 
     @Override

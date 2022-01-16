@@ -18,7 +18,10 @@ import fr.ensimag.deca.context.VoidType;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.instructions.BRA;
 import fr.ensimag.ima.pseudocode.instructions.HALT;
+import fr.ensimag.ima.pseudocode.instructions.WSTR;
 
 /**
  * Deca complete program (class definition plus main block)
@@ -61,6 +64,13 @@ public class Program extends AbstractProgram {
     @Override
     public void codeGenProgram(DecacCompiler compiler) {
         // A FAIRE: compléter ce squelette très rudimentaire de code
+        if(!compiler.getCompilerOptions().getNocheck()){
+            compiler.addInstruction(new BRA(compiler.getLabelDebutProg()));
+            compiler.addLabel(compiler.getLabelDivErreur());
+            compiler.addInstruction(new WSTR("Arret de l'execution: division par zéro impossible."));
+            compiler.addInstruction(new HALT());
+            compiler.addLabel(compiler.getLabelDebutProg());
+        }
         compiler.addComment("Main program");
         main.codeGenMain(compiler);
         compiler.addInstruction(new HALT());

@@ -264,8 +264,7 @@ public class Identifier extends AbstractIdentifier implements Condition {
 
         return int;
     }*/
-    public  int codeGenCond(DecacCompiler compiler, Label lab2){
-        return 0;
+    public  void codeGenCond(DecacCompiler compiler, Label lab2){
     }
     @Override
     public int codeGenExpr(DecacCompiler compiler) {

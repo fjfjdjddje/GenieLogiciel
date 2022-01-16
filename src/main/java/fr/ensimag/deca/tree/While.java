@@ -42,7 +42,7 @@ public class While extends AbstractInst {
         Label lab1 = new Label("debutWhile"+it);
         Label lab2 = new Label("finWhile"+it);
         compiler.addLabel(lab1);
-        int reg = ((Condition)condition).codeGenCond(compiler, lab2);
+        ((Condition)condition).codeGenCond(compiler, lab2);
         for (AbstractInst i : body.getList()) {
             i.codeGenInst(compiler);
         } 

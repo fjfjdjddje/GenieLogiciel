@@ -30,65 +30,52 @@ public class Equals extends AbstractOpExactCmp {
         return "==";
     }
 
-
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
         int reg1 = super.getLeftOperand().codeGenExpr(compiler);
         Register.getR(reg1).setIsFull(true);
-        int reg2 = super.getRightOperand().codeGenExpr(compiler);   
+        int reg2 = super.getRightOperand().codeGenPrint(compiler);   
         Register.getR(reg2).setIsFull(true);
-        int reg3 = 0;
-        while(reg2 == reg1){
-            reg3 = Register.getEmptyReg(compiler);
-            compiler.addInstruction(new LOAD(Register.getR(reg2),Register.getR(reg3)));
-            compiler.addInstruction(new POP(Register.getR(reg2)));
-            Register.getR(reg2).setNbrPushed(Register.getR(reg2).getNbrPushed()-1);
-            reg1 = reg3;
+        if(Register.getR(reg1).getIsPushed()){
+            compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
+            compiler.addInstruction(new POP(Register.getR(reg1)));
+            compiler.addInstruction(new CMP(Register.getR(0), Register.getR(reg1)));
+            compiler.addInstruction(new SEQ(Register.getR(reg1)));
+        }else{
+            compiler.addInstruction(new CMP(Register.getR(reg2), Register.getR(reg1)));
+            compiler.addInstruction(new SEQ(Register.getR(reg1)));
         }
-        compiler.addInstruction(new CMP(Register.getR(reg2), Register.getR(reg1)));
-        compiler.addInstruction(new SEQ(Register.getR(reg1)));
-        if(Register.getR(reg2).getNbrPushed()!=0){
-            compiler.addInstruction(new POP(Register.getR(reg2)));
-            Register.getR(reg2).setNbrPushed(Register.getR(reg2).getNbrPushed()-1);
-            }
-            else{
-                Register.getR(reg2).setIsFull(false);
-            }
+        if(!Register.getR(reg2).getIsPushed()){
+            Register.getR(reg2).setIsFull(false);}
         return reg1;
-    } 
-    public int codeGenCond(DecacCompiler compiler, Label lab2) {
-        int reg1 = super.getLeftOperand().codeGenExpr(compiler);
+    }
+
+
+    @Override
+    public void codeGenCond(DecacCompiler compiler,Label lab2) {
+        int reg1 = super.getLeftOperand().codeGenPrint(compiler);
         Register.getR(reg1).setIsFull(true);
-        int reg2 = super.getRightOperand().codeGenExpr(compiler);   
+        int reg2 = super.getRightOperand().codeGenPrint(compiler);   
         Register.getR(reg2).setIsFull(true);
-        int reg3 = 0;
-        while(reg2 == reg1){
-            reg3 = Register.getEmptyReg(compiler);
-            compiler.addInstruction(new LOAD(Register.getR(reg2),Register.getR(reg3)));
-            compiler.addInstruction(new POP(Register.getR(reg2)));
-            Register.getR(reg2).setNbrPushed(Register.getR(reg2).getNbrPushed()-1);
-            reg1 = reg3;
-        }
-        compiler.addInstruction(new CMP(Register.getR(reg2), Register.getR(reg1)));
-        compiler.addInstruction(new SEQ(Register.getR(reg2)));
-        compiler.addInstruction(new LOAD(new ImmediateInteger(0),Register.getR(reg1)));
-        compiler.addInstruction(new CMP(Register.getR(reg1),Register.getR(reg2)));
-        compiler.addInstruction(new BEQ(lab2));
-        if(Register.getR(reg2).getNbrPushed()!=0){
-            compiler.addInstruction(new POP(Register.getR(reg2)));
-            Register.getR(reg2).setNbrPushed(Register.getR(reg2).getNbrPushed()-1);
-            }
-        else{
-                Register.getR(reg2).setIsFull(false);
-            }
-        if(Register.getR(reg1).getNbrPushed()!=0){
-                compiler.addInstruction(new POP(Register.getR(reg1)));
-                Register.getR(reg1).setNbrPushed(Register.getR(reg1).getNbrPushed()-1);
-                }
-        else{
-                    Register.getR(reg1).setIsFull(false);
-                }
-        return 0;
-    }   
+        if(Register.getR(reg1).getIsPushed()){
+            compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
+            compiler.addInstruction(new POP(Register.getR(reg1)));
+            compiler.addInstruction(new CMP(Register.getR(0), Register.getR(reg1)));
+            compiler.addInstruction(new SEQ(Register.getR(0)));
+            compiler.addInstruction(new LOAD(new ImmediateInteger(0),Register.getR(reg1)));
+            compiler.addInstruction(new CMP(Register.getR(reg1),Register.getR(0)));
+            compiler.addInstruction(new BEQ(lab2));
+        }else{
+            compiler.addInstruction(new CMP(Register.getR(reg2), Register.getR(reg1)));
+            compiler.addInstruction(new SEQ(Register.getR(reg2)));
+            compiler.addInstruction(new LOAD(new ImmediateInteger(0),Register.getR(reg1)));
+            compiler.addInstruction(new CMP(Register.getR(reg1),Register.getR(reg2)));
+            compiler.addInstruction(new BEQ(lab2));
+        }     
+        if(!Register.getR(reg2).getIsPushed()){
+            Register.getR(reg2).setIsFull(false);}
+        if(!Register.getR(reg1).getIsPushed()){
+            Register.getR(reg1).setIsFull(false);}  
+    }
     
 }

@@ -63,38 +63,57 @@ public class CompilerOptions {
     private boolean verification = false;
     private boolean nocheck = false;
     private boolean registers  = false;
-    private int nombreRegisters = 0;
+    private int nombreRegisters = 16;
     private List<File> sourceFiles = new ArrayList<File>();
 
     
     public void parseArgs(String[] args) throws CLIException {
         // A FAIRE : parcourir args pour positionner les options correctement.
-        
+        boolean notOption = false;
         for(int i =0;i< args.length ;i++){
-            if(args[i].equals("-b")){
-                this.printBanner = true;
-            }else if(args[i].equals("-p")){
-                this.parse = true;
-            }else if(args[i].equals("-v")){
-                this.verification = true;
-            }else if(args[i].equals("-n")){
-                this.nocheck = true;
-            }else if(args[i].equals("-r")){
-                this.registers = true;
-                i++;
-                try{
-                    nombreRegisters = Integer.parseInt(args[i]);
+            if(String.valueOf(args[i].charAt(0)).equals("-") && !notOption){
+                if(args[i].equals("-b")){
+                    if(args.length == 1){
+                        this.printBanner = true;
+                    }else{
+                        throw new Error("commande indéfinie");
+                    }
+                }else if(args[i].equals("-p")){
+                    if(!this.verification){
+                        this.parse = true;
+                    }else{
+                        throw new Error("Les options '-p' et '-v' sont incompatibles");
+                    } 
+                }else if(args[i].equals("-v")){
+                    if(!this.parse){
+                        this.verification = true;
+                    }else{
+                        throw new Error("Les options '-p' et '-v' sont incompatibles");
+                    }
+                }else if(args[i].equals("-n")){
+                    this.nocheck = true;
+                }else if(args[i].equals("-r")){
+                    this.registers = true;
+                    i++;
+                    try{
+                        nombreRegisters = Integer.parseInt(args[i]);
+                    }
+                    catch(NumberFormatException e){
+                        throw new Error("Le nombre de registres doit être un entier.");
+                    }
+                }else if(args[i].equals("-d")){
+                    this.debug++;
+                }else if(args[i].equals("-P")){
+                    this.parallel = true;
+                }else{
+                    throw new Error("option non définie");
                 }
-                catch(NumberFormatException e){
-                    throw new Error("il faut insere le nombre de registres");
-                }
-            }else if(args[i].equals("-d")){
-                this.debug++;
-            }else if(args[i].equals("-P")){
-                this.parallel = true;
+            }else if (String.valueOf(args[i].charAt(0)).equals("-") && notOption){
+                throw new Error("commande indéfinie");
             }else{
                 File file = new File(args[i]);
                 sourceFiles.add(file);
+                notOption = true;
             }
         }
         Logger logger = Logger.getRootLogger();

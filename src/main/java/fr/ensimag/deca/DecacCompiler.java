@@ -58,7 +58,8 @@ public class DecacCompiler {
     //public SymbolTable getSymbolTable(){
       //  return table;
     //}
-    
+    private Label labelDebutProg = new Label("debutProg");
+    private Label labelDivErreur = new Label("erreurDiv0");
     public DecacCompiler(CompilerOptions compilerOptions, File source) {
         super();
         this.compilerOptions = compilerOptions;
@@ -70,6 +71,16 @@ public class DecacCompiler {
         typeEnv.put(DecaParser.tableSymb.create("int"),new TypeDefinition(new IntType(DecaParser.tableSymb.create("int")), new Location(0,0," ")));
         typeEnv.put(DecaParser.tableSymb.create("string"),new TypeDefinition(new StringType(DecaParser.tableSymb.create("string")), new Location(0,0," ")));
     }
+
+    public Label getLabelDebutProg() {
+        return labelDebutProg;
+    }
+
+
+    public Label getLabelDivErreur() {
+        return labelDivErreur;
+    }
+
 
     public EnvironmentExp getEnvTypes(){
         return this.envTypes;

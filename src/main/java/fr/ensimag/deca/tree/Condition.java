@@ -4,6 +4,6 @@ import fr.ensimag.ima.pseudocode.Label;
 public interface Condition{
 
 
-    public  int codeGenCond(DecacCompiler compiler, Label lab2);
+    public  void codeGenCond(DecacCompiler compiler, Label lab2);
 
 }

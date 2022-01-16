@@ -1,9 +1,13 @@
 package fr.ensimag.deca.tree;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.ima.pseudocode.instructions.QUO;
+import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.DIV;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.POP;
+import fr.ensimag.ima.pseudocode.ImmediateFloat;
+import fr.ensimag.ima.pseudocode.ImmediateInteger;
 import fr.ensimag.ima.pseudocode.Register;
 /**
  *
@@ -26,26 +30,45 @@ public class Divide extends AbstractOpArith {
         Register.getR(reg1).setIsFull(true);
         int reg2 = super.getRightOperand().codeGenExpr(compiler);   
         Register.getR(reg2).setIsFull(true);
-        int reg3 = 0;
-        while(reg2 == reg1){
-            reg3 = Register.getEmptyReg(compiler);
-            compiler.addInstruction(new LOAD(Register.getR(reg2),Register.getR(reg3)));
-            compiler.addInstruction(new POP(Register.getR(reg2)));
-            Register.getR(reg2).setNbrPushed(Register.getR(reg2).getNbrPushed()-1);
-            reg1 = reg3;
-        }
-        if(super.getLeftOperand().getType().isFloat()){
-            compiler.addInstruction(new DIV(Register.getR(reg2), Register.getR(reg1)));
+        if(Register.getR(reg1).getIsPushed()){
+            if(super.getLeftOperand().getType().isFloat()){
+                if(!compiler.getCompilerOptions().getNocheck()){
+                compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
+                compiler.addInstruction(new LOAD(new ImmediateFloat(0), Register.getR(reg1)));
+                compiler.addInstruction(new CMP(Register.R0, Register.getR(reg1)));
+                compiler.addInstruction(new BEQ(compiler.getLabelDivErreur()));
+                }
+                compiler.addInstruction(new POP(Register.getR(reg1)));
+                compiler.addInstruction(new DIV(Register.getR(0), Register.getR(reg1)));
+            }else{
+                if(!compiler.getCompilerOptions().getNocheck()){
+                compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
+                compiler.addInstruction(new LOAD(new ImmediateInteger(0), Register.getR(reg1)));
+                compiler.addInstruction(new CMP(Register.R0, Register.getR(reg1)));
+                compiler.addInstruction(new BEQ(compiler.getLabelDivErreur()));
+                }
+                compiler.addInstruction(new POP(Register.getR(reg1)));
+                compiler.addInstruction(new QUO(Register.getR(0), Register.getR(reg1)));
+            }
         }else{
-            compiler.addInstruction(new QUO(Register.getR(reg2), Register.getR(reg1)));
+            if(super.getLeftOperand().getType().isFloat()){
+                if(!compiler.getCompilerOptions().getNocheck()){
+                compiler.addInstruction(new LOAD(new ImmediateFloat(0), Register.getR(0)));
+                compiler.addInstruction(new CMP(Register.R0, Register.getR(reg2)));
+                compiler.addInstruction(new BEQ(compiler.getLabelDivErreur()));
+                }
+                compiler.addInstruction(new DIV(Register.getR(reg2), Register.getR(reg1)));
+            }else{
+                if(!compiler.getCompilerOptions().getNocheck()){
+                compiler.addInstruction(new LOAD(new ImmediateInteger(0), Register.getR(0)));
+                compiler.addInstruction(new CMP(Register.R0, Register.getR(reg2)));
+                compiler.addInstruction(new BEQ(compiler.getLabelDivErreur()));
+                }
+                compiler.addInstruction(new QUO(Register.getR(reg2), Register.getR(reg1)));
+            }
         }
-        if(Register.getR(reg2).getNbrPushed()!=0){
-            compiler.addInstruction(new POP(Register.getR(reg2)));
-            Register.getR(reg2).setNbrPushed(Register.getR(reg2).getNbrPushed()-1);
-            }
-            else{
-                Register.getR(reg2).setIsFull(false);
-            }
+        if(!Register.getR(reg2).getIsPushed()){
+            Register.getR(reg2).setIsFull(false);}
         return reg1; 
     }
 

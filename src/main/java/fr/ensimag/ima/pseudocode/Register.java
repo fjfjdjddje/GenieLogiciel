@@ -12,19 +12,21 @@ import fr.ensimag.ima.pseudocode.instructions.PUSH;
 public class Register extends DVal {
     private String name;
     private Boolean isFull = false;
-    private int nbrPushed = 0;
-    public static int regToPush = 2;
-
+    private Boolean isPushed = false;
     protected Register(String name) {
         this.name = name;
     }
 
-    public int getNbrPushed() {
-        return nbrPushed;
+
+
+    public Boolean getIsPushed() {
+        return isPushed;
     }
 
-    public void setNbrPushed(int nbrPushed) {
-        this.nbrPushed = nbrPushed;
+
+
+    public void setIsPushed(Boolean isPushed) {
+        this.isPushed = isPushed;
     }
 
 
@@ -78,16 +80,14 @@ public class Register extends DVal {
         return res;
     }
     public static int getEmptyReg(DecacCompiler compiler){
-        for (int i = 2; i <= 3; i++) {
+        int maxRegister = compiler.getCompilerOptions().getNombreRegisters() -1;
+        for (int i = 2; i <= maxRegister; i++) {
             if(!R[i].getIsFull()){
                 return i;
             }
         }
-        compiler.addInstruction(new PUSH(R[regToPush]));
-        R[regToPush].setNbrPushed(R[regToPush].getNbrPushed()+1);
-        int res  = regToPush;
-        regToPush++;
-        if (regToPush == 4){regToPush =2;}
-        return res;   
+        R[maxRegister].setIsPushed(true);
+        compiler.addInstruction(new PUSH(R[maxRegister]));
+        return maxRegister;
     }
 }
