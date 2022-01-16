@@ -180,7 +180,6 @@ public class Identifier extends AbstractIdentifier implements Condition {
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
             
-            
             if(!localEnv.getCurrentEnvironment().containsKey(this.name)){
             throw new ContextualError("Identifiant N'est pas déclaré", this.getLocation());
         }else{

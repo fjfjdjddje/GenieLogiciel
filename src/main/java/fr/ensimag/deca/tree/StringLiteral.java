@@ -51,6 +51,7 @@ public class StringLiteral extends AbstractStringLiteral {
     @Override
     public void decompile(IndentPrintStream s) {
         //throw new UnsupportedOperationException("not yet implemented");
+        s.print(value);
     }
 
     @Override
@@ -70,6 +71,8 @@ public class StringLiteral extends AbstractStringLiteral {
 
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
+        value = value.substring(1, value.length()-1);
+        //System.out.println(value);
         compiler.addInstruction(new WSTR(new ImmediateString(value)));
         return 0;
     }

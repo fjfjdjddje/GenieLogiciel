@@ -17,6 +17,7 @@ import fr.ensimag.ima.pseudocode.RegisterOffset;
 import java.io.PrintStream;
 import java.util.Properties;
 
+
 import org.apache.commons.lang.Validate;
 
 /**
@@ -76,9 +77,11 @@ public class DeclVar extends AbstractDeclVar {
     @Override
     public void decompile(IndentPrintStream s) {
         //throw new UnsupportedOperationException("not yet implemented");
-        s.print(type.decompile());
-        s.print(varName.decompile());
-        s.print(initialization.decompile());
+        //type.decompile(s);
+        s.print(type.getName().getName());
+        s.print(" ");
+        s.print(varName.getName().getName());
+        initialization.decompile(s);
     }
 
     @Override

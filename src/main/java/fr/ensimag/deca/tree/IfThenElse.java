@@ -49,7 +49,7 @@ public class IfThenElse extends AbstractInst {
     protected void codeGenInst(DecacCompiler compiler) {
         //throw new UnsupportedOperationException("not yet implemented");
         it2++;
-        System.out.println(it2);    
+        //System.out.println(it2);    
         Label lab1 = new Label("debutSinon"+it2);
         ((Condition)this.condition).codeGenCond(compiler,lab1);
         thenBranch.codeGenListInst(compiler);
@@ -57,7 +57,7 @@ public class IfThenElse extends AbstractInst {
         compiler.addLabel(lab1);
         elseBranch.codeGenListInst(compiler);
         it2 --;
-        if (it2 == 1){
+        if (it2 == 0){
             compiler.addLabel(lab2);
         }
     }
@@ -67,11 +67,15 @@ public class IfThenElse extends AbstractInst {
         //throw new UnsupportedOperationException("not yet implemented");
         s.print("if(");
         condition.decompile(s);
-        s.print("){");
+        s.println("){");
+        s.indent();
         thenBranch.decompile(s);
-        s.print("} else {");
+        s.unindent();
+        s.println("} else {");
+        s.indent();
         elseBranch.decompile(s);
-        s.print("}");
+        s.unindent();
+        s.println("}");
     }
 
     @Override

@@ -26,7 +26,9 @@ public class DecacMain {
             System.exit(1);
         }
         if (options.getPrintBanner()) {
-            throw new UnsupportedOperationException("decac -b not yet implemented");
+            //throw new UnsupportedOperationException("decac -b not yet implemented");
+            System.out.println("Groupe 46");
+            return;
         }
         if (options.getSourceFiles().isEmpty()) {
             throw new UnsupportedOperationException("decac without argument not yet implemented");

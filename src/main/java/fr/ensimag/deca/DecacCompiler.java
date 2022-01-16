@@ -21,6 +21,7 @@ import fr.ensimag.deca.context.VoidType;
 import fr.ensimag.deca.syntax.DecaLexer;
 import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.tools.DecacInternalError;
+import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.deca.tree.AbstractProgram;
@@ -199,17 +200,26 @@ public class DecacCompiler {
             PrintStream out, PrintStream err)
             throws DecacFatalError, LocationException {
         AbstractProgram prog = doLexingAndParsing(sourceName, err);
-
+        CompilerOptions options = this.getCompilerOptions();
         if (prog == null) {
             LOG.info("Parsing failed");
             return true;
         }
+        if(options.getParse()){
+            PrintStream printStream = new PrintStream(System.out);
+            IndentPrintStream stream = new IndentPrintStream(printStream);
+            prog.decompile(stream);
+            return false;
+        }
+
         assert(prog.checkAllLocations());
 
 
         prog.verifyProgram(this);
         assert(prog.checkAllDecorations());
-
+        if(options.getVerification()){
+            //return true;
+        }
         addComment("start main program");
         prog.codeGenProgram(this);
         addComment("end main program");

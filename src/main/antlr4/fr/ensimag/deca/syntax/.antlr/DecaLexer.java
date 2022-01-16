@@ -34,7 +34,7 @@ public class DecaLexer extends AbstractDecaLexer {
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"FILENAME", "NUM", "SIGN", "EXP", "LETTER", "DIGIT", "POSITIVE_DIGIT", 
-			"DIGITHEX", "NUMHEX", "DEC", "FLOATDEC", "FLOATHEX", "STRING_CAR", "EOL", 
+			"DIGITHEX", "NUMHEX", "DEC", "FLOATDEC", "FLOATHEX", "EOL", "STRING_CAR", 
 			"WS", "COMMENT", "INCLUDE", "ELSE", "IF", "SPACE", "ELSEIF", "ASM", "CLASS", 
 			"EXTENDS", "FALSE", "INSTANCEOF", "NEW", "NULL", "READINT", "READFLOAT", 
 			"PRINT", "PRINTLN", "PRINTLNX", "PRINTX", "PROTECTED", "RETURN", "THIS", 
@@ -254,8 +254,8 @@ public class DecaLexer extends AbstractDecaLexer {
 		"\7z\2\2\u00c8\u00c9\7\62\2\2\u00c9\u00cb\7Z\2\2\u00ca\u00c6\3\2\2\2\u00ca"+
 		"\u00c8\3\2\2\2\u00cb\u00cc\3\2\2\2\u00cc\u00cd\5\23\n\2\u00cd\u00ce\7"+
 		"\60\2\2\u00ce\u00cf\5\23\n\2\u00cf\u00d0\t\7\2\2\u00d0\u00d1\5\7\4\2\u00d1"+
-		"\u00d2\5\5\3\2\u00d2\u00d3\t\b\2\2\u00d3\32\3\2\2\2\u00d4\u00d5\n\t\2"+
-		"\2\u00d5\34\3\2\2\2\u00d6\u00d7\7\f\2\2\u00d7\36\3\2\2\2\u00d8\u00d9\t"+
+		"\u00d2\5\5\3\2\u00d2\u00d3\t\b\2\2\u00d3\32\3\2\2\2\u00d4\u00d5\7\f\2"+
+		"\2\u00d5\34\3\2\2\2\u00d6\u00d7\n\t\2\2\u00d7\36\3\2\2\2\u00d8\u00d9\t"+
 		"\n\2\2\u00d9\u00da\b\20\2\2\u00da \3\2\2\2\u00db\u00dc\7\61\2\2\u00dc"+
 		"\u00dd\7,\2\2\u00dd\u00e1\3\2\2\2\u00de\u00e0\13\2\2\2\u00df\u00de\3\2"+
 		"\2\2\u00e0\u00e3\3\2\2\2\u00e1\u00e2\3\2\2\2\u00e1\u00df\3\2\2\2\u00e2"+
@@ -329,12 +329,12 @@ public class DecaLexer extends AbstractDecaLexer {
 		"\r\7\2\u01da\u01d9\3\2\2\2\u01db\u01de\3\2\2\2\u01dc\u01da\3\2\2\2\u01dc"+
 		"\u01dd\3\2\2\2\u01dd\u01e0\3\2\2\2\u01de\u01dc\3\2\2\2\u01df\u01d7\3\2"+
 		"\2\2\u01df\u01d8\3\2\2\2\u01e0\u0082\3\2\2\2\u01e1\u01e9\7$\2\2\u01e2"+
-		"\u01e8\5\33\16\2\u01e3\u01e4\7^\2\2\u01e4\u01e8\7$\2\2\u01e5\u01e6\7^"+
+		"\u01e8\5\35\17\2\u01e3\u01e4\7^\2\2\u01e4\u01e8\7$\2\2\u01e5\u01e6\7^"+
 		"\2\2\u01e6\u01e8\7^\2\2\u01e7\u01e2\3\2\2\2\u01e7\u01e3\3\2\2\2\u01e7"+
 		"\u01e5\3\2\2\2\u01e8\u01eb\3\2\2\2\u01e9\u01e7\3\2\2\2\u01e9\u01ea\3\2"+
 		"\2\2\u01ea\u01ec\3\2\2\2\u01eb\u01e9\3\2\2\2\u01ec\u01ed\7$\2\2\u01ed"+
-		"\u0084\3\2\2\2\u01ee\u01f7\7$\2\2\u01ef\u01f6\5\33\16\2\u01f0\u01f6\5"+
-		"\35\17\2\u01f1\u01f2\7^\2\2\u01f2\u01f6\7$\2\2\u01f3\u01f4\7^\2\2\u01f4"+
+		"\u0084\3\2\2\2\u01ee\u01f7\7$\2\2\u01ef\u01f6\5\35\17\2\u01f0\u01f6\5"+
+		"\33\16\2\u01f1\u01f2\7^\2\2\u01f2\u01f6\7$\2\2\u01f3\u01f4\7^\2\2\u01f4"+
 		"\u01f6\7^\2\2\u01f5\u01ef\3\2\2\2\u01f5\u01f0\3\2\2\2\u01f5\u01f1\3\2"+
 		"\2\2\u01f5\u01f3\3\2\2\2\u01f6\u01f9\3\2\2\2\u01f7\u01f5\3\2\2\2\u01f7"+
 		"\u01f8\3\2\2\2\u01f8\u01fa\3\2\2\2\u01f9\u01f7\3\2\2\2\u01fa\u01fb\7$"+

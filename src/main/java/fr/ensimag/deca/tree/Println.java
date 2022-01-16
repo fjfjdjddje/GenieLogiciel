@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.instructions.WNL;
 
@@ -23,7 +24,16 @@ public class Println extends AbstractPrint {
         super.codeGenInst(compiler);
         compiler.addInstruction(new WNL());
     }
-
+    @Override
+    public void decompile(IndentPrintStream s) {
+        //throw new UnsupportedOperationException("not yet implemented");
+        
+        s.print("println(");
+        for(AbstractExpr arg : super.getArguments().getList()){
+            arg.decompile(s);
+        }
+        s.print(");");
+    }
     @Override
     String getSuffix() {
         return "ln";

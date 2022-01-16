@@ -24,8 +24,9 @@ fragment NUMHEX : DIGITHEX|;
 fragment DEC : NUM '.' NUM;
 fragment FLOATDEC : (DEC | DEC EXP) ('F' | 'f' | );
 fragment FLOATHEX : ('0x' | '0X') NUMHEX '.' NUMHEX ('P' | 'p') SIGN NUM ('F' | 'f' | ' ');
-fragment STRING_CAR : ~('\n'|'"'|'\\');
 fragment EOL : '\n';
+fragment STRING_CAR : ~('\n'|'"'|'\\');
+
 
 WS  :   ( '\t'
         | '\r'

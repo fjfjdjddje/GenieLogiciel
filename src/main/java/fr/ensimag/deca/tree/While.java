@@ -66,7 +66,7 @@ public class While extends AbstractInst {
         s.indent();
         getBody().decompile(s);
         s.unindent();
-        s.print("}");
+        s.println("}");
     }
 
     @Override

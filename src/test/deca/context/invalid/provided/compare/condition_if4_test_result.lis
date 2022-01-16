@@ -1,3 +1,0 @@
-VerifyExpr OpArith Begin:
-VerifyExpr OpArith End:
-./src/test/deca/context/invalid/provided/condition_if4.deca:11:11: This condition is not a bool
