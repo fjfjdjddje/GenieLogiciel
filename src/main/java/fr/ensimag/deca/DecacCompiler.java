@@ -73,15 +73,6 @@ public class DecacCompiler {
         typeEnv.put(DecaParser.tableSymb.create("string"),new TypeDefinition(new StringType(DecaParser.tableSymb.create("string")), new Location(0,0," ")));
     }
 
-    public Label getLabTrue() {
-        return labTrue;
-    }
-
-
-    public Label getLabFalse() {
-        return labFalse;
-    }
-
 
     public Label getLabelDebutProg() {
         return labelDebutProg;
