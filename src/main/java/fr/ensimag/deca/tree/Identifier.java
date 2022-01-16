@@ -181,7 +181,7 @@ public class Identifier extends AbstractIdentifier implements Condition {
         //throw new UnsupportedOperationException("not yet implemented");
             
             if(!localEnv.getCurrentEnvironment().containsKey(this.name)){
-            throw new ContextualError("Identifiant N'est pas déclaré", this.getLocation());
+            throw new ContextualError(this.name.getName()+" used but not declared.", this.getLocation());
         }else{
             this.setType(localEnv.get(this.name).getType());
             this.setDefinition(localEnv.getCurrentEnvironment().get(this.name));
@@ -198,10 +198,13 @@ public class Identifier extends AbstractIdentifier implements Condition {
     public Type verifyType(DecacCompiler compiler) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
         if(!(compiler.getEnvTypes().getCurrentEnvironment().containsKey(this.getType().getName()))){
-            throw new ContextualError("Ce type n'existe pas", this.getLocation());
+            throw new ContextualError("Inexisting type.", this.getLocation());
         }
         if(this.getType().isVoid()){
-            throw new ContextualError("Void cannot be declared as a variable", this.getLocation());
+            throw new ContextualError("Void cannot be declared as a variable.", this.getLocation());
+        }
+        if(this.getType().isString()){
+            throw new ContextualError("String cannot be declared as a variable.", this.getLocation());
         }
         return this.getType();
         //if(!compiler.getEnvTypes().getCurrentEnvironment().containsKey(this.definition.)){

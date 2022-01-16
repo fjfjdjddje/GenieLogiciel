@@ -31,7 +31,7 @@ public class Not extends AbstractUnaryExpr implements Condition{
         //throw new UnsupportedOperationException("not yet implemented");
         Type t = super.getOperand().verifyExpr(compiler, localEnv, currentClass);
         if(!t.isBoolean()){
-            throw new ContextualError("Type not supported for the Not expression", this.getLocation());
+            throw new ContextualError("Only booleans are supported for the Not expression.", this.getLocation());
         } else{
             this.setType(t);
             return t;

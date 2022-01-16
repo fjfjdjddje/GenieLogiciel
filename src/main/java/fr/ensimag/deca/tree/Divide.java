@@ -32,8 +32,8 @@ public class Divide extends AbstractOpArith {
         Register.getR(reg2).setIsFull(true);
         if(Register.getR(reg1).getIsPushed()){
             if(super.getLeftOperand().getType().isFloat()){
-                if(!compiler.getCompilerOptions().getNocheck()){
                 compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
+                if(!compiler.getCompilerOptions().getNocheck()){
                 compiler.addInstruction(new LOAD(new ImmediateFloat(0), Register.getR(reg1)));
                 compiler.addInstruction(new CMP(Register.R0, Register.getR(reg1)));
                 compiler.addInstruction(new BEQ(compiler.getLabelDivErreur()));
@@ -41,8 +41,8 @@ public class Divide extends AbstractOpArith {
                 compiler.addInstruction(new POP(Register.getR(reg1)));
                 compiler.addInstruction(new DIV(Register.getR(0), Register.getR(reg1)));
             }else{
-                if(!compiler.getCompilerOptions().getNocheck()){
                 compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
+                if(!compiler.getCompilerOptions().getNocheck()){
                 compiler.addInstruction(new LOAD(new ImmediateInteger(0), Register.getR(reg1)));
                 compiler.addInstruction(new CMP(Register.R0, Register.getR(reg1)));
                 compiler.addInstruction(new BEQ(compiler.getLabelDivErreur()));

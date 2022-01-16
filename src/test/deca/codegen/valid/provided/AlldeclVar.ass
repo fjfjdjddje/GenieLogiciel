@@ -1,0 +1,88 @@
+; start main program
+	BRA debutProg
+erreurDiv0:
+	WSTR "Arret de l'execution: division par zéro impossible."
+	HALT
+debutProg:
+; Main program
+; Beginning of main instructions:
+	LOAD #7, R2
+	LOAD R2, R0
+	FLOAT R0, R2
+	STORE R2, 3(GB)
+	LOAD #1, R2
+	LOAD R2, R1
+	LOAD #0, R0
+	CMP R2, R0
+	BEQ printFalse0
+	WSTR "true"
+	BRA endPrint0
+printFalse0:
+	WSTR "false"
+endPrint0:
+	WNL
+	LOAD #1, R2
+	LOAD R2, R1
+	LOAD #0, R0
+	CMP R2, R0
+	BEQ printFalse1
+	WSTR "true"
+	BRA endPrint1
+printFalse1:
+	WSTR "false"
+endPrint1:
+	WNL
+	LOAD #2, R2
+	LOAD R2, R1
+	WINT
+	WNL
+	LOAD #0, R2
+	LOAD R2, R1
+	LOAD #0, R0
+	CMP R2, R0
+	BEQ printFalse2
+	WSTR "true"
+	BRA endPrint2
+printFalse2:
+	WSTR "false"
+endPrint2:
+	WNL
+	LOAD #1, R2
+	LOAD R2, R1
+	LOAD #0, R0
+	CMP R2, R0
+	BEQ printFalse3
+	WSTR "true"
+	BRA endPrint3
+printFalse3:
+	WSTR "false"
+endPrint3:
+	WNL
+	LOAD 3(GB), R2
+	LOAD R2, R1
+	WFLOATX
+	WNL
+	LOAD #1, R2
+	LOAD R2, R1
+	LOAD #0, R0
+	CMP R2, R0
+	BEQ printFalse4
+	WSTR "true"
+	BRA endPrint4
+printFalse4:
+	WSTR "false"
+endPrint4:
+	WNL
+	LOAD #0, R2
+	LOAD R2, R1
+	LOAD #0, R0
+	CMP R2, R0
+	BEQ printFalse5
+	WSTR "true"
+	BRA endPrint5
+printFalse5:
+	WSTR "false"
+endPrint5:
+	WNL
+	HALT
+; end main program

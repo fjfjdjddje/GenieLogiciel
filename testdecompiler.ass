@@ -7,16 +7,14 @@ debutProg:
 ; Main program
 ; Beginning of main instructions:
 	LOAD #15, R2
-	STORE R2, 3(GB)
-	LOAD 3(GB), R2
-	LOAD R2, R0
-	FLOAT R0, R2
-	LOAD #0x0.0p0, R3
-	LOAD #0x0.0p0, R0
+	STORE R2, 5(GB)
+	LOAD #1, R2
+	LOAD #0, R3
+	LOAD #0, R0
 	CMP R0, R3
 	BEQ erreurDiv0
-	DIV R3, R2
+	REM R3, R2
 	LOAD R2, R1
-	WFLOAT
+	WINT
 	HALT
 ; end main program

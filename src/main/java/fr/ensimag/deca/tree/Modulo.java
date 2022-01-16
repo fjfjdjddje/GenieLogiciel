@@ -4,7 +4,10 @@ import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.ima.pseudocode.ImmediateFloat;
 import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.POP;
 import fr.ensimag.ima.pseudocode.instructions.REM;
@@ -27,10 +30,14 @@ public class Modulo extends AbstractOpArith {
         //System.out.println("Modulo verify expr: begin");
         Type typeLeftOperande= super.getLeftOperand().verifyExpr(compiler, localEnv,currentClass);
         Type typeRightOperande= super.getRightOperand().verifyExpr(compiler,localEnv, currentClass);
+       
+        /*super.getLeftOperand().setType(typeLeftOperande);
+        super.getRightOperand().setType(typeRightOperande);*/
         if(!typeLeftOperande.isInt() || !typeRightOperande.isInt()){
-            throw new ContextualError("Modulo is not defined for this type", this.getLocation());
+            throw new ContextualError("Only integers are allowed for modulo operation.", this.getLocation());
         } else {
             //System.out.println("Modulo verify expr: end");
+            this.setType(typeLeftOperande);
             return typeLeftOperande;
         }
     }
@@ -43,9 +50,20 @@ public class Modulo extends AbstractOpArith {
         Register.getR(reg2).setIsFull(true);
         if(Register.getR(reg1).getIsPushed()){
             compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
+            if(!compiler.getCompilerOptions().getNocheck()){
+                compiler.addInstruction(new LOAD(new ImmediateInteger(0), Register.getR(reg1)));
+                compiler.addInstruction(new CMP(Register.R0, Register.getR(reg1)));
+                compiler.addInstruction(new BEQ(compiler.getLabelDivErreur()));
+                }
+            //compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
             compiler.addInstruction(new POP(Register.getR(reg1)));
             compiler.addInstruction(new REM(Register.R0,Register.getR(reg1)));
         }else{
+            if(!compiler.getCompilerOptions().getNocheck()){
+                compiler.addInstruction(new LOAD(new ImmediateInteger(0), Register.getR(0)));
+                compiler.addInstruction(new CMP(Register.R0, Register.getR(reg2)));
+                compiler.addInstruction(new BEQ(compiler.getLabelDivErreur()));
+                }
             compiler.addInstruction(new REM(Register.getR(reg2),Register.getR(reg1)));
         }
         if(!Register.getR(reg2).getIsPushed()){

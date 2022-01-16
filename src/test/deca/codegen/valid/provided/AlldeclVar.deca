@@ -1,10 +1,23 @@
 //Ce programme test toutes les declarations possible de variables
 
 {
+
+	float a = 7;
+    /*void x;
     int a = 4;
-    float b = 5;
     float b = 5.458;
-    boolean t = true;
-    boolean f = false;
-    string s ="STRING";
+    boolean t = false;
+    println(a);
+    println(b);
+    println(t);
+    println("hahahahhahahah");*/
+    println(true);
+    println(true);
+    println(2);
+    println(false);
+    println(true);
+    printlnx(a);
+    println(true);
+    println(false);
+    
 }

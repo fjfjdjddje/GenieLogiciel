@@ -45,7 +45,7 @@ public class DeclVar extends AbstractDeclVar {
             throws ContextualError {
                 this.type.verifyType(compiler);
                 if(localEnv.getCurrentEnvironment().containsKey(varName.getName())){
-                    throw new ContextualError("Variable deja déclaré", varName.getLocation());
+                    throw new ContextualError("Variable "+varName.getName().getName()+" already declared.", varName.getLocation());
                 }
                     try{
                         Definition def= new VariableDefinition(this.type.getType(),this.varName.getLocation());
@@ -60,7 +60,7 @@ public class DeclVar extends AbstractDeclVar {
                         localEnv.declare(varName.getName(),varName.getExpDefinition());
                         //System.out.println(localEnv.getCurrentEnvironment());
                     }catch (Exception e){
-                       System.out.println("Error en declaration de variable dans l'environnement");
+                       System.out.println("Error in the declaration of the variable in the environement.");
                     }
                 
                 this.initialization.verifyInitialization(compiler, this.type.getType(), localEnv, currentClass);

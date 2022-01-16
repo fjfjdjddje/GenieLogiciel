@@ -12,18 +12,18 @@ options {
 }
 
 // Deca lexer rules.
-fragment FILENAME : (LETTER + DIGIT + '.' + '-' + '_')+;
+fragment FILENAME : (LETTER | DIGIT | '.' | '-' | '_')+;
+fragment DIGITHEX : '0'..'9' | 'A'..'F' | 'a'..'f';
+fragment NUMHEX : DIGITHEX|;
+fragment FLOATHEX : ('0x' | '0X') NUMHEX '.' NUMHEX ('P' | 'p') SIGN NUM ('F' | 'f' |);
 fragment NUM : DIGIT+;
 fragment SIGN : '+' | '-' | ' ';
 fragment EXP : ('E' | 'e') SIGN NUM;
 fragment LETTER :'a'..'z' | 'A'..'Z';
 fragment DIGIT : '0'..'9';
 fragment POSITIVE_DIGIT : '1'..'9';
-fragment DIGITHEX : '0'..'9' | 'A'..'F' | 'a'..'f';
-fragment NUMHEX : DIGITHEX|;
 fragment DEC : NUM '.' NUM;
 fragment FLOATDEC : (DEC | DEC EXP) ('F' | 'f' | );
-fragment FLOATHEX : ('0x' | '0X') NUMHEX '.' NUMHEX ('P' | 'p') SIGN NUM ('F' | 'f' | ' ');
 fragment EOL : '\n';
 fragment STRING_CAR : ~('\n'|'"'|'\\');
 
@@ -36,7 +36,7 @@ WS  :   ( '\t'
           }
     ;
 COMMENT : ('/*' .*? '*/' | '//' ~('\n')*){ skip(); };
-INCLUDE : '#include' (' ')* '"' FILENAME '"';
+INCLUDE : '#include' (' ')* '"' FILENAME '"'{doInclude(getText());};
 ELSE : 'else';
 IF : 'if';
 SPACE : ' ' {skip();};
@@ -80,8 +80,8 @@ GEQ : '>=';
 LEQ : '<=';
 AND : '&&';
 OR : '||';
-IDENT : (LETTER | '$' | '_')(LETTER | DIGIT | '$' | '_')*;
 FLOAT : FLOATDEC | FLOATHEX;
+IDENT : (LETTER | '$' | '_')(LETTER | DIGIT | '$' | '_')*;
 DOT : '.';
 INT : '0' | POSITIVE_DIGIT DIGIT*;
 STRING : '"' (STRING_CAR | '\\"' | '\\\\')* '"';

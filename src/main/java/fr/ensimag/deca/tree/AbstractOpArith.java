@@ -32,21 +32,21 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
         Type typeLeftOperand =  super.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
         Type typeRightOperand =  super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
         if(typeLeftOperand.isVoid()){
-            throw new ContextualError("Void not supported for arithmetic operation", getLeftOperand().getLocation());
+            throw new ContextualError("Void not supported for arithmetic operation.", getLeftOperand().getLocation());
         } else if(typeLeftOperand.isBoolean()){
-            throw new ContextualError("Boolean not supported for arithmetic operation", getLeftOperand().getLocation());
+            throw new ContextualError("Boolean not supported for arithmetic operation.", getLeftOperand().getLocation());
         } else if(typeLeftOperand.isClass()){
-            throw new ContextualError("Class not supported for arithmetic operation", getLeftOperand().getLocation());
+            throw new ContextualError("Class not supported for arithmetic operation.", getLeftOperand().getLocation());
         } else if(typeLeftOperand.isString()){
-            throw new ContextualError("String not supported for arithmetic operation", getLeftOperand().getLocation());
+            throw new ContextualError("String not supported for arithmetic operation.", getLeftOperand().getLocation());
         } else if(typeRightOperand.isVoid()){
-            throw new ContextualError("Void not supported for arithmetic operation", getRightOperand().getLocation());
+            throw new ContextualError("Void not supported for arithmetic operation.", getRightOperand().getLocation());
         } else if(typeRightOperand.isBoolean()){
             throw new ContextualError("Boolean not supported for arithmetic operation", getRightOperand().getLocation());
         } else if(typeRightOperand.isClass()){
-            throw new ContextualError("Class not supported for arithmetic operation", getRightOperand().getLocation());
+            throw new ContextualError("Class not supported for arithmetic operation.", getRightOperand().getLocation());
         } else if(typeRightOperand.isString()){
-            throw new ContextualError("String not supported for arithmetic operation", getRightOperand().getLocation());
+            throw new ContextualError("String not supported for arithmetic operation.", getRightOperand().getLocation());
         } else {
             //System.out.println("VerifyExpr OpArith End:");
             if(typeLeftOperand.isFloat() && typeRightOperand.isInt()){

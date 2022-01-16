@@ -73,6 +73,10 @@ public class Program extends AbstractProgram {
         }
         compiler.addComment("Main program");
         main.codeGenMain(compiler);
+        /*compiler.addLabel(compiler.getLabFalse());
+        compiler.addInstruction(new WSTR("False"));
+        compiler.addLabel(compiler.getLabTrue());
+        compiler.addInstruction(new WSTR("True"));*/
         compiler.addInstruction(new HALT());
     }
 

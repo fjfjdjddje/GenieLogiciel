@@ -9,9 +9,16 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.instructions.WINT;
+import fr.ensimag.ima.pseudocode.instructions.WSTR;
 import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
+import fr.ensimag.ima.pseudocode.instructions.WFLOATX;
+import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.BRA;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.SEQ;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.ImmediateInteger;
 import fr.ensimag.ima.pseudocode.Label;
 import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
@@ -48,21 +55,35 @@ public abstract class AbstractPrint extends AbstractInst {
             arg.verifyExpr(compiler, localEnv, currentClass);
         }
     }
-
+    static int iterateur = 0;
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
         for (AbstractExpr a : getArguments().getList()) {
-            int i = a.codeGenExpr(compiler);
-            compiler.addInstruction(new LOAD(Register.getR(i), Register.getR(1)));
-            Register.getR(i).setIsFull(false);
-            if (a.getType().isInt()){
-                compiler.addInstruction(new WINT());
-            }else if(a.getType().isFloat()){
-                compiler.addInstruction(new WFLOAT());
-            }else if (a.getType().isBoolean()){
-                compiler.addInstruction(new WINT());
+                int i = a.codeGenExpr(compiler);
+                compiler.addInstruction(new LOAD(Register.getR(i), Register.getR(1)));
+                Register.getR(i).setIsFull(false);
+                if (a.getType().isInt()){
+                    compiler.addInstruction(new WINT());
+                }else if(a.getType().isFloat()){
+                    if(printHex){
+                        compiler.addInstruction(new WFLOATX());
+
+                    }else{
+                        compiler.addInstruction(new WFLOAT());
+                    }
+                }else if (a.getType().isBoolean()){
+                    Label labFalse = new Label("printFalse"+iterateur);
+                    Label labFin = new Label("endPrint"+iterateur);
+                    compiler.addInstruction(new LOAD(new ImmediateInteger(0), Register.R0));
+                    compiler.addInstruction(new CMP(Register.getR(i),Register.R0));
+                    compiler.addInstruction(new BEQ(labFalse));
+                    compiler.addInstruction(new WSTR("true"));
+                    compiler.addInstruction(new BRA(labFin));
+                    compiler.addLabel(labFalse);
+                    compiler.addInstruction(new WSTR("false")); 
+                    compiler.addLabel(labFin);
+                    iterateur++;
             }
-            
         }
     }
 

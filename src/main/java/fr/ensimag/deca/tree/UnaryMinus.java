@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.context.Type;
+import fr.ensimag.ima.pseudocode.ImmediateFloat;
 import fr.ensimag.ima.pseudocode.ImmediateInteger;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
@@ -27,7 +28,7 @@ public class UnaryMinus extends AbstractUnaryExpr {
         //throw new UnsupportedOperationException("not yet implemented");
         Type operandType=super.getOperand().verifyExpr(compiler, localEnv, currentClass);
         if(!operandType.isFloat() && !(operandType.isInt())){
-            throw new ContextualError("Type not supported for UnaryMinus", getLocation());
+            throw new ContextualError(operandType.getName().getName()+" not supported for UnaryMinus.", getLocation());
         }else{
             this.setType(operandType);
             return operandType;
@@ -44,7 +45,13 @@ public class UnaryMinus extends AbstractUnaryExpr {
         public int codeGenExpr(DecacCompiler compiler) {
             int reg1 = super.getOperand().codeGenExpr(compiler);
             Register.getR(reg1).setIsFull(true);
-            compiler.addInstruction(new LOAD(new ImmediateInteger(0),Register.R0));
+            if(super.getOperand().getType().isInt()){
+                compiler.addInstruction(new LOAD(new ImmediateInteger(0),Register.R0));
+            }
+            else{
+                float x = 0;
+                compiler.addInstruction(new LOAD(new ImmediateFloat(x),Register.R0));
+            }
             compiler.addInstruction(new SUB(Register.R0,Register.getR(reg1)));
             return reg1;
         }   

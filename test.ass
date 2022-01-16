@@ -1,88 +1,13 @@
 ; start main program
+	BRA debutProg
+erreurDiv0:
+	WSTR "Arret de l'execution: division par zéro impossible."
+	HALT
+debutProg:
 ; Main program
 ; Beginning of main instructions:
-  BRA deb
-  erruer WSTR "d"
-  HLT
-  deb 
-	RFLOAT
-	LOAD R1, R2
-	STORE R2, 3(GB)
-	LOAD #0, R2
-	STORE R2, 4(GB)
-debutWhile1:
-	LOAD 4(GB), R2
-	LOAD #15, R3
-	CMP R3, R2
-	SLT R3
-	LOAD #0, R2
-	CMP R2, R3
-	BEQ finWhile1
-	LOAD 4(GB), R2
-	LOAD #1, R3
-	ADD R3, R2
-	STORE R2, 4(GB)
-	LOAD 4(GB), R2
-	LOAD #5, R3
-	CMP R3, R2
-	SLT R3
-	LOAD #0, R2
-	CMP R2, R3
-	BEQ debutSinon1
-	WSTR "je suis dans if"
+	WSTR "ok"
 	LOAD R0, R1
-	WNL
-	LOAD 4(GB), R2
-	LOAD R2, R1
-	WINT
-	WNL
-	BRA finSinon
-debutSinon1:
-	LOAD 4(GB), R2
-	LOAD #5, R3
-	CMP R3, R2
-	SEQ R3
-	LOAD #0, R2
-	CMP R2, R3
-	BEQ debutSinon2
-	WSTR "je suis dans elseif1"
-	LOAD R0, R1
-	WNL
-	LOAD 4(GB), R2
-	LOAD R2, R1
-	WINT
-	WNL
-	BRA finSinon
-debutSinon2:
-	LOAD 4(GB), R2
-	LOAD #6, R3
-	CMP R3, R2
-	SEQ R3
-	LOAD #0, R2
-	CMP R2, R3
-	BEQ debutSinon3
-	WSTR "je suis dans elseif2"
-	LOAD R0, R1
-	WNL
-	LOAD 4(GB), R2
-	LOAD R2, R1
-	WINT
-	WNL
-	BRA finSinon
-debutSinon3:
-	WSTR "je suis dans else"
-	LOAD R0, R1
-	WNL
-	LOAD 4(GB), R2
-	LOAD R2, R1
-	WINT
-	WNL
-finSinon:
-	BRA debutWhile1
-finWhile1:
-	LOAD 3(GB), R2
-	LOAD R2, R1
-	WFLOAT
 	WNL
 	LOAD #1, R2
 	LOAD #2, R3
@@ -127,25 +52,23 @@ finWhile1:
 	LOAD #1, R2
 	LOAD #1, R3
 	LOAD #1, R4
-	PUSH R4
-	LOAD #1, R4
-	LOAD R4, R0
-	POP R4
-	MUL R0, R4
-	PUSH R4
-	LOAD #1, R4
-	PUSH R4
-	LOAD #0, R4
-	LOAD R4, R0
-	POP R4
-	MUL R0, R4
-	LOAD R4, R0
-	POP R4
-	MUL R0, R4
+	LOAD #1, R5
+	MUL R5, R4
+	LOAD #1, R5
+	LOAD #0, R6
+	MUL R6, R5
+	MUL R5, R4
 	MUL R4, R3
 	MUL R3, R2
 	LOAD R2, R1
-	WINT
+	LOAD #0, R0
+	CMP R2, R0
+	BEQ printFalse0
+	WSTR "true"
+	BRA endPrint0
+printFalse0:
+	WSTR "false"
+endPrint0:
 	WNL
 	LOAD #1, R2
 	LOAD #2, R3
@@ -183,16 +106,11 @@ finWhile1:
 	LOAD #18, R3
 	ADD R3, R2
 	LOAD #10, R3
-	PUSH R4
 	LOAD #10, R4
 	SUB R4, R3
-	PUSH R4
 	LOAD #10, R4
-	PUSH R4
-	LOAD #10, R4
-	LOAD R4, R0
-	POP R4
-	SUB R0, R4
+	LOAD #10, R5
+	SUB R5, R4
 	ADD R4, R3
 	MUL R3, R2
 	LOAD R2, R1

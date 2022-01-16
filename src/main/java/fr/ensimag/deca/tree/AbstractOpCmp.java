@@ -25,14 +25,14 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr implements Condit
         Type typeLeftOperand =  super.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
         Type typeRightOperand =  super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
         if(typeLeftOperand.isVoid()){
-            throw new ContextualError("Void not supported for comparison operation", super.getLeftOperand().getLocation());
+            throw new ContextualError("Void not supported for comparison operation.", super.getLeftOperand().getLocation());
         } else if(typeRightOperand.isVoid()){
-            throw new ContextualError("Void not supported for comparison operation", super.getRightOperand().getLocation());
+            throw new ContextualError("Void not supported for comparison operation.", super.getRightOperand().getLocation());
         } 
         if(this instanceof AbstractOpExactCmp){
           if(!typeLeftOperand.sameType(typeRightOperand)){
             if(!((typeLeftOperand.isInt() && typeRightOperand.isFloat()) || (typeLeftOperand.isFloat() && typeRightOperand.isInt()))){
-                throw new ContextualError("Comparaison incorrecte: types incompatibles", this.getLocation());
+                throw new ContextualError("Cannot compare a "+typeLeftOperand.getName().getName()+ " and a "+ typeRightOperand.getName().getName(), this.getLocation());
             }else{
                 if(typeLeftOperand.isInt()){
                     setLeftOperand(new ConvFloat(super.getLeftOperand()));

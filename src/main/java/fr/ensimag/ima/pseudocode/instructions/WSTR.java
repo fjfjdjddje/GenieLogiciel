@@ -1,5 +1,6 @@
 package fr.ensimag.ima.pseudocode.instructions;
 
+import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.ImmediateString;
 import fr.ensimag.ima.pseudocode.UnaryInstruction;
 
@@ -8,8 +9,8 @@ import fr.ensimag.ima.pseudocode.UnaryInstruction;
  * @date 01/01/2022
  */
 public class WSTR extends UnaryInstruction {
-    public WSTR(ImmediateString op) {
-        super(op);
+    public WSTR(GPRegister gpRegister) {
+        super(gpRegister);
     }
     
     public WSTR(String message) {
