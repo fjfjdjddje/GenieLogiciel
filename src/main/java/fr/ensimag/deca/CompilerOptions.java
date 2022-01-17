@@ -76,19 +76,19 @@ public class CompilerOptions {
                     if(args.length == 1){
                         this.printBanner = true;
                     }else{
-                        throw new Error("commande indéfinie");
+                        throw new CLIException("commande indéfinie");
                     }
                 }else if(args[i].equals("-p")){
                     if(!this.verification){
                         this.parse = true;
                     }else{
-                        throw new Error("Les options '-p' et '-v' sont incompatibles");
+                        throw new CLIException("Les options '-p' et '-v' sont incompatibles");
                     } 
                 }else if(args[i].equals("-v")){
                     if(!this.parse){
                         this.verification = true;
                     }else{
-                        throw new Error("Les options '-p' et '-v' sont incompatibles");
+                        throw new CLIException("Les options '-p' et '-v' sont incompatibles");
                     }
                 }else if(args[i].equals("-n")){
                     this.nocheck = true;
@@ -99,17 +99,17 @@ public class CompilerOptions {
                         nombreRegisters = Integer.parseInt(args[i]);
                     }
                     catch(NumberFormatException e){
-                        throw new Error("Le nombre de registres doit être un entier.");
+                        throw new CLIException("Le nombre de registres doit être un entier.");
                     }
                 }else if(args[i].equals("-d")){
                     this.debug++;
                 }else if(args[i].equals("-P")){
                     this.parallel = true;
                 }else{
-                    throw new Error("option non définie");
+                    throw new CLIException("option non définie");
                 }
             }else if (String.valueOf(args[i].charAt(0)).equals("-") && notOption){
-                throw new Error("commande indéfinie");
+                throw new CLIException("commande indéfinie");
             }else{
                 File file = new File(args[i]);
                 sourceFiles.add(file);
@@ -143,6 +143,6 @@ public class CompilerOptions {
     }
 
     protected void displayUsage() {
-        throw new UnsupportedOperationException("not yet implemented");
+        //throw new UnsupportedOperationException("not yet implemented");
     }
 }
