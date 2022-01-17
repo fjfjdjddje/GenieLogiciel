@@ -7,4 +7,4 @@
 // Historique:
 //    cree le 01/01/2022*/
 
-"chaine pas finie
+{print("chaine pas finie)}

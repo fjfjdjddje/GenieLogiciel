@@ -1,0 +1,4 @@
+{
+int ds@d;
+int ds#d;
+}
