@@ -1,32 +1,143 @@
-/*/ Description:
-//    Affectation et typage
-//
-// Resultats:
-//    Ligne 15: Affectation de types incompatibles.
-//
-// Historique:
-//    cree le 01/01/2022*/
- 
-{/*float x = readFloat();
-int i = 0;
-while(i<15){
-i = i+1;
-if(i<5){
-println("je suis dans if");
-println(i);}
-else if(i == 5){
-println("je suis dans elseif1");
-println(i);}
-else if(i == 6){
-println("je suis dans elseif2");
-println(i);}
-else{println("je suis dans else");
-println(i);}
- }*/
- #include "test.deca"
- //println(x);
- println((((((((((((((((((1+2)+3)+4)+5)+6)+7)+8)+9)+10)+11)+12)+13)+14)+15)+16)+17)+18)*10);
- println(true&&(true&&(true&&true&&(true&&false))));
- println((((((((((((((((((1+2)+3)+4)+5)+6)+7)+8)+9)+10)+11)+12)+13)+14)+15)+16)+17)+18)*(10-10+(10-10)));
- }
- 
+src/test/deca/context/invalid/provided/while_condition.deca:11:14: This condition is not a bool
+src/test/deca/context/invalid/provided/affect-incompatible2.deca:15:7: Assign incorrect: types différents
+ \n 
+src/test/deca/context/invalid/provided/affect-incompatible3.deca:15:7: Assign incorrect: types différents
+ \n 
+src/test/deca/context/invalid/provided/affect-incompatible4.deca:15:7: Assign incorrect: types différents
+ \n 
+src/test/deca/context/invalid/provided/affect-incompatible5.deca:15:7: Assign incorrect: types différents
+ \n 
+src/test/deca/context/invalid/provided/affect-incompatible6.deca:15:7: Assign incorrect: types différents
+ \n 
+src/test/deca/context/invalid/provided/affect-incompatible.deca:15:7: Assign incorrect: types différents
+ \n 
+src/test/deca/context/invalid/provided/and_type_incompatible2.deca:13:20: Int not supported for boolean operation
+ \n 
+src/test/deca/context/invalid/provided/and_type_incompatible3.deca:13:25: Boolean not supported for boolean operation
+ \n 
+src/test/deca/context/invalid/provided/and_type_incompatible4.deca:13:20: Float not supported for boolean operation
+ \n 
+src/test/deca/context/invalid/provided/and_type_incompatible5.deca:13:20: Float not supported for boolean operation
+ \n 
+src/test/deca/context/invalid/provided/and_type_incompatible6.deca:13:25: String not supported for boolean operation
+ \n 
+src/test/deca/context/invalid/provided/and_type_incompatible7.deca:13:20: String not supported for boolean operation
+ \n 
+src/test/deca/context/invalid/provided/and_type_incompatible.deca:13:25: Int not supported for boolean operation
+ \n 
+src/test/deca/context/invalid/provided/comp-incompatible10.deca:16:18: String not supported for inequality operations
+ \n 
+src/test/deca/context/invalid/provided/comp-incompatible11.deca:16:17: Booleans not supported for inequality operations
+ \n 
+src/test/deca/context/invalid/provided/comp-incompatible12.deca:16:17: String not supported for inequality operations
+ \n 
+src/test/deca/context/invalid/provided/comp-incompatible2.deca:16:15: Cannot compare a int and a string
+ \n 
+src/test/deca/context/invalid/provided/comp-incompatible3.deca:16:15: Cannot compare a int and a boolean
+ \n 
+src/test/deca/context/invalid/provided/comp-incompatible4.deca:16:15: Cannot compare a int and a string
+ \n 
+src/test/deca/context/invalid/provided/comp-incompatible5.deca:16:18: Booleans not supported for inequality operations
+ \n 
+src/test/deca/context/invalid/provided/comp-incompatible6.deca:16:18: String not supported for inequality operations
+ \n 
+src/test/deca/context/invalid/provided/comp-incompatible7.deca:16:17: Booleans not supported for inequality operations
+ \n 
+src/test/deca/context/invalid/provided/comp-incompatible8.deca:16:17: String not supported for inequality operations
+ \n 
+src/test/deca/context/invalid/provided/comp-incompatible9.deca:16:18: Booleans not supported for inequality operations
+ \n 
+src/test/deca/context/invalid/provided/comp-incompatible.deca:16:15: Cannot compare a int and a boolean
+ \n 
+src/test/deca/context/invalid/provided/condition_if2.deca:11:11: This condition is not a bool
+ \n 
+src/test/deca/context/invalid/provided/condition_if3.deca:11:11: This condition is not a bool
+ \n 
+src/test/deca/context/invalid/provided/condition_if4.deca:11:11: This condition is not a bool
+ \n 
+src/test/deca/context/invalid/provided/condition_if5.deca:11:11: This condition is not a bool
+ \n 
+src/test/deca/context/invalid/provided/condition_if6.deca:11:11: This condition is not a bool
+ \n 
+src/test/deca/context/invalid/provided/condition_if.deca:11:11: This condition is not a bool
+ \n 
+src/test/deca/context/invalid/provided/declaration_variable_typeindf.deca:11:8: Inexisting type.
+ \n 
+src/test/deca/context/invalid/provided/div-incompatible2.deca:16:9: String not supported for arithmetic operation.
+ \n 
+src/test/deca/context/invalid/provided/div-incompatible.deca:16:9: Boolean not supported for arithmetic operation
+ \n 
+src/test/deca/context/invalid/provided/double_declaration.deca:12:12: Variable x already declared.
+ \n 
+src/test/deca/context/invalid/provided/initialisation-incompatible2.deca:10:9: Incorrect initialisation, incompatible types ( booleanand int).
+ \n 
+src/test/deca/context/invalid/provided/initialisation-incompatible3.deca:10:9: Incorrect initialisation, incompatible types ( floatand int).
+ \n 
+src/test/deca/context/invalid/provided/initialisation-incompatible4.deca:10:10: Incorrect initialisation, incompatible types ( stringand int).
+ \n 
+src/test/deca/context/invalid/provided/initialisation-incompatible5.deca:10:11: Incorrect initialisation, incompatible types ( booleanand float).
+ \n 
+src/test/deca/context/invalid/provided/initialisation-incompatible6.deca:10:12: Incorrect initialisation, incompatible types ( stringand float).
+ \n 
+src/test/deca/context/invalid/provided/initialisation-incompatible7.deca:10:14: Incorrect initialisation, incompatible types ( intand boolean).
+ \n 
+src/test/deca/context/invalid/provided/initialisation-incompatible8.deca:10:15: Incorrect initialisation, incompatible types ( floatand boolean).
+ \n 
+src/test/deca/context/invalid/provided/initialisation-incompatible9.deca:10:14: Incorrect initialisation, incompatible types ( stringand boolean).
+ \n 
+src/test/deca/context/invalid/provided/initialisation-incompatible.deca:10:9: Incorrect initialisation, incompatible types ( booleanand int).
+ \n 
+src/test/deca/context/invalid/provided/modulo_incorrect2.deca:13:16: Only integers are allowed for modulo operation.
+ \n 
+src/test/deca/context/invalid/provided/modulo_incorrect3.deca:13:16: Only integers are allowed for modulo operation.
+ \n 
+src/test/deca/context/invalid/provided/modulo_incorrect4.deca:13:16: a used but not declared.
+ \n 
+src/test/deca/context/invalid/provided/modulo_incorrect.deca:13:16: Only integers are allowed for modulo operation.
+ \n 
+src/test/deca/context/invalid/provided/mult_incompatible2.deca:16:9: String not supported for arithmetic operation.
+ \n 
+src/test/deca/context/invalid/provided/mult_incompatible.deca:16:9: Boolean not supported for arithmetic operation
+ \n 
+src/test/deca/context/invalid/provided/non_declaration.deca:14:12: z used but not declared.
+ \n 
+src/test/deca/context/invalid/provided/not_expression1.deca:16:3: boolean used but not declared.
+ \n 
+src/test/deca/context/invalid/provided/not_expression2.deca:16:3: boolean used but not declared.
+ \n 
+src/test/deca/context/invalid/provided/not_expression3.deca:16:3: boolean used but not declared.
+ \n 
+src/test/deca/context/invalid/provided/or_types_incompatibles2.deca:13:25: Boolean not supported for boolean operation
+ \n 
+src/test/deca/context/invalid/provided/or_types_incompatibles3.deca:13:25: String not supported for boolean operation
+ \n 
+src/test/deca/context/invalid/provided/or_types_incompatibles4.deca:13:20: Float not supported for boolean operation
+ \n 
+src/test/deca/context/invalid/provided/or_types_incompatibles.deca:13:25: Int not supported for boolean operation
+ \n 
+src/test/deca/context/invalid/provided/somme_type_incompatible2.deca:13:16: Boolean not supported for arithmetic operation.
+ \n 
+src/test/deca/context/invalid/provided/somme_type_incompatible.deca:13:16: String not supported for arithmetic operation.
+ \n 
+src/test/deca/context/invalid/provided/soustraction_types_incompatibles2.deca:13:16: Boolean not supported for arithmetic operation.
+ \n 
+src/test/deca/context/invalid/provided/soustraction_types_incompatibles.deca:13:16: String not supported for arithmetic operation.
+ \n 
+src/test/deca/context/invalid/provided/unray_expr1.deca:16:11: boolean not supported for UnaryMinus.
+ \n 
+src/test/deca/context/invalid/provided/unray_expr2.deca:16:11: string not supported for UnaryMinus.
+ \n 
+src/test/deca/context/invalid/provided/void-declaration.deca:10:3: Void cannot be declared as a variable.
+ \n 
+src/test/deca/context/invalid/provided/while_condition2.deca:11:14: This condition is not a bool
+ \n 
+src/test/deca/context/invalid/provided/while_condition3.deca:11:14: Cannot compare a int and a boolean
+ \n 
+src/test/deca/context/invalid/provided/while_condition4.deca:11:14: This condition is not a bool
+ \n 
+src/test/deca/context/invalid/provided/while_condition5.deca:11:14: This condition is not a bool
+ \n 
+src/test/deca/context/invalid/provided/while_condition6.deca:11:14: This condition is not a bool
+ \n 
+src/test/deca/context/invalid/provided/while_condition.deca:11:14: This condition is not a bool
+ \n 

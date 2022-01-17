@@ -73,7 +73,7 @@ public class IntLiteral extends AbstractExpr {
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
         int i = Register.getEmptyReg(compiler);
-    	compiler.addInstruction(new LOAD(new ImmediateInteger(value), Register.getR(i)));
+    	compiler.addInstruction(new LOAD(value, Register.getR(i)));
         Register.getR(i).setIsFull(true);
         return i;
     }

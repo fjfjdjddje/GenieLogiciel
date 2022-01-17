@@ -4,30 +4,19 @@
     //INT
     int a = 20 ;
     int b = 30 ;
-    boolean t = a < b;
-    t = a <= b ;
-    print(t,"==true");
-    t = a != b ;
-    print(t,"==true");
-    boolean f = a > b;
-    f = a >= b ;
-    print(f,"==false");
-    f = a == b ;
-    print(f,"==false");
-    
-    //FLOAT
     float x = 20 ;
     float y = 30 ;
+    boolean t = a < b;
+    boolean f = a > b;
+    t = a <= b ;
+    t = a != b ;
+    f = a >= b ;
+    f = a == b ;
+    //FLOAT
     t = x < y;
-    print(t,"==true");
     t = x <= y ;
-    print(t,"==true");
     t = x != y ;
-    print(t,"==true");
     f = x > y;
-    print(f,"==false");
     f = x >= y ;
-    print(f,"==false");
     f = x == y ;
-    print(f,"==false");
 }

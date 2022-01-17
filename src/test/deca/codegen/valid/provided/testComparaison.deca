@@ -1,0 +1,7 @@
+{if(1>2){println("1>2 est :",(1>2));}
+ if(1<2){println("1<2 est :",(1<2));}
+ if(1==2){println("1==2 est :",(1==2));}
+ if(1>=2){println("1>=2 est :",(1>=2));}
+ if(1<=2){println("1<=2 est :",(1<=2));}
+if(1!=2){println("1!=2 est :",(1!=2));}
+}

@@ -1,0 +1,16 @@
+/*/ Description:
+//    Programme faisant correctement l'opération de multiplication entre deux entiers
+//
+// Resultats: 12
+//
+//
+// Historique:
+//    cree le 01/01/2022*/
+
+{
+        int x = 3;
+	int y = 4;
+	int z;
+	z = x*y;
+	println(z);
+}

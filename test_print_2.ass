@@ -1,9 +1,0 @@
-; start main program
-; Main program
-; Beginning of main instructions:
-	LOAD #1, R1
-	LOAD #2, R2
-	ADD R2, R1
-	WINT
-	HALT
-; end main program

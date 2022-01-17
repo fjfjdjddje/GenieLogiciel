@@ -71,6 +71,7 @@ public class DecacCompiler {
         typeEnv.put(DecaParser.tableSymb.create("float"),new TypeDefinition(new FloatType(DecaParser.tableSymb.create("float")), new Location(0,0," ")));
         typeEnv.put(DecaParser.tableSymb.create("int"),new TypeDefinition(new IntType(DecaParser.tableSymb.create("int")), new Location(0,0," ")));
         typeEnv.put(DecaParser.tableSymb.create("string"),new TypeDefinition(new StringType(DecaParser.tableSymb.create("string")), new Location(0,0," ")));
+        envTypes.setCurrentEnvironment(typeEnv);
     }
 
 

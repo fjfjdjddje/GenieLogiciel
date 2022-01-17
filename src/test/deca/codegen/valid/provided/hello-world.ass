@@ -1,0 +1,13 @@
+; start main program
+	BRA debutProg
+erreurDiv0:
+	WSTR "Arret de l'execution: division par zéro impossible."
+	HALT
+debutProg:
+; Main program
+; Beginning of main instructions:
+	WSTR "Hello, world!"
+	LOAD R0, R1
+	WNL
+	HALT
+; end main program

@@ -49,7 +49,7 @@ public class DeclVar extends AbstractDeclVar {
                 }
                     try{
                         Definition def= new VariableDefinition(this.type.getType(),this.varName.getLocation());
-
+                        def.isExpression();
                         this.varName.setDefinition(def);
                         this.varName.setType(this.type.getType());
         

@@ -1,0 +1,148 @@
+; start main program
+	BRA debutProg
+erreurDiv0:
+	WSTR "Arret de l'execution: division par zéro impossible."
+	HALT
+debutProg:
+; Main program
+; Beginning of main instructions:
+	LOAD #1, R2
+	LOAD #2, R3
+	CMP R3, R2
+	BLE debutSinon10
+	WSTR "1>2 est :"
+	LOAD R0, R1
+	LOAD #1, R2
+	LOAD #2, R3
+	CMP R3, R2
+	SGT R2
+	LOAD R2, R1
+	LOAD #0, R0
+	CMP R2, R0
+	BEQ printFalse0
+	WSTR "true"
+	BRA endPrint0
+printFalse0:
+	WSTR "false"
+endPrint0:
+	WNL
+	BRA finSinon0
+debutSinon10:
+finSinon0:
+	LOAD #1, R2
+	LOAD #2, R3
+	CMP R3, R2
+	BGE debutSinon11
+	WSTR "1<2 est :"
+	LOAD R0, R1
+	LOAD #1, R2
+	LOAD #2, R3
+	CMP R3, R2
+	SLT R2
+	LOAD R2, R1
+	LOAD #0, R0
+	CMP R2, R0
+	BEQ printFalse1
+	WSTR "true"
+	BRA endPrint1
+printFalse1:
+	WSTR "false"
+endPrint1:
+	WNL
+	BRA finSinon1
+debutSinon11:
+finSinon1:
+	LOAD #1, R2
+	LOAD #2, R3
+	CMP R3, R2
+	BNE debutSinon12
+	WSTR "1==2 est :"
+	LOAD R0, R1
+	LOAD #1, R2
+	LOAD #2, R3
+	CMP R3, R2
+	SEQ R2
+	LOAD R2, R1
+	LOAD #0, R0
+	CMP R2, R0
+	BEQ printFalse2
+	WSTR "true"
+	BRA endPrint2
+printFalse2:
+	WSTR "false"
+endPrint2:
+	WNL
+	BRA finSinon2
+debutSinon12:
+finSinon2:
+	LOAD #1, R2
+	LOAD #2, R3
+	CMP R3, R2
+	BLT debutSinon13
+	WSTR "1>=2 est :"
+	LOAD R0, R1
+	LOAD #1, R2
+	LOAD #2, R3
+	CMP R3, R2
+	SGE R2
+	LOAD R2, R1
+	LOAD #0, R0
+	CMP R2, R0
+	BEQ printFalse3
+	WSTR "true"
+	BRA endPrint3
+printFalse3:
+	WSTR "false"
+endPrint3:
+	WNL
+	BRA finSinon3
+debutSinon13:
+finSinon3:
+	LOAD #1, R2
+	LOAD #2, R3
+	CMP R3, R2
+	BGT debutSinon14
+	WSTR "1<=2 est :"
+	LOAD R0, R1
+	LOAD #1, R2
+	LOAD #2, R3
+	CMP R3, R2
+	SLE R2
+	LOAD R2, R1
+	LOAD #0, R0
+	CMP R2, R0
+	BEQ printFalse4
+	WSTR "true"
+	BRA endPrint4
+printFalse4:
+	WSTR "false"
+endPrint4:
+	WNL
+	BRA finSinon4
+debutSinon14:
+finSinon4:
+	LOAD #1, R2
+	LOAD #2, R3
+	CMP R3, R2
+	BEQ debutSinon15
+	WSTR "1!=2 est :"
+	LOAD R0, R1
+	LOAD #1, R2
+	LOAD #2, R3
+	CMP R3, R2
+	SNE R2
+	LOAD R2, R1
+	LOAD #0, R0
+	CMP R2, R0
+	BEQ printFalse5
+	WSTR "true"
+	BRA endPrint5
+printFalse5:
+	WSTR "false"
+endPrint5:
+	WNL
+	BRA finSinon5
+debutSinon15:
+finSinon5:
+	HALT
+; end main program

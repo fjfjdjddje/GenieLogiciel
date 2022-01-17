@@ -1,0 +1,17 @@
+/*/ Description:
+//    Unary expression
+//
+// Resultats:
+//    Ligne 16: Unary expressin not valide.
+// 
+// Historique:
+//    cree le 01/01/2022*/
+
+{
+   
+
+
+
+   /* Doit etre refuse.*/
+   int a = -"toto";
+}

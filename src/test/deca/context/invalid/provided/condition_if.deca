@@ -7,7 +7,7 @@
 //    cree le 01/01/2022*/
 
 {
-	string j = "blabla";
+	int j = 5;
         if(j){
         	println(j);
         }

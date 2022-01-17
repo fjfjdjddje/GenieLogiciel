@@ -3,21 +3,14 @@
     boolean t = true;
     boolean f = false;
     //and_expr
-    boolean and1 = t && t;
-    print("and1 ==",true);
+    boolean and1 = t && f;
     boolean and2 = !t && f;
-    print("and2 ==",false);
     boolean and3 = !t && f && f && t;
-    print("and3 ==",false);
     boolean ou1 = t || f ;
-    print("ou1 ==",true);
     boolean ou2 = t || !f ;
-    print("ou2 ==",true);
     //eq_neq_expr
     boolean eq = t == f;
-    print("eq ==",false);
     boolean neq = t != f;
-    print("neq ==",true);
     
 }
 

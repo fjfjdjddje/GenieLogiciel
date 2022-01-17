@@ -197,7 +197,7 @@ public class Identifier extends AbstractIdentifier implements Condition {
     @Override
     public Type verifyType(DecacCompiler compiler) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-        if(!(compiler.getEnvTypes().getCurrentEnvironment().containsKey(this.getType().getName()))){
+        if(!(compiler.getEnvTypes().getCurrentEnvironment().containsKey(this.getName()))){
             throw new ContextualError("Inexisting type.", this.getLocation());
         }
         if(this.getType().isVoid()){

@@ -1,0 +1,11 @@
+{
+    int n = readInt();
+    int result = n;
+    int i = 1;
+    print("le factoriel de ", n, "est ");
+    while(i < n){
+        result = result*(n-i);
+        i = i + 1;
+    }
+    print(result);
+}

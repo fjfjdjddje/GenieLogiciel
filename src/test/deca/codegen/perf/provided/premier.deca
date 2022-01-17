@@ -1,0 +1,24 @@
+{
+    int k = 1;
+    int i = 1;
+    int totalNombresPremiers = readInt();
+    boolean nonPremier = false;
+    println("la vérification de la primalité des", totalNombresPremiers);
+    while(k <= totalNombresPremiers){
+        nonPremier = false;
+        while(i < k){
+            if(k%i == 0){
+                println(k, "est pas un nombre premier");
+                nonPremier = true;
+            }
+            i = i + 1;
+        }
+        if(nonPremier){
+            println(k, "est pas un nombre premier");
+        }
+        else{
+            println(k, "est un nombre premier");
+        }
+        k = k + 1;
+    }
+}

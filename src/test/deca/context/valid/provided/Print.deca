@@ -3,9 +3,8 @@
     int a = 20, b=50;
     float x= 52.365;
     boolean t = true;
-    string s = "HELLO !";
-    print(a,b,x,s,t);
-    println(a,b,x,s,t);
-    printx(a,b,x,s,t);
-    printlnx(a,b,x,s,t);
+    print(a,b,x,t);
+    println(a,b,x,t);
+    printx(x);
+    printlnx(5.233);
 }

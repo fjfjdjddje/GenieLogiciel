@@ -1,8 +1,8 @@
 {
     int a= readInt();
     int b= readInt();
-    int x= readFloat();
-    int y= readFloat();
+    float x= readFloat();
+    float y= readFloat();
     float z;
     z = a*x;
     printlnx(z);

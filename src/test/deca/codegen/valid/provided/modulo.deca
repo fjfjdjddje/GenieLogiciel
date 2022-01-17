@@ -1,0 +1,13 @@
+/*/ Description:
+//    Programme faisant la somme entre un flottant et un entier
+//
+// Resultats: 6.1
+//
+// Historique:
+//    cree le 01/01/2022*/
+
+{
+        int x = 30;
+        int y = 3;
+        println(x%y);
+}

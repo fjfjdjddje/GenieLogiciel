@@ -24,10 +24,7 @@ debutWhile1:
 	LOAD #0x1.0p-23, R4
 	ADD R4, R3
 	CMP R3, R2
-	SGE R3
-	LOAD #0, R2
-	CMP R2, R3
-	BEQ finWhile1
+	BLT finWhile1
 	LOAD 3(GB), R2
 	LOAD 4(GB), R3
 	ADD R3, R2
@@ -102,21 +99,18 @@ debutWhile1:
 	LOAD 8(GB), R2
 	LOAD #0x0.0p0, R3
 	CMP R3, R2
-	SGT R3
-	LOAD #0, R2
-	CMP R2, R3
-	BEQ debutSinon1
+	BLE debutSinon10
 	LOAD 7(GB), R2
 	STORE R2, 4(GB)
 	LOAD 8(GB), R2
 	STORE R2, 6(GB)
-	BRA finSinon
-debutSinon1:
+	BRA finSinon0
+debutSinon10:
 	LOAD 7(GB), R2
 	STORE R2, 3(GB)
 	LOAD 8(GB), R2
 	STORE R2, 5(GB)
-finSinon:
+finSinon0:
 	BRA debutWhile1
 finWhile1:
 	LOAD 3(GB), R2

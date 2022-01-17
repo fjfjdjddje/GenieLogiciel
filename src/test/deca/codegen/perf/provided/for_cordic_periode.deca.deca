@@ -1,0 +1,15 @@
+{
+	float pi = 3.141592653589;
+	float theta = readFloat();
+	if(theta < -pi/2){
+		while(theta < -pi/2){
+			theta = theta + pi;
+		}
+	}
+	else if(theta > pi/2){
+		while(theta > pi/2){
+			theta = theta - pi;
+		}
+	}
+	print(theta);
+}

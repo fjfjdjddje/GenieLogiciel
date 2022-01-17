@@ -41,9 +41,9 @@ public class EnvironmentExp {
     public void setCurrentEnvironment(Map<Symbol,Definition> currentEnv){
         this.currentEnvironment=currentEnv;
     }
-    public static class DoubleDefException extends Exception {
+    /*public static class DoubleDefException extends Exception {
         private static final long serialVersionUID = -2733379901827316441L;
-    }
+    } */
 
     /**
      * Return the definition of the symbol in the environment, or null if the

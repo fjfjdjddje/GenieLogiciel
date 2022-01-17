@@ -58,15 +58,15 @@ public class NotEquals extends AbstractOpExactCmp {
             compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
             compiler.addInstruction(new POP(Register.getR(reg1)));
             compiler.addInstruction(new CMP(Register.getR(0), Register.getR(reg1)));
-            compiler.addInstruction(new SNE(Register.getR(0)));
+            /*compiler.addInstruction(new SNE(Register.getR(0)));
             compiler.addInstruction(new LOAD(new ImmediateInteger(0),Register.getR(reg1)));
-            compiler.addInstruction(new CMP(Register.getR(reg1),Register.getR(0)));
+            compiler.addInstruction(new CMP(Register.getR(reg1),Register.getR(0)));*/
             compiler.addInstruction(new BEQ(lab2));
         }else{
             compiler.addInstruction(new CMP(Register.getR(reg2), Register.getR(reg1)));
-            compiler.addInstruction(new SNE(Register.getR(reg2)));
+            /*compiler.addInstruction(new SNE(Register.getR(reg2)));
             compiler.addInstruction(new LOAD(new ImmediateInteger(0),Register.getR(reg1)));
-            compiler.addInstruction(new CMP(Register.getR(reg1),Register.getR(reg2)));
+            compiler.addInstruction(new CMP(Register.getR(reg1),Register.getR(reg2)));*/
             compiler.addInstruction(new BEQ(lab2));
         }     
         if(!Register.getR(reg2).getIsPushed()){

@@ -7,8 +7,8 @@
 //    cree le 01/01/2022*/
 
 {
-	string j = "blabla";
-        if(j == 2){
+
+        if("toto"){
         	println(j);
         }
 }

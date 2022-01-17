@@ -1,0 +1,12 @@
+/*/ Description:
+//    Initialisation de void
+//
+// Resultats:
+//    Ligne 10: Initialisation de type void
+// Historique:
+//    cree le 01/01/2022*/
+{
+   
+   void a ;
+   
+}

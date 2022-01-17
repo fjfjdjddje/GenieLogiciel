@@ -1,0 +1,30 @@
+/*/ Description:
+//    Affectation et typage
+//
+// Resultats:
+//    Ligne 15: Affectation de types incompatibles.
+//
+// Historique:
+//    cree le 01/01/2022*/
+ 
+{float x = readFloat();
+int i = 0;
+while(i<15){
+i = i+1;
+if(i<5){
+println("je suis dans if");
+println(i);}
+else if(i == 5){
+println("je suis dans elseif1");
+println(i);}
+else if(i == 6){
+println("je suis dans elseif2");
+println(i);}
+else{println("je suis dans else");
+println(i);}
+ }
+ println(x);
+ println((((((((((((((((((1+2)+3)+4)+5)+6)+7)+8)+9)+10)+11)+12)+13)+14)+15)+16)+17)+18)*10);
+ println(true&&(true&&(true&&true&&(true&&false))));
+ println((((((((((((((((((1+2)+3)+4)+5)+6)+7)+8)+9)+10)+11)+12)+13)+14)+15)+16)+17)+18)*(10-10+(10-10)));
+ }

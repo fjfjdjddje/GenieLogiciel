@@ -1,0 +1,15 @@
+  {
+    int x = readInt();
+    int y = readInt();
+    int a = x;
+    int b = y;
+    while (a != b) {
+      if(a > b){
+        a = a - b;
+      }
+      else{
+        b = b - a;
+      }
+    }
+    println("le pgcd de ", x, "et", y, "est :", b);
+  }

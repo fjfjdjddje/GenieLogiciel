@@ -1,0 +1,17 @@
+/*/ Description:
+//    Not expression
+//
+// Resultats:
+//    Ligne 16: Not for not boolean.
+// 
+// Historique:
+//    cree le 01/01/2022*/
+
+{
+   
+
+
+
+   /* Doit etre refuse.*/
+   boolean = !"yes";
+}

@@ -4,17 +4,17 @@
     boolean t=true;
     int a;
     boolean f= false;
+    float b =50;
+    float c = 50 - 20 * 2;
     if(f||f){
         a=20;
-        float b =50;
         printx(a/b);
     }else if(t||f){
         a=2000;
-        float c = 50 - 20 * 2;
         print("ce test affiche 200 ==",a,"/",c,a/c);
     }else{
         a=10;
-        float b = 5;
+        b = 5;
         printx(a*b);
     }
 }

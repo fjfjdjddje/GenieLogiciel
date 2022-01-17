@@ -4,16 +4,15 @@
     //INT
     int a = 20 ;
     int b = 30 ;
-    boolean t = a < b;
-    t = a <= b ;
-    t = a != b ;
-    boolean f = a > b;
-    f = a >= b ;
-    f = a == b ;
-    
-    //FLOAT
     float x = 20 ;
     float y = 30 ;
+    boolean t = a < b;
+    boolean f = a > b;
+    t = a <= b ;
+    t = a != b ;
+    f = a >= b ;
+    f = a == b ;
+    //FLOAT
     t = x < y;
     t = x <= y ;
     t = x != y ;

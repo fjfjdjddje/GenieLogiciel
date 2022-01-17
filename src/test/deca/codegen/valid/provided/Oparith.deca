@@ -4,22 +4,13 @@
     int b=20;
     //sum_expr
     int add = a+b;
-    print("add = 25 == ",add);
     int sous=b-a;
-    print("sous = 15 == ",sous);
     int invsous=a-b;
-    print("invsous = -15 == ",invsous);
     int sous2=-a-b;
-    print("sous2 = -25 == ",sous2);
     //mult_expr
     int mul = a*b;
-    print("mul = 100 == ",mul);
     int mult2=  -----a*b;
-    print("mult2 = -100 == ",mult2);
     int div= a/b;
-    print("div = 0.25 == ",div);
     int invdiv = -a/b;
-    print(" invdiv = -0.25 == ",invdiv);
     int modulo = b%a;
-    print("modulo = 0 == ",modulo);
 }

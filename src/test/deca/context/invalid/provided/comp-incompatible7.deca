@@ -1,0 +1,17 @@
+/*/ Description:
+//    Comparaison
+//
+// Resultats:
+//    Ligne 16: comparaison for not intet float.
+// 
+// Historique:
+//    cree le 01/01/2022*/
+
+{
+   
+
+   int a = 5;
+   boolean b = true;
+   /* Doit etre refuse.*/
+   boolean c = a<b;
+}

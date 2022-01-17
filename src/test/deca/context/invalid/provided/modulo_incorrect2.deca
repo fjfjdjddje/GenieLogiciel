@@ -1,0 +1,14 @@
+/*/ Description:
+//    Programme effectuant le modulo de façon incorrecte.
+//
+// Resultats:
+//    3
+//
+// Historique:
+//    cree le 01/01/2022*/
+
+{
+        float a = 5.4;
+        float b = 5;
+        int c = a%b;
+}

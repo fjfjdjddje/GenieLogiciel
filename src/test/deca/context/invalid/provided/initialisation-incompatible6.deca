@@ -1,0 +1,11 @@
+/*/ Description:
+//    Initialisation et typage
+//
+// Resultats:
+//    Ligne 10: Initialisation de types incompatibles.
+//
+// Historique:
+//    cree le 01/01/2022*/
+{
+   float a= "yes";
+}

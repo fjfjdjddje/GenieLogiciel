@@ -8,6 +8,7 @@ import fr.ensimag.ima.pseudocode.instructions.POP;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.BLT;
 
 
 /**
@@ -60,16 +61,16 @@ public class GreaterOrEqual extends AbstractOpIneq {
             compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
             compiler.addInstruction(new POP(Register.getR(reg1)));
             compiler.addInstruction(new CMP(Register.getR(0), Register.getR(reg1)));
-            compiler.addInstruction(new SGE(Register.getR(0)));
+            /*compiler.addInstruction(new SGE(Register.getR(0)));
             compiler.addInstruction(new LOAD(new ImmediateInteger(0),Register.getR(reg1)));
-            compiler.addInstruction(new CMP(Register.getR(reg1),Register.getR(0)));
-            compiler.addInstruction(new BEQ(lab2));
+            compiler.addInstruction(new CMP(Register.getR(reg1),Register.getR(0)));*/
+            compiler.addInstruction(new BLT(lab2));
         }else{
             compiler.addInstruction(new CMP(Register.getR(reg2), Register.getR(reg1)));
-            compiler.addInstruction(new SGE(Register.getR(reg2)));
+            /*compiler.addInstruction(new SGE(Register.getR(reg2)));
             compiler.addInstruction(new LOAD(new ImmediateInteger(0),Register.getR(reg1)));
-            compiler.addInstruction(new CMP(Register.getR(reg1),Register.getR(reg2)));
-            compiler.addInstruction(new BEQ(lab2));
+            compiler.addInstruction(new CMP(Register.getR(reg1),Register.getR(reg2)));*/
+            compiler.addInstruction(new BLT(lab2));
         }     
         if(!Register.getR(reg2).getIsPushed()){
             Register.getR(reg2).setIsFull(false);}
