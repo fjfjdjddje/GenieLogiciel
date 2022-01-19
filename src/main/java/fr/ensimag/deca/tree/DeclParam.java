@@ -29,6 +29,9 @@ public class DeclParam extends AbstractDeclParam {
     final private AbstractIdentifier type;
     final private AbstractIdentifier varName;
 
+    public AbstractIdentifier getType() {
+        return type;
+    }
 
     public DeclParam(AbstractIdentifier type, AbstractIdentifier varName) {
         /*Validate.notNull(type);

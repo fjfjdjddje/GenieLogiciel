@@ -48,8 +48,8 @@ public class DeclClass extends AbstractDeclClass {
             }catch (Exception e){
                System.out.println("Error in the declaration of the class in the environement.");
             }
-}
-}
+        }
+    }
 
     @Override
     protected void verifyClassMembers(DecacCompiler compiler)

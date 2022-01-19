@@ -2,6 +2,7 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.context.VariableDefinition;
+import fr.ensimag.deca.context.VoidType;
 import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
@@ -9,6 +10,7 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.Definition;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.ExpDefinition;
+import fr.ensimag.deca.context.Signature;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.Operand;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
@@ -49,28 +51,14 @@ public class DeclMethod extends AbstractDeclMethod {
     protected void verifyDeclMethod(DecacCompiler compiler,
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
-                /*this.type.verifyType(compiler);
-                if(localEnv.getCurrentEnvironment().containsKey(varName.getName())){
-                    throw new ContextualError("Variable "+varName.getName().getName()+" already declared.", varName.getLocation());
-                }
-                    try{
-                        Definition def= new VariableDefinition(this.type.getType(),this.varName.getLocation());
-                        def.isExpression();
-                        this.varName.setDefinition(def);
-                        this.varName.setType(this.type.getType());
-        
-                        RegisterOffset GB3 = new RegisterOffset(RegisterOffset.lastReg, Register.GB);
-                        this.varName.getExpDefinition().setOperand(GB3);
-                        RegisterOffset.lastReg ++;
-                        //def.setOperand();
-                        localEnv.declare(varName.getName(),varName.getExpDefinition());
-                        //System.out.println(localEnv.getCurrentEnvironment());
-                    }catch (Exception e){
-                       System.out.println("Error in the declaration of the variable in the environement.");
-                    }
-                
-                this.initialization.verifyInitialization(compiler, this.type.getType(), localEnv, currentClass);
-*/
+        Signature methodSignature = new Signature();
+        methodSignature.add(type.getType());
+        for(AbstractDeclParam par : this.listDeclParam.getList()){
+            //methodSignature.add(par.getType().);
+        }
+        listDeclVar.verifyListDeclVariable(compiler, localEnv, currentClass);
+        listInst.verifyListInst(compiler, localEnv, currentClass, new VoidType(DecaParser.tableSymb.create("void")));
+
     }
     @Override
     public void codeGenDeclMethod(DecacCompiler compiler){
