@@ -13,7 +13,20 @@ import java.io.PrintStream;
  * @date 01/01/2022
  */
 public class DeclClass extends AbstractDeclClass {
+    final private AbstractIdentifier superclass;
+    final private AbstractIdentifier className;
+    final private ListDeclField listField;
+    final private ListDeclMethod listMethod;
 
+    public DeclClass(AbstractIdentifier superclass, AbstractIdentifier className,ListDeclField listField , ListDeclMethod listMethod) {
+       /* Validate.notNull(type);
+        Validate.notNull(varName);
+        Validate.notNull(initialization);*/
+        this.superclass = superclass;
+        this.className = className;
+        this.listField = listField;
+        this.listMethod = listMethod;
+    }
     @Override
     public void decompile(IndentPrintStream s) {
         s.print("class { ... A FAIRE ... }");
@@ -38,12 +51,20 @@ public class DeclClass extends AbstractDeclClass {
 
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
-        throw new UnsupportedOperationException("Not yet supported");
+        //throw new UnsupportedOperationException("Not yet supported");
+        superclass.prettyPrint(s, prefix, true);
+        className.prettyPrint(s, prefix, true);
+        listField.prettyPrint(s, prefix, false);
+        listMethod.prettyPrint(s, prefix, false);
     }
 
     @Override
     protected void iterChildren(TreeFunction f) {
-        throw new UnsupportedOperationException("Not yet supported");
+        //throw new UnsupportedOperationException("Not yet supported");
+        superclass.iter(f);
+        className.iter(f);
+        listField.iter(f);
+        listMethod.iter(f);
     }
 
 }

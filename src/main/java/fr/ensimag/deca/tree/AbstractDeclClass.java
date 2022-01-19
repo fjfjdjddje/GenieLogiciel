@@ -15,6 +15,7 @@ public abstract class AbstractDeclClass extends Tree {
      * Pass 1 of [SyntaxeContextuelle]. Verify that the class declaration is OK
      * without looking at its content.
      */
+
     protected abstract void verifyClass(DecacCompiler compiler)
             throws ContextualError;
 

@@ -84,5 +84,6 @@ FLOAT : FLOATDEC | FLOATHEX;
 IDENT : (LETTER | '$' | '_')(LETTER | DIGIT | '$' | '_')*;
 DOT : '.';
 INT : '0' | POSITIVE_DIGIT DIGIT*;
+
 STRING : '"' (STRING_CAR | '\\"' | '\\\\')* '"';
 MULTI_LINE_STRING : '"' (STRING_CAR | EOL | '\\"' | '\\\\')* '"';

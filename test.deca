@@ -1,1 +1,1 @@
-println("ok");
+class A extends B{}
