@@ -31,7 +31,6 @@ import fr.ensimag.ima.pseudocode.instructions.WSTR;
  */
 public class Program extends AbstractProgram {
     private static final Logger LOG = Logger.getLogger(Program.class);
-    protected EnvironmentExp envTypes = new EnvironmentExp(null);
     
     
     public Program(ListDeclClass classes, AbstractMain main) {
@@ -56,7 +55,7 @@ public class Program extends AbstractProgram {
         //LOG.debug("verify program: start");
         //throw new UnsupportedOperationException("not yet implemented");
 
-        //classes.verifyListClass(compiler);
+        classes.verifyListClass(compiler);
         main.verifyMain(compiler);
         //LOG.debug("verify program: end");
     }

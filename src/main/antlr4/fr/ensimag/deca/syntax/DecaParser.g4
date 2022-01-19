@@ -508,12 +508,6 @@ literal returns[AbstractExpr tree]
 ident returns[AbstractIdentifier tree]
     : IDENT {
         $tree = new Identifier(tableSymb.create($IDENT.text));
-        for(Map.Entry<Symbol,Definition> mapentry : DecacCompiler.envTypes.getCurrentEnvironment().entrySet()){
-            if($IDENT.text.equals(mapentry.getKey().getName())){
-                $tree.setType(mapentry.getValue().getType());
-                break;
-            }
-        }
         setLocation($tree, $IDENT);
         }
     ;
@@ -534,7 +528,7 @@ list_classes returns[ListDeclClass tree]
 
 class_decl returns[AbstractDeclClass tree]
     : CLASS name=ident superclass=class_extension OBRACE class_body CBRACE {
-        $tree = new DeclClass($name.tree, $superclass.tree, $class_body.treeField, $class_body.treeMethod);
+        $tree = new DeclClass($superclass.tree, $name.tree, $class_body.treeField, $class_body.treeMethod);
         setLocation($tree, $CLASS);
         }
     ;

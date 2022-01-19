@@ -199,26 +199,17 @@ public class Identifier extends AbstractIdentifier implements Condition {
         //throw new UnsupportedOperationException("not yet implemented");
         if(!(compiler.getEnvTypes().getCurrentEnvironment().containsKey(this.getName()))){
             throw new ContextualError("Inexisting type.", this.getLocation());
-        }
-        if(this.getType().isVoid()){
-            throw new ContextualError("Void cannot be declared as a variable.", this.getLocation());
-        }
-        if(this.getType().isString()){
-            throw new ContextualError("String cannot be declared as a variable.", this.getLocation());
-        }
-        return this.getType();
-        //if(!compiler.getEnvTypes().getCurrentEnvironment().containsKey(this.definition.)){
-        /* boolean found =false;
-        
-        for(Map.Entry<Symbol, Definition> mapentry : compiler.getEnvTypes().getCurrentEnvironment().entrySet()){
-            if(mapentry.getValue().getType().equals(this.definition.getType())){
-                found=true;
+        }else{
+            Type type=compiler.getEnvTypes().getCurrentEnvironment().get(this.getName()).getType();
+            this.setType(type);
+            if(this.getType().isVoid()){
+                throw new ContextualError("Void cannot be declared as a variable.", this.getLocation());
+            }
+            if(this.getType().isString()){
+                throw new ContextualError("String cannot be declared as a variable.", this.getLocation());
             }
         }
-        if(!found){
-            throw new ContextualError("Type not found", this.getLocation());
-        }
-        return this.definition.getType(); */
+        return this.getType();
     }
     
     

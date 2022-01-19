@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.ObjectInputStream.GetField;
 import java.util.Map;
 import java.lang.String;
 import org.antlr.v4.runtime.CharStreams;
@@ -53,7 +54,8 @@ import fr.ensimag.ima.pseudocode.Label;
  */
 public class DecacCompiler {
     private static final Logger LOG = Logger.getLogger(DecacCompiler.class);
-    public EnvironmentExp envTypes= new EnvironmentExp(null);;
+    private EnvironmentExp envTypes= new EnvironmentExp(null);
+
     /**
      * Portable newline character.
      */

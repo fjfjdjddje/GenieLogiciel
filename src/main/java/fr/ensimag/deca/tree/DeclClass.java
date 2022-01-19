@@ -40,14 +40,16 @@ public class DeclClass extends AbstractDeclClass {
         //throw new UnsupportedOperationException("not yet implemented");
         if(compiler.getEnvTypes().getCurrentEnvironment().containsKey(className.getName())){
             throw new ContextualError("Class "+className.getName().getName()+" already declared.", className.getLocation());
-        }else{
-            try{
-                Definition def= new ClassDefinition(new ClassType(DecaParser.tableSymb.create(className.getName().getName()),this.getLocation(),superclass.getClassDefinition()),this.getLocation(), superclass.getClassDefinition());
-                this.className.setDefinition(def);
-                compiler.getEnvTypes().declare(className.getName(),className.getExpDefinition());
-            }catch (Exception e){
-               System.out.println("Error in the declaration of the class in the environement.");
-            }
+        }if(!compiler.getEnvTypes().getCurrentEnvironment().containsKey(superclass.getName())){
+            throw new ContextualError("Superclass "+superclass.getName().getName()+" undefined.", superclass.getLocation());
+        }
+        try{
+            System.out.println(compiler.getEnvTypes().getCurrentEnvironment());
+            Definition def= new ClassDefinition(new ClassType(DecaParser.tableSymb.create(className.getName().getName()),this.getLocation(),superclass.getClassDefinition()),this.getLocation(), superclass.getClassDefinition());
+            this.className.setDefinition(def);
+            compiler.getEnvTypes().declare(className.getName(),className.getExpDefinition());
+        }catch (Exception e){
+           System.out.println("Error in the declaration of the class in the environement.");
         }
     }
 
