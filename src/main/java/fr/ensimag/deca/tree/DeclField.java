@@ -29,16 +29,56 @@ public class DeclField extends AbstractDeclField {
     final private AbstractIdentifier type;
     final private AbstractIdentifier varName;
     final private AbstractInitialization initialization;
+    final private Visibility v;
 
-    public DeclField(AbstractIdentifier type, AbstractIdentifier varName, AbstractInitialization initialization) {
+    public DeclField(Visibility v, AbstractIdentifier type, AbstractIdentifier varName, AbstractInitialization initialization) {
         /*Validate.notNull(type);
         Validate.notNull(varName);
         Validate.notNull(initialization);*/
         this.type = type;
         this.varName = varName;
         this.initialization = initialization;
+        this.v = v;
     }
-
+    @Override
+        String printNodeLine(PrintStream s, String prefix, boolean last,
+            boolean inlist, String nodeName) {
+        s.print(prefix);
+        if (inlist) {
+            s.print("[]>");
+        } else if (last) {
+            s.print("`>");
+        } else {
+            s.print("+>");
+        }
+        if (getLocation() != null) {
+            s.print(" " + getLocation().toString());
+        }
+        s.print(" ");
+        if(this.v == Visibility.PROTECTED){
+            s.print("[visibility=PROTECTED] ");
+        }else{
+            s.print("[visibility=PUBLIC] ");
+        }
+        s.print(nodeName);
+        s.println();
+        String newPrefix;
+        if (last) {
+            if (inlist) {
+                newPrefix = prefix + "    ";
+            } else {
+                newPrefix = prefix + "   ";
+            }
+        } else {
+            if (inlist) {
+                newPrefix = prefix + "||  ";
+            } else {
+                newPrefix = prefix + "|  ";
+            }
+        }
+        prettyPrintType(s, newPrefix);
+        return newPrefix;
+    }
     @Override
     protected void verifyDeclField(DecacCompiler compiler,
             EnvironmentExp localEnv, ClassDefinition currentClass)

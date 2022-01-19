@@ -13,13 +13,13 @@ import fr.ensimag.deca.tools.IndentPrintStream;
  * @date 01/01/2022
  */
 public class ListDeclField extends TreeList<AbstractDeclField> {
-    private Visibility visibility = Visibility.PUBLIC;
+     /* private Visibility visibility = Visibility.PUBLIC;
     public Visibility getVisibility() {
         return visibility;
     }
-    public void setVisibility(Visibility visibility) {
+  public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
-    }
+    }*/
 
 
     @Override

@@ -31,20 +31,17 @@ public class DeclMethod extends AbstractDeclMethod {
     final private AbstractIdentifier type;
     final private AbstractIdentifier varName;
     final private ListDeclParam listDeclParam;
-    final private ListInst listInst;
-    final private ListDeclVar listDeclVar;
+    final private MethodBody body;
 
     public DeclMethod(AbstractIdentifier type, AbstractIdentifier varName,ListDeclParam listDeclParam,
-    ListDeclVar listDeclVar,ListInst listInst) {
+    MethodBody body) {
        /* Validate.notNull(type);
         Validate.notNull(varName);
         Validate.notNull(initialization);*/
         this.type = type;
         this.varName = varName;
         this.listDeclParam = listDeclParam;
-        this.listDeclVar = listDeclVar;
-        this.listInst = listInst;
-
+        this.body = body;
     }
 
     @Override
@@ -82,17 +79,18 @@ public class DeclMethod extends AbstractDeclMethod {
     void iterChildren(TreeFunction f) {
         type.iter(f);
         varName.iter(f);
+        listDeclParam.iter(f);
         //initialization.iter(f);
-        listInst.iter(f);
-        listDeclVar.iter(f);
+        body.iter(f);
     }
     
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         type.prettyPrint(s, prefix, false);
         varName.prettyPrint(s, prefix, false);
+        listDeclParam.prettyPrint(s, prefix, false);
         //initialization.prettyPrint(s, prefix, true);
-        listInst.prettyPrint(s, prefix, false);
-        listDeclVar.prettyPrint(s, prefix, false);
+        body.prettyPrint(s, prefix, false);
+
     }
 }
