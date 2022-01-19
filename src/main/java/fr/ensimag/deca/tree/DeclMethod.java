@@ -54,11 +54,10 @@ public class DeclMethod extends AbstractDeclMethod {
         Signature methodSignature = new Signature();
         methodSignature.add(type.getType());
         for(AbstractDeclParam par : this.listDeclParam.getList()){
-            //methodSignature.add(par.getType().);
+            methodSignature.add(par.getType().getType());
         }
         listDeclVar.verifyListDeclVariable(compiler, localEnv, currentClass);
         listInst.verifyListInst(compiler, localEnv, currentClass, new VoidType(DecaParser.tableSymb.create("void")));
-
     }
     @Override
     public void codeGenDeclMethod(DecacCompiler compiler){
