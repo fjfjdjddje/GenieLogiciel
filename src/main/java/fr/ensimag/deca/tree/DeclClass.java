@@ -1,8 +1,11 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.Definition;
+import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import java.io.PrintStream;
 
@@ -34,8 +37,19 @@ public class DeclClass extends AbstractDeclClass {
 
     @Override
     protected void verifyClass(DecacCompiler compiler) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
-    }
+        //throw new UnsupportedOperationException("not yet implemented");
+        if(compiler.getEnvTypes().getCurrentEnvironment().containsKey(className.getName())){
+            throw new ContextualError("Class "+className.getName().getName()+" already declared.", className.getLocation());
+        }else{
+            try{
+                Definition def= new ClassDefinition(new ClassType(DecaParser.tableSymb.create(className.getName().getName()),this.getLocation(),superclass.getClassDefinition()),this.getLocation(), superclass.getClassDefinition());
+                this.className.setDefinition(def);
+                compiler.getEnvTypes().declare(className.getName(),className.getExpDefinition());
+            }catch (Exception e){
+               System.out.println("Error in the declaration of the class in the environement.");
+            }
+}
+}
 
     @Override
     protected void verifyClassMembers(DecacCompiler compiler)

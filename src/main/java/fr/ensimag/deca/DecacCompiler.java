@@ -11,10 +11,14 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.apache.log4j.Logger;
 import fr.ensimag.deca.context.BooleanType;
+import fr.ensimag.deca.context.ClassDefinition;
+import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.context.Definition;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.FloatType;
 import fr.ensimag.deca.context.IntType;
+import fr.ensimag.deca.context.MethodDefinition;
+import fr.ensimag.deca.context.Signature;
 import fr.ensimag.deca.context.StringType;
 import fr.ensimag.deca.context.TypeDefinition;
 import fr.ensimag.deca.context.VoidType;
@@ -49,7 +53,7 @@ import fr.ensimag.ima.pseudocode.Label;
  */
 public class DecacCompiler {
     private static final Logger LOG = Logger.getLogger(DecacCompiler.class);
-    public static EnvironmentExp envTypes= new EnvironmentExp(null);;
+    public EnvironmentExp envTypes= new EnvironmentExp(null);;
     /**
      * Portable newline character.
      */
@@ -71,6 +75,14 @@ public class DecacCompiler {
         typeEnv.put(DecaParser.tableSymb.create("float"),new TypeDefinition(new FloatType(DecaParser.tableSymb.create("float")), new Location(0,0," ")));
         typeEnv.put(DecaParser.tableSymb.create("int"),new TypeDefinition(new IntType(DecaParser.tableSymb.create("int")), new Location(0,0," ")));
         typeEnv.put(DecaParser.tableSymb.create("string"),new TypeDefinition(new StringType(DecaParser.tableSymb.create("string")), new Location(0,0," ")));
+        ClassDefinition objetDef=new ClassDefinition(new ClassType(DecaParser.tableSymb.create("Object"),new Location(0, 0, " "),null),new Location(0, 0, " "), null);
+        Map<Symbol,Definition> objEnvironment =objetDef.getMembers().getCurrentEnvironment();
+        Signature equalsSignature= new Signature();
+        equalsSignature.add(new BooleanType(DecaParser.tableSymb.create("boolean")));
+        equalsSignature.add(new ClassType(DecaParser.tableSymb.create("Object"),new Location(0, 0, " "),null));
+        objEnvironment.put(DecaParser.tableSymb.create("equals"),new MethodDefinition(new BooleanType(DecaParser.tableSymb.create("boolean")), new Location(0, 0, " "),equalsSignature, 0));
+        objetDef.incNumberOfMethods();
+        typeEnv.put(DecaParser.tableSymb.create("Object"),objetDef);
         envTypes.setCurrentEnvironment(typeEnv);
     }
 
