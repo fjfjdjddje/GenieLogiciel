@@ -1,5 +1,43 @@
+class A{
+    float a=5;
+    
+}
+class B extends A{
+    int b;
+    B blabla;
+    A useB(){
+        return blabla;
+    }
+}
 
 
+
+/*class A{
+    int a=5;
+}
+
+class B extends A{
+    int b=a;
+    void useA(){
+        b=a;
+    }
+}
+
+class C extends B{
+    int c;
+}*/
+
+
+
+
+
+/*
+class A{
+    int a=5;
+    void f(){
+        this.a=20;
+    }
+}*/
 
 
 

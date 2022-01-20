@@ -98,7 +98,7 @@ public class DeclField extends AbstractDeclField {
             Definition def= new FieldDefinition(this.type.getType(),this.fieldName.getLocation(),this.visibility,currentClass,currentClass.getNumberOfFields()+1);
             this.fieldName.setDefinition(def);
             this.fieldName.setType(this.type.getType());
-            localEnv.declare(fieldName.getName(),fieldName.getExpDefinition());
+            localEnv.getCurrentEnvironment().put(fieldName.getName(),fieldName.getExpDefinition());
         }catch (Exception e){
            System.out.println("Error in the declaration of the variable in the environement.");
         }

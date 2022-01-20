@@ -72,6 +72,43 @@ public class DeclVar extends AbstractDeclVar {
                 this.initialization.verifyInitialization(compiler, this.type.getType(), localEnv, currentClass);
 
     }
+    
+    protected void verifyDeclVarMethod(DecacCompiler compiler,
+    EnvironmentExp localEnv, ClassDefinition currentClass)
+    throws ContextualError {
+        this.type.verifyType(compiler);
+        if(this.type.getType().isVoid()){
+            throw new ContextualError("Void cannot be declared as a variable.", this.type.getLocation());
+        }
+        if(this.type.getType().isString()){
+            throw new ContextualError("String cannot be declared as a variable.", this.type.getLocation());
+        }
+        if(localEnv.getCurrentEnvironment().containsKey(varName.getName())){
+            throw new ContextualError("Variable "+varName.getName().getName()+" already declared.", varName.getLocation());
+        }
+            try{
+                Definition def= new VariableDefinition(this.type.getType(),this.varName.getLocation());
+                def.isExpression();
+                this.varName.setDefinition(def);
+                this.varName.setType(this.type.getType());
+
+                //RegisterOffset GB3 = new RegisterOffset(RegisterOffset.lastReg, Register.GB);
+                //this.varName.getExpDefinition().setOperand(GB3);
+                //RegisterOffset.lastReg ++;
+                //def.setOperand();
+                localEnv.declare(varName.getName(),varName.getExpDefinition());
+                //System.out.println(localEnv.getCurrentEnvironment());
+            }catch (Exception e){
+               System.out.println("Error in the declaration of the variable in the environement.");
+            }
+        
+        this.initialization.verifyInitialization(compiler, this.type.getType(), localEnv, currentClass);
+
+}
+
+
+
+
     @Override
     public void codeGenDeclVariable(DecacCompiler compiler){
         int regIntia = this.initialization.codeGenIntialisation(compiler);

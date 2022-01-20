@@ -179,8 +179,7 @@ public class Identifier extends AbstractIdentifier implements Condition {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-            
-            if(!localEnv.getCurrentEnvironment().containsKey(this.name)){
+        if(localEnv.get(this.name) == null){
             throw new ContextualError(this.name.getName()+" used but not declared.", this.getLocation());
         }else{
             this.setType(localEnv.get(this.name).getType());

@@ -48,9 +48,12 @@ public class DeclClass extends AbstractDeclClass {
                 throw new ContextualError(this.superclass.getName().getName()+ " is not a class", this.getLocation());
         }
         try{
-            Definition def= new ClassDefinition(new ClassType(DecaParser.tableSymb.create(className.getName().getName()),this.getLocation(),superclass.getClassDefinition()),this.getLocation(), superclass.getClassDefinition());
+            ClassDefinition defClass = (ClassDefinition) compiler.getEnvTypes().getCurrentEnvironment().get(superclass.getName());
+            Definition def= new ClassDefinition(new ClassType(DecaParser.tableSymb.create(className.getName().getName()),this.getLocation(),defClass),this.getLocation(),defClass);
             this.className.setDefinition(def);
             compiler.getEnvTypes().getCurrentEnvironment().put(className.getName(), def);
+            System.out.println(compiler.getEnvTypes().getCurrentEnvironment());
+
         }catch (Exception e){
            System.out.println("Error in the declaration of the class in the environement.");
         }
@@ -65,8 +68,8 @@ public class DeclClass extends AbstractDeclClass {
             this.className.getClassDefinition().incNumberOfFields();
         }
         
-        for(AbstractDeclMethod field : listMethod.getList()){
-            field.verifyDeclMethod(compiler, this.className.getClassDefinition().getMembers(), className.getClassDefinition());
+        for(AbstractDeclMethod method : listMethod.getList()){
+            method.verifyDeclMethod(compiler, this.className.getClassDefinition().getMembers(), className.getClassDefinition());
             this.className.getClassDefinition().incNumberOfMethods();
 
         }
@@ -75,9 +78,12 @@ public class DeclClass extends AbstractDeclClass {
     @Override
     protected void verifyClassBody(DecacCompiler compiler) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-       
+        for(AbstractDeclMethod method : listMethod.getList()){
+            method.verifyBodyMethod(compiler, this.className.getClassDefinition().getMembers(), className.getClassDefinition());
+            this.className.getClassDefinition().incNumberOfMethods();
+        }
+    
     }
-
 
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {

@@ -2,6 +2,11 @@ package fr.ensimag.deca.tree;
 
 import java.io.PrintStream;
 
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.context.ClassDefinition;
+import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
 
 public class MethodBody extends Tree{
@@ -16,6 +21,12 @@ public class MethodBody extends Tree{
     void iterChildren(TreeFunction f) {
         listInst.iter(f);
         listDeclVar.iter(f);
+    }
+
+    public void verifyBody(DecacCompiler compiler,EnvironmentExp methodEnv, ClassDefinition currentClass,Type returnType)
+        throws ContextualError{
+            listDeclVar.verifyListDeclVariableMethod(compiler, methodEnv, currentClass);
+            listInst.verifyListInst(compiler, methodEnv, currentClass, returnType);
     }
     
     @Override

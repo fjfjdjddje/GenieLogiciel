@@ -33,7 +33,7 @@ public class DeclMethod extends AbstractDeclMethod {
     final private AbstractIdentifier methodName;
     final private ListDeclParam listDeclParam;
     final private MethodBody body;
-    private EnvironmentExp methodEnv;
+    protected EnvironmentExp methodEnv;
 
     public DeclMethod(AbstractIdentifier type, AbstractIdentifier methodName,ListDeclParam listDeclParam,
     MethodBody body) {
@@ -67,6 +67,14 @@ public class DeclMethod extends AbstractDeclMethod {
         typesEnv.getCurrentEnvironment().put(methodName.getName(), methodDef);
         
     }
+
+
+    @Override
+    protected void verifyBodyMethod(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
+            throws ContextualError {
+                this.body.verifyBody(compiler, this.methodEnv , currentClass, type.getType());
+    }
+
     @Override
     public void codeGenDeclMethod(DecacCompiler compiler){
         /*int regIntia = this.initialization.codeGenIntialisation(compiler);
@@ -104,4 +112,5 @@ public class DeclMethod extends AbstractDeclMethod {
         body.prettyPrint(s, prefix, false);
 
     }
+
 }

@@ -64,12 +64,11 @@ public class ClassType extends Type {
         //throw new UnsupportedOperationException("not yet implemented"); 
         ClassDefinition current=this.definition;
         while(current.getSuperClass()!=null){
-            if(current.getSuperClass().equals(potentialSuperClass.getDefinition())){
+            if(current.getSuperClass().getType().sameType((potentialSuperClass.getDefinition().getType()))){
                 return true;
             }else{
                 current= current.getSuperClass();
             }
-            
         }
         return false;
     }

@@ -43,6 +43,15 @@ public class ListDeclVar extends TreeList<AbstractDeclVar> {
                 }
                 //System.out.println("verify listDeclVar: end");
     }
+
+    void verifyListDeclVariableMethod(DecacCompiler compiler,EnvironmentExp localEnv,ClassDefinition currentClass) 
+        throws ContextualError {
+            //System.out.println("verify listDeclVar: start");
+            for( AbstractDeclVar declvariable : this.getList()){
+                declvariable.verifyDeclVarMethod(compiler, localEnv, currentClass);
+            }
+            //System.out.println("verify listDeclVar: end");
+}
     public void codeGenListVar(DecacCompiler compiler) {
         for (AbstractDeclVar i : getList()) {
             i.codeGenDeclVariable(compiler);

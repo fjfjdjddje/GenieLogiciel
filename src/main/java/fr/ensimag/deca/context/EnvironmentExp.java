@@ -34,6 +34,10 @@ public class EnvironmentExp {
         this.parentEnvironment = parentEnvironment;
     }
 
+    public EnvironmentExp getParentEnvironment() {
+        return parentEnvironment;
+    }
+
     public Map<Symbol,Definition> getCurrentEnvironment(){
         return this.currentEnvironment;
     }
@@ -53,7 +57,7 @@ public class EnvironmentExp {
         //throw new UnsupportedOperationException("not yet implemented");
         EnvironmentExp current= this;
         while(!current.currentEnvironment.containsKey(key)){
-            if(current!= null){
+            if(current.parentEnvironment != null){
                 current=current.parentEnvironment;
             }else{
                 return null;

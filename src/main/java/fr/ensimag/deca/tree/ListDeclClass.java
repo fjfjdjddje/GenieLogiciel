@@ -52,6 +52,7 @@ public class ListDeclClass extends TreeList<AbstractDeclClass> {
         for( AbstractDeclClass declclass : this.getList()){
             declclass.verifyClassBody(compiler);
         }
+
     }
 
 }
