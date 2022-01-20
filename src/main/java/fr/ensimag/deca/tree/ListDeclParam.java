@@ -19,9 +19,9 @@ public class ListDeclParam extends TreeList<AbstractDeclParam> {
    
     void verifyListParam(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-               /* for( AbstractParam Param : this.getList()){
-                    Param.verifyParam(compiler, localEnv, currentClass);
-                }*/
+        for( AbstractDeclParam Param : this.getList()){
+            Param.verifyDeclParam(compiler, localEnv, currentClass);
+        }
     }
     public void codeGenListParam(DecacCompiler compiler) {
        /* for (AbstractParam i : getList()) {

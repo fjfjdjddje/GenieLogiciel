@@ -202,12 +202,7 @@ public class Identifier extends AbstractIdentifier implements Condition {
         }else{
             Type type=compiler.getEnvTypes().getCurrentEnvironment().get(this.getName()).getType();
             this.setType(type);
-            if(this.getType().isVoid()){
-                throw new ContextualError("Void cannot be declared as a variable.", this.getLocation());
-            }
-            if(this.getType().isString()){
-                throw new ContextualError("String cannot be declared as a variable.", this.getLocation());
-            }
+           
         }
         return this.getType();
     }

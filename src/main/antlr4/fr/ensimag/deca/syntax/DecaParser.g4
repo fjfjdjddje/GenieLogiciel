@@ -540,6 +540,7 @@ class_extension returns[AbstractIdentifier tree]
         }
     | /* epsilon */ {
         $tree = new Identifier(tableSymb.create("Object"));
+        $tree.setLocation(new Location(0,0," "));
         }
     ;
 
@@ -591,6 +592,8 @@ decl_field[AbstractIdentifier t, Visibility v] returns[AbstractDeclField tree]
         }
       (EQUALS e=expr {
           initia1 = new Initialization($e.tree); 
+          setLocation(initia1, $EQUALS);
+          
         }
       )? {
           $tree = new DeclField($v, $t,$i.tree, initia1);

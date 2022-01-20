@@ -56,6 +56,7 @@ public class Program extends AbstractProgram {
         //throw new UnsupportedOperationException("not yet implemented");
 
         classes.verifyListClass(compiler);
+        classes.verifyListClassMembers(compiler);
         main.verifyMain(compiler);
         //LOG.debug("verify program: end");
     }

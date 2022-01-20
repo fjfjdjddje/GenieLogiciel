@@ -44,6 +44,12 @@ public class DeclVar extends AbstractDeclVar {
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
                 this.type.verifyType(compiler);
+                if(this.type.getType().isVoid()){
+                    throw new ContextualError("Void cannot be declared as a variable.", this.type.getLocation());
+                }
+                if(this.type.getType().isString()){
+                    throw new ContextualError("String cannot be declared as a variable.", this.type.getLocation());
+                }
                 if(localEnv.getCurrentEnvironment().containsKey(varName.getName())){
                     throw new ContextualError("Variable "+varName.getName().getName()+" already declared.", varName.getLocation());
                 }

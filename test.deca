@@ -1,3 +1,25 @@
-class A extends B{
-    int a;
+
+
+
+
+
+
+/*class A extends int{
+    float a = 5;
+    void b;
+    int f(int r){
+
+    }
+
 }
+
+class B{
+    B a;
+    int f(int r){
+
+    }
+    void f(float r){
+
+    }
+
+}*/

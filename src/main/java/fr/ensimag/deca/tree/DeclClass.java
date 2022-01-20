@@ -40,14 +40,17 @@ public class DeclClass extends AbstractDeclClass {
         //throw new UnsupportedOperationException("not yet implemented");
         if(compiler.getEnvTypes().getCurrentEnvironment().containsKey(className.getName())){
             throw new ContextualError("Class "+className.getName().getName()+" already declared.", className.getLocation());
-        }if(!compiler.getEnvTypes().getCurrentEnvironment().containsKey(superclass.getName())){
+        }
+        if(!compiler.getEnvTypes().getCurrentEnvironment().containsKey(superclass.getName())){
             throw new ContextualError("Superclass "+superclass.getName().getName()+" undefined.", superclass.getLocation());
+        } 
+        if(!compiler.getEnvTypes().getCurrentEnvironment().get(superclass.getName()).isClass()){
+                throw new ContextualError(this.superclass.getName().getName()+ " is not a class", this.getLocation());
         }
         try{
-            System.out.println(compiler.getEnvTypes().getCurrentEnvironment());
             Definition def= new ClassDefinition(new ClassType(DecaParser.tableSymb.create(className.getName().getName()),this.getLocation(),superclass.getClassDefinition()),this.getLocation(), superclass.getClassDefinition());
             this.className.setDefinition(def);
-            compiler.getEnvTypes().declare(className.getName(),className.getExpDefinition());
+            compiler.getEnvTypes().getCurrentEnvironment().put(className.getName(), def);
         }catch (Exception e){
            System.out.println("Error in the declaration of the class in the environement.");
         }
@@ -56,12 +59,23 @@ public class DeclClass extends AbstractDeclClass {
     @Override
     protected void verifyClassMembers(DecacCompiler compiler)
             throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        //throw new UnsupportedOperationException("not yet implemented");
+        for(AbstractDeclField field : listField.getList()){
+            field.verifyDeclField(compiler, this.className.getClassDefinition().getMembers(), className.getClassDefinition());
+            this.className.getClassDefinition().incNumberOfFields();
+        }
+        
+        for(AbstractDeclMethod field : listMethod.getList()){
+            field.verifyDeclMethod(compiler, this.className.getClassDefinition().getMembers(), className.getClassDefinition());
+            this.className.getClassDefinition().incNumberOfMethods();
+
+        }
     }
     
     @Override
     protected void verifyClassBody(DecacCompiler compiler) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        //throw new UnsupportedOperationException("not yet implemented");
+       
     }
 
 

@@ -42,7 +42,7 @@ public class Initialization extends AbstractInitialization {
         Type expressionType = this.expression.verifyExpr(compiler, localEnv, currentClass);
         if(!expressionType.sameType(t)){
             if(!(expressionType.isInt() && t.isFloat())){
-                throw new ContextualError("Incorrect initialisation, incompatible types ( "+expressionType.getName().getName()+ "and "+t.getName().getName()+").", this.expression.getLocation());
+                throw new ContextualError("Incorrect initialisation, incompatible types ( "+expressionType.getName().getName()+ "  and  "+t.getName().getName()+" ).", this.expression.getLocation());
             }
             else{
                 this.expression = new ConvFloat(this.expression);
