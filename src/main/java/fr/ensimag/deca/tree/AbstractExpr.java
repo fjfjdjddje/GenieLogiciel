@@ -3,6 +3,7 @@ package fr.ensimag.deca.tree;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
+import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.DecacInternalError;
@@ -89,6 +90,11 @@ public abstract class AbstractExpr extends AbstractInst {
         
                 //throw new UnsupportedOperationException("not yet implemented");
             Type typeRightValue = this.verifyExpr(compiler, localEnv, currentClass);
+            if(typeRightValue.isClass() && expectedType.isClass()){
+                if(!((ClassType)typeRightValue).isSubClassOf((ClassType)expectedType)){
+                    throw new ContextualError("Assign incorrect: types différents", this.getLocation());
+                }
+            }
             if(!expectedType.sameType(typeRightValue)){
                 if(!(expectedType.isFloat() && typeRightValue.isInt())){
                     throw new ContextualError("Assign incorrect: types différents", this.getLocation());

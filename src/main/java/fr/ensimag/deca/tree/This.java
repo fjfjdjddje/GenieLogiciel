@@ -36,9 +36,10 @@ public class This extends AbstractExpr {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-        Type t = new BooleanType(DecaParser.tableSymb.create("boolean"));
-        this.setType(t);
-        return t;
+        if(currentClass == null){
+            throw new ContextualError("This cannot be used in the main section of the program.", this.getLocation());
+        }
+        return currentClass.getType();
     }
 
 

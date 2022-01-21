@@ -803,7 +803,7 @@ public class DecaParser extends AbstractDecaParser {
 				match(SEMI);
 
 				            assert(((InstContext)_localctx).expr.tree != null);
-				            ((InstContext)_localctx).tree =  ((InstContext)_localctx).expr.tree;
+				            ((InstContext)_localctx).tree =  new Return(((InstContext)_localctx).expr.tree);
 				            setLocation(_localctx.tree, (((InstContext)_localctx).expr!=null?(((InstContext)_localctx).expr.start):null));
 				        
 				}
@@ -2481,12 +2481,6 @@ public class DecaParser extends AbstractDecaParser {
 			((IdentContext)_localctx).IDENT = match(IDENT);
 
 			        ((IdentContext)_localctx).tree =  new Identifier(tableSymb.create((((IdentContext)_localctx).IDENT!=null?((IdentContext)_localctx).IDENT.getText():null)));
-			        for(Map.Entry<Symbol,Definition> mapentry : DecacCompiler.envTypes.getCurrentEnvironment().entrySet()){
-			            if((((IdentContext)_localctx).IDENT!=null?((IdentContext)_localctx).IDENT.getText():null).equals(mapentry.getKey().getName())){
-			                _localctx.tree.setType(mapentry.getValue().getType());
-			                break;
-			            }
-			        }
 			        setLocation(_localctx.tree, ((IdentContext)_localctx).IDENT);
 			        
 			}
@@ -2601,7 +2595,7 @@ public class DecaParser extends AbstractDecaParser {
 			setState(473);
 			match(CBRACE);
 
-			        ((Class_declContext)_localctx).tree =  new DeclClass(((Class_declContext)_localctx).name.tree, ((Class_declContext)_localctx).superclass.tree, ((Class_declContext)_localctx).class_body.treeField, ((Class_declContext)_localctx).class_body.treeMethod);
+			        ((Class_declContext)_localctx).tree =  new DeclClass(((Class_declContext)_localctx).superclass.tree, ((Class_declContext)_localctx).name.tree, ((Class_declContext)_localctx).class_body.treeField, ((Class_declContext)_localctx).class_body.treeMethod);
 			        setLocation(_localctx.tree, ((Class_declContext)_localctx).CLASS);
 			        
 			}
@@ -2656,6 +2650,7 @@ public class DecaParser extends AbstractDecaParser {
 				{
 
 				        ((Class_extensionContext)_localctx).tree =  new Identifier(tableSymb.create("Object"));
+				        _localctx.tree.setLocation(new Location(0,0," "));
 				        
 				}
 				break;
@@ -2925,6 +2920,7 @@ public class DecaParser extends AbstractDecaParser {
 		public Visibility v;
 		public AbstractDeclField tree;
 		public IdentContext i;
+		public Token EQUALS;
 		public ExprContext e;
 		public IdentContext ident() {
 			return getRuleContext(IdentContext.class,0);
@@ -2963,11 +2959,13 @@ public class DecaParser extends AbstractDecaParser {
 			if (_la==EQUALS) {
 				{
 				setState(515);
-				match(EQUALS);
+				((Decl_fieldContext)_localctx).EQUALS = match(EQUALS);
 				setState(516);
 				((Decl_fieldContext)_localctx).e = expr();
 
 				          initia1 = new Initialization(((Decl_fieldContext)_localctx).e.tree); 
+				          setLocation(initia1, ((Decl_fieldContext)_localctx).EQUALS);
+				          
 				        
 				}
 			}

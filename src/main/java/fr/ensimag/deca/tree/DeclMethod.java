@@ -63,8 +63,7 @@ public class DeclMethod extends AbstractDeclMethod {
             methodSignature.add(paramType);
         }
         MethodDefinition methodDef = new MethodDefinition(this.type.getType(), this.getLocation(), methodSignature, currentClass.getNumberOfMethods()+1);
-        EnvironmentExp typesEnv = compiler.getEnvTypes();
-        typesEnv.getCurrentEnvironment().put(methodName.getName(), methodDef);
+        localEnv.getCurrentEnvironment().put(methodName.getName(), methodDef);
         
     }
 
@@ -77,9 +76,8 @@ public class DeclMethod extends AbstractDeclMethod {
 
     @Override
     public void codeGenDeclMethod(DecacCompiler compiler){
-        /*int regIntia = this.initialization.codeGenIntialisation(compiler);
-        compiler.addInstruction(new STORE(Register.getR(regIntia), methodName.getExpDefinition().getOperand()));
-        Register.getR(regIntia).setIsFull(false);*/
+        
+        RegisterOffset.lastReg ++;
     }
 
     

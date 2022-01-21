@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.context.FloatType;
 import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.DecacCompiler;
@@ -40,7 +41,21 @@ public class Initialization extends AbstractInitialization {
         //throw new UnsupportedOperationException("not yet implemented");
         //System.out.println("VerifyInitialization Begin:");
         Type expressionType = this.expression.verifyExpr(compiler, localEnv, currentClass);
-        if(!expressionType.sameType(t)){
+            if(expressionType.isClass() && t.isClass()){
+                if(!((ClassType)expressionType).isSubClassOf((ClassType)t)){
+                    throw new ContextualError("Assign incorrect: types incompatibles", this.getLocation());
+                }
+            }
+            if(!t.sameType(expressionType)){
+                if(!(t.isFloat() && expressionType.isInt())){
+                    throw new ContextualError("Assign incorrect: types différents", this.getLocation());
+                }else{
+                this.expression = new ConvFloat(this.expression);
+                Type type = new FloatType(DecaParser.tableSymb.create("float"));
+                this.expression.setType(type);
+                }
+            }
+        /*if(!expressionType.sameType(t)){
             if(!(expressionType.isInt() && t.isFloat())){
                 throw new ContextualError("Incorrect initialisation, incompatible types ( "+expressionType.getName().getName()+ "  and  "+t.getName().getName()+" ).", this.expression.getLocation());
             }
@@ -49,7 +64,7 @@ public class Initialization extends AbstractInitialization {
                 Type type = new FloatType(DecaParser.tableSymb.create("float"));
                 this.expression.setType(type);
             }
-        }
+        }*/
          //System.out.println("VerifyInitialization End:");
         
     }

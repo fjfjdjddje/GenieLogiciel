@@ -19,7 +19,7 @@ import java.io.PrintStream;
  * @author gl46
  * @date 01/01/2022
  */
-public class New extends AbstractReadExpr {
+public class New extends AbstractExpr {
     private final AbstractIdentifier ident ;
     public New(AbstractIdentifier ident){
         this.ident = ident;
@@ -28,9 +28,8 @@ public class New extends AbstractReadExpr {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
-        Type t = new FloatType(DecaParser.tableSymb.create("float"));
-        this.setType(t);
-        return t;
+        ident.verifyType(compiler);
+        return ident.getType();
     }
 
 

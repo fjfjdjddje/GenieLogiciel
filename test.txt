@@ -1,9 +1,35 @@
-class A{
-   void f(){
-      return 5+6;
-
-  }
+/*class A{
+	void f(int a){}
 }
+class B extends A{
+    int a;
+    B b;
+    
+    void seta(int a){
+    
+    this.a = 5;}}
 {
-return 0;
-}
+ 	A a;
+ 	B b;
+ 	b.f(5);
+ }    
+ {
+ 	int a;
+ 	a.a = 5;
+ }*/
+ 
+ class A {
+ 	protected int x ;
+ 	int getX() {
+ 		return x ;
+ 		}
+
+ }
+ class B extends A{
+  A a;
+  int b = a.x;
+ }
+
+ {
+ A a = new B();
+  }
