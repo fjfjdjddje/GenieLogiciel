@@ -13,11 +13,14 @@ import fr.ensimag.deca.context.ExpDefinition;
 import fr.ensimag.deca.context.MethodDefinition;
 import fr.ensimag.deca.context.Signature;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.deca.tools.SymbolTable.Symbol;
+import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Operand;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
 import java.io.PrintStream;
+import java.util.Map;
 import java.util.Properties;
 
 
@@ -50,7 +53,7 @@ public class DeclMethod extends AbstractDeclMethod {
     protected void verifyDeclMethod(DecacCompiler compiler,
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
-                if(compiler.getEnvTypes().getCurrentEnvironment().containsKey(methodName.getName())){
+        if(localEnv.getCurrentEnvironment().containsKey(methodName.getName())){
                     throw new ContextualError("method name already declared", this.getLocation());
                 }
         this.type.verifyType(compiler);
@@ -62,7 +65,23 @@ public class DeclMethod extends AbstractDeclMethod {
             Type paramType = par.getType().getType();
             methodSignature.add(paramType);
         }
-        MethodDefinition methodDef = new MethodDefinition(this.type.getType(), this.getLocation(), methodSignature, currentClass.getNumberOfMethods()+1);
+        int index = 0;
+        ClassDefinition current = currentClass.getSuperClass();
+        while(current != null){
+            index += current.getNumberOfMethods();
+            current = current.getSuperClass();
+            }
+        if(localEnv.get(methodName.getName())!= null){
+            index = ((MethodDefinition)localEnv.get(methodName.getName())).getIndex();
+        }
+        else{
+            index += currentClass.getNumberOfMethods();
+            currentClass.incNumberOfMethods();
+        }
+        //System.out.println("code."+currentClass.getType().getName().getName() + "."+methodName.getName()+" index ="+index);
+        Label lab = new Label("code."+currentClass.getType().getName().getName() + "."+methodName.getName());
+        MethodDefinition methodDef = new MethodDefinition(this.type.getType(), this.getLocation(), methodSignature, index);
+        methodDef.setLabel(lab);
         localEnv.getCurrentEnvironment().put(methodName.getName(), methodDef);
         
     }
@@ -77,7 +96,6 @@ public class DeclMethod extends AbstractDeclMethod {
     @Override
     public void codeGenDeclMethod(DecacCompiler compiler){
         
-        RegisterOffset.lastReg ++;
     }
 
     

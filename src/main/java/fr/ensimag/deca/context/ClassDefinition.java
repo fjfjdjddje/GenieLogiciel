@@ -1,10 +1,12 @@
 package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.tree.Location;
-import fr.ensimag.ima.pseudocode.DVal;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.NullOperand;
 import fr.ensimag.ima.pseudocode.Operand;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
 
 import org.apache.commons.lang.Validate;
 
@@ -15,18 +17,18 @@ import org.apache.commons.lang.Validate;
  * @date 01/01/2022
  */
 public class ClassDefinition extends TypeDefinition {
-    private DVal adresseSuperClass = new NullOperand();
+    private RegisterOffset adresseSuperClass = new RegisterOffset(1, Register.GB);
 
  
     public void setNumberOfFields(int numberOfFields) {
         this.numberOfFields = numberOfFields;
     }
 
-    public DVal getAdresseSuperClass() {
+    public RegisterOffset getAdresseSuperClass() {
         return adresseSuperClass;
     }
 
-    public void setAdresseSuperClass(DVal adresseSuperClass) {
+    public void setAdresseSuperClass(RegisterOffset adresseSuperClass) {
         this.adresseSuperClass = adresseSuperClass;
     }
 
@@ -88,5 +90,6 @@ public class ClassDefinition extends TypeDefinition {
         }
         members = new EnvironmentExp(parent);
         this.superClass = superClass;
+        
     }
 }

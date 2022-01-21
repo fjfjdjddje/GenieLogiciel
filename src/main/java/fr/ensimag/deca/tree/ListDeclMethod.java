@@ -33,12 +33,9 @@ public class ListDeclMethod extends TreeList<AbstractDeclMethod> {
                 System.out.println("verify listDeclMethod: end");
     }
     public void codeGenListDeclMethod(DecacCompiler compiler) {
-        //on LOAD dans GB2 l'adresse de equals
-        /*RegisterOffset.lastReg ++;
-        compiler.addInstruction(new LEA(, Register.R0));
         for (AbstractDeclMethod i : getList()) {
             i.codeGenDeclMethod(compiler);
-        }*/
+        }
     }
 
 }

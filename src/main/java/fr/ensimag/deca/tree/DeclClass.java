@@ -5,16 +5,22 @@ import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.Definition;
+import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.MethodDefinition;
 import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.deca.tools.SymbolTable.Symbol;
+import fr.ensimag.ima.pseudocode.LabelOperand;
 import fr.ensimag.ima.pseudocode.NullOperand;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.LEA;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
+import net.bytebuddy.jar.asm.Label;
 
 import java.io.PrintStream;
+import java.util.Map;
 
 /**
  * Declaration of a class (<code>class name extends superClass {members}<code>).
@@ -54,10 +60,13 @@ public class DeclClass extends AbstractDeclClass {
         if(!compiler.getEnvTypes().getCurrentEnvironment().get(superclass.getName()).isClass()){
                 throw new ContextualError(this.superclass.getName().getName()+ " is not a class", this.getLocation());
         }
+        this.superclass.setDefinition(compiler.getEnvTypes().get(this.superclass.getName()));
         try{
             ClassDefinition defClass = (ClassDefinition) compiler.getEnvTypes().getCurrentEnvironment().get(superclass.getName());
-            Definition def= new ClassDefinition(new ClassType(DecaParser.tableSymb.create(className.getName().getName()),this.getLocation(),defClass),this.getLocation(),defClass);
+            ClassType typeDeClasse = new ClassType(DecaParser.tableSymb.create(className.getName().getName()),this.getLocation(),defClass);
+            Definition def= new ClassDefinition(typeDeClasse,this.getLocation(),defClass);
             this.className.setDefinition(def);
+            this.className.setType(typeDeClasse);
             compiler.getEnvTypes().getCurrentEnvironment().put(className.getName(), def);
             System.out.println(compiler.getEnvTypes().getCurrentEnvironment());
 
@@ -77,7 +86,6 @@ public class DeclClass extends AbstractDeclClass {
         
         for(AbstractDeclMethod method : listMethod.getList()){
             method.verifyDeclMethod(compiler, this.className.getClassDefinition().getMembers(), className.getClassDefinition());
-            this.className.getClassDefinition().incNumberOfMethods();
 
         }
     }
@@ -110,16 +118,29 @@ public class DeclClass extends AbstractDeclClass {
         listMethod.iter(f);
     }
     public void codeGenDeclClass(DecacCompiler compiler){
-       /* if(superclass.getName().getName().equals("Object")){
-            compiler.addInstruction(new LOAD(((ClassDefinition)this.superclass.getDefinition()).getAdresseSuperClass(), Register.R0));
-            compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(RegisterOffset.lastReg, Register.GB)));
-        }else{
+            System.out.println(this.superclass.getDefinition()+ " hhhhhruf");
+            ((ClassDefinition)this.className.getDefinition()).setAdresseSuperClass(new RegisterOffset(RegisterOffset.lastReg, Register.GB));
             compiler.addInstruction(new LEA(((ClassDefinition)this.superclass.getDefinition()).getAdresseSuperClass(), Register.R0));
+            compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(RegisterOffset.lastReg, Register.GB)));
+            RegisterOffset.lastReg ++;
+            //on LOAD le code de equals.object
+            /*compiler.addInstruction(new LOAD(new LabelOperand(new Label("code.Object.equals")), Register.R0));
+            compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(RegisterOffset.lastReg, Register.GB)));*/
+        //listMethod.codeGenListDeclMethod(compiler);
+        EnvironmentExp current =((ClassDefinition)(compiler.getEnvTypes().getCurrentEnvironment().get(className.getName()))).getMembers();
+        ClassDefinition courant = ((ClassDefinition)(compiler.getEnvTypes().getCurrentEnvironment().get(className.getName())));
+        while(current != null){
+            for(Map.Entry<Symbol,Definition> a : current.getCurrentEnvironment().entrySet()){
+                if(a.getValue().isMethod()){
+                   // System.out.println("methode",)
+                   compiler.addInstruction(new LOAD(new LabelOperand(((MethodDefinition)a.getValue()).getLabel()), Register.R0));
+                   compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(RegisterOffset.lastReg + ((MethodDefinition)a.getValue()).getIndex(), Register.GB)));
+                }
+            }
+            current = current.getParentEnvironment();
         }
-
-        RegisterOffset.lastReg ++;*/
-        /*
-        */
+        RegisterOffset.lastReg += courant.getNumberOfMethods();
+       
     }
 
 }

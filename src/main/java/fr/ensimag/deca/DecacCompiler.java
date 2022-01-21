@@ -82,7 +82,9 @@ public class DecacCompiler {
         Signature equalsSignature= new Signature();
         equalsSignature.add(new BooleanType(DecaParser.tableSymb.create("boolean")));
         equalsSignature.add(new ClassType(DecaParser.tableSymb.create("Object"),new Location(0, 0, " "),null));
-        objEnvironment.put(DecaParser.tableSymb.create("equals"),new MethodDefinition(new BooleanType(DecaParser.tableSymb.create("boolean")), new Location(0, 0, " "),equalsSignature, 0));
+        MethodDefinition MD = new MethodDefinition(new BooleanType(DecaParser.tableSymb.create("boolean")), new Location(0, 0, " "),equalsSignature, 0);
+        MD.setLabel(new Label("code.Object.equals"));
+        objEnvironment.put(DecaParser.tableSymb.create("equals"),MD);
         objetDef.incNumberOfMethods();
         typeEnv.put(DecaParser.tableSymb.create("Object"),objetDef);
         envTypes.setCurrentEnvironment(typeEnv);

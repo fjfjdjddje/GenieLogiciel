@@ -2991,6 +2991,7 @@ public class DecaParser extends AbstractDecaParser {
 		public AbstractDeclMethod tree;
 		public TypeContext type;
 		public IdentContext ident;
+		public Token OPARENT;
 		public List_paramsContext params;
 		public List_paramsContext list_params;
 		public BlockContext block;
@@ -3039,7 +3040,7 @@ public class DecaParser extends AbstractDecaParser {
 			setState(524);
 			((Decl_methodContext)_localctx).ident = ident();
 			setState(525);
-			match(OPARENT);
+			((Decl_methodContext)_localctx).OPARENT = match(OPARENT);
 			setState(526);
 			((Decl_methodContext)_localctx).params = ((Decl_methodContext)_localctx).list_params = list_params();
 			setState(527);
@@ -3052,9 +3053,10 @@ public class DecaParser extends AbstractDecaParser {
 				setState(528);
 				((Decl_methodContext)_localctx).block = block();
 
-
-				        ((Decl_methodContext)_localctx).tree =  new DeclMethod(((Decl_methodContext)_localctx).type.tree, ((Decl_methodContext)_localctx).ident.tree, ((Decl_methodContext)_localctx).list_params.tree, new MethodBody(((Decl_methodContext)_localctx).block.insts, ((Decl_methodContext)_localctx).block.decls));
+				        MethodBody tree2 = new MethodBody(((Decl_methodContext)_localctx).block.insts, ((Decl_methodContext)_localctx).block.decls);
+				        ((Decl_methodContext)_localctx).tree =  new DeclMethod(((Decl_methodContext)_localctx).type.tree, ((Decl_methodContext)_localctx).ident.tree, ((Decl_methodContext)_localctx).list_params.tree, tree2);
 				        setLocation(_localctx.tree, (((Decl_methodContext)_localctx).type!=null?(((Decl_methodContext)_localctx).type.start):null));
+				        setLocation(tree2, ((Decl_methodContext)_localctx).OPARENT);
 				        
 				}
 				break;
@@ -3063,7 +3065,7 @@ public class DecaParser extends AbstractDecaParser {
 				setState(531);
 				match(ASM);
 				setState(532);
-				match(OPARENT);
+				((Decl_methodContext)_localctx).OPARENT = match(OPARENT);
 				setState(533);
 				((Decl_methodContext)_localctx).code = multi_line_string();
 				setState(534);
