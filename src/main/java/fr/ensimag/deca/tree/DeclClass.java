@@ -7,6 +7,13 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.Definition;
 import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.NullOperand;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.LEA;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.STORE;
+
 import java.io.PrintStream;
 
 /**
@@ -101,6 +108,18 @@ public class DeclClass extends AbstractDeclClass {
         className.iter(f);
         listField.iter(f);
         listMethod.iter(f);
+    }
+    public void codeGenDeclClass(DecacCompiler compiler){
+       /* if(superclass.getName().getName().equals("Object")){
+            compiler.addInstruction(new LOAD(((ClassDefinition)this.superclass.getDefinition()).getAdresseSuperClass(), Register.R0));
+            compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(RegisterOffset.lastReg, Register.GB)));
+        }else{
+            compiler.addInstruction(new LEA(((ClassDefinition)this.superclass.getDefinition()).getAdresseSuperClass(), Register.R0));
+        }
+
+        RegisterOffset.lastReg ++;*/
+        /*
+        */
     }
 
 }

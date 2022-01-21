@@ -1,7 +1,11 @@
 package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.tree.Location;
+import fr.ensimag.ima.pseudocode.DVal;
 import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.NullOperand;
+import fr.ensimag.ima.pseudocode.Operand;
+
 import org.apache.commons.lang.Validate;
 
 /**
@@ -11,10 +15,19 @@ import org.apache.commons.lang.Validate;
  * @date 01/01/2022
  */
 public class ClassDefinition extends TypeDefinition {
+    private DVal adresseSuperClass = new NullOperand();
 
  
     public void setNumberOfFields(int numberOfFields) {
         this.numberOfFields = numberOfFields;
+    }
+
+    public DVal getAdresseSuperClass() {
+        return adresseSuperClass;
+    }
+
+    public void setAdresseSuperClass(DVal adresseSuperClass) {
+        this.adresseSuperClass = adresseSuperClass;
     }
 
     public int getNumberOfFields() {

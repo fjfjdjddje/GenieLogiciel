@@ -1,22 +1,11 @@
-; start main program
-	BRA debutProg
-erreurDiv0:
-	WSTR "Arret de l'execution: division par zéro impossible."
+debutprog:
+     LOAD #0, R1
+     WINT
+     TSTO #1
+     BOV print
+     PUSH R1
+     BRA debutprog
+     
+print:
+	WSTR "hhhhhhhhhhhh"
 	HALT
-debutProg:
-; Main program
-; Beginning of main instructions:
-	LOAD #0, R0
-	STORE R0, 3(GB)
-	LOAD 3(GB), R2
-	LOAD R2, R1
-	LOAD #0, R0
-	CMP R2, R0
-	BEQ printFalse0
-	WSTR "true"
-	BRA endPrint0
-printFalse0:
-	WSTR "false"
-endPrint0:
-	HALT
-; end main program
