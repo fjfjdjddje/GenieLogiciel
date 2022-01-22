@@ -25,6 +25,9 @@ debutProg:
 	STORE R0, 9(GB)
 	BRA debutMain
 init.G:
+	LOAD #0, R0
+	LOAD -2(LB), R2
+	STORE R0, 1(R2)
 	RTS
 init.A:
 	LOAD -2(LB), R0
@@ -32,7 +35,7 @@ init.A:
 	BSR init.G
 	LOAD #10, R2
 	LOAD -2(LB), R2
-	STORE R2, 1(R2)
+	STORE R2, 2(R2)
 	RTS
 code.G.xe:
 	WSTR "zbi"
@@ -42,21 +45,25 @@ fincode.G.xe:
 code.A.m:
 	LOAD #1, R2
 	STORE R2, 1(LB)
-	LOAD #5, R2
+	LOAD 1(LB), R2
+	LOAD #1, R3
+	ADD R3, R2
+	LOAD #15, R3
+	MUL R3, R2
 	LOAD R2, R1
 	WINT
 fincode.A.m:
 	RTS
 debutMain:
 ; Beginning of main instructions:
-	NEW #2, R2
+	NEW #4, R2
 	LEA 6(GB), R0
 	STORE R0, 0(R2)
 	PUSH R2
 	BSR init.A
 	POP R2
 	STORE R2, 10(GB)
-	NEW #2, R2
+	NEW #4, R2
 	LEA 6(GB), R0
 	STORE R0, 0(R2)
 	PUSH R2

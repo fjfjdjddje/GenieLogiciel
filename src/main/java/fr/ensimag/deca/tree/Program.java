@@ -23,11 +23,13 @@ import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.BRA;
 import fr.ensimag.ima.pseudocode.instructions.CMP;
+import fr.ensimag.ima.pseudocode.instructions.ERROR;
 import fr.ensimag.ima.pseudocode.instructions.HALT;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.RTS;
 import fr.ensimag.ima.pseudocode.instructions.SEQ;
 import fr.ensimag.ima.pseudocode.instructions.WINT;
+import fr.ensimag.ima.pseudocode.instructions.WNL;
 import fr.ensimag.ima.pseudocode.instructions.WSTR;
 
 /**
@@ -99,6 +101,18 @@ public class Program extends AbstractProgram {
         compiler.addInstruction(new SEQ(Register.getR(1)));
         compiler.addInstruction(new WINT());
         compiler.addInstruction(new RTS());
+        compiler.addLabel(new Label("deferencement_null"));
+        compiler.addInstruction(new WSTR("Erreur : deferencement_null"));
+        compiler.addInstruction(new WNL());
+        compiler.addInstruction(new ERROR());
+        compiler.addLabel(new Label("pile_pleine"));
+        compiler.addInstruction(new WSTR("Erreur : pile_pleine"));
+        compiler.addInstruction(new WNL());
+        compiler.addInstruction(new ERROR());
+        compiler.addLabel(new Label("tas_pleine"));
+        compiler.addInstruction(new WSTR("Erreur : tas_pleine"));
+        compiler.addInstruction(new WNL());
+        compiler.addInstruction(new ERROR());
     }
 
     @Override
