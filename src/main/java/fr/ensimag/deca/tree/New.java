@@ -9,8 +9,15 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.BSR;
+import fr.ensimag.ima.pseudocode.instructions.LEA;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.NEW;
+import fr.ensimag.ima.pseudocode.instructions.POP;
+import fr.ensimag.ima.pseudocode.instructions.PUSH;
 import fr.ensimag.ima.pseudocode.instructions.RFLOAT;
+import fr.ensimag.ima.pseudocode.instructions.STORE;
 
 import java.io.PrintStream;
 
@@ -53,12 +60,19 @@ public class New extends AbstractExpr {
     }
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
-       /* int reg = Register.getEmptyReg(compiler);
-        Register.getR(reg).setIsFull(true);
-        compiler.addInstruction(new RFLOAT());
-        compiler.addInstruction(new LOAD(Register.getR(1),Register.getR(reg)));
-        return reg;*/
-        return 0;
+        if(Register.getR(2).getIsFull()){
+            compiler.addInstruction(new PUSH(Register.getR(2)));
+        }else{
+            Register.getR(2).setIsFull(true);
+        }
+        System.out.println(ident.getClassDefinition().getInitClass()+"hhhhhhh");
+        compiler.addInstruction(new NEW(ident.getClassDefinition().getNumberOfFields() +1, Register.getR(2)));
+        compiler.addInstruction(new LEA(ident.getClassDefinition().getAdresseClass(), Register.R0));
+        compiler.addInstruction(new STORE(Register.R0,new RegisterOffset(0, Register.getR(2))));
+        compiler.addInstruction(new PUSH(Register.getR(2)));
+        compiler.addInstruction(new BSR(((ClassDefinition)compiler.getEnvTypes().get(this.ident.getName())).getInitClass()));
+        compiler.addInstruction(new POP(Register.getR(2)));
+        return 2;
     }
 
 }

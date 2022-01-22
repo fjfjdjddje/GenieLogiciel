@@ -39,4 +39,8 @@ public class MethodBody extends Tree{
         // TODO Auto-generated method stub
         
     }
+    public void codeGenDeclBody(DecacCompiler compiler){
+        listDeclVar.codeGenListVarLoc(compiler);
+        listInst.codeGenListInst(compiler);
+    }
 }

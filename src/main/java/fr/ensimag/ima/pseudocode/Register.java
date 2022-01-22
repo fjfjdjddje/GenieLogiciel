@@ -1,6 +1,9 @@
 package fr.ensimag.ima.pseudocode;
 
+import java.util.ArrayList;
+
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.ima.pseudocode.instructions.POP;
 import fr.ensimag.ima.pseudocode.instructions.PUSH;
 
 /**
@@ -13,12 +16,29 @@ public class Register extends DVal {
     private String name;
     private Boolean isFull = false;
     private Boolean isPushed = false;
+    public static ArrayList<Integer> listPush= new ArrayList<Integer>();
     protected Register(String name) {
         this.name = name;
     }
 
 
-
+    public static void pushAll(DecacCompiler compiler){
+        int maxRegister = compiler.getCompilerOptions().getNombreRegisters() -1;
+        for (int i = 2; i <= maxRegister; i++) {
+            if(R[i].getIsFull()){
+                compiler.addInstruction(new PUSH(R[i]));
+                listPush.add(i);
+                R[i].setIsFull(false);
+            }
+        }
+    }
+    public static void popALL(DecacCompiler compiler){
+        for(int e= listPush.size(); e>0 ;e--){
+            R[listPush.get(e)].setIsFull(true);
+            compiler.addInstruction(new POP(R[listPush.get(e-1)]));
+        }
+        listPush= new ArrayList<Integer>();
+    }
     public Boolean getIsPushed() {
         return isPushed;
     }

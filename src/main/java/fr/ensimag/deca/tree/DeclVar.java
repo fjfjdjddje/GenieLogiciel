@@ -61,10 +61,9 @@ public class DeclVar extends AbstractDeclVar {
                         def.isExpression();
                         this.varName.setDefinition(def);
                         this.varName.setType(this.type.getType());
-        
-                        RegisterOffset GB3 = new RegisterOffset(RegisterOffset.lastReg, Register.GB);
+                        /*RegisterOffset GB3 = new RegisterOffset(RegisterOffset.lastReg, Register.GB);
                         this.varName.getExpDefinition().setOperand(GB3);
-                        RegisterOffset.lastReg ++;
+                        RegisterOffset.lastReg ++;*/
                         //def.setOperand();
                         localEnv.declare(varName.getName(),varName.getExpDefinition());
                         //System.out.println(localEnv.getCurrentEnvironment());
@@ -114,6 +113,9 @@ public class DeclVar extends AbstractDeclVar {
 
     @Override
     public void codeGenDeclVariable(DecacCompiler compiler){
+        RegisterOffset GB3 = new RegisterOffset(RegisterOffset.lastReg, Register.GB);
+        this.varName.getExpDefinition().setOperand(GB3);
+        RegisterOffset.lastReg ++;
         int regIntia = this.initialization.codeGenIntialisation(compiler);
         if (regIntia != 0){
         compiler.addInstruction(new STORE(Register.getR(regIntia), varName.getExpDefinition().getOperand()));}
@@ -129,8 +131,25 @@ public class DeclVar extends AbstractDeclVar {
         }
         Register.getR(regIntia).setIsFull(false);
     }
-
-    
+    @Override
+    public void codeGenDeclVariableLoc(DecacCompiler compiler){
+        RegisterOffset GB3 = new RegisterOffset(ListDeclVar.localOff, Register.LB);
+        this.varName.getExpDefinition().setOperand(GB3);
+        int regIntia = this.initialization.codeGenIntialisation(compiler);
+        if (regIntia != 0){
+        compiler.addInstruction(new STORE(Register.getR(regIntia), varName.getExpDefinition().getOperand()));}
+        else{
+            if(type.getType().isFloat()){
+                compiler.addInstruction(new LOAD(new ImmediateFloat((float)0.0), Register.R0));
+            }else if(type.getType().isClass()){
+                compiler.addInstruction(new LOAD(new NullOperand(), Register.R0));
+            }else{
+                compiler.addInstruction(new LOAD(0, Register.R0));
+            }
+            compiler.addInstruction(new STORE(Register.getR(0), varName.getExpDefinition().getOperand()));
+        }
+        Register.getR(regIntia).setIsFull(false);   
+    }
     @Override
     public void decompile(IndentPrintStream s) {
         //throw new UnsupportedOperationException("not yet implemented");

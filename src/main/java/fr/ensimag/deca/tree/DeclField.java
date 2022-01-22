@@ -11,7 +11,10 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.ExpDefinition;
 import fr.ensimag.deca.context.FieldDefinition;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.ImmediateFloat;
+import fr.ensimag.ima.pseudocode.NullOperand;
 import fr.ensimag.ima.pseudocode.Operand;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
@@ -107,9 +110,23 @@ public class DeclField extends AbstractDeclField {
     }
     @Override
     public void codeGenDeclField(DecacCompiler compiler){
-        /*int regIntia = this.initialization.codeGenIntialisation(compiler);
-        compiler.addInstruction(new STORE(Register.getR(regIntia), fieldName.getExpDefinition().getOperand()));
-        Register.getR(regIntia).setIsFull(false);*/
+        int regIntia = this.initialization.codeGenIntialisation(compiler);
+        if (regIntia != 0){
+            //compiler.addInstruction(new STORE(Register.getR(regIntia), varName.getExpDefinition().getOperand()));}
+        }else{
+                if(type.getType().isFloat()){
+                    compiler.addInstruction(new LOAD(new ImmediateFloat((float)0.0), Register.R0));
+                }else if(type.getType().isClass()){
+                    compiler.addInstruction(new LOAD(new NullOperand(), Register.R0));
+                }else{
+                    compiler.addInstruction(new LOAD(0, Register.R0));
+                }
+                //compiler.addInstruction(new STORE(Register.getR(0), varName.getExpDefinition().getOperand()));
+            }
+        compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(2)));
+        int offset = fieldName.getFieldDefinition().getIndex();
+        compiler.addInstruction(new STORE(Register.getR(regIntia), new RegisterOffset(offset,Register.getR(2))));
+        Register.getR(regIntia).setIsFull(false);
     }
 
     

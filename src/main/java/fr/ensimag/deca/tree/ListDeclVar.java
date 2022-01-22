@@ -13,7 +13,7 @@ import fr.ensimag.deca.tools.IndentPrintStream;
  * @date 01/01/2022
  */
 public class ListDeclVar extends TreeList<AbstractDeclVar> {
-
+    public static int localOff = 1;
     @Override
     public void decompile(IndentPrintStream s) {
         //throw new UnsupportedOperationException("Not yet implemented");
@@ -56,6 +56,13 @@ public class ListDeclVar extends TreeList<AbstractDeclVar> {
         for (AbstractDeclVar i : getList()) {
             i.codeGenDeclVariable(compiler);
         }
+    }
+    public void codeGenListVarLoc(DecacCompiler compiler) {
+        for (AbstractDeclVar i : getList()) {
+            i.codeGenDeclVariableLoc(compiler);
+            localOff ++;
+        }
+        localOff = 1;
     }
 
 }

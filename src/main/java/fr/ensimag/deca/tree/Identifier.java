@@ -185,6 +185,8 @@ public class Identifier extends AbstractIdentifier implements Condition {
         }else{
             this.setType(localEnv.get(this.name).getType());
             this.setDefinition(localEnv.getCurrentEnvironment().get(this.name));
+            System.out.println(this.getName().getName());
+            System.out.println(localEnv.getCurrentEnvironment());
             return localEnv.get(this.name).getType();
         }
         
@@ -202,6 +204,7 @@ public class Identifier extends AbstractIdentifier implements Condition {
         }else{
             Type type=compiler.getEnvTypes().getCurrentEnvironment().get(this.getName()).getType();
             this.setType(type);
+            this.setDefinition(compiler.getEnvTypes().getCurrentEnvironment().get(this.getName()));
            
         }
         return this.getType();

@@ -12,6 +12,8 @@ import fr.ensimag.ima.pseudocode.ImmediateInteger;
 import fr.ensimag.ima.pseudocode.instructions.WINT;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+
 import java.io.PrintStream;
 
 /**
@@ -65,15 +67,10 @@ public class This extends AbstractExpr {
 
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
-       /* int i = Register.getEmptyReg(compiler);
-        if (value){
-            compiler.addInstruction(new LOAD(new ImmediateInteger(1), Register.getR(i)));
-        }else{
-            compiler.addInstruction(new LOAD(new ImmediateInteger(0), Register.getR(i)));
-        }
-        Register.getR(i).setIsFull(true);
-        return i;*/
-        return 0;
+        int reg = Register.getEmptyReg(compiler);
+        Register.getR(reg).setIsFull(true);
+        compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(reg)));
+        return reg;
     }
     
 

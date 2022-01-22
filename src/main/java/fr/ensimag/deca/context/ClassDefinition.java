@@ -17,19 +17,27 @@ import org.apache.commons.lang.Validate;
  * @date 01/01/2022
  */
 public class ClassDefinition extends TypeDefinition {
-    private RegisterOffset adresseSuperClass = new RegisterOffset(1, Register.GB);
-
+    private RegisterOffset adresseClass = new RegisterOffset(1, Register.GB);
+    private Label initClass;
  
     public void setNumberOfFields(int numberOfFields) {
         this.numberOfFields = numberOfFields;
     }
 
-    public RegisterOffset getAdresseSuperClass() {
-        return adresseSuperClass;
+    public Label getInitClass() {
+        return initClass;
     }
 
-    public void setAdresseSuperClass(RegisterOffset adresseSuperClass) {
-        this.adresseSuperClass = adresseSuperClass;
+    public void setInitClass(Label initClass) {
+        this.initClass = initClass;
+    }
+
+    public RegisterOffset getAdresseClass() {
+        return adresseClass;
+    }
+
+    public void setAdresseClass(RegisterOffset adresseClass) {
+        this.adresseClass = adresseClass;
     }
 
     public int getNumberOfFields() {

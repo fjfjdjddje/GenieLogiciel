@@ -16,6 +16,7 @@ import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Operand;
+import fr.ensimag.ima.pseudocode.instructions.RTS;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
@@ -57,7 +58,7 @@ public class DeclMethod extends AbstractDeclMethod {
                     throw new ContextualError("method name already declared", this.getLocation());
                 }
         this.type.verifyType(compiler);
-        this.methodEnv = new EnvironmentExp(localEnv);
+        this.methodEnv = new EnvironmentExp(currentClass.getMembers());
         Signature methodSignature = new Signature();
         methodSignature.add(type.getType());
         listDeclParam.verifyListParam(compiler, this.methodEnv, currentClass);
@@ -78,10 +79,12 @@ public class DeclMethod extends AbstractDeclMethod {
             index += currentClass.getNumberOfMethods();
             currentClass.incNumberOfMethods();
         }
-        //System.out.println("code."+currentClass.getType().getName().getName() + "."+methodName.getName()+" index ="+index);
+        System.out.println("code."+currentClass.getType().getName().getName() + "."+methodName.getName()+" index ="+index);
         Label lab = new Label("code."+currentClass.getType().getName().getName() + "."+methodName.getName());
         MethodDefinition methodDef = new MethodDefinition(this.type.getType(), this.getLocation(), methodSignature, index);
         methodDef.setLabel(lab);
+
+        methodName.setDefinition(methodDef);
         localEnv.getCurrentEnvironment().put(methodName.getName(), methodDef);
         
     }
@@ -95,7 +98,12 @@ public class DeclMethod extends AbstractDeclMethod {
 
     @Override
     public void codeGenDeclMethod(DecacCompiler compiler){
-        
+        compiler.addLabel(methodName.getMethodDefinition().getLabel());
+        Register.pushAll(compiler);
+        this.body.codeGenDeclBody(compiler);
+        compiler.addLabel(new Label("fin"+methodName.getMethodDefinition().getLabel().toString()));
+        Register.popALL(compiler);
+        compiler.addInstruction(new RTS());
     }
 
     

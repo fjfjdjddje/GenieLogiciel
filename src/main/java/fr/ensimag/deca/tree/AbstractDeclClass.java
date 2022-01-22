@@ -33,4 +33,6 @@ public abstract class AbstractDeclClass extends Tree {
     protected abstract void verifyClassBody(DecacCompiler compiler)
             throws ContextualError;
         public  abstract void codeGenDeclClass(DecacCompiler compiler);
+        public  abstract void codeGenDeclClassField(DecacCompiler compiler);
+        public abstract void codeGenDeclClassMethods(DecacCompiler compiler);
 }

@@ -10,14 +10,18 @@ import fr.ensimag.deca.context.MethodDefinition;
 import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
+import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.LabelOperand;
 import fr.ensimag.ima.pseudocode.NullOperand;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.BSR;
 import fr.ensimag.ima.pseudocode.instructions.LEA;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.PUSH;
+import fr.ensimag.ima.pseudocode.instructions.RTS;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
-import net.bytebuddy.jar.asm.Label;
+
 
 import java.io.PrintStream;
 import java.util.Map;
@@ -79,10 +83,15 @@ public class DeclClass extends AbstractDeclClass {
     protected void verifyClassMembers(DecacCompiler compiler)
             throws ContextualError {
         //throw new UnsupportedOperationException("not yet implemented");
+        this.className.getClassDefinition().setNumberOfFields(this.superclass.getClassDefinition().getNumberOfFields());
         for(AbstractDeclField field : listField.getList()){
             field.verifyDeclField(compiler, this.className.getClassDefinition().getMembers(), className.getClassDefinition());
             this.className.getClassDefinition().incNumberOfFields();
         }
+        this.className.getClassDefinition().setNumberOfFields(this.className.getClassDefinition().getNumberOfFields()+this.superclass.getClassDefinition().getNumberOfFields());
+        
+
+        //System.out.println(this.className.getName().getName()+" == "+ this.className.getClassDefinition().getNumberOfFields());
         
         for(AbstractDeclMethod method : listMethod.getList()){
             method.verifyDeclMethod(compiler, this.className.getClassDefinition().getMembers(), className.getClassDefinition());
@@ -95,7 +104,6 @@ public class DeclClass extends AbstractDeclClass {
         //throw new UnsupportedOperationException("not yet implemented");
         for(AbstractDeclMethod method : listMethod.getList()){
             method.verifyBodyMethod(compiler, this.className.getClassDefinition().getMembers(), className.getClassDefinition());
-            this.className.getClassDefinition().incNumberOfMethods();
         }
     
     }
@@ -119,8 +127,8 @@ public class DeclClass extends AbstractDeclClass {
     }
     public void codeGenDeclClass(DecacCompiler compiler){
             System.out.println(this.superclass.getDefinition()+ " hhhhhruf");
-            ((ClassDefinition)this.className.getDefinition()).setAdresseSuperClass(new RegisterOffset(RegisterOffset.lastReg, Register.GB));
-            compiler.addInstruction(new LEA(((ClassDefinition)this.superclass.getDefinition()).getAdresseSuperClass(), Register.R0));
+            ((ClassDefinition)this.className.getDefinition()).setAdresseClass(new RegisterOffset(RegisterOffset.lastReg, Register.GB));
+            compiler.addInstruction(new LEA(((ClassDefinition)this.superclass.getDefinition()).getAdresseClass(), Register.R0));
             compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(RegisterOffset.lastReg, Register.GB)));
             RegisterOffset.lastReg ++;
             //on LOAD le code de equals.object
@@ -128,8 +136,7 @@ public class DeclClass extends AbstractDeclClass {
             compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(RegisterOffset.lastReg, Register.GB)));*/
         //listMethod.codeGenListDeclMethod(compiler);
         EnvironmentExp current =((ClassDefinition)(compiler.getEnvTypes().getCurrentEnvironment().get(className.getName()))).getMembers();
-        ClassDefinition courant = ((ClassDefinition)(compiler.getEnvTypes().getCurrentEnvironment().get(className.getName())));
-        while(current != null){
+        /*while(current != null){
             for(Map.Entry<Symbol,Definition> a : current.getCurrentEnvironment().entrySet()){
                 if(a.getValue().isMethod()){
                    // System.out.println("methode",)
@@ -138,9 +145,51 @@ public class DeclClass extends AbstractDeclClass {
                 }
             }
             current = current.getParentEnvironment();
+        }*/
+        generation(current, compiler);
+        ClassDefinition courant = ((ClassDefinition)(compiler.getEnvTypes().getCurrentEnvironment().get(className.getName())));
+        int offs = 0;
+        while(courant != null){
+            offs += courant.getNumberOfMethods();
+            courant = courant.getSuperClass();
         }
-        RegisterOffset.lastReg += courant.getNumberOfMethods();
+        RegisterOffset.lastReg += offs;
+        System.out.println(RegisterOffset.lastReg+1+"lolololololo");
+        //a changerrrrrrrrrrrrrrrrrrrrrrr
        
+    }
+    private void generation(EnvironmentExp environnement, DecacCompiler compiler){
+        if(environnement.getParentEnvironment() != null){
+            generation(environnement.getParentEnvironment(), compiler);
+        }
+        for(Map.Entry<Symbol,Definition> a : environnement.getCurrentEnvironment().entrySet()){
+            if(a.getValue().isMethod()){
+               // System.out.println("methode",)
+               compiler.addInstruction(new LOAD(new LabelOperand(((MethodDefinition)a.getValue()).getLabel()), Register.R0));
+               compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(RegisterOffset.lastReg + ((MethodDefinition)a.getValue()).getIndex(), Register.GB)));
+            }
+        }
+
+    }
+    public void codeGenDeclClassField(DecacCompiler compiler){
+        Label lab1 = new Label("init."+this.className.getName().getName());
+        compiler.addLabel(lab1);
+        className.getClassDefinition().setInitClass(lab1);
+        ((ClassDefinition)compiler.getEnvTypes().get(className.getName())).setInitClass(lab1);
+        
+        if(!this.superclass.getName().getName().equals("Object")){
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R0));
+            compiler.addInstruction(new PUSH(Register.R0));
+            compiler.addInstruction(new BSR(superclass.getClassDefinition().getInitClass()));
+        }
+        for(AbstractDeclField field : listField.getList()){
+            field.codeGenDeclField(compiler);
+        } 
+        compiler.addInstruction(new RTS());
+    }
+    @Override
+    public void codeGenDeclClassMethods(DecacCompiler compiler) {
+        listMethod.codeGenListDeclMethod(compiler);
     }
 
 }

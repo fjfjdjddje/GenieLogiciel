@@ -19,8 +19,15 @@ import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.BRA;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.HALT;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.RTS;
+import fr.ensimag.ima.pseudocode.instructions.SEQ;
+import fr.ensimag.ima.pseudocode.instructions.WINT;
 import fr.ensimag.ima.pseudocode.instructions.WSTR;
 
 /**
@@ -74,12 +81,24 @@ public class Program extends AbstractProgram {
         }
         compiler.addComment("Main program");
         classes.codeGenListDeclClass(compiler);
+        compiler.addInstruction(new BRA(new Label("debutMain")));
+        classes.codeGenInitFields(compiler);
+        classes.codeGenMethods(compiler);
+        compiler.addLabel(new Label("debutMain"));
         main.codeGenMain(compiler);
         /*compiler.addLabel(compiler.getLabFalse());
         compiler.addInstruction(new WSTR("False"));
         compiler.addLabel(compiler.getLabTrue());
         compiler.addInstruction(new WSTR("True"));*/
         compiler.addInstruction(new HALT());
+        //Messages des erreures
+        compiler.addLabel(new Label("code.Object.equals"));
+        compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R0));
+        compiler.addInstruction(new LOAD(new RegisterOffset(-3, Register.LB), Register.R1));
+        compiler.addInstruction(new CMP(Register.R0, Register.R1));
+        compiler.addInstruction(new SEQ(Register.getR(1)));
+        compiler.addInstruction(new WINT());
+        compiler.addInstruction(new RTS());
     }
 
     @Override

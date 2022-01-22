@@ -13,6 +13,9 @@ import fr.ensimag.deca.context.FieldDefinition;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
 public class Selection extends AbstractLValue{
     private final AbstractExpr expr;
@@ -43,13 +46,18 @@ public class Selection extends AbstractLValue{
             }
             System.out.println(currentClass.getType().getName().getName()+" == "+ leftType.getName().getName());
         }
-
+        ident.setDefinition((FieldDefinition)classeAppelanteEnv.get(ident.getName()));
+        this.setType(ident.getType());
         return ident.getType();
     }
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
         // TODO Auto-generated method stub
-        return 0;
+        int reg = expr.codeGenExpr(compiler);
+        int off = ident.getFieldDefinition().getIndex();
+        compiler.addInstruction(new LOAD(Register.getR(reg), Register.R0));
+        compiler.addInstruction(new LOAD(new RegisterOffset(off, Register.R0),Register.getR(reg)));
+        return reg;
     }
     @Override
     public void decompile(IndentPrintStream s) {
