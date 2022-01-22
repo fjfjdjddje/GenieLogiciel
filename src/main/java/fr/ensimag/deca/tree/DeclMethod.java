@@ -16,8 +16,12 @@ import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Operand;
+import fr.ensimag.ima.pseudocode.instructions.BRA;
+import fr.ensimag.ima.pseudocode.instructions.ERROR;
 import fr.ensimag.ima.pseudocode.instructions.RTS;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
+import fr.ensimag.ima.pseudocode.instructions.WNL;
+import fr.ensimag.ima.pseudocode.instructions.WSTR;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
 import java.io.PrintStream;
@@ -37,6 +41,7 @@ public class DeclMethod extends AbstractDeclMethod {
     final private AbstractIdentifier methodName;
     final private ListDeclParam listDeclParam;
     final private MethodBody body;
+    public static boolean returnExiste = false;
     protected EnvironmentExp methodEnv;
 
     public DeclMethod(AbstractIdentifier type, AbstractIdentifier methodName,ListDeclParam listDeclParam,
@@ -98,9 +103,17 @@ public class DeclMethod extends AbstractDeclMethod {
 
     @Override
     public void codeGenDeclMethod(DecacCompiler compiler){
+        returnExiste = true;
         compiler.addLabel(methodName.getMethodDefinition().getLabel());
         Register.pushAll(compiler);
+        Label lab1 = new Label("fin"+methodName.getMethodDefinition().getLabel().toString());
         this.body.codeGenDeclBody(compiler);
+        if(returnExiste){
+            compiler.addInstruction(new BRA(lab1));
+            compiler.addInstruction(new WSTR("Erreur : sortie de la methode"+methodName.getMethodDefinition().getLabel().toString()+"sans return"));
+            compiler.addInstruction(new WNL());
+            compiler.addInstruction(new ERROR());
+        }
         compiler.addLabel(new Label("fin"+methodName.getMethodDefinition().getLabel().toString()));
         Register.popALL(compiler);
         compiler.addInstruction(new RTS());

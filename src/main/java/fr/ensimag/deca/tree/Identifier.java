@@ -184,10 +184,14 @@ public class Identifier extends AbstractIdentifier implements Condition {
             throw new ContextualError(this.name.getName()+" used but not declared.", this.getLocation());
         }else{
             this.setType(localEnv.get(this.name).getType());
-            this.setDefinition(localEnv.getCurrentEnvironment().get(this.name));
-            System.out.println("zbiiiiiiii123"+localEnv.getCurrentEnvironment().get(this.name)+"dee : "+this.name.getName());
-            System.out.println(this.getName().getName());
-            System.out.println(localEnv.getCurrentEnvironment());
+            this.setDefinition(localEnv.get(this.name));
+            //EnvironmentExp courant = localEnv;
+            /*System.out.println("==============================");
+            while(courant != null){
+                System.out.println("zbiiiiiiii123"+localEnv.get(this.name)+"dee : "+this.name.getName());
+                courant = courant.getParentEnvironment();
+            }
+            System.out.println("===============================");*/
             return localEnv.get(this.name).getType();
         }
         
@@ -261,7 +265,12 @@ public class Identifier extends AbstractIdentifier implements Condition {
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
         int reg = Register.getEmptyReg(compiler);
-        compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(), Register.getR(reg)));
+        if(!this.getDefinition().isField()){
+            compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(), Register.getR(reg)));}
+        else{
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(0)));
+            compiler.addInstruction(new LOAD(new RegisterOffset(this.getFieldDefinition().getIndex(), Register.R0), Register.getR(reg)));
+        }
         return reg;
     }
 }

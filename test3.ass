@@ -13,26 +13,28 @@ debutProg:
 	STORE R0, 3(GB)
 	LOAD code.Object.equals, R0
 	STORE R0, 4(GB)
-	LOAD code.A.m, R0
+	LOAD code.A.f, R0
 	STORE R0, 5(GB)
 	BRA debutMain
 init.A:
-	LOAD #10, R2
-	LOAD -2(LB), R2
-	STORE R2, 1(R2)
+	LOAD #5, R2
+	LOAD -2(LB), R1
+	STORE R2, 1(R1)
 	RTS
-code.A.m:
-	LOAD #1, R2
-	STORE R2, 1(LB)
+code.A.f:
 	LOAD -2(LB), R2
 	LOAD R2, R0
 	LOAD 1(R0), R2
-	LOAD R2, R1
-	WINT
-fincode.A.m:
+	LOAD R2, R0
+	BRA fincode.A.f
+	WSTR "Erreur : sortie de la methodecode.A.fsans return"
+	WNL
+	ERROR
+fincode.A.f:
 	RTS
 debutMain:
 ; Beginning of main instructions:
+	PUSH R2
 	NEW #2, R2
 	LEA 3(GB), R0
 	STORE R0, 0(R2)
@@ -40,13 +42,6 @@ debutMain:
 	BSR init.A
 	POP R2
 	STORE R2, 6(GB)
-	NEW #2, R2
-	LEA 3(GB), R0
-	STORE R0, 0(R2)
-	PUSH R2
-	BSR init.A
-	POP R2
-	STORE R2, 7(GB)
 	ADDSP #1
 	LOAD 6(GB), R2
 	LOAD R2, R0
@@ -55,6 +50,8 @@ debutMain:
 	LOAD 0(R1), R1
 	BSR 2(R1)
 	SUBSP #1
+	LOAD R0, R1
+	WINT
 	HALT
 code.Object.equals:
 	LOAD -2(LB), R0

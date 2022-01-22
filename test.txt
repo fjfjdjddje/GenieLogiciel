@@ -4,20 +4,20 @@
 class B extends A{
     int a;
     B b;
-    
+
     void seta(int a){
-    
+
     this.a = 5;}}
 {
  	A a;
  	B b;
  	b.f(5);
- }    
+ }
  {
  	int a;
  	a.a = 5;
  }
- 
+
  class A {
  	protected int x ;
  	int getX() {
@@ -33,14 +33,11 @@ class B extends A{
  {
  A a = new B();
   }*/
-  class G{
-  int t;
-  void xe(){print("zbi");}}
-  class A extends G {
+  class A{
 int x = 10;
 void m(){
 	int y = 1;
-	print(x);}}
+	print(this.x);}}
 /*
 void m() { }
 void p() { }*/
@@ -60,5 +57,5 @@ void q() { }
    A a = new A();
    A b = new A();
    a.m();
-   
+
 }

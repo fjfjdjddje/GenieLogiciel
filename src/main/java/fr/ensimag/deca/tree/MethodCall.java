@@ -67,6 +67,7 @@ public class MethodCall extends AbstractExpr{
             i++;
 
         }
+        this.setType(sign.paramNumber(0));
 
         return sign.paramNumber(0);
     }
