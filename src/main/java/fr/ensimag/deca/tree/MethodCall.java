@@ -23,10 +23,11 @@ import fr.ensimag.ima.pseudocode.instructions.BEQ;
 import fr.ensimag.ima.pseudocode.instructions.BSR;
 import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.POP;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 import fr.ensimag.ima.pseudocode.instructions.SUBSP;
 
-public class MethodCall extends AbstractExpr{
+public class MethodCall extends AbstractExpr implements Condition{
     private final AbstractExpr objectName;
     private final AbstractIdentifier methodName;
     private final ListExpr listParameters;
@@ -56,23 +57,36 @@ public class MethodCall extends AbstractExpr{
         int i = 1;
         for (AbstractExpr expression: this.listParameters.getList()){
             Type exprType = expression.verifyExpr(compiler, localEnv, currentClass);
+            /*if (sign.paramNumber(i).sameType(exprType)){
+                if (!exprType.sameType(sign.paramNumber(i))){
+                    throw new ContextualError("todo", expression.getLocation());
+                }
+            }
+            if (exprType.sameType(sign.paramNumber(i))){
+                if (!sign.paramNumber(i).sameType(exprType)){
+                    throw new ContextualError("todo", expression.getLocation());
+                }
+            }*/
             if (!sign.paramNumber(i).sameType(exprType)){
                 if(!(sign.paramNumber(i).isFloat() && exprType.isInt())){
                     throw new ContextualError("Method "+methodName.getName().getName()+" expecting "+sign.paramNumber(i).getName().getName()+" received "+exprType.getName().getName(), expression.getLocation());
                 }
             }
-            if(!((ClassType)exprType).isSubClassOf((ClassType)sign.paramNumber(i))){
-                throw new ContextualError("Method "+methodName.getName().getName()+" expecting "+sign.paramNumber(i).getName().getName()+" received "+exprType.getName().getName(), expression.getLocation());
-            }
+            if(sign.paramNumber(i).isClass() && exprType.isClass()){
+                if(!((ClassType)exprType).isSubClassOf((ClassType)sign.paramNumber(i))){
+                    throw new ContextualError("Method "+methodName.getName().getName()+" expecting "+sign.paramNumber(i).getName().getName()+" received "+exprType.getName().getName(), expression.getLocation());
+                }}
             i++;
 
         }
         this.setType(sign.paramNumber(0));
+        System.out.println(sign.paramNumber(0).getName().getName()+"wa777777");
 
         return sign.paramNumber(0);
     }
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
+        //Register.pushAll(compiler);
         compiler.addInstruction(new ADDSP(this.listParameters.size()+1));
         compiler.addInstruction(new LOAD(Register.getR(objectName.codeGenExpr(compiler)), Register.getR(0)));
         compiler.addInstruction(new STORE(Register.getR(0), new RegisterOffset(0, Register.SP)));
@@ -80,6 +94,13 @@ public class MethodCall extends AbstractExpr{
         for(AbstractExpr expr : this.listParameters.getList()){
             int reg = expr.codeGenExpr(compiler);
             compiler.addInstruction(new STORE(Register.getR(reg), new RegisterOffset(compteur, Register.SP)));
+            if(Register.getR(reg).getIsPushed()){
+                compiler.addInstruction(new POP(Register.getR(reg)));
+                Register.getR(reg).setIsPushed(false);
+            }
+        else{
+            Register.getR(reg).setIsFull(false);
+        }
             compteur --;
         }
         compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.SP), Register.R1));
@@ -88,8 +109,14 @@ public class MethodCall extends AbstractExpr{
         compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.R1),Register.R1));
         compiler.addInstruction(new BSR(new RegisterOffset(methodName.getMethodDefinition().getIndex()+1, Register.R1)));
         compiler.addInstruction(new SUBSP(this.listParameters.size()+1));
-        return 0;
+        //Register.popALL(compiler);
+        int reg = Register.getEmptyReg(compiler);
+        Register.getR(reg).setIsFull(true);
+        compiler.addInstruction(new LOAD(Register.R0, Register.getR(reg)));
+        return reg;
     }
+
+
     @Override
     public void decompile(IndentPrintStream s) {
         // TODO Auto-generated method stub
@@ -109,6 +136,28 @@ public class MethodCall extends AbstractExpr{
         objectName.iterChildren(f);
         methodName.iterChildren(f);
         listParameters.iterChildren(f);
+    }
+    @Override
+    public void codeGenCond(DecacCompiler compiler, Label lab2) {
+        compiler.addInstruction(new ADDSP(this.listParameters.size()+1));
+        compiler.addInstruction(new LOAD(Register.getR(objectName.codeGenExpr(compiler)), Register.getR(0)));
+        compiler.addInstruction(new STORE(Register.getR(0), new RegisterOffset(0, Register.SP)));
+        int compteur = -1;
+        for(AbstractExpr expr : this.listParameters.getList()){
+            int reg = expr.codeGenExpr(compiler);
+            compiler.addInstruction(new STORE(Register.getR(reg), new RegisterOffset(compteur, Register.SP)));
+            compteur --;
+        }
+        compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.SP), Register.R1));
+        //compiler.addInstruction(new CMP(new NullOperand(),Register.R1));
+        //compiler.addInstruction(new BEQ(new Label("deferencement.null")));
+        compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.R1),Register.R1));
+        compiler.addInstruction(new BSR(new RegisterOffset(methodName.getMethodDefinition().getIndex()+1, Register.R1)));
+        compiler.addInstruction(new SUBSP(this.listParameters.size()+1));
+        compiler.addInstruction(new LOAD(0,Register.R1));
+        compiler.addInstruction(new CMP(Register.R1, Register.R0));
+        compiler.addInstruction(new BEQ(lab2));
+        
     }
 
     

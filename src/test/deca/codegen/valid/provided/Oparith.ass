@@ -5,6 +5,13 @@ erreurDiv0:
 	HALT
 debutProg:
 ; Main program
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+	ADDSP #3
+	BRA debutMain
+debutMain:
 ; Beginning of main instructions:
 	LOAD #5, R2
 	STORE R2, 3(GB)
@@ -23,8 +30,7 @@ debutProg:
 	SUB R3, R2
 	STORE R2, 7(GB)
 	LOAD 3(GB), R2
-	LOAD #0, R0
-	SUB R0, R2
+	OPP R2, R2
 	LOAD 4(GB), R3
 	SUB R3, R2
 	STORE R2, 8(GB)
@@ -33,16 +39,11 @@ debutProg:
 	MUL R3, R2
 	STORE R2, 9(GB)
 	LOAD 3(GB), R2
-	LOAD #0, R0
-	SUB R0, R2
-	LOAD #0, R0
-	SUB R0, R2
-	LOAD #0, R0
-	SUB R0, R2
-	LOAD #0, R0
-	SUB R0, R2
-	LOAD #0, R0
-	SUB R0, R2
+	OPP R2, R2
+	OPP R2, R2
+	OPP R2, R2
+	OPP R2, R2
+	OPP R2, R2
 	LOAD 4(GB), R3
 	MUL R3, R2
 	STORE R2, 10(GB)
@@ -54,8 +55,7 @@ debutProg:
 	QUO R3, R2
 	STORE R2, 11(GB)
 	LOAD 3(GB), R2
-	LOAD #0, R0
-	SUB R0, R2
+	OPP R2, R2
 	LOAD 4(GB), R3
 	LOAD #0, R0
 	CMP R0, R3
@@ -64,10 +64,28 @@ debutProg:
 	STORE R2, 12(GB)
 	LOAD 4(GB), R2
 	LOAD 3(GB), R3
-	LOAD #0, R0
-	CMP R0, R3
+	LOAD #0, R1
+	CMP R1, R3
 	BEQ erreurDiv0
 	REM R3, R2
 	STORE R2, 13(GB)
 	HALT
+code.Object.equals:
+	LOAD -2(LB), R0
+	LOAD -3(LB), R1
+	CMP R0, R1
+	SEQ R0
+	RTS
+deferencement_null:
+	WSTR "Erreur : deferencement_null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile_pleine"
+	WNL
+	ERROR
+tas_pleine:
+	WSTR "Erreur : tas_pleine"
+	WNL
+	ERROR
 ; end main program

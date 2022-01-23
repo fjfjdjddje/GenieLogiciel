@@ -50,6 +50,7 @@ public class DeclParam extends AbstractDeclParam {
             throw new ContextualError("parametre "+paramName.getName().getName()+" already mentionned.", paramName.getLocation());
         }
             Definition def= new ParamDefinition(this.type.getType(),this.paramName.getLocation());
+            ((ParamDefinition)def).setParamOrder(ListDeclParam.order);
             this.paramName.setDefinition(def);
             this.paramName.setType(this.type.getType());  
             localEnv.getCurrentEnvironment().put(paramName.getName(),paramName.getExpDefinition());

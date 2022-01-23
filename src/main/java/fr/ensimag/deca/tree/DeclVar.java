@@ -117,7 +117,7 @@ public class DeclVar extends AbstractDeclVar {
         this.varName.getExpDefinition().setOperand(GB3);
         RegisterOffset.lastReg ++;
         int regIntia = this.initialization.codeGenIntialisation(compiler);
-        if (regIntia != 0){
+        if (regIntia != -1){
         compiler.addInstruction(new STORE(Register.getR(regIntia), varName.getExpDefinition().getOperand()));}
         else{
             if(type.getType().isFloat()){
@@ -136,7 +136,7 @@ public class DeclVar extends AbstractDeclVar {
         RegisterOffset GB3 = new RegisterOffset(ListDeclVar.localOff, Register.LB);
         this.varName.getExpDefinition().setOperand(GB3);
         int regIntia = this.initialization.codeGenIntialisation(compiler);
-        if (regIntia != 0){
+        if (regIntia != -1){
         compiler.addInstruction(new STORE(Register.getR(regIntia), varName.getExpDefinition().getOperand()));}
         else{
             if(type.getType().isFloat()){

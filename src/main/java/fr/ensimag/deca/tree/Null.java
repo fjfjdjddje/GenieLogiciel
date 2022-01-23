@@ -7,8 +7,10 @@ import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.NullType;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.ima.pseudocode.NullOperand;
 import fr.ensimag.ima.pseudocode.instructions.WINT;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.Register;
@@ -64,15 +66,10 @@ public class Null extends AbstractExpr {
 
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
-       /* int i = Register.getEmptyReg(compiler);
-        if (value){
-            compiler.addInstruction(new LOAD(new ImmediateInteger(1), Register.getR(i)));
-        }else{
-            compiler.addInstruction(new LOAD(new ImmediateInteger(0), Register.getR(i)));
-        }
+       int i = Register.getEmptyReg(compiler);
+        compiler.addInstruction(new LOAD(new NullOperand(), Register.getR(i)));
         Register.getR(i).setIsFull(true);
-        return i;*/
-        return 0;
+        return i;
     }
 
     @Override

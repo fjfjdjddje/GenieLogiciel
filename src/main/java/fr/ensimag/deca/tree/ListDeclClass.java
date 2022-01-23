@@ -8,6 +8,7 @@ import fr.ensimag.ima.pseudocode.LabelOperand;
 import fr.ensimag.ima.pseudocode.NullOperand;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.ADDSP;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 
@@ -72,6 +73,7 @@ public class ListDeclClass extends TreeList<AbstractDeclClass> {
         for( AbstractDeclClass declclass : this.getList()){
             declclass.codeGenDeclClass(compiler);
         }
+        compiler.addInstruction(new ADDSP(RegisterOffset.lastReg));
     }
     public void codeGenInitFields(DecacCompiler compiler){
         for( AbstractDeclClass declclass : this.getList()){

@@ -90,6 +90,14 @@ public abstract class AbstractExpr extends AbstractInst {
         
                 //throw new UnsupportedOperationException("not yet implemented");
             Type typeRightValue = this.verifyExpr(compiler, localEnv, currentClass);
+            if(typeRightValue == null){
+                if(!expectedType.isClass()){
+                    throw new ContextualError("Cannot be initiated with a nullPointer", this.getLocation());
+                }
+                else{
+                    return this;
+                }
+            }
             if(typeRightValue.isClass() && expectedType.isClass()){
                 if(!((ClassType)typeRightValue).isSubClassOf((ClassType)expectedType)){
                     throw new ContextualError("Assign incorrect: types différents", this.getLocation());

@@ -60,19 +60,19 @@ public class New extends AbstractExpr {
     }
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
-        if(Register.getR(2).getIsFull()){
+        /*if(Register.getR(2).getIsFull()){
             compiler.addInstruction(new PUSH(Register.getR(2)));
         }else{
             Register.getR(2).setIsFull(true);
-        }
+        }*/
         System.out.println(ident.getClassDefinition().getInitClass()+"hhhhhhh");
-        compiler.addInstruction(new NEW(ident.getClassDefinition().getNumberOfFields() +1, Register.getR(2)));
+        compiler.addInstruction(new NEW(ident.getClassDefinition().getNumberOfFields() +1, Register.getR(1)));
         compiler.addInstruction(new LEA(ident.getClassDefinition().getAdresseClass(), Register.R0));
-        compiler.addInstruction(new STORE(Register.R0,new RegisterOffset(0, Register.getR(2))));
-        compiler.addInstruction(new PUSH(Register.getR(2)));
+        compiler.addInstruction(new STORE(Register.R0,new RegisterOffset(0, Register.getR(1))));
+        compiler.addInstruction(new PUSH(Register.getR(1)));
         compiler.addInstruction(new BSR(((ClassDefinition)compiler.getEnvTypes().get(this.ident.getName())).getInitClass()));
-        compiler.addInstruction(new POP(Register.getR(2)));
-        return 2;
+        compiler.addInstruction(new LOAD(new RegisterOffset(0,Register.SP),Register.getR(1)));
+        return 1;
     }
 
 }

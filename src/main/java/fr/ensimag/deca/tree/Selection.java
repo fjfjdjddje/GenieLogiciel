@@ -50,6 +50,9 @@ public class Selection extends AbstractLValue{
         this.setType(ident.getType());
         return ident.getType();
     }
+    public FieldDefinition getFieldDef(){
+        return this.ident.getFieldDefinition();
+    }
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
         // TODO Auto-generated method stub

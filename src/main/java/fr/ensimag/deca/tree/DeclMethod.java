@@ -105,7 +105,7 @@ public class DeclMethod extends AbstractDeclMethod {
     public void codeGenDeclMethod(DecacCompiler compiler){
         returnExiste = true;
         compiler.addLabel(methodName.getMethodDefinition().getLabel());
-        Register.pushAll(compiler);
+        //Register.pushAll(compiler);
         Label lab1 = new Label("fin"+methodName.getMethodDefinition().getLabel().toString());
         this.body.codeGenDeclBody(compiler);
         if(returnExiste){
@@ -115,7 +115,7 @@ public class DeclMethod extends AbstractDeclMethod {
             compiler.addInstruction(new ERROR());
         }
         compiler.addLabel(new Label("fin"+methodName.getMethodDefinition().getLabel().toString()));
-        Register.popALL(compiler);
+        //Register.popALL(compiler);
         compiler.addInstruction(new RTS());
     }
 

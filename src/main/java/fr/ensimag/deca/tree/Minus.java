@@ -20,9 +20,9 @@ public class Minus extends AbstractOpArith {
         int reg2 = super.getRightOperand().codeGenExpr(compiler);  
         Register.getR(reg2).setIsFull(true);
         if(Register.getR(reg1).getIsPushed()){
-            compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
+            compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R1));
             compiler.addInstruction(new POP(Register.getR(reg1)));
-            compiler.addInstruction(new SUB(Register.R0,Register.getR(reg1)));
+            compiler.addInstruction(new SUB(Register.R1,Register.getR(reg1)));
         }else{
         compiler.addInstruction(new SUB(Register.getR(reg2),Register.getR(reg1)));
         }

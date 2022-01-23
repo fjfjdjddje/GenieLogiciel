@@ -13,55 +13,440 @@ debutProg:
 	STORE R0, 3(GB)
 	LOAD code.Object.equals, R0
 	STORE R0, 4(GB)
-	LOAD code.A.m, R0
+	LOAD code.Socrate.afficheB, R0
+	STORE R0, 8(GB)
+	LOAD code.Socrate.heritageMethode, R0
+	STORE R0, 6(GB)
+	LOAD code.Socrate.quiSuisJe, R0
 	STORE R0, 5(GB)
+	LOAD code.Socrate.afficheA, R0
+	STORE R0, 7(GB)
+	LEA 3(GB), R0
+	STORE R0, 9(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 10(GB)
+	LOAD code.Socrate.afficheB, R0
+	STORE R0, 14(GB)
+	LOAD code.Socrate.heritageMethode, R0
+	STORE R0, 12(GB)
+	LOAD code.Socrate.quiSuisJe, R0
+	STORE R0, 11(GB)
+	LOAD code.Socrate.afficheA, R0
+	STORE R0, 13(GB)
+	LOAD code.Platon.afficheB, R0
+	STORE R0, 14(GB)
+	LOAD code.Platon.appelSuper, R0
+	STORE R0, 15(GB)
+	LOAD code.Platon.quiSuisJe, R0
+	STORE R0, 11(GB)
+	LOAD code.Platon.afficheA, R0
+	STORE R0, 13(GB)
+	ADDSP #16
 	BRA debutMain
-init.A:
-	LOAD #10, R2
-	LOAD -2(LB), R2
-	STORE R2, 1(R2)
-	RTS
-code.A.m:
+init.Socrate:
+	LOAD #3, R2
+	LOAD -2(LB), R1
+	STORE R2, 1(R1)
 	LOAD #1, R2
-	STORE R2, 1(LB)
-	LOAD -2(LB), R2
-	LOAD R2, R0
+	LOAD -2(LB), R1
+	STORE R2, 2(R1)
+	RTS
+init.Platon:
+	LOAD -2(LB), R0
+	PUSH R0
+	BSR init.Socrate
+	SUBSP #1
+	LOAD #6, R2
+	LOAD -2(LB), R1
+	STORE R2, 3(R1)
+	RTS
+code.Socrate.quiSuisJe:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	WSTR "socrate"
+	LOAD R0, R1
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Socrate.quiSuisJe
+	WSTR "Erreur : sortie de la methodecode.Socrate.quiSuisJesans return"
+	WNL
+	ERROR
+fincode.Socrate.quiSuisJe:
+	RTS
+code.Socrate.heritageMethode:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	WSTR "socrate"
+	LOAD R0, R1
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Socrate.heritageMethode
+	WSTR "Erreur : sortie de la methodecode.Socrate.heritageMethodesans return"
+	WNL
+	ERROR
+fincode.Socrate.heritageMethode:
+	RTS
+code.Socrate.afficheA:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -2(LB), R0
 	LOAD 1(R0), R2
 	LOAD R2, R1
 	WINT
-fincode.A.m:
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Socrate.afficheA
+	WSTR "Erreur : sortie de la methodecode.Socrate.afficheAsans return"
+	WNL
+	ERROR
+fincode.Socrate.afficheA:
+	RTS
+code.Socrate.afficheB:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -2(LB), R0
+	LOAD 2(R0), R2
+	LOAD R2, R1
+	WINT
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Socrate.afficheB
+	WSTR "Erreur : sortie de la methodecode.Socrate.afficheBsans return"
+	WNL
+	ERROR
+fincode.Socrate.afficheB:
+	RTS
+code.Platon.quiSuisJe:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	WSTR "platon"
+	LOAD R0, R1
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Platon.quiSuisJe
+	WSTR "Erreur : sortie de la methodecode.Platon.quiSuisJesans return"
+	WNL
+	ERROR
+fincode.Platon.quiSuisJe:
+	RTS
+code.Platon.afficheA:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -2(LB), R0
+	LOAD 1(R0), R2
+	LOAD R2, R1
+	WINT
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Platon.afficheA
+	WSTR "Erreur : sortie de la methodecode.Platon.afficheAsans return"
+	WNL
+	ERROR
+fincode.Platon.afficheA:
+	RTS
+code.Platon.afficheB:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -2(LB), R0
+	LOAD 3(R0), R2
+	LOAD R2, R1
+	WINT
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Platon.afficheB
+	WSTR "Erreur : sortie de la methodecode.Platon.afficheBsans return"
+	WNL
+	ERROR
+fincode.Platon.afficheB:
+	RTS
+code.Platon.appelSuper:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	ADDSP #1
+	LOAD -2(LB), R2
+	LOAD R2, R0
+	STORE R0, 0(SP)
+	LOAD 0(SP), R1
+	LOAD 0(R1), R1
+	BSR 3(R1)
+	SUBSP #1
+	LOAD R0, R3
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Platon.appelSuper
+	WSTR "Erreur : sortie de la methodecode.Platon.appelSupersans return"
+	WNL
+	ERROR
+fincode.Platon.appelSuper:
 	RTS
 debutMain:
 ; Beginning of main instructions:
-	NEW #2, R2
+	NEW #3, R1
 	LEA 3(GB), R0
-	STORE R0, 0(R2)
-	PUSH R2
-	BSR init.A
-	POP R2
-	STORE R2, 6(GB)
-	NEW #2, R2
-	LEA 3(GB), R0
-	STORE R0, 0(R2)
-	PUSH R2
-	BSR init.A
-	POP R2
-	STORE R2, 7(GB)
+	STORE R0, 0(R1)
+	PUSH R1
+	BSR init.Socrate
+	LOAD 0(SP), R1
+	STORE R1, 16(GB)
+	NEW #4, R1
+	LEA 9(GB), R0
+	STORE R0, 0(R1)
+	PUSH R1
+	BSR init.Platon
+	LOAD 0(SP), R1
+	STORE R1, 17(GB)
 	ADDSP #1
-	LOAD 6(GB), R2
-	LOAD R2, R0
+	LOAD 16(GB), R4
+	LOAD R4, R0
 	STORE R0, 0(SP)
 	LOAD 0(SP), R1
 	LOAD 0(R1), R1
 	BSR 2(R1)
 	SUBSP #1
+	LOAD R0, R4
+	ADDSP #1
+	LOAD 17(GB), R5
+	LOAD R5, R0
+	STORE R0, 0(SP)
+	LOAD 0(SP), R1
+	LOAD 0(R1), R1
+	BSR 2(R1)
+	SUBSP #1
+	LOAD R0, R5
+	ADDSP #1
+	LOAD 17(GB), R6
+	LOAD R6, R0
+	STORE R0, 0(SP)
+	LOAD 0(SP), R1
+	LOAD 0(R1), R1
+	BSR 3(R1)
+	SUBSP #1
+	LOAD R0, R6
+	ADDSP #1
+	LOAD 17(GB), R7
+	LOAD R7, R0
+	STORE R0, 0(SP)
+	LOAD 0(SP), R1
+	LOAD 0(R1), R1
+	BSR 4(R1)
+	SUBSP #1
+	LOAD R0, R7
+	ADDSP #1
+	LOAD 17(GB), R8
+	LOAD R8, R0
+	STORE R0, 0(SP)
+	LOAD 0(SP), R1
+	LOAD 0(R1), R1
+	BSR 5(R1)
+	SUBSP #1
+	LOAD R0, R8
+	ADDSP #1
+	LOAD 17(GB), R9
+	LOAD R9, R0
+	STORE R0, 0(SP)
+	LOAD 0(SP), R1
+	LOAD 0(R1), R1
+	BSR 6(R1)
+	SUBSP #1
+	LOAD R0, R9
 	HALT
 code.Object.equals:
 	LOAD -2(LB), R0
 	LOAD -3(LB), R1
 	CMP R0, R1
-	SEQ R1
-	WINT
+	SEQ R0
 	RTS
 deferencement_null:
 	WSTR "Erreur : deferencement_null"

@@ -9,6 +9,7 @@ import fr.ensimag.deca.context.Definition;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.FieldDefinition;
 import fr.ensimag.deca.context.MethodDefinition;
+import fr.ensimag.deca.context.ParamDefinition;
 import fr.ensimag.deca.context.ExpDefinition;
 import fr.ensimag.deca.context.VariableDefinition;
 import fr.ensimag.deca.syntax.DecaParser;
@@ -265,12 +266,18 @@ public class Identifier extends AbstractIdentifier implements Condition {
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
         int reg = Register.getEmptyReg(compiler);
-        if(!this.getDefinition().isField()){
-            compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(), Register.getR(reg)));}
-        else{
+        if(this.getDefinition().isField()){
             compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(0)));
             compiler.addInstruction(new LOAD(new RegisterOffset(this.getFieldDefinition().getIndex(), Register.R0), Register.getR(reg)));
+            }
+        else if(this.getDefinition().isParam()){
+            int offs = ((ParamDefinition)this.getDefinition()).getParamOrder();
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2- offs, Register.LB), Register.getR(reg)));
         }
+        else{
+            compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(), Register.getR(reg)));
+        }
+        
         return reg;
     }
 }

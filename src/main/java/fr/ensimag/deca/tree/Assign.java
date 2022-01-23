@@ -2,10 +2,12 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.POP;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 
@@ -50,7 +52,20 @@ public class Assign extends AbstractBinaryExpr {
     @Override
     public void codeGenInst(DecacCompiler compiler) {
         int reg = super.getRightOperand().codeGenExpr(compiler);
-        compiler.addInstruction(new STORE(Register.getR(reg),((Identifier)(super.getLeftOperand())).getExpDefinition().getOperand()));
+        if(this.getLeftOperand() instanceof Selection){
+            int reg2 = super.getLeftOperand().codeGenExpr(compiler);
+            compiler.addInstruction(new STORE(Register.getR(reg), new RegisterOffset(0, Register.getR(reg2))));
+            if(!Register.getR(reg2).getIsPushed()){
+                Register.getR(reg2).setIsFull(false);}
+        }else{
+        Identifier leftOp = ((Identifier)(super.getLeftOperand()));
+        if(!leftOp.getDefinition().isField()){
+            compiler.addInstruction(new STORE(Register.getR(reg),leftOp.getExpDefinition().getOperand()));}
+        else{
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R0));
+            compiler.addInstruction(new STORE(Register.getR(reg),new RegisterOffset(leftOp.getFieldDefinition().getIndex(), Register.R0)));
+        }
+    }
         if(!Register.getR(reg).getIsPushed()){
             Register.getR(reg).setIsFull(false);}
     }

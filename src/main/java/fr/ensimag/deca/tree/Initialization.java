@@ -41,6 +41,12 @@ public class Initialization extends AbstractInitialization {
         //throw new UnsupportedOperationException("not yet implemented");
         //System.out.println("VerifyInitialization Begin:");
         Type expressionType = this.expression.verifyExpr(compiler, localEnv, currentClass);
+        if(expressionType == null){
+            if(!t.isClass()){
+                throw new ContextualError("Assign incorrect: types incompatibles", this.getLocation());
+            }
+            return;
+        }
             if(expressionType.isClass() && t.isClass()){
                 if(!((ClassType)expressionType).isSubClassOf((ClassType)t)){
                     throw new ContextualError("Assign incorrect: types incompatibles", this.getLocation());

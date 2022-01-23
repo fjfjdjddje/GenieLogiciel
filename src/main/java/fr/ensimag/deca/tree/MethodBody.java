@@ -8,6 +8,7 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.Register;
 
 public class MethodBody extends Tree{
     final private ListInst listInst ;
@@ -40,7 +41,9 @@ public class MethodBody extends Tree{
         
     }
     public void codeGenDeclBody(DecacCompiler compiler){
+        Register.pushAll(compiler);
         listDeclVar.codeGenListVarLoc(compiler);
         listInst.codeGenListInst(compiler);
+        Register.popALL(compiler);
     }
 }

@@ -1,0 +1,247 @@
+; start main program
+	BRA debutProg
+erreurDiv0:
+	WSTR "Arret de l'execution: division par zéro impossible."
+	HALT
+debutProg:
+; Main program
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 4(GB)
+	LOAD code.ListeChainee.get, R0
+	STORE R0, 5(GB)
+	LOAD code.ListeChainee.setSuivant, R0
+	STORE R0, 7(GB)
+	LOAD code.ListeChainee.setValeur, R0
+	STORE R0, 6(GB)
+	ADDSP #8
+	BRA debutMain
+init.ListeChainee:
+	LOAD #10, R2
+	LOAD -2(LB), R1
+	STORE R2, 1(R1)
+	LOAD #null, R2
+	LOAD -2(LB), R1
+	STORE R2, 2(R1)
+	RTS
+code.ListeChainee.get:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD #0, R2
+	STORE R2, 1(LB)
+	LOAD -2(LB), R2
+	STORE R2, 2(LB)
+debutWhile1:
+	LOAD 1(LB), R2
+	LOAD -3(LB), R3
+	CMP R3, R2
+	BEQ finWhile1
+	LOAD 2(LB), R2
+	LOAD R2, R0
+	LOAD 2(R0), R2
+	STORE R2, 2(LB)
+	LOAD 1(LB), R2
+	LOAD #1, R3
+	ADD R3, R2
+	STORE R2, 1(LB)
+	BRA debutWhile1
+finWhile1:
+	LOAD 2(LB), R2
+	LOAD R2, R0
+	LOAD 1(R0), R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.ListeChainee.get
+	WSTR "Erreur : sortie de la methodecode.ListeChainee.getsans return"
+	WNL
+	ERROR
+fincode.ListeChainee.get:
+	RTS
+code.ListeChainee.setValeur:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -3(LB), R2
+	LOAD -2(LB), R0
+	STORE R2, 1(R0)
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.ListeChainee.setValeur
+	WSTR "Erreur : sortie de la methodecode.ListeChainee.setValeursans return"
+	WNL
+	ERROR
+fincode.ListeChainee.setValeur:
+	RTS
+code.ListeChainee.setSuivant:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -3(LB), R2
+	LOAD -2(LB), R0
+	STORE R2, 2(R0)
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.ListeChainee.setSuivant
+	WSTR "Erreur : sortie de la methodecode.ListeChainee.setSuivantsans return"
+	WNL
+	ERROR
+fincode.ListeChainee.setSuivant:
+	RTS
+debutMain:
+; Beginning of main instructions:
+	NEW #3, R1
+	LEA 3(GB), R0
+	STORE R0, 0(R1)
+	PUSH R1
+	BSR init.ListeChainee
+	LOAD 0(SP), R1
+	STORE R1, 8(GB)
+	NEW #3, R1
+	LEA 3(GB), R0
+	STORE R0, 0(R1)
+	PUSH R1
+	BSR init.ListeChainee
+	LOAD 0(SP), R1
+	STORE R1, 9(GB)
+	ADDSP #2
+	LOAD 8(GB), R2
+	LOAD R2, R0
+	STORE R0, 0(SP)
+	LOAD #5, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R1
+	LOAD 0(R1), R1
+	BSR 3(R1)
+	SUBSP #2
+	LOAD R0, R2
+	ADDSP #2
+	LOAD 8(GB), R3
+	LOAD R3, R0
+	STORE R0, 0(SP)
+	LOAD 9(GB), R3
+	STORE R3, -1(SP)
+	LOAD 0(SP), R1
+	LOAD 0(R1), R1
+	BSR 4(R1)
+	SUBSP #2
+	LOAD R0, R3
+	ADDSP #2
+	LOAD 9(GB), R4
+	LOAD R4, R0
+	STORE R0, 0(SP)
+	LOAD #20, R4
+	STORE R4, -1(SP)
+	LOAD 0(SP), R1
+	LOAD 0(R1), R1
+	BSR 3(R1)
+	SUBSP #2
+	LOAD R0, R4
+	ADDSP #2
+	LOAD 8(GB), R5
+	LOAD R5, R0
+	STORE R0, 0(SP)
+	LOAD #1, R5
+	STORE R5, -1(SP)
+	LOAD 0(SP), R1
+	LOAD 0(R1), R1
+	BSR 2(R1)
+	SUBSP #2
+	LOAD R0, R5
+	LOAD R5, R1
+	WINT
+	HALT
+code.Object.equals:
+	LOAD -2(LB), R0
+	LOAD -3(LB), R1
+	CMP R0, R1
+	SEQ R0
+	RTS
+deferencement_null:
+	WSTR "Erreur : deferencement_null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile_pleine"
+	WNL
+	ERROR
+tas_pleine:
+	WSTR "Erreur : tas_pleine"
+	WNL
+	ERROR
+; end main program

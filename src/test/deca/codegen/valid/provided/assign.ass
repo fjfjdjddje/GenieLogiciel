@@ -5,6 +5,13 @@ erreurDiv0:
 	HALT
 debutProg:
 ; Main program
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+	ADDSP #3
+	BRA debutMain
+debutMain:
 ; Beginning of main instructions:
 	STORE R0, 3(GB)
 	STORE R0, 4(GB)
@@ -27,16 +34,15 @@ debutProg:
 	LOAD 4(GB), R3
 	SUB R3, R2
 	LOAD 3(GB), R3
-	LOAD #0, R0
-	SUB R0, R3
+	OPP R3, R3
 	SUB R3, R2
 	STORE R2, 3(GB)
 	LOAD 5(GB), R2
 	LOAD 4(GB), R3
 	MUL R3, R2
 	LOAD 3(GB), R3
-	LOAD #0, R0
-	CMP R0, R3
+	LOAD #0, R1
+	CMP R1, R3
 	BEQ erreurDiv0
 	REM R3, R2
 	STORE R2, 3(GB)
@@ -64,8 +70,7 @@ debutProg:
 	LOAD 6(GB), R3
 	SUB R3, R2
 	LOAD 6(GB), R3
-	LOAD #0x0.0p0, R0
-	SUB R0, R3
+	OPP R3, R3
 	SUB R3, R2
 	LOAD 7(GB), R3
 	ADD R3, R2
@@ -95,4 +100,22 @@ debutProg:
 	MUL R3, R2
 	STORE R2, 9(GB)
 	HALT
+code.Object.equals:
+	LOAD -2(LB), R0
+	LOAD -3(LB), R1
+	CMP R0, R1
+	SEQ R0
+	RTS
+deferencement_null:
+	WSTR "Erreur : deferencement_null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile_pleine"
+	WNL
+	ERROR
+tas_pleine:
+	WSTR "Erreur : tas_pleine"
+	WNL
+	ERROR
 ; end main program

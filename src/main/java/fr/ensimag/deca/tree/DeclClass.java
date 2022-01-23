@@ -21,7 +21,7 @@ import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.PUSH;
 import fr.ensimag.ima.pseudocode.instructions.RTS;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
-
+import fr.ensimag.ima.pseudocode.instructions.SUBSP;
 
 import java.io.PrintStream;
 import java.util.Map;
@@ -88,7 +88,7 @@ public class DeclClass extends AbstractDeclClass {
             field.verifyDeclField(compiler, this.className.getClassDefinition().getMembers(), className.getClassDefinition());
             this.className.getClassDefinition().incNumberOfFields();
         }
-        this.className.getClassDefinition().setNumberOfFields(this.className.getClassDefinition().getNumberOfFields()+this.superclass.getClassDefinition().getNumberOfFields());
+       // this.className.getClassDefinition().setNumberOfFields(this.className.getClassDefinition().getNumberOfFields()+this.superclass.getClassDefinition().getNumberOfFields());
         
 
         //System.out.println(this.className.getName().getName()+" == "+ this.className.getClassDefinition().getNumberOfFields());
@@ -181,6 +181,7 @@ public class DeclClass extends AbstractDeclClass {
             compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R0));
             compiler.addInstruction(new PUSH(Register.R0));
             compiler.addInstruction(new BSR(superclass.getClassDefinition().getInitClass()));
+            compiler.addInstruction(new SUBSP(1));
         }
         for(AbstractDeclField field : listField.getList()){
             field.codeGenDeclField(compiler);

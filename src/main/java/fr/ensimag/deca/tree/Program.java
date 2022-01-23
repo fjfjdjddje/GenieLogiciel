@@ -98,8 +98,7 @@ public class Program extends AbstractProgram {
         compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R0));
         compiler.addInstruction(new LOAD(new RegisterOffset(-3, Register.LB), Register.R1));
         compiler.addInstruction(new CMP(Register.R0, Register.R1));
-        compiler.addInstruction(new SEQ(Register.getR(1)));
-        compiler.addInstruction(new WINT());
+        compiler.addInstruction(new SEQ(Register.getR(0)));
         compiler.addInstruction(new RTS());
         compiler.addLabel(new Label("deferencement_null"));
         compiler.addInstruction(new WSTR("Erreur : deferencement_null"));
