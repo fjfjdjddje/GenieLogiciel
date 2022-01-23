@@ -52,13 +52,16 @@ public class Assign extends AbstractBinaryExpr {
     @Override
     public void codeGenInst(DecacCompiler compiler) {
         int reg = super.getRightOperand().codeGenExpr(compiler);
+        if(super.getRightOperand() instanceof Selection){
+            compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg)), Register.getR(reg)));
+        }
         if(this.getLeftOperand() instanceof Selection){
             int reg2 = super.getLeftOperand().codeGenExpr(compiler);
             compiler.addInstruction(new STORE(Register.getR(reg), new RegisterOffset(0, Register.getR(reg2))));
             if(!Register.getR(reg2).getIsPushed()){
                 Register.getR(reg2).setIsFull(false);}
         }else{
-        Identifier leftOp = ((Identifier)(super.getLeftOperand()));
+           Identifier leftOp = ((Identifier)(super.getLeftOperand()));
         if(!leftOp.getDefinition().isField()){
             compiler.addInstruction(new STORE(Register.getR(reg),leftOp.getExpDefinition().getOperand()));}
         else{

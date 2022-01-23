@@ -15,6 +15,7 @@ import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.LEA;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
 public class Selection extends AbstractLValue{
@@ -59,7 +60,7 @@ public class Selection extends AbstractLValue{
         int reg = expr.codeGenExpr(compiler);
         int off = ident.getFieldDefinition().getIndex();
         compiler.addInstruction(new LOAD(Register.getR(reg), Register.R0));
-        compiler.addInstruction(new LOAD(new RegisterOffset(off, Register.R0),Register.getR(reg)));
+        compiler.addInstruction(new LEA(new RegisterOffset(off, Register.R0),Register.getR(reg)));
         return reg;
     }
     @Override

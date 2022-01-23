@@ -334,6 +334,7 @@ inequality_expr returns[AbstractExpr tree]
     | e1=inequality_expr INSTANCEOF type {
             assert($e1.tree != null);
             assert($type.tree != null);
+
         }
     ;
 
@@ -612,6 +613,15 @@ decl_method returns [AbstractDeclMethod tree]
         setLocation(tree2, $OPARENT);
         }
       | ASM OPARENT code=multi_line_string CPARENT SEMI {
+        Asm tree1 = new Asm($code.text);
+        ListInst tree3 = new ListInst();
+        tree3.add(tree1);
+        ListDeclVar decls = new ListDeclVar();
+        MethodBody tree2 = new MethodBody(tree3, decls);
+        $tree = new DeclMethod($type.tree, $ident.tree, $list_params.tree,tree2);
+        setLocation(tree1, $ASM);
+        setLocation(tree2, $type.start);
+        setLocation($tree, $type.start);
         }
       ) {
         }

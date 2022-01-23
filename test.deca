@@ -1,0 +1,11 @@
+class A{
+ int x;
+ void setX(int x){
+ 	this.x = x;
+ }
+}
+{
+ A a = new A();
+ a.setX(23);
+ print(a.x);
+}

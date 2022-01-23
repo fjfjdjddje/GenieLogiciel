@@ -1,9 +1,0 @@
-class A extends B{
-protected int a ;
-protected int b = 5;
-int d ;
-int d = 10;
-int printe(String haha){
-print(haha);
-}
-}

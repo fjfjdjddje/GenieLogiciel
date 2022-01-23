@@ -266,6 +266,7 @@ public class Identifier extends AbstractIdentifier implements Condition {
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
         int reg = Register.getEmptyReg(compiler);
+        Register.getR(reg).setIsFull(true);
         if(this.getDefinition().isField()){
             compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(0)));
             compiler.addInstruction(new LOAD(new RegisterOffset(this.getFieldDefinition().getIndex(), Register.R0), Register.getR(reg)));

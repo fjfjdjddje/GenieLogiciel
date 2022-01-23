@@ -1621,6 +1621,7 @@ public class DecaParser extends AbstractDecaParser {
 
 						                      assert(((Inequality_exprContext)_localctx).e1.tree != null);
 						                      assert(((Inequality_exprContext)_localctx).type.tree != null);
+
 						                  
 						}
 						break;
@@ -2995,6 +2996,7 @@ public class DecaParser extends AbstractDecaParser {
 		public List_paramsContext params;
 		public List_paramsContext list_params;
 		public BlockContext block;
+		public Token ASM;
 		public Multi_line_stringContext code;
 		public TypeContext type() {
 			return getRuleContext(TypeContext.class,0);
@@ -3063,7 +3065,7 @@ public class DecaParser extends AbstractDecaParser {
 			case ASM:
 				{
 				setState(531);
-				match(ASM);
+				((Decl_methodContext)_localctx).ASM = match(ASM);
 				setState(532);
 				((Decl_methodContext)_localctx).OPARENT = match(OPARENT);
 				setState(533);
@@ -3073,6 +3075,15 @@ public class DecaParser extends AbstractDecaParser {
 				setState(535);
 				match(SEMI);
 
+				        Asm tree1 = new Asm(((Decl_methodContext)_localctx).code.text);
+				        ListInst tree3 = new ListInst();
+				        tree3.add(tree1);
+				        ListDeclVar decls = new ListDeclVar();
+				        MethodBody tree2 = new MethodBody(tree3, decls);
+				        ((Decl_methodContext)_localctx).tree =  new DeclMethod(((Decl_methodContext)_localctx).type.tree, ((Decl_methodContext)_localctx).ident.tree, ((Decl_methodContext)_localctx).list_params.tree,tree2);
+				        setLocation(tree1, ((Decl_methodContext)_localctx).ASM);
+				        setLocation(tree2, (((Decl_methodContext)_localctx).type!=null?(((Decl_methodContext)_localctx).type.start):null));
+				        setLocation(_localctx.tree, (((Decl_methodContext)_localctx).type!=null?(((Decl_methodContext)_localctx).type.start):null));
 				        
 				}
 				break;

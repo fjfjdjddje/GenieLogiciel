@@ -18,6 +18,7 @@ import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.SEQ;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.ImmediateInteger;
 import fr.ensimag.ima.pseudocode.Label;
 import java.io.PrintStream;
@@ -60,7 +61,10 @@ public abstract class AbstractPrint extends AbstractInst {
     protected void codeGenInst(DecacCompiler compiler) {
         for (AbstractExpr a : getArguments().getList()) {
                 int i = a.codeGenExpr(compiler);
-                compiler.addInstruction(new LOAD(Register.getR(i), Register.getR(1)));
+                if(a instanceof Selection){
+                    compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(i)), Register.getR(1)));
+                }else{
+                    compiler.addInstruction(new LOAD(Register.getR(i), Register.getR(1)));}
                 Register.getR(i).setIsFull(false);
                 if (a.getType().isInt()){
                     compiler.addInstruction(new WINT());
