@@ -9,6 +9,7 @@ import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.SGE;
 import fr.ensimag.ima.pseudocode.instructions.BEQ;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.Label;
 
 /**
@@ -35,12 +36,24 @@ public class Or extends AbstractOpBool {
         Register.getR(reg2).setIsFull(true);
         if(Register.getR(reg1).getIsPushed()){
             compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
+            if(super.getLeftOperand() instanceof Selection){
+                compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(0)), Register.getR(0)));   
+            }
             compiler.addInstruction(new POP(Register.getR(reg1)));
+            if(super.getRightOperand() instanceof Selection){
+                compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg1)), Register.getR(reg1)));   
+            }
             compiler.addInstruction(new ADD(Register.getR(0), Register.getR(reg1)));
             compiler.addInstruction(new LOAD(new ImmediateInteger(1),Register.getR(0)));
             compiler.addInstruction(new CMP(Register.getR(0), Register.getR(reg1)));
             compiler.addInstruction(new SGE(Register.getR(reg1)));}
         else{
+            if(super.getLeftOperand() instanceof Selection){
+                compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg1)), Register.getR(reg1)));   
+            }
+            if(super.getRightOperand() instanceof Selection){
+                compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg2)), Register.getR(reg2)));   
+            }
             compiler.addInstruction(new ADD(Register.getR(reg2), Register.getR(reg1)));
             compiler.addInstruction(new LOAD(new ImmediateInteger(1),Register.getR(reg2)));
             compiler.addInstruction(new CMP(Register.getR(reg2), Register.getR(reg1)));
@@ -59,7 +72,13 @@ public class Or extends AbstractOpBool {
         Register.getR(reg2).setIsFull(true);
         if(Register.getR(reg1).getIsPushed()){
             compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
+            if(super.getLeftOperand() instanceof Selection){
+                compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(0)), Register.getR(0)));   
+            }
             compiler.addInstruction(new POP(Register.getR(reg1)));
+            if(super.getRightOperand() instanceof Selection){
+                compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg1)), Register.getR(reg1)));   
+            }
             compiler.addInstruction(new ADD(Register.getR(0), Register.getR(reg1)));
             compiler.addInstruction(new LOAD(new ImmediateInteger(1),Register.getR(0)));
             compiler.addInstruction(new CMP(Register.getR(0), Register.getR(reg1)));
@@ -69,6 +88,12 @@ public class Or extends AbstractOpBool {
             compiler.addInstruction(new BEQ(lab2));
         }
         else{
+            if(super.getLeftOperand() instanceof Selection){
+                compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg1)), Register.getR(reg1)));   
+            }
+            if(super.getRightOperand() instanceof Selection){
+                compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg2)), Register.getR(reg2)));   
+            }
             compiler.addInstruction(new ADD(Register.getR(reg2), Register.getR(reg1)));
             compiler.addInstruction(new LOAD(new ImmediateInteger(1),Register.getR(reg2)));
             compiler.addInstruction(new CMP(Register.getR(reg2), Register.getR(reg1)));

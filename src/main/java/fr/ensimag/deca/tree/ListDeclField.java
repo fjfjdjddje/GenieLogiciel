@@ -31,12 +31,13 @@ public class ListDeclField extends TreeList<AbstractDeclField> {
 
     }
   
-    void verifyListDeclField(DecacCompiler compiler, EnvironmentExp localEnv,ClassDefinition currentClass) throws ContextualError{
-            //System.out.println("verify listDeclField: start");
+    void verifyListDeclField(DecacCompiler compiler, EnvironmentExp localEnv,
+            ClassDefinition currentClass) throws ContextualError {
+            System.out.println("verify listDeclField: start");
                 for( AbstractDeclField DeclField : this.getList()){
                     DeclField.verifyDeclField(compiler, localEnv, currentClass);
                 }
-            //System.out.println("verify listDeclField: end");
+            System.out.println("verify listDeclField: end");
     }
     public void codeGenListField(DecacCompiler compiler) {
        /* for (AbstractDeclField i : getList()) {

@@ -66,6 +66,7 @@ public class StringLiteral extends AbstractStringLiteral {
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
         value = value.substring(1, value.length()-1);
+        //System.out.println(value);
         compiler.addInstruction(new WSTR(value));
         return 0;
     }

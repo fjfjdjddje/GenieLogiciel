@@ -78,7 +78,7 @@ public class Program extends AbstractProgram {
             compiler.addInstruction(new BRA(compiler.getLabelDebutProg()));
             compiler.addLabel(compiler.getLabelDivErreur());
             compiler.addInstruction(new WSTR("Arret de l'execution: division par zéro impossible."));
-            compiler.addInstruction(new HALT());
+            compiler.addInstruction(new ERROR());
             compiler.addLabel(compiler.getLabelDebutProg());
         }
         compiler.addComment("Main program");

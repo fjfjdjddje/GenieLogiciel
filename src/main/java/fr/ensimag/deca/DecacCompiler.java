@@ -19,6 +19,7 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.FloatType;
 import fr.ensimag.deca.context.IntType;
 import fr.ensimag.deca.context.MethodDefinition;
+import fr.ensimag.deca.context.NullType;
 import fr.ensimag.deca.context.Signature;
 import fr.ensimag.deca.context.StringType;
 import fr.ensimag.deca.context.TypeDefinition;
@@ -77,6 +78,7 @@ public class DecacCompiler {
         typeEnv.put(DecaParser.tableSymb.create("float"),new TypeDefinition(new FloatType(DecaParser.tableSymb.create("float")), new Location(0,0," ")));
         typeEnv.put(DecaParser.tableSymb.create("int"),new TypeDefinition(new IntType(DecaParser.tableSymb.create("int")), new Location(0,0," ")));
         typeEnv.put(DecaParser.tableSymb.create("string"),new TypeDefinition(new StringType(DecaParser.tableSymb.create("string")), new Location(0,0," ")));
+        typeEnv.put(DecaParser.tableSymb.create("null"),new TypeDefinition(new NullType(DecaParser.tableSymb.create("null")), new Location(0,0," ")));
         ClassDefinition objetDef=new ClassDefinition(new ClassType(DecaParser.tableSymb.create("Object"),new Location(0, 0, " "),null),new Location(0, 0, " "), null);
         Map<Symbol,Definition> objEnvironment =objetDef.getMembers().getCurrentEnvironment();
         Signature equalsSignature= new Signature();

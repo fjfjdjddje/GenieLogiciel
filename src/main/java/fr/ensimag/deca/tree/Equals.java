@@ -4,6 +4,7 @@ import fr.ensimag.ima.pseudocode.instructions.BEQ;
 import fr.ensimag.ima.pseudocode.instructions.BNE;
 import fr.ensimag.ima.pseudocode.ImmediateInteger;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.POP;
@@ -35,7 +36,13 @@ public class Equals extends AbstractOpExactCmp {
     public int codeGenExpr(DecacCompiler compiler) {
         int reg1 = super.getLeftOperand().codeGenExpr(compiler);
         Register.getR(reg1).setIsFull(true);
-        int reg2 = super.getRightOperand().codeGenPrint(compiler);   
+        if(super.getLeftOperand() instanceof Selection){
+            compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg1)), Register.getR(reg1)));
+        }
+        int reg2 = super.getRightOperand().codeGenExpr(compiler);  
+        if(super.getRightOperand() instanceof Selection){
+            compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg2)), Register.getR(reg2)));
+        } 
         Register.getR(reg2).setIsFull(true);
         if(Register.getR(reg1).getIsPushed()){
             compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
@@ -54,10 +61,16 @@ public class Equals extends AbstractOpExactCmp {
 
     @Override
     public void codeGenCond(DecacCompiler compiler,Label lab2) {
-        int reg1 = super.getLeftOperand().codeGenPrint(compiler);
+        int reg1 = super.getLeftOperand().codeGenExpr(compiler);
         Register.getR(reg1).setIsFull(true);
-        int reg2 = super.getRightOperand().codeGenPrint(compiler);   
+        if(super.getLeftOperand() instanceof Selection){
+            compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg1)), Register.getR(reg1)));
+        }
+        int reg2 = super.getRightOperand().codeGenExpr(compiler);   
         Register.getR(reg2).setIsFull(true);
+        if(super.getRightOperand() instanceof Selection){
+            compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg2)), Register.getR(reg2)));
+        } 
         if(Register.getR(reg1).getIsPushed()){
             compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
             compiler.addInstruction(new POP(Register.getR(reg1)));

@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.ImmediateInteger;
 import fr.ensimag.ima.pseudocode.instructions.WINT;
 import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
@@ -24,9 +25,21 @@ public class Multiply extends AbstractOpArith {
         Register.getR(reg2).setIsFull(true);
         if(Register.getR(reg1).getIsPushed()){
             compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R1));
+            if(super.getLeftOperand() instanceof Selection){
+                compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(1)), Register.getR(1)));   
+            }
             compiler.addInstruction(new POP(Register.getR(reg1)));
+            if(super.getRightOperand() instanceof Selection){
+                compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg1)), Register.getR(reg1)));   
+            }
             compiler.addInstruction(new MUL(Register.R1,Register.getR(reg1)));
         }else{
+            if(super.getLeftOperand() instanceof Selection){
+                compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg1)), Register.getR(reg1)));   
+            }
+            if(super.getRightOperand() instanceof Selection){
+                compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg2)), Register.getR(reg2)));   
+            }
             compiler.addInstruction(new MUL(Register.getR(reg2),Register.getR(reg1)));
         }
         if(!Register.getR(reg2).getIsPushed()){

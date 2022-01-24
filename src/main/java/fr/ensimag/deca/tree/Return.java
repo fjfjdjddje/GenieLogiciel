@@ -10,6 +10,7 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
 /**
@@ -45,6 +46,7 @@ public class Return extends AbstractInst {
         // TODO Auto-generated method stub
         if(currentClass != null){
             Type exprType = expression.verifyExpr(compiler, localEnv, currentClass);
+            System.out.println(exprType.getName().getName());
             if(exprType.isClass() ){
                 if(!returnType.isClass()){
                     throw new ContextualError("Type de retour incompatible", getLocation());
@@ -70,6 +72,9 @@ public class Return extends AbstractInst {
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
         int reg = expression.codeGenExpr(compiler);
+        if (expression instanceof Selection){
+        	compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg)), Register.getR(reg)));
+        }
         compiler.addInstruction(new LOAD(Register.getR(reg),Register.R0));
         //compiler.addInstruction(new BRA(new Label()));
         

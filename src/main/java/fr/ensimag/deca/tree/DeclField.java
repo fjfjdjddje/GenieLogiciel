@@ -101,6 +101,7 @@ public class DeclField extends AbstractDeclField {
             Definition def= new FieldDefinition(this.type.getType(),this.fieldName.getLocation(),this.visibility,currentClass,currentClass.getNumberOfFields()+1);
             this.fieldName.setDefinition(def);
             this.fieldName.setType(this.type.getType());
+            //System.out.println("hahahahzbi123wasad : "+fieldName.getName());
             localEnv.getCurrentEnvironment().put(fieldName.getName(),fieldName.getExpDefinition());
         }catch (Exception e){
            System.out.println("Error in the declaration of the variable in the environement.");
@@ -111,8 +112,12 @@ public class DeclField extends AbstractDeclField {
     @Override
     public void codeGenDeclField(DecacCompiler compiler){
         int regIntia = this.initialization.codeGenIntialisation(compiler);
-        if (regIntia != 0){
+        if (regIntia != -1){
             //compiler.addInstruction(new STORE(Register.getR(regIntia), varName.getExpDefinition().getOperand()));}
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(1)));
+            int offset = fieldName.getFieldDefinition().getIndex();
+            compiler.addInstruction(new STORE(Register.getR(regIntia), new RegisterOffset(offset,Register.getR(1))));
+            Register.getR(regIntia).setIsFull(false);
         }else{
                 if(type.getType().isFloat()){
                     compiler.addInstruction(new LOAD(new ImmediateFloat((float)0.0), Register.R0));
@@ -122,11 +127,11 @@ public class DeclField extends AbstractDeclField {
                     compiler.addInstruction(new LOAD(0, Register.R0));
                 }
                 //compiler.addInstruction(new STORE(Register.getR(0), varName.getExpDefinition().getOperand()));
+                compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(1)));
+                int offset = fieldName.getFieldDefinition().getIndex();
+                compiler.addInstruction(new STORE(Register.getR(0), new RegisterOffset(offset,Register.getR(1))));
             }
-        compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(1)));
-        int offset = fieldName.getFieldDefinition().getIndex();
-        compiler.addInstruction(new STORE(Register.getR(regIntia), new RegisterOffset(offset,Register.getR(1))));
-        Register.getR(regIntia).setIsFull(false);
+       
     }
 
     

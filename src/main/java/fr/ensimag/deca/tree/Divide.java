@@ -9,6 +9,7 @@ import fr.ensimag.ima.pseudocode.instructions.POP;
 import fr.ensimag.ima.pseudocode.ImmediateFloat;
 import fr.ensimag.ima.pseudocode.ImmediateInteger;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
 /**
  *
  * @author gl46
@@ -33,25 +34,43 @@ public class Divide extends AbstractOpArith {
         if(Register.getR(reg1).getIsPushed()){
             if(super.getLeftOperand().getType().isFloat()){
                 compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
+                if(super.getLeftOperand() instanceof Selection){
+                    compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(1)), Register.getR(1)));   
+                }
                 if(!compiler.getCompilerOptions().getNocheck()){
                 compiler.addInstruction(new LOAD(new ImmediateFloat(0), Register.getR(reg1)));
                 compiler.addInstruction(new CMP(Register.R0, Register.getR(reg1)));
                 compiler.addInstruction(new BEQ(compiler.getLabelDivErreur()));
                 }
                 compiler.addInstruction(new POP(Register.getR(reg1)));
+                if(super.getRightOperand() instanceof Selection){
+                    compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg1)), Register.getR(reg1)));   
+                }
                 compiler.addInstruction(new DIV(Register.getR(0), Register.getR(reg1)));
             }else{
                 compiler.addInstruction(new LOAD(Register.getR(reg1),Register.R0));
+                if(super.getLeftOperand() instanceof Selection){
+                    compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(1)), Register.getR(1)));   
+                }
                 if(!compiler.getCompilerOptions().getNocheck()){
                 compiler.addInstruction(new LOAD(new ImmediateInteger(0), Register.getR(reg1)));
                 compiler.addInstruction(new CMP(Register.R0, Register.getR(reg1)));
                 compiler.addInstruction(new BEQ(compiler.getLabelDivErreur()));
                 }
                 compiler.addInstruction(new POP(Register.getR(reg1)));
+                if(super.getRightOperand() instanceof Selection){
+                    compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg1)), Register.getR(reg1)));   
+                }
                 compiler.addInstruction(new QUO(Register.getR(0), Register.getR(reg1)));
             }
         }else{
             if(super.getLeftOperand().getType().isFloat()){
+                if(super.getLeftOperand() instanceof Selection){
+                    compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg1)), Register.getR(reg1)));   
+                }
+                if(super.getRightOperand() instanceof Selection){
+                    compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg2)), Register.getR(reg2)));   
+                }
                 if(!compiler.getCompilerOptions().getNocheck()){
                 compiler.addInstruction(new LOAD(new ImmediateFloat(0), Register.getR(0)));
                 compiler.addInstruction(new CMP(Register.R0, Register.getR(reg2)));
@@ -59,6 +78,12 @@ public class Divide extends AbstractOpArith {
                 }
                 compiler.addInstruction(new DIV(Register.getR(reg2), Register.getR(reg1)));
             }else{
+                if(super.getLeftOperand() instanceof Selection){
+                    compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg1)), Register.getR(reg1)));   
+                }
+                if(super.getRightOperand() instanceof Selection){
+                    compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(reg2)), Register.getR(reg2)));   
+                }
                 if(!compiler.getCompilerOptions().getNocheck()){
                 compiler.addInstruction(new LOAD(new ImmediateInteger(0), Register.getR(0)));
                 compiler.addInstruction(new CMP(Register.R0, Register.getR(reg2)));

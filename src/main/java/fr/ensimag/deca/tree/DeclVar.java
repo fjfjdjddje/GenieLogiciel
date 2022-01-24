@@ -13,6 +13,7 @@ import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.ImmediateFloat;
 import fr.ensimag.ima.pseudocode.NullOperand;
 import fr.ensimag.ima.pseudocode.Operand;
+import fr.ensimag.ima.pseudocode.instructions.ADDSP;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 import fr.ensimag.ima.pseudocode.Register;
@@ -61,7 +62,12 @@ public class DeclVar extends AbstractDeclVar {
                         def.isExpression();
                         this.varName.setDefinition(def);
                         this.varName.setType(this.type.getType());
+                        /*RegisterOffset GB3 = new RegisterOffset(RegisterOffset.lastReg, Register.GB);
+                        this.varName.getExpDefinition().setOperand(GB3);
+                        RegisterOffset.lastReg ++;*/
+                        //def.setOperand();
                         localEnv.declare(varName.getName(),varName.getExpDefinition());
+                        //System.out.println(localEnv.getCurrentEnvironment());
                     }catch (Exception e){
                        System.out.println("Error in the declaration of the variable in the environement.");
                     }
@@ -88,7 +94,13 @@ public class DeclVar extends AbstractDeclVar {
                 def.isExpression();
                 this.varName.setDefinition(def);
                 this.varName.setType(this.type.getType());
+
+                //RegisterOffset GB3 = new RegisterOffset(RegisterOffset.lastReg, Register.GB);
+                //this.varName.getExpDefinition().setOperand(GB3);
+                //RegisterOffset.lastReg ++;
+                //def.setOperand();
                 localEnv.declare(varName.getName(),varName.getExpDefinition());
+                //System.out.println(localEnv.getCurrentEnvironment());
             }catch (Exception e){
                System.out.println("Error in the declaration of the variable in the environement.");
             }
@@ -107,7 +119,9 @@ public class DeclVar extends AbstractDeclVar {
         RegisterOffset.lastReg ++;
         int regIntia = this.initialization.codeGenIntialisation(compiler);
         if (regIntia != -1){
-        compiler.addInstruction(new STORE(Register.getR(regIntia), varName.getExpDefinition().getOperand()));}
+        compiler.addInstruction(new STORE(Register.getR(regIntia), varName.getExpDefinition().getOperand()));
+        compiler.addInstruction(new ADDSP(1));
+        Register.getR(regIntia).setIsFull(false);}
         else{
             if(type.getType().isFloat()){
                 compiler.addInstruction(new LOAD(new ImmediateFloat((float)0.0), Register.R0));
@@ -117,8 +131,8 @@ public class DeclVar extends AbstractDeclVar {
                 compiler.addInstruction(new LOAD(0, Register.R0));
             }
             compiler.addInstruction(new STORE(Register.getR(0), varName.getExpDefinition().getOperand()));
+            compiler.addInstruction(new ADDSP(1));
         }
-        Register.getR(regIntia).setIsFull(false);
     }
     @Override
     public void codeGenDeclVariableLoc(DecacCompiler compiler){
@@ -126,7 +140,10 @@ public class DeclVar extends AbstractDeclVar {
         this.varName.getExpDefinition().setOperand(GB3);
         int regIntia = this.initialization.codeGenIntialisation(compiler);
         if (regIntia != -1){
-        compiler.addInstruction(new STORE(Register.getR(regIntia), varName.getExpDefinition().getOperand()));}
+        compiler.addInstruction(new STORE(Register.getR(regIntia), varName.getExpDefinition().getOperand()));
+        //compiler.addInstruction(new ADDSP(1));
+        Register.getR(regIntia).setIsFull(false);
+    }
         else{
             if(type.getType().isFloat()){
                 compiler.addInstruction(new LOAD(new ImmediateFloat((float)0.0), Register.R0));
@@ -136,8 +153,8 @@ public class DeclVar extends AbstractDeclVar {
                 compiler.addInstruction(new LOAD(0, Register.R0));
             }
             compiler.addInstruction(new STORE(Register.getR(0), varName.getExpDefinition().getOperand()));
-        }
-        Register.getR(regIntia).setIsFull(false);   
+            //compiler.addInstruction(new ADDSP(1));
+        }   
     }
     @Override
     public void decompile(IndentPrintStream s) {

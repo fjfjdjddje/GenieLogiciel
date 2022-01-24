@@ -1,9 +1,9 @@
 class ArctanAngle{
 	float value;
 	ArctanAngle next;
-	ArctanAngle head = null;
+	ArctanAngle head ;
 	int compteurhead = 0;
-	ArctanAngle tail = null;
+	ArctanAngle tail ;
        int compteurtail = 0;
        int compteur  ;
 	void addAtEnd(float value){
@@ -170,7 +170,8 @@ class Before{
 	}*/
 
 	//Rend l'objet ayant pour attributs le cosinus, sinus et tan calculés à l'issue de l'algorithme Cordic.
-	CircularVector cordicDirect(float theta){
+	float cordicDirect(float theta){
+		//CircularVector trigoVector = new CircularVector();
 		float x = 0.6072529350088f;
 		float y = 0;
 		float xi, yi, zi;
@@ -219,15 +220,15 @@ class Before{
 			z = zi;
 			i = i + 1;
 		}
-	CircularVector trigoVector = new CircularVector();
-	trigoVector.cos = testPeriodique*x;
+	/*trigoVector.cos = testPeriodique*x;
         trigoVector.sin = testPeriodique*y;
         trigoVector.tan = y/x;
-		return trgoVector;
+		return trigoVector;*/
+		return testPeriodique*x;
 	}
 
 	//Rend le cosinus d'un angle flottant.
-	float cos(float theta){
+	/*float cos(float theta){
 		CircularVector trigoVector = this.cordicDirect(theta);
 
 		return trigoVector.cos;
@@ -241,7 +242,7 @@ class Before{
   float tan(float theta){
 		CircularVector trigoVector = this.cordicDirect(theta);
 		return trigoVector.tan;
-	}
+	}*/
 
 	float arccos(float t){
 		float x = 1;
@@ -354,4 +355,9 @@ class Before{
 	}
 }
 
+{
 
+Before b = new Before();
+b.createAngleTable();
+print(b.anglesTable.getAngleStep(1));
+}

@@ -21,8 +21,11 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr implements Condit
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
+        //throw new UnsupportedOperationException("not yet implemented");
         Type typeLeftOperand =  super.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
         Type typeRightOperand =  super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
+        /*System.out.println("hna kayne type :");
+        System.out.println(this.getType().getName().getName());*/
         if(typeLeftOperand.isVoid()){
             throw new ContextualError("Void not supported for comparison operation.", super.getLeftOperand().getLocation());
         } else if(typeRightOperand.isVoid()){
@@ -31,7 +34,9 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr implements Condit
         if(this instanceof AbstractOpExactCmp){
           if(!typeLeftOperand.sameType(typeRightOperand)){
             if(!((typeLeftOperand.isInt() && typeRightOperand.isFloat()) || (typeLeftOperand.isFloat() && typeRightOperand.isInt()))){
-                throw new ContextualError("Cannot compare a "+typeLeftOperand.getName().getName()+ " and a "+ typeRightOperand.getName().getName(), this.getLocation());
+                if(!((typeLeftOperand.isClass() && typeRightOperand.isNull()) || (typeLeftOperand.isNull() && typeRightOperand.isClass()))){
+                    throw new ContextualError("Cannot compare a "+typeLeftOperand.getName().getName()+ " and a "+ typeRightOperand.getName().getName(), this.getLocation());
+                }
             }else{
                 if(typeLeftOperand.isInt()){
                     setLeftOperand(new ConvFloat(super.getLeftOperand()));
@@ -50,7 +55,16 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr implements Condit
                 throw new ContextualError("Booleans not supported for inequality operations", super.getLeftOperand().getLocation());
             } else if(typeRightOperand.isBoolean()){
                 throw new ContextualError("Booleans not supported for inequality operations", super.getRightOperand().getLocation());
-            } else{
+            } else if(typeLeftOperand.isClass()){
+                throw new ContextualError("Objects not supported for inequality operations", super.getLeftOperand().getLocation());
+            } else if(typeRightOperand.isClass()){
+                throw new ContextualError("Objects not supported for inequality operations", super.getRightOperand().getLocation());
+            }
+            else if(typeLeftOperand.isNull()){
+                throw new ContextualError("Objects not supported for inequality operations", super.getLeftOperand().getLocation());
+            } else if(typeRightOperand.isNull()){
+                throw new ContextualError("Objects not supported for inequality operations", super.getRightOperand().getLocation());}
+            else{
                 if(typeLeftOperand.isFloat() && typeRightOperand.isInt()){
                     setRightOperand(new ConvFloat(super.getRightOperand()));
                 } else if(typeLeftOperand.isInt() && typeRightOperand.isFloat()){
@@ -61,7 +75,7 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr implements Condit
         Type t= new BooleanType(DecaParser.tableSymb.create("boolean"));
         this.setType(t);
         return t;
-}
+    }
 
 
 }

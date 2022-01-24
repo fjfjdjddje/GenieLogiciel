@@ -53,6 +53,7 @@ public class MethodCall extends AbstractExpr implements Condition{
         if(sign.size()-1 != this.listParameters.getList().size()){
             throw new ContextualError("Problem in the number of parameters of the function.", this.methodName.getLocation());
         }
+        System.out.println(sign.size());
         int i = 1;
         for (AbstractExpr expression: this.listParameters.getList()){
             Type exprType = expression.verifyExpr(compiler, localEnv, currentClass);
@@ -79,23 +80,29 @@ public class MethodCall extends AbstractExpr implements Condition{
 
         }
         this.setType(sign.paramNumber(0));
+
         return sign.paramNumber(0);
     }
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
         //Register.pushAll(compiler);
         compiler.addInstruction(new ADDSP(this.listParameters.size()+1));
-        compiler.addInstruction(new LOAD(Register.getR(objectName.codeGenExpr(compiler)), Register.getR(0)));
+        int reg2 = objectName.codeGenExpr(compiler);
+        compiler.addInstruction(new LOAD(Register.getR(reg2), Register.getR(0)));
+        if(Register.getR(reg2).getIsPushed()){
+            compiler.addInstruction(new POP(Register.getR(reg2)));
+        }
         compiler.addInstruction(new STORE(Register.getR(0), new RegisterOffset(0, Register.SP)));
         int compteur = -1;
         for(AbstractExpr expr : this.listParameters.getList()){
             int reg = expr.codeGenExpr(compiler);
-            compiler.addInstruction(new STORE(Register.getR(reg), new RegisterOffset(compteur, Register.SP)));
             if(Register.getR(reg).getIsPushed()){
+                compiler.addInstruction(new STORE(Register.getR(reg), new RegisterOffset(compteur-1, Register.SP)));
                 compiler.addInstruction(new POP(Register.getR(reg)));
                 Register.getR(reg).setIsPushed(false);
             }
         else{
+            compiler.addInstruction(new STORE(Register.getR(reg), new RegisterOffset(compteur, Register.SP)));
             Register.getR(reg).setIsFull(false);
         }
             compteur --;
@@ -108,7 +115,7 @@ public class MethodCall extends AbstractExpr implements Condition{
         compiler.addInstruction(new SUBSP(this.listParameters.size()+1));
         //Register.popALL(compiler);
         int reg = Register.getEmptyReg(compiler);
-        Register.getR(reg).setIsFull(true);
+       //Register.getR(reg).setIsFull(true);
         compiler.addInstruction(new LOAD(Register.R0, Register.getR(reg)));
         return reg;
     }
@@ -137,7 +144,11 @@ public class MethodCall extends AbstractExpr implements Condition{
     @Override
     public void codeGenCond(DecacCompiler compiler, Label lab2) {
         compiler.addInstruction(new ADDSP(this.listParameters.size()+1));
-        compiler.addInstruction(new LOAD(Register.getR(objectName.codeGenExpr(compiler)), Register.getR(0)));
+        int reg2 = objectName.codeGenExpr(compiler);
+        compiler.addInstruction(new LOAD(Register.getR(reg2), Register.getR(0)));
+        if(Register.getR(reg2).getIsPushed()){
+            compiler.addInstruction(new POP(Register.getR(reg2)));
+        }
         compiler.addInstruction(new STORE(Register.getR(0), new RegisterOffset(0, Register.SP)));
         int compteur = -1;
         for(AbstractExpr expr : this.listParameters.getList()){

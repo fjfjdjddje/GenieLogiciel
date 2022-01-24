@@ -2,7 +2,7 @@
 	BRA debutProg
 erreurDiv0:
 	WSTR "Arret de l'execution: division par zéro impossible."
-	HALT
+	ERROR
 debutProg:
 ; Main program
 	LOAD #null, R0

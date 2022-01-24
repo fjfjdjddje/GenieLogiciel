@@ -1,9 +1,11 @@
 class A{
     int n=0;
-    boolean isFull=true;
-    float x=5.3648;
-
-
+    /*boolean isFull=true;
+    float x=5.3648;*/
+    int getInteger(){
+        return this.n;
+    }
+/*
     void setInteger(int x){
         this.n=x;
     }
@@ -16,9 +18,7 @@ class A{
         this.x=t;
     }
 
-    int getInteger(){
-        return this.n;
-    }
+
     
     boolean getIsFull(){
         return this.isFull;
@@ -27,11 +27,10 @@ class A{
     float getFloat(){
         return this.x;
     }
-
+*/
 }
 
 {   
     A a = new A();
-    
-    print(a.getFloat());
+    print(a.getInteger());
 }

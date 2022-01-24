@@ -21,8 +21,13 @@ public abstract class AbstractOpBool extends AbstractBinaryExpr implements Condi
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
+        //throw new UnsupportedOperationException("not yet implemented");
+        //System.out.println("Opbool: begin");
         Type typeLeftOperand =  super.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
         Type typeRightOperand =  super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
+        //System.out.println("left"+typeLeftOperand);
+        //System.out.println("right"+typeRightOperand);
+        
         if(typeLeftOperand.isVoid()){
             throw new ContextualError("Void not supported for boolean operation", getLeftOperand().getLocation());
         } else if(typeLeftOperand.isFloat()){

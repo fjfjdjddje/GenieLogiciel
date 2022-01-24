@@ -37,10 +37,19 @@ public class FloatLiteral extends AbstractExpr {
                 "literal values cannot be NaN");
         this.value = value;
     }
+   // @Override
+   /* protected int codeGenPrint(DecacCompiler compiler) {
+        int i = Register.getEmptyReg();
+    	compiler.addInstruction(new LOAD(new ImmediateFloat(value), Register.getR(i)));
+        Register.getR(i).setIsFull(true);
+        return i;
+    }*/
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
+        //throw new UnsupportedOperationException("not yet implemented");
         if (this.value > Math.pow(2, 32)){throw new ContextualError("Débordement lors d'une opération sur des flottants", this.getLocation());}
+       // System.out.println("VerifyExpr FloatLiteral:");
        Type t = new FloatType(DecaParser.tableSymb.create("float"));
        this.setType(t);
        return t;

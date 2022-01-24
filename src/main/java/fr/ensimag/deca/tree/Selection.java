@@ -13,17 +13,12 @@ import fr.ensimag.deca.context.FieldDefinition;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
-import fr.ensimag.ima.pseudocode.instructions.BNE;
-import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LEA;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
-import fr.ensimag.ima.pseudocode.instructions.POP;
-import fr.ensimag.ima.pseudocode.instructions.PUSH;
 
-public class Selection extends AbstractLValue implements Condition{
+public class Selection extends AbstractLValue{
     private final AbstractExpr expr;
     private final AbstractIdentifier ident;
     public Selection(AbstractExpr expr, AbstractIdentifier ident){
@@ -50,6 +45,7 @@ public class Selection extends AbstractLValue implements Condition{
             else if(!((ClassType)currentClass.getType()).isSubClassOf((ClassType)leftType)){
                 throw new ContextualError(ident.getName().getName()+" is a protected field.", this.ident.getLocation());
             }
+            System.out.println(currentClass.getType().getName().getName()+" == "+ leftType.getName().getName());
         }
         ident.setDefinition((FieldDefinition)classeAppelanteEnv.get(ident.getName()));
         this.setType(ident.getType());
@@ -85,20 +81,6 @@ public class Selection extends AbstractLValue implements Condition{
         // TODO Auto-generated method stub
         expr.iter(f);
         ident.iter(f);
-    }
-    @Override
-    public void codeGenCond(DecacCompiler compiler, Label lab2) {
-        // TODO Auto-generated method stub
-        int reg = expr.codeGenExpr(compiler);
-        int off = ident.getFieldDefinition().getIndex();
-        compiler.addInstruction(new LOAD(Register.getR(reg), Register.R0));
-        compiler.addInstruction(new LOAD(new RegisterOffset(off, Register.R0),Register.getR(reg)));
-        //compiler.addInstruction(new PUSH(Register.getR(1)));
-        compiler.addInstruction(new LOAD(0, Register.getR(0)));
-        compiler.addInstruction(new CMP(Register.getR(reg), Register.getR(0)));
-        compiler.addInstruction(new BNE(lab2));
-        //compiler.addInstruction(new POP(Register.getR(1)));
-        Register.getR(reg).setIsFull(false);
     }
     
 }

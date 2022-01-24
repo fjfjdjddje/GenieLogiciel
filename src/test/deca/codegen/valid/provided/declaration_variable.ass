@@ -2,7 +2,7 @@
 	BRA debutProg
 erreurDiv0:
 	WSTR "Arret de l'execution: division par zéro impossible."
-	HALT
+	ERROR
 debutProg:
 ; Main program
 	LOAD #null, R0
@@ -13,7 +13,9 @@ debutProg:
 	BRA debutMain
 debutMain:
 ; Beginning of main instructions:
+	LOAD #0, R0
 	STORE R0, 3(GB)
+	ADDSP #1
 	HALT
 code.Object.equals:
 	LOAD -2(LB), R0
