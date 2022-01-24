@@ -61,12 +61,7 @@ public class DeclVar extends AbstractDeclVar {
                         def.isExpression();
                         this.varName.setDefinition(def);
                         this.varName.setType(this.type.getType());
-                        /*RegisterOffset GB3 = new RegisterOffset(RegisterOffset.lastReg, Register.GB);
-                        this.varName.getExpDefinition().setOperand(GB3);
-                        RegisterOffset.lastReg ++;*/
-                        //def.setOperand();
                         localEnv.declare(varName.getName(),varName.getExpDefinition());
-                        //System.out.println(localEnv.getCurrentEnvironment());
                     }catch (Exception e){
                        System.out.println("Error in the declaration of the variable in the environement.");
                     }
@@ -93,13 +88,7 @@ public class DeclVar extends AbstractDeclVar {
                 def.isExpression();
                 this.varName.setDefinition(def);
                 this.varName.setType(this.type.getType());
-
-                //RegisterOffset GB3 = new RegisterOffset(RegisterOffset.lastReg, Register.GB);
-                //this.varName.getExpDefinition().setOperand(GB3);
-                //RegisterOffset.lastReg ++;
-                //def.setOperand();
                 localEnv.declare(varName.getName(),varName.getExpDefinition());
-                //System.out.println(localEnv.getCurrentEnvironment());
             }catch (Exception e){
                System.out.println("Error in the declaration of the variable in the environement.");
             }

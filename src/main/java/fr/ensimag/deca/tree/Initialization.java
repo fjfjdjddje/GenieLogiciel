@@ -61,18 +61,6 @@ public class Initialization extends AbstractInitialization {
                 this.expression.setType(type);
                 }
             }
-        /*if(!expressionType.sameType(t)){
-            if(!(expressionType.isInt() && t.isFloat())){
-                throw new ContextualError("Incorrect initialisation, incompatible types ( "+expressionType.getName().getName()+ "  and  "+t.getName().getName()+" ).", this.expression.getLocation());
-            }
-            else{
-                this.expression = new ConvFloat(this.expression);
-                Type type = new FloatType(DecaParser.tableSymb.create("float"));
-                this.expression.setType(type);
-            }
-        }*/
-         //System.out.println("VerifyInitialization End:");
-        
     }
     @Override
     public int codeGenIntialisation(DecacCompiler compiler){
@@ -82,7 +70,6 @@ public class Initialization extends AbstractInitialization {
 
     @Override
     public void decompile(IndentPrintStream s) {
-        //throw new UnsupportedOperationException("Not yet implemented");
         s.print(" = ");
         this.getExpression().decompile(s);
         s.println(";");

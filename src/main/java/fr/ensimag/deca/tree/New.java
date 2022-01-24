@@ -71,7 +71,6 @@ public class New extends AbstractExpr {
             compiler.addInstruction(new LOAD(new NullOperand(), Register.R0));
             compiler.addInstruction(new STORE(Register.R0,new RegisterOffset(0, Register.getR(1))));
         }else{
-        System.out.println(ident.getClassDefinition().getInitClass()+"hhhhhhh");
         compiler.addInstruction(new NEW(ident.getClassDefinition().getNumberOfFields() +1, Register.getR(1)));
         compiler.addInstruction(new LEA(ident.getClassDefinition().getAdresseClass(), Register.R0));
         compiler.addInstruction(new STORE(Register.R0,new RegisterOffset(0, Register.getR(1))));

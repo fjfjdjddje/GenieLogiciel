@@ -48,10 +48,8 @@ public class IfThenElse extends AbstractInst {
     
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
-        //throw new UnsupportedOperationException("not yet implemented");
         it2++;
         Label lab2 = new Label("finSinon"+it3);
-        //System.out.println(it2);    
         Label lab1 = new Label("debutSinon"+it2+it3);
         ((Condition)this.condition).codeGenCond(compiler,lab1);
         thenBranch.codeGenListInst(compiler);

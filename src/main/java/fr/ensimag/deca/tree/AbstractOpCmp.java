@@ -21,11 +21,8 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr implements Condit
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-        //throw new UnsupportedOperationException("not yet implemented");
         Type typeLeftOperand =  super.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
         Type typeRightOperand =  super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
-        /*System.out.println("hna kayne type :");
-        System.out.println(this.getType().getName().getName());*/
         if(typeLeftOperand.isVoid()){
             throw new ContextualError("Void not supported for comparison operation.", super.getLeftOperand().getLocation());
         } else if(typeRightOperand.isVoid()){

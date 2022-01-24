@@ -84,7 +84,6 @@ public class DeclMethod extends AbstractDeclMethod {
             index += currentClass.getNumberOfMethods();
             currentClass.incNumberOfMethods();
         }
-        System.out.println("code."+currentClass.getType().getName().getName() + "."+methodName.getName()+" index ="+index);
         Label lab = new Label("code."+currentClass.getType().getName().getName() + "."+methodName.getName());
         MethodDefinition methodDef = new MethodDefinition(this.type.getType(), this.getLocation(), methodSignature, index);
         methodDef.setLabel(lab);

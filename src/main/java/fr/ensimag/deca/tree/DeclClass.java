@@ -72,7 +72,6 @@ public class DeclClass extends AbstractDeclClass {
             this.className.setDefinition(def);
             this.className.setType(typeDeClasse);
             compiler.getEnvTypes().getCurrentEnvironment().put(className.getName(), def);
-            System.out.println(compiler.getEnvTypes().getCurrentEnvironment());
 
         }catch (Exception e){
            System.out.println("Error in the declaration of the class in the environement.");
@@ -82,16 +81,13 @@ public class DeclClass extends AbstractDeclClass {
     @Override
     protected void verifyClassMembers(DecacCompiler compiler)
             throws ContextualError {
-        //throw new UnsupportedOperationException("not yet implemented");
         this.className.getClassDefinition().setNumberOfFields(this.superclass.getClassDefinition().getNumberOfFields());
         for(AbstractDeclField field : listField.getList()){
             field.verifyDeclField(compiler, this.className.getClassDefinition().getMembers(), className.getClassDefinition());
             this.className.getClassDefinition().incNumberOfFields();
         }
-       // this.className.getClassDefinition().setNumberOfFields(this.className.getClassDefinition().getNumberOfFields()+this.superclass.getClassDefinition().getNumberOfFields());
         
 
-        //System.out.println(this.className.getName().getName()+" == "+ this.className.getClassDefinition().getNumberOfFields());
         
         for(AbstractDeclMethod method : listMethod.getList()){
             method.verifyDeclMethod(compiler, this.className.getClassDefinition().getMembers(), className.getClassDefinition());
@@ -126,26 +122,11 @@ public class DeclClass extends AbstractDeclClass {
         listMethod.iter(f);
     }
     public void codeGenDeclClass(DecacCompiler compiler){
-            System.out.println(this.superclass.getDefinition()+ " hhhhhruf");
             ((ClassDefinition)this.className.getDefinition()).setAdresseClass(new RegisterOffset(RegisterOffset.lastReg, Register.GB));
             compiler.addInstruction(new LEA(((ClassDefinition)this.superclass.getDefinition()).getAdresseClass(), Register.R0));
             compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(RegisterOffset.lastReg, Register.GB)));
             RegisterOffset.lastReg ++;
-            //on LOAD le code de equals.object
-            /*compiler.addInstruction(new LOAD(new LabelOperand(new Label("code.Object.equals")), Register.R0));
-            compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(RegisterOffset.lastReg, Register.GB)));*/
-        //listMethod.codeGenListDeclMethod(compiler);
         EnvironmentExp current =((ClassDefinition)(compiler.getEnvTypes().getCurrentEnvironment().get(className.getName()))).getMembers();
-        /*while(current != null){
-            for(Map.Entry<Symbol,Definition> a : current.getCurrentEnvironment().entrySet()){
-                if(a.getValue().isMethod()){
-                   // System.out.println("methode",)
-                   compiler.addInstruction(new LOAD(new LabelOperand(((MethodDefinition)a.getValue()).getLabel()), Register.R0));
-                   compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(RegisterOffset.lastReg + ((MethodDefinition)a.getValue()).getIndex(), Register.GB)));
-                }
-            }
-            current = current.getParentEnvironment();
-        }*/
         generation(current, compiler);
         ClassDefinition courant = ((ClassDefinition)(compiler.getEnvTypes().getCurrentEnvironment().get(className.getName())));
         int offs = 0;
@@ -154,8 +135,6 @@ public class DeclClass extends AbstractDeclClass {
             courant = courant.getSuperClass();
         }
         RegisterOffset.lastReg += offs;
-        System.out.println(RegisterOffset.lastReg+1+"lolololololo");
-        //a changerrrrrrrrrrrrrrrrrrrrrrr
        
     }
     private void generation(EnvironmentExp environnement, DecacCompiler compiler){
@@ -164,7 +143,6 @@ public class DeclClass extends AbstractDeclClass {
         }
         for(Map.Entry<Symbol,Definition> a : environnement.getCurrentEnvironment().entrySet()){
             if(a.getValue().isMethod()){
-               // System.out.println("methode",)
                compiler.addInstruction(new LOAD(new LabelOperand(((MethodDefinition)a.getValue()).getLabel()), Register.R0));
                compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(RegisterOffset.lastReg + ((MethodDefinition)a.getValue()).getIndex(), Register.GB)));
             }
