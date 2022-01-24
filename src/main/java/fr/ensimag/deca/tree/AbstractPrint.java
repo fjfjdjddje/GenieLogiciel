@@ -78,8 +78,8 @@ public abstract class AbstractPrint extends AbstractInst {
                 }else if (a.getType().isBoolean()){
                     Label labFalse = new Label("printFalse"+iterateur);
                     Label labFin = new Label("endPrint"+iterateur);
-                    compiler.addInstruction(new LOAD(new ImmediateInteger(0), Register.R0));
-                    compiler.addInstruction(new CMP(Register.getR(i),Register.R0));
+                    compiler.addInstruction(new LOAD(new ImmediateInteger(0), Register.R1));
+                    compiler.addInstruction(new CMP(Register.getR(i),Register.R1));
                     compiler.addInstruction(new BEQ(labFalse));
                     compiler.addInstruction(new WSTR("true"));
                     compiler.addInstruction(new BRA(labFin));

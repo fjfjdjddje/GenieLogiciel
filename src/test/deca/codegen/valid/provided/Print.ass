@@ -32,8 +32,8 @@ debutMain:
 	WFLOAT
 	LOAD 6(GB), R2
 	LOAD R2, R1
-	LOAD #0, R0
-	CMP R2, R0
+	LOAD #0, R1
+	CMP R2, R1
 	BEQ printFalse0
 	WSTR "true"
 	BRA endPrint0
@@ -51,8 +51,8 @@ endPrint0:
 	WFLOAT
 	LOAD 6(GB), R2
 	LOAD R2, R1
-	LOAD #0, R0
-	CMP R2, R0
+	LOAD #0, R1
+	CMP R2, R1
 	BEQ printFalse1
 	WSTR "true"
 	BRA endPrint1
@@ -70,6 +70,13 @@ endPrint1:
 	HALT
 code.Object.equals:
 	LOAD -2(LB), R0
+	LOAD -3(LB), R1
+	CMP R0, R1
+	SEQ R0
+	RTS
+code.instanceOf:
+	LOAD -2(LB), R0
+	LOAD 0(R0), R0
 	LOAD -3(LB), R1
 	CMP R0, R1
 	SEQ R0

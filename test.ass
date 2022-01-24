@@ -9,87 +9,24 @@ debutProg:
 	STORE R0, 1(GB)
 	LOAD code.Object.equals, R0
 	STORE R0, 2(GB)
-	LEA 1(GB), R0
-	STORE R0, 3(GB)
-	LOAD code.Object.equals, R0
-	STORE R0, 4(GB)
-	LOAD code.A.setX, R0
-	STORE R0, 5(GB)
-	ADDSP #6
+	ADDSP #3
 	BRA debutMain
-init.A:
-	LOAD #0, R0
-	LOAD -2(LB), R1
-	STORE R0, 1(R1)
-	RTS
-code.A.setX:
-	PUSH R2
-	PUSH R3
-	PUSH R4
-	PUSH R5
-	PUSH R6
-	PUSH R7
-	PUSH R8
-	PUSH R9
-	PUSH R10
-	PUSH R11
-	PUSH R12
-	PUSH R13
-	PUSH R14
-	PUSH R15
-	LOAD -3(LB), R2
-	LOAD -2(LB), R3
-	LOAD R3, R0
-	LEA 1(R0), R3
-	STORE R2, 0(R3)
-	POP R15
-	POP R14
-	POP R13
-	POP R12
-	POP R11
-	POP R10
-	POP R9
-	POP R8
-	POP R7
-	POP R6
-	POP R5
-	POP R4
-	POP R3
-	POP R2
-	BRA fincode.A.setX
-	WSTR "Erreur : sortie de la methodecode.A.setXsans return"
-	WNL
-	ERROR
-fincode.A.setX:
-	RTS
 debutMain:
 ; Beginning of main instructions:
-	NEW #2, R1
-	LEA 3(GB), R0
+	NEW #1, R1
+	LOAD #null, R0
 	STORE R0, 0(R1)
-	PUSH R1
-	BSR init.A
-	LOAD 0(SP), R1
-	STORE R1, 6(GB)
-	ADDSP #2
-	LOAD 6(GB), R2
-	LOAD R2, R0
-	STORE R0, 0(SP)
-	LOAD #23, R3
-	STORE R3, -1(SP)
-	LOAD 0(SP), R1
-	LOAD 0(R1), R1
-	BSR 2(R1)
-	SUBSP #2
-	LOAD R0, R3
-	LOAD 6(GB), R4
-	LOAD R4, R0
-	LEA 1(R0), R4
-	LOAD 0(R4), R1
-	WINT
+	STORE R1, 3(GB)
 	HALT
 code.Object.equals:
 	LOAD -2(LB), R0
+	LOAD -3(LB), R1
+	CMP R0, R1
+	SEQ R0
+	RTS
+code.instanceOf:
+	LOAD -2(LB), R0
+	LOAD 0(R0), R0
 	LOAD -3(LB), R1
 	CMP R0, R1
 	SEQ R0

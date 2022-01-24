@@ -1,0 +1,278 @@
+; start main program
+	BRA debutProg
+erreurDiv0:
+	WSTR "Arret de l'execution: division par zéro impossible."
+	HALT
+debutProg:
+; Main program
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 4(GB)
+	LOAD code.Point.setX, R0
+	STORE R0, 5(GB)
+	LOAD code.Point.translation_2D, R0
+	STORE R0, 9(GB)
+	LOAD code.Point.getY, R0
+	STORE R0, 8(GB)
+	LOAD code.Point.setY, R0
+	STORE R0, 7(GB)
+	LOAD code.Point.getX, R0
+	STORE R0, 6(GB)
+	ADDSP #10
+	BRA debutMain
+init.Point:
+	LOAD #0, R2
+	LOAD R2, R0
+	FLOAT R0, R2
+	LOAD -2(LB), R1
+	STORE R2, 1(R1)
+	LOAD #0, R2
+	LOAD R2, R0
+	FLOAT R0, R2
+	LOAD -2(LB), R1
+	STORE R2, 2(R1)
+	RTS
+code.Point.setX:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -3(LB), R2
+	LOAD -2(LB), R3
+	LOAD R3, R0
+	LEA 1(R0), R3
+	STORE R2, 0(R3)
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Point.setX
+	WSTR "Erreur : sortie de la methodecode.Point.setXsans return"
+	WNL
+	ERROR
+fincode.Point.setX:
+	RTS
+code.Point.getX:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -2(LB), R2
+	LOAD R2, R0
+	LEA 1(R0), R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Point.getX
+	WSTR "Erreur : sortie de la methodecode.Point.getXsans return"
+	WNL
+	ERROR
+fincode.Point.getX:
+	RTS
+code.Point.setY:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -3(LB), R3
+	LOAD -2(LB), R4
+	LOAD R4, R0
+	LEA 2(R0), R4
+	STORE R3, 0(R4)
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Point.setY
+	WSTR "Erreur : sortie de la methodecode.Point.setYsans return"
+	WNL
+	ERROR
+fincode.Point.setY:
+	RTS
+code.Point.getY:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -2(LB), R3
+	LOAD R3, R0
+	LEA 2(R0), R3
+	LOAD R3, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Point.getY
+	WSTR "Erreur : sortie de la methodecode.Point.getYsans return"
+	WNL
+	ERROR
+fincode.Point.getY:
+	RTS
+code.Point.translation_2D:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -2(LB), R4
+	LOAD R4, R0
+	LEA 1(R0), R4
+	LOAD -3(LB), R5
+	ADD R5, R4
+	LOAD -2(LB), R5
+	LOAD R5, R0
+	LEA 1(R0), R5
+	STORE R4, 0(R5)
+	LOAD -2(LB), R4
+	LOAD R4, R0
+	LEA 2(R0), R4
+	LOAD -4(LB), R5
+	ADD R5, R4
+	LOAD -2(LB), R5
+	LOAD R5, R0
+	LEA 2(R0), R5
+	STORE R4, 0(R5)
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Point.translation_2D
+	WSTR "Erreur : sortie de la methodecode.Point.translation_2Dsans return"
+	WNL
+	ERROR
+fincode.Point.translation_2D:
+	RTS
+debutMain:
+	HALT
+code.Object.equals:
+	LOAD -2(LB), R0
+	LOAD -3(LB), R1
+	CMP R0, R1
+	SEQ R0
+	RTS
+code.instanceOf:
+	LOAD -2(LB), R0
+	LOAD 0(R0), R0
+	LOAD -3(LB), R1
+	CMP R0, R1
+	SEQ R0
+	RTS
+deferencement_null:
+	WSTR "Erreur : deferencement_null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile_pleine"
+	WNL
+	ERROR
+tas_pleine:
+	WSTR "Erreur : tas_pleine"
+	WNL
+	ERROR
+; end main program

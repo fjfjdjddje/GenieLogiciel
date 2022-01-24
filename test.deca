@@ -4,8 +4,9 @@ class A{
  	this.x = x;
  }
 }
+class B extends A{}
 {
  A a = new A();
- a.setX(23);
- print(a.x);
+ B b = (A) (b);
 }
+

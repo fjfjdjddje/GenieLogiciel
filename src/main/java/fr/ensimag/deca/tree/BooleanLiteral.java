@@ -9,7 +9,9 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.instructions.WINT;
+import fr.ensimag.ima.pseudocode.instructions.BEQ;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.Register;
 import java.io.PrintStream;
@@ -19,7 +21,7 @@ import java.io.PrintStream;
  * @author gl46
  * @date 01/01/2022
  */
-public class BooleanLiteral extends AbstractExpr {
+public class BooleanLiteral extends AbstractExpr implements Condition{
 
     private boolean value;
 
@@ -71,6 +73,15 @@ public class BooleanLiteral extends AbstractExpr {
         }
         Register.getR(i).setIsFull(true);
         return i;
+    }
+
+    @Override
+    public void codeGenCond(DecacCompiler compiler, Label lab2) {
+        // TODO Auto-generated method stub
+        if (value){
+            compiler.addInstruction(new BEQ(lab2));
+        }
+        
     }
 
 }

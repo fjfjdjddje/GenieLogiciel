@@ -24,8 +24,8 @@ debutMain:
 	CMP R3, R2
 	SGT R2
 	LOAD R2, R1
-	LOAD #0, R0
-	CMP R2, R0
+	LOAD #0, R1
+	CMP R2, R1
 	BEQ printFalse0
 	WSTR "true"
 	BRA endPrint0
@@ -47,8 +47,8 @@ finSinon0:
 	CMP R3, R2
 	SLT R2
 	LOAD R2, R1
-	LOAD #0, R0
-	CMP R2, R0
+	LOAD #0, R1
+	CMP R2, R1
 	BEQ printFalse1
 	WSTR "true"
 	BRA endPrint1
@@ -70,8 +70,8 @@ finSinon1:
 	CMP R3, R2
 	SEQ R2
 	LOAD R2, R1
-	LOAD #0, R0
-	CMP R2, R0
+	LOAD #0, R1
+	CMP R2, R1
 	BEQ printFalse2
 	WSTR "true"
 	BRA endPrint2
@@ -93,8 +93,8 @@ finSinon2:
 	CMP R3, R2
 	SGE R2
 	LOAD R2, R1
-	LOAD #0, R0
-	CMP R2, R0
+	LOAD #0, R1
+	CMP R2, R1
 	BEQ printFalse3
 	WSTR "true"
 	BRA endPrint3
@@ -116,8 +116,8 @@ finSinon3:
 	CMP R3, R2
 	SLE R2
 	LOAD R2, R1
-	LOAD #0, R0
-	CMP R2, R0
+	LOAD #0, R1
+	CMP R2, R1
 	BEQ printFalse4
 	WSTR "true"
 	BRA endPrint4
@@ -139,8 +139,8 @@ finSinon4:
 	CMP R3, R2
 	SNE R2
 	LOAD R2, R1
-	LOAD #0, R0
-	CMP R2, R0
+	LOAD #0, R1
+	CMP R2, R1
 	BEQ printFalse5
 	WSTR "true"
 	BRA endPrint5
@@ -154,6 +154,13 @@ finSinon5:
 	HALT
 code.Object.equals:
 	LOAD -2(LB), R0
+	LOAD -3(LB), R1
+	CMP R0, R1
+	SEQ R0
+	RTS
+code.instanceOf:
+	LOAD -2(LB), R0
+	LOAD 0(R0), R0
 	LOAD -3(LB), R1
 	CMP R0, R1
 	SEQ R0

@@ -39,6 +39,8 @@ import org.apache.log4j.Logger;
  * @date 01/01/2022
  */
 public class Identifier extends AbstractIdentifier implements Condition {
+    
+    private ClassDefinition typeDynamique;
     @Override
     protected void checkDecoration() {
         if (getDefinition() == null) {

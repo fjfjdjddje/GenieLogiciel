@@ -132,8 +132,8 @@ finWhile1:
 	MUL R4, R3
 	MUL R3, R2
 	LOAD R2, R1
-	LOAD #0, R0
-	CMP R2, R0
+	LOAD #0, R1
+	CMP R2, R1
 	BEQ printFalse0
 	WSTR "true"
 	BRA endPrint0
@@ -190,6 +190,13 @@ endPrint0:
 	HALT
 code.Object.equals:
 	LOAD -2(LB), R0
+	LOAD -3(LB), R1
+	CMP R0, R1
+	SEQ R0
+	RTS
+code.instanceOf:
+	LOAD -2(LB), R0
+	LOAD 0(R0), R0
 	LOAD -3(LB), R1
 	CMP R0, R1
 	SEQ R0
