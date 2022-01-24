@@ -27,17 +27,14 @@ public class Modulo extends AbstractOpArith {
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-        //throw new UnsupportedOperationException("not yet implemented");
-        //System.out.println("Modulo verify expr: begin");
+
         Type typeLeftOperande= super.getLeftOperand().verifyExpr(compiler, localEnv,currentClass);
         Type typeRightOperande= super.getRightOperand().verifyExpr(compiler,localEnv, currentClass);
        
-        /*super.getLeftOperand().setType(typeLeftOperande);
-        super.getRightOperand().setType(typeRightOperande);*/
+
         if(!typeLeftOperande.isInt() || !typeRightOperande.isInt()){
             throw new ContextualError("Only integers are allowed for modulo operation.", this.getLocation());
         } else {
-            //System.out.println("Modulo verify expr: end");
             this.setType(typeLeftOperande);
             return typeLeftOperande;
         }

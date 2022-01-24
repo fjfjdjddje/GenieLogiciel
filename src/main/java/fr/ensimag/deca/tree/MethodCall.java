@@ -55,7 +55,6 @@ public class MethodCall extends AbstractExpr implements Condition{
         if(sign.size()-1 != this.listParameters.getList().size()){
             throw new ContextualError("Problem in the number of parameters of the function.", this.methodName.getLocation());
         }
-        System.out.println(sign.size());
         int i = 1;
         for (AbstractExpr expression: this.listParameters.getList()){
             Type exprType = expression.verifyExpr(compiler, localEnv, currentClass);

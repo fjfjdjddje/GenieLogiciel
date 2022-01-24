@@ -49,7 +49,6 @@ public class Selection extends AbstractLValue{
             else if(!((ClassType)currentClass.getType()).isSubClassOf((ClassType)leftType)){
                 throw new ContextualError(ident.getName().getName()+" is a protected field.", this.ident.getLocation());
             }
-            System.out.println(currentClass.getType().getName().getName()+" == "+ leftType.getName().getName());
         }
         ident.setDefinition((FieldDefinition)classeAppelanteEnv.get(ident.getName()));
         this.setType(ident.getType());

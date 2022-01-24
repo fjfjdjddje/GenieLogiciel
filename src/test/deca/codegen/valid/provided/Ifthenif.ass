@@ -9,31 +9,43 @@ debutProg:
 	STORE R0, 1(GB)
 	LOAD code.Object.equals, R0
 	STORE R0, 2(GB)
+	TSTO #3
+	BOV pile_pleine
 	ADDSP #3
 	BRA debutMain
 debutMain:
 ; Beginning of main instructions:
 	LOAD #1, R2
 	STORE R2, 3(GB)
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	LOAD #0, R0
 	STORE R0, 4(GB)
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	LOAD #0, R2
 	STORE R2, 5(GB)
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	LOAD #0x0.0p0, R0
 	STORE R0, 6(GB)
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	LOAD #0x0.0p0, R0
 	STORE R0, 7(GB)
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	LOAD 3(GB), R2
 	LOAD 5(GB), R3
 	MUL R3, R2
 	LOAD #0, R3
 	CMP R2, R3
-	BEQ debutSinon10
+	BEQ debutSinon1.0
 	LOAD #20, R2
 	STORE R2, 4(GB)
 	LOAD #50, R2
@@ -51,13 +63,13 @@ debutMain:
 	LOAD R2, R1
 	WFLOATX
 	BRA finSinon0
-debutSinon10:
+debutSinon1.0:
 	LOAD 5(GB), R2
 	LOAD 5(GB), R3
 	MUL R3, R2
 	LOAD #0, R3
 	CMP R2, R3
-	BEQ debutSinon20
+	BEQ debutSinon2.0
 	LOAD #10, R2
 	STORE R2, 4(GB)
 	LOAD #5, R2
@@ -72,7 +84,7 @@ debutSinon10:
 	LOAD R2, R1
 	WFLOATX
 	BRA finSinon0
-debutSinon20:
+debutSinon2.0:
 	LOAD #2000, R2
 	STORE R2, 4(GB)
 	LOAD #50, R2

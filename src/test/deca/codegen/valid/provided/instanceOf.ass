@@ -2,7 +2,7 @@
 	BRA debutProg
 erreurDiv0:
 	WSTR "Arret de l'execution: division par zéro impossible."
-	HALT
+	ERROR
 debutProg:
 ; Main program
 	LOAD #null, R0
@@ -13,10 +13,10 @@ debutProg:
 	STORE R0, 3(GB)
 	LOAD code.Object.equals, R0
 	STORE R0, 4(GB)
-	LOAD code.A.setA, R0
-	STORE R0, 5(GB)
 	LOAD code.A.getA, R0
 	STORE R0, 6(GB)
+	LOAD code.A.setA, R0
+	STORE R0, 5(GB)
 	LEA 1(GB), R0
 	STORE R0, 7(GB)
 	LOAD code.Object.equals, R0
@@ -25,10 +25,10 @@ debutProg:
 	STORE R0, 9(GB)
 	LOAD code.Object.equals, R0
 	STORE R0, 10(GB)
-	LOAD code.A.setA, R0
-	STORE R0, 11(GB)
 	LOAD code.A.getA, R0
 	STORE R0, 12(GB)
+	LOAD code.A.setA, R0
+	STORE R0, 11(GB)
 	LOAD code.A1.setApre, R0
 	STORE R0, 13(GB)
 	LOAD code.A1.getApre, R0
@@ -37,10 +37,10 @@ debutProg:
 	STORE R0, 15(GB)
 	LOAD code.Object.equals, R0
 	STORE R0, 16(GB)
-	LOAD code.A.setA, R0
-	STORE R0, 17(GB)
 	LOAD code.A.getA, R0
 	STORE R0, 18(GB)
+	LOAD code.A.setA, R0
+	STORE R0, 17(GB)
 	LOAD code.A2.setAsec, R0
 	STORE R0, 19(GB)
 	LOAD code.A2.getAsec, R0
@@ -49,14 +49,16 @@ debutProg:
 	STORE R0, 21(GB)
 	LOAD code.Object.equals, R0
 	STORE R0, 22(GB)
-	LOAD code.A.setA, R0
-	STORE R0, 23(GB)
 	LOAD code.A.getA, R0
 	STORE R0, 24(GB)
+	LOAD code.A.setA, R0
+	STORE R0, 23(GB)
 	LOAD code.A3.setAthr, R0
 	STORE R0, 25(GB)
 	LOAD code.A3.getA, R0
 	STORE R0, 24(GB)
+	TSTO #26
+	BOV pile_pleine
 	ADDSP #26
 	BRA debutMain
 init.A:
@@ -97,6 +99,8 @@ init.A3:
 	STORE R2, 2(R1)
 	RTS
 code.A.setA:
+	TSTO #13
+	BOV pile_pleine
 	PUSH R2
 	PUSH R3
 	PUSH R4
@@ -113,6 +117,9 @@ code.A.setA:
 	PUSH R15
 	LOAD -3(LB), R2
 	LOAD -2(LB), R3
+	LOAD #null, R0
+	CMP R3, R0
+	BEQ deferencement_null
 	LOAD R3, R0
 	LEA 1(R0), R3
 	STORE R2, 0(R3)
@@ -137,6 +144,8 @@ code.A.setA:
 fincode.A.setA:
 	RTS
 code.A.getA:
+	TSTO #13
+	BOV pile_pleine
 	PUSH R2
 	PUSH R3
 	PUSH R4
@@ -152,8 +161,12 @@ code.A.getA:
 	PUSH R14
 	PUSH R15
 	LOAD -2(LB), R2
+	LOAD #null, R0
+	CMP R2, R0
+	BEQ deferencement_null
 	LOAD R2, R0
 	LEA 1(R0), R2
+	LOAD 0(R2), R2
 	LOAD R2, R0
 	POP R15
 	POP R14
@@ -176,6 +189,8 @@ code.A.getA:
 fincode.A.getA:
 	RTS
 code.A1.setApre:
+	TSTO #13
+	BOV pile_pleine
 	PUSH R2
 	PUSH R3
 	PUSH R4
@@ -192,6 +207,9 @@ code.A1.setApre:
 	PUSH R15
 	LOAD -3(LB), R3
 	LOAD -2(LB), R4
+	LOAD #null, R0
+	CMP R4, R0
+	BEQ deferencement_null
 	LOAD R4, R0
 	LEA 2(R0), R4
 	STORE R3, 0(R4)
@@ -216,6 +234,8 @@ code.A1.setApre:
 fincode.A1.setApre:
 	RTS
 code.A1.getApre:
+	TSTO #13
+	BOV pile_pleine
 	PUSH R2
 	PUSH R3
 	PUSH R4
@@ -231,8 +251,12 @@ code.A1.getApre:
 	PUSH R14
 	PUSH R15
 	LOAD -2(LB), R3
+	LOAD #null, R0
+	CMP R3, R0
+	BEQ deferencement_null
 	LOAD R3, R0
 	LEA 2(R0), R3
+	LOAD 0(R3), R3
 	LOAD R3, R0
 	POP R15
 	POP R14
@@ -255,6 +279,8 @@ code.A1.getApre:
 fincode.A1.getApre:
 	RTS
 code.A2.setAsec:
+	TSTO #13
+	BOV pile_pleine
 	PUSH R2
 	PUSH R3
 	PUSH R4
@@ -271,6 +297,9 @@ code.A2.setAsec:
 	PUSH R15
 	LOAD -3(LB), R4
 	LOAD -2(LB), R5
+	LOAD #null, R0
+	CMP R5, R0
+	BEQ deferencement_null
 	LOAD R5, R0
 	LEA 2(R0), R5
 	STORE R4, 0(R5)
@@ -295,6 +324,8 @@ code.A2.setAsec:
 fincode.A2.setAsec:
 	RTS
 code.A2.getAsec:
+	TSTO #13
+	BOV pile_pleine
 	PUSH R2
 	PUSH R3
 	PUSH R4
@@ -310,8 +341,12 @@ code.A2.getAsec:
 	PUSH R14
 	PUSH R15
 	LOAD -2(LB), R4
+	LOAD #null, R0
+	CMP R4, R0
+	BEQ deferencement_null
 	LOAD R4, R0
 	LEA 2(R0), R4
+	LOAD 0(R4), R4
 	LOAD R4, R0
 	POP R15
 	POP R14
@@ -334,6 +369,8 @@ code.A2.getAsec:
 fincode.A2.getAsec:
 	RTS
 code.A3.setAthr:
+	TSTO #13
+	BOV pile_pleine
 	PUSH R2
 	PUSH R3
 	PUSH R4
@@ -350,6 +387,9 @@ code.A3.setAthr:
 	PUSH R15
 	LOAD -3(LB), R5
 	LOAD -2(LB), R6
+	LOAD #null, R0
+	CMP R6, R0
+	BEQ deferencement_null
 	LOAD R6, R0
 	LEA 2(R0), R6
 	STORE R5, 0(R6)
@@ -374,6 +414,8 @@ code.A3.setAthr:
 fincode.A3.setAthr:
 	RTS
 code.A3.getA:
+	TSTO #13
+	BOV pile_pleine
 	PUSH R2
 	PUSH R3
 	PUSH R4
@@ -389,8 +431,12 @@ code.A3.getA:
 	PUSH R14
 	PUSH R15
 	LOAD -2(LB), R5
+	LOAD #null, R0
+	CMP R5, R0
+	BEQ deferencement_null
 	LOAD R5, R0
 	LEA 2(R0), R5
+	LOAD 0(R5), R5
 	LOAD R5, R0
 	POP R15
 	POP R14
@@ -421,6 +467,9 @@ debutMain:
 	BSR init.A
 	LOAD 0(SP), R1
 	STORE R1, 26(GB)
+	TSTO #1
+	BOV pile_pleine
+	ADDSP #1
 	NEW #3, R1
 	LEA 9(GB), R0
 	STORE R0, 0(R1)
@@ -428,6 +477,9 @@ debutMain:
 	BSR init.A1
 	LOAD 0(SP), R1
 	STORE R1, 27(GB)
+	TSTO #1
+	BOV pile_pleine
+	ADDSP #1
 	NEW #3, R1
 	LEA 15(GB), R0
 	STORE R0, 0(R1)
@@ -435,6 +487,9 @@ debutMain:
 	BSR init.A2
 	LOAD 0(SP), R1
 	STORE R1, 28(GB)
+	TSTO #1
+	BOV pile_pleine
+	ADDSP #1
 	NEW #3, R1
 	LEA 21(GB), R0
 	STORE R0, 0(R1)
@@ -442,6 +497,9 @@ debutMain:
 	BSR init.A3
 	LOAD 0(SP), R1
 	STORE R1, 29(GB)
+	TSTO #1
+	BOV pile_pleine
+	ADDSP #1
 	NEW #2, R1
 	LEA 7(GB), R0
 	STORE R0, 0(R1)
@@ -449,6 +507,11 @@ debutMain:
 	BSR init.B
 	LOAD 0(SP), R1
 	STORE R1, 30(GB)
+	TSTO #1
+	BOV pile_pleine
+	ADDSP #1
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	LOAD 26(GB), R6
 	LOAD R6, R0
@@ -459,9 +522,14 @@ debutMain:
 	SUBSP #1
 	LOAD R0, R7
 	STORE R7, 31(GB)
+	TSTO #1
+	BOV pile_pleine
+	ADDSP #1
 	WSTR "true =="
 	LOAD R0, R1
 	LOAD 27(GB), R7
+	TSTO #2
+	BOV pile_pleine
 	ADDSP #2
 	STORE R7, 0(SP)
 	LEA 9(GB), R7
@@ -481,6 +549,8 @@ endPrint0:
 	WSTR "true =="
 	LOAD R0, R1
 	LOAD 27(GB), R7
+	TSTO #2
+	BOV pile_pleine
 	ADDSP #2
 	STORE R7, 0(SP)
 	LEA 1(GB), R7
@@ -500,6 +570,8 @@ endPrint1:
 	WSTR "true =="
 	LOAD R0, R1
 	LOAD 28(GB), R7
+	TSTO #2
+	BOV pile_pleine
 	ADDSP #2
 	STORE R7, 0(SP)
 	LEA 15(GB), R7
@@ -519,6 +591,8 @@ endPrint2:
 	WSTR "true =="
 	LOAD R0, R1
 	LOAD 27(GB), R7
+	TSTO #2
+	BOV pile_pleine
 	ADDSP #2
 	STORE R7, 0(SP)
 	LEA 3(GB), R7
@@ -538,6 +612,8 @@ endPrint3:
 	WSTR "true =="
 	LOAD R0, R1
 	LOAD 29(GB), R7
+	TSTO #2
+	BOV pile_pleine
 	ADDSP #2
 	STORE R7, 0(SP)
 	LEA 3(GB), R7
@@ -557,6 +633,8 @@ endPrint4:
 	WSTR "false == "
 	LOAD R0, R1
 	LOAD 30(GB), R7
+	TSTO #2
+	BOV pile_pleine
 	ADDSP #2
 	STORE R7, 0(SP)
 	LEA 3(GB), R7
@@ -576,16 +654,18 @@ endPrint5:
 	LOAD 31(GB), R7
 	LOAD #5, R8
 	CMP R8, R7
-	BNE debutSinon10
+	BNE debutSinon1.0
 	WSTR "C'est juste"
 	LOAD R0, R1
 	WNL
 	BRA finSinon0
-debutSinon10:
+debutSinon1.0:
 	WSTR "C'est faux"
 	LOAD R0, R1
 	WNL
 finSinon0:
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	LOAD 27(GB), R7
 	LOAD R7, R0
@@ -599,16 +679,18 @@ finSinon0:
 	LOAD 31(GB), R8
 	LOAD #1, R9
 	CMP R9, R8
-	BNE debutSinon11
+	BNE debutSinon1.1
 	WSTR "C'est juste"
 	LOAD R0, R1
 	WNL
 	BRA finSinon1
-debutSinon11:
+debutSinon1.1:
 	WSTR "C'est faux"
 	LOAD R0, R1
 	WNL
 finSinon1:
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	LOAD 27(GB), R8
 	LOAD R8, R0
@@ -622,16 +704,18 @@ finSinon1:
 	LOAD 31(GB), R9
 	LOAD #5, R10
 	CMP R10, R9
-	BNE debutSinon12
+	BNE debutSinon1.2
 	WSTR "C'est juste"
 	LOAD R0, R1
 	WNL
 	BRA finSinon2
-debutSinon12:
+debutSinon1.2:
 	WSTR "C'est faux"
 	LOAD R0, R1
 	WNL
 finSinon2:
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	LOAD 29(GB), R9
 	LOAD R9, R0
@@ -645,16 +729,18 @@ finSinon2:
 	LOAD 31(GB), R10
 	LOAD #2, R11
 	CMP R11, R10
-	BNE debutSinon13
+	BNE debutSinon1.3
 	WSTR "C'est juste"
 	LOAD R0, R1
 	WNL
 	BRA finSinon3
-debutSinon13:
+debutSinon1.3:
 	WSTR "C'est faux"
 	LOAD R0, R1
 	WNL
 finSinon3:
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	LOAD 29(GB), R10
 	LOAD R10, R0
@@ -668,12 +754,12 @@ finSinon3:
 	LOAD 31(GB), R11
 	LOAD #5, R12
 	CMP R12, R11
-	BNE debutSinon14
+	BNE debutSinon1.4
 	WSTR "C'est juste"
 	LOAD R0, R1
 	WNL
 	BRA finSinon4
-debutSinon14:
+debutSinon1.4:
 	WSTR "C'est faux"
 	LOAD R0, R1
 	WNL

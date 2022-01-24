@@ -9,6 +9,8 @@ debutProg:
 	STORE R0, 1(GB)
 	LOAD code.Object.equals, R0
 	STORE R0, 2(GB)
+	TSTO #3
+	BOV pile_pleine
 	ADDSP #3
 	BRA debutMain
 debutMain:
@@ -16,7 +18,7 @@ debutMain:
 	LOAD #1, R2
 	LOAD #2, R3
 	CMP R3, R2
-	BLE debutSinon10
+	BLE debutSinon1.0
 	WSTR "1>2 est :"
 	LOAD R0, R1
 	LOAD #1, R2
@@ -34,12 +36,12 @@ printFalse0:
 endPrint0:
 	WNL
 	BRA finSinon0
-debutSinon10:
+debutSinon1.0:
 finSinon0:
 	LOAD #1, R2
 	LOAD #2, R3
 	CMP R3, R2
-	BGE debutSinon11
+	BGE debutSinon1.1
 	WSTR "1<2 est :"
 	LOAD R0, R1
 	LOAD #1, R2
@@ -57,12 +59,12 @@ printFalse1:
 endPrint1:
 	WNL
 	BRA finSinon1
-debutSinon11:
+debutSinon1.1:
 finSinon1:
 	LOAD #1, R2
 	LOAD #2, R3
 	CMP R3, R2
-	BNE debutSinon12
+	BNE debutSinon1.2
 	WSTR "1==2 est :"
 	LOAD R0, R1
 	LOAD #1, R2
@@ -80,12 +82,12 @@ printFalse2:
 endPrint2:
 	WNL
 	BRA finSinon2
-debutSinon12:
+debutSinon1.2:
 finSinon2:
 	LOAD #1, R2
 	LOAD #2, R3
 	CMP R3, R2
-	BLT debutSinon13
+	BLT debutSinon1.3
 	WSTR "1>=2 est :"
 	LOAD R0, R1
 	LOAD #1, R2
@@ -103,12 +105,12 @@ printFalse3:
 endPrint3:
 	WNL
 	BRA finSinon3
-debutSinon13:
+debutSinon1.3:
 finSinon3:
 	LOAD #1, R2
 	LOAD #2, R3
 	CMP R3, R2
-	BGT debutSinon14
+	BGT debutSinon1.4
 	WSTR "1<=2 est :"
 	LOAD R0, R1
 	LOAD #1, R2
@@ -126,12 +128,12 @@ printFalse4:
 endPrint4:
 	WNL
 	BRA finSinon4
-debutSinon14:
+debutSinon1.4:
 finSinon4:
 	LOAD #1, R2
 	LOAD #2, R3
 	CMP R3, R2
-	BEQ debutSinon15
+	BEQ debutSinon1.5
 	WSTR "1!=2 est :"
 	LOAD R0, R1
 	LOAD #1, R2
@@ -149,7 +151,7 @@ printFalse5:
 endPrint5:
 	WNL
 	BRA finSinon5
-debutSinon15:
+debutSinon1.5:
 finSinon5:
 	HALT
 code.Object.equals:

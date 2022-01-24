@@ -13,28 +13,28 @@ debutProg:
 	STORE R0, 3(GB)
 	LOAD code.Object.equals, R0
 	STORE R0, 4(GB)
-	LOAD code.Math.asin, R0
-	STORE R0, 11(GB)
-	LOAD code.Math.sin, R0
-	STORE R0, 9(GB)
-	LOAD code.Math.atan, R0
-	STORE R0, 12(GB)
-	LOAD code.Math.byTwoPower, R0
-	STORE R0, 7(GB)
 	LOAD code.Math.absolute, R0
 	STORE R0, 8(GB)
-	LOAD code.Math.acos, R0
-	STORE R0, 14(GB)
-	LOAD code.Math.cos, R0
-	STORE R0, 10(GB)
+	LOAD code.Math.sin, R0
+	STORE R0, 9(GB)
+	LOAD code.Math.asin, R0
+	STORE R0, 11(GB)
 	LOAD code.Math.multadd, R0
 	STORE R0, 5(GB)
-	LOAD code.Math.twoPower, R0
-	STORE R0, 6(GB)
-	LOAD code.Math.ulp, R0
-	STORE R0, 15(GB)
+	LOAD code.Math.cos, R0
+	STORE R0, 10(GB)
 	LOAD code.Math.tan, R0
 	STORE R0, 13(GB)
+	LOAD code.Math.atan, R0
+	STORE R0, 12(GB)
+	LOAD code.Math.twoPower, R0
+	STORE R0, 6(GB)
+	LOAD code.Math.byTwoPower, R0
+	STORE R0, 7(GB)
+	LOAD code.Math.acos, R0
+	STORE R0, 14(GB)
+	LOAD code.Math.ulp, R0
+	STORE R0, 15(GB)
 	TSTO #16
 	BOV pile_pleine
 	ADDSP #16
@@ -6817,30 +6817,6 @@ debutMain:
 	LOAD 0(SP), R1
 	LOAD 0(R1), R1
 	BSR 9(R1)
-	SUBSP #2
-	TSTO #1
-	BOV pile_pleine
-	PUSH R15
-	LOAD R0, R15
-	LOAD R15, R1
-	WFLOAT
-	WNL
-	TSTO #2
-	BOV pile_pleine
-	ADDSP #2
-	LOAD 16(GB), R15
-	LOAD R15, R0
-	POP R15
-	STORE R0, 0(SP)
-	TSTO #1
-	BOV pile_pleine
-	PUSH R15
-	LOAD #0x1.312dp23, R15
-	STORE R15, -2(SP)
-	POP R15
-	LOAD 0(SP), R1
-	LOAD 0(R1), R1
-	BSR 12(R1)
 	SUBSP #2
 	TSTO #1
 	BOV pile_pleine

@@ -188,13 +188,6 @@ public class Identifier extends AbstractIdentifier implements Condition {
         }else{
             this.setType(localEnv.get(this.name).getType());
             this.setDefinition(localEnv.get(this.name));
-            //EnvironmentExp courant = localEnv;
-            /*System.out.println("==============================");
-            while(courant != null){
-                System.out.println("zbiiiiiiii123"+localEnv.get(this.name)+"dee : "+this.name.getName());
-                courant = courant.getParentEnvironment();
-            }
-            System.out.println("===============================");*/
             return localEnv.get(this.name).getType();
         }
         

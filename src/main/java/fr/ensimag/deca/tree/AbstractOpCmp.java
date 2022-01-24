@@ -26,11 +26,11 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr implements Condit
         Type typeRightOperand =  super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
         /*System.out.println("hna kayne type :");
         System.out.println(this.getType().getName().getName());*/
-        if(typeLeftOperand.isVoid()){
+        /*if(typeLeftOperand.isVoid()){
             throw new ContextualError("Void not supported for comparison operation.", super.getLeftOperand().getLocation());
         } else if(typeRightOperand.isVoid()){
             throw new ContextualError("Void not supported for comparison operation.", super.getRightOperand().getLocation());
-        } 
+        } */
         if(this instanceof AbstractOpExactCmp){
           if(!typeLeftOperand.sameType(typeRightOperand)){
             if(!((typeLeftOperand.isInt() && typeRightOperand.isFloat()) || (typeLeftOperand.isFloat() && typeRightOperand.isInt()))){

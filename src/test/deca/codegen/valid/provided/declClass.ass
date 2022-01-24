@@ -2,7 +2,7 @@
 	BRA debutProg
 erreurDiv0:
 	WSTR "Arret de l'execution: division par zéro impossible."
-	HALT
+	ERROR
 debutProg:
 ; Main program
 	LOAD #null, R0
@@ -13,152 +13,20 @@ debutProg:
 	STORE R0, 3(GB)
 	LOAD code.Object.equals, R0
 	STORE R0, 4(GB)
-	LOAD code.A.setInteger, R0
-	STORE R0, 5(GB)
-	LOAD code.A.setFloat, R0
-	STORE R0, 7(GB)
 	LOAD code.A.getInteger, R0
-	STORE R0, 8(GB)
-	LOAD code.A.getIsFull, R0
-	STORE R0, 9(GB)
-	LOAD code.A.setBoolean, R0
-	STORE R0, 6(GB)
-	LOAD code.A.getFloat, R0
-	STORE R0, 10(GB)
-	ADDSP #11
+	STORE R0, 5(GB)
+	TSTO #6
+	BOV pile_pleine
+	ADDSP #6
 	BRA debutMain
 init.A:
 	LOAD #0, R2
 	LOAD -2(LB), R1
 	STORE R2, 1(R1)
-	LOAD #1, R2
-	LOAD -2(LB), R1
-	STORE R2, 2(R1)
-	LOAD #0x1.5758e2p2, R2
-	LOAD -2(LB), R1
-	STORE R2, 3(R1)
-	RTS
-code.A.setInteger:
-	PUSH R2
-	PUSH R3
-	PUSH R4
-	PUSH R5
-	PUSH R6
-	PUSH R7
-	PUSH R8
-	PUSH R9
-	PUSH R10
-	PUSH R11
-	PUSH R12
-	PUSH R13
-	PUSH R14
-	PUSH R15
-	LOAD -3(LB), R2
-	LOAD -2(LB), R3
-	LOAD R3, R0
-	LEA 1(R0), R3
-	STORE R2, 0(R3)
-	POP R15
-	POP R14
-	POP R13
-	POP R12
-	POP R11
-	POP R10
-	POP R9
-	POP R8
-	POP R7
-	POP R6
-	POP R5
-	POP R4
-	POP R3
-	POP R2
-	BRA fincode.A.setInteger
-	WSTR "Erreur : sortie de la methodecode.A.setIntegersans return"
-	WNL
-	ERROR
-fincode.A.setInteger:
-	RTS
-code.A.setBoolean:
-	PUSH R2
-	PUSH R3
-	PUSH R4
-	PUSH R5
-	PUSH R6
-	PUSH R7
-	PUSH R8
-	PUSH R9
-	PUSH R10
-	PUSH R11
-	PUSH R12
-	PUSH R13
-	PUSH R14
-	PUSH R15
-	LOAD -3(LB), R2
-	LOAD -2(LB), R3
-	LOAD R3, R0
-	LEA 2(R0), R3
-	STORE R2, 0(R3)
-	POP R15
-	POP R14
-	POP R13
-	POP R12
-	POP R11
-	POP R10
-	POP R9
-	POP R8
-	POP R7
-	POP R6
-	POP R5
-	POP R4
-	POP R3
-	POP R2
-	BRA fincode.A.setBoolean
-	WSTR "Erreur : sortie de la methodecode.A.setBooleansans return"
-	WNL
-	ERROR
-fincode.A.setBoolean:
-	RTS
-code.A.setFloat:
-	PUSH R2
-	PUSH R3
-	PUSH R4
-	PUSH R5
-	PUSH R6
-	PUSH R7
-	PUSH R8
-	PUSH R9
-	PUSH R10
-	PUSH R11
-	PUSH R12
-	PUSH R13
-	PUSH R14
-	PUSH R15
-	LOAD -3(LB), R2
-	LOAD -2(LB), R3
-	LOAD R3, R0
-	LEA 3(R0), R3
-	STORE R2, 0(R3)
-	POP R15
-	POP R14
-	POP R13
-	POP R12
-	POP R11
-	POP R10
-	POP R9
-	POP R8
-	POP R7
-	POP R6
-	POP R5
-	POP R4
-	POP R3
-	POP R2
-	BRA fincode.A.setFloat
-	WSTR "Erreur : sortie de la methodecode.A.setFloatsans return"
-	WNL
-	ERROR
-fincode.A.setFloat:
 	RTS
 code.A.getInteger:
+	TSTO #13
+	BOV pile_pleine
 	PUSH R2
 	PUSH R3
 	PUSH R4
@@ -174,8 +42,12 @@ code.A.getInteger:
 	PUSH R14
 	PUSH R15
 	LOAD -2(LB), R2
+	LOAD #null, R0
+	CMP R2, R0
+	BEQ deferencement_null
 	LOAD R2, R0
 	LEA 1(R0), R2
+	LOAD 0(R2), R2
 	LOAD R2, R0
 	POP R15
 	POP R14
@@ -197,147 +69,31 @@ code.A.getInteger:
 	ERROR
 fincode.A.getInteger:
 	RTS
-code.A.getIsFull:
-	PUSH R2
-	PUSH R3
-	PUSH R4
-	PUSH R5
-	PUSH R6
-	PUSH R7
-	PUSH R8
-	PUSH R9
-	PUSH R10
-	PUSH R11
-	PUSH R12
-	PUSH R13
-	PUSH R14
-	PUSH R15
-	LOAD -2(LB), R3
-	LOAD R3, R0
-	LEA 2(R0), R3
-	LOAD R3, R0
-	POP R15
-	POP R14
-	POP R13
-	POP R12
-	POP R11
-	POP R10
-	POP R9
-	POP R8
-	POP R7
-	POP R6
-	POP R5
-	POP R4
-	POP R3
-	POP R2
-	BRA fincode.A.getIsFull
-	WSTR "Erreur : sortie de la methodecode.A.getIsFullsans return"
-	WNL
-	ERROR
-fincode.A.getIsFull:
-	RTS
-code.A.getFloat:
-	PUSH R2
-	PUSH R3
-	PUSH R4
-	PUSH R5
-	PUSH R6
-	PUSH R7
-	PUSH R8
-	PUSH R9
-	PUSH R10
-	PUSH R11
-	PUSH R12
-	PUSH R13
-	PUSH R14
-	PUSH R15
-	LOAD -2(LB), R4
-	LOAD R4, R0
-	LEA 3(R0), R4
-	LOAD R4, R0
-	POP R15
-	POP R14
-	POP R13
-	POP R12
-	POP R11
-	POP R10
-	POP R9
-	POP R8
-	POP R7
-	POP R6
-	POP R5
-	POP R4
-	POP R3
-	POP R2
-	BRA fincode.A.getFloat
-	WSTR "Erreur : sortie de la methodecode.A.getFloatsans return"
-	WNL
-	ERROR
-fincode.A.getFloat:
-	RTS
 debutMain:
 ; Beginning of main instructions:
-	NEW #4, R1
+	NEW #2, R1
 	LEA 3(GB), R0
 	STORE R0, 0(R1)
 	PUSH R1
 	BSR init.A
 	LOAD 0(SP), R1
-	STORE R1, 11(GB)
-debutWhile1:
+	STORE R1, 6(GB)
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
-	LOAD 11(GB), R5
-	LOAD R5, R0
+	TSTO #1
+	BOV pile_pleine
+	ADDSP #1
+	LOAD 6(GB), R3
+	LOAD R3, R0
 	STORE R0, 0(SP)
 	LOAD 0(SP), R1
 	LOAD 0(R1), R1
-	BSR 6(R1)
+	BSR 2(R1)
 	SUBSP #1
-	LOAD #0, R1
-	CMP R1, R0
-	BEQ finWhile1
-	LOAD #0, R6
-	LOAD 11(GB), R7
-	LOAD R7, R0
-	LEA 2(R0), R7
-	STORE R6, 0(R7)
-	LOAD 11(GB), R6
-	LOAD R6, R0
-	LEA 3(R0), R6
-	LOAD #3, R7
-	LOAD R7, R0
-	FLOAT R0, R7
-	ADD R7, R6
-	LOAD 11(GB), R7
-	LOAD R7, R0
-	LEA 1(R0), R7
-	LOAD R7, R0
-	FLOAT R0, R7
-	ADD R7, R6
-	LOAD 11(GB), R7
-	LOAD R7, R0
-	LEA 3(R0), R7
-	STORE R6, 0(R7)
-	BRA debutWhile1
-finWhile1:
-	ADDSP #1
-	LOAD 11(GB), R6
-	LOAD R6, R0
-	STORE R0, 0(SP)
-	LOAD 0(SP), R1
-	LOAD 0(R1), R1
-	BSR 6(R1)
-	SUBSP #1
-	LOAD R0, R7
-	LOAD R7, R1
-	LOAD #0, R1
-	CMP R7, R1
-	BEQ printFalse0
-	WSTR "true"
-	BRA endPrint0
-printFalse0:
-	WSTR "false"
-endPrint0:
+	LOAD R0, R4
+	LOAD R4, R1
+	WINT
 	HALT
 code.Object.equals:
 	LOAD -2(LB), R0

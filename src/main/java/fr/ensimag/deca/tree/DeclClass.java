@@ -72,8 +72,6 @@ public class DeclClass extends AbstractDeclClass {
             this.className.setDefinition(def);
             this.className.setType(typeDeClasse);
             compiler.getEnvTypes().getCurrentEnvironment().put(className.getName(), def);
-            System.out.println(compiler.getEnvTypes().getCurrentEnvironment());
-
         }catch (Exception e){
            System.out.println("Error in the declaration of the class in the environement.");
         }

@@ -9,6 +9,8 @@ debutProg:
 	STORE R0, 1(GB)
 	LOAD code.Object.equals, R0
 	STORE R0, 2(GB)
+	TSTO #3
+	BOV pile_pleine
 	ADDSP #3
 	BRA debutMain
 debutMain:
@@ -16,9 +18,13 @@ debutMain:
 	RFLOAT
 	LOAD R1, R2
 	STORE R2, 3(GB)
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	LOAD #0, R2
 	STORE R2, 4(GB)
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 debutWhile1:
 	LOAD 4(GB), R2
@@ -32,7 +38,7 @@ debutWhile1:
 	LOAD 4(GB), R2
 	LOAD #5, R3
 	CMP R3, R2
-	BGE debutSinon10
+	BGE debutSinon1.0
 	WSTR "je suis dans if"
 	LOAD R0, R1
 	WNL
@@ -41,11 +47,11 @@ debutWhile1:
 	WINT
 	WNL
 	BRA finSinon0
-debutSinon10:
+debutSinon1.0:
 	LOAD 4(GB), R2
 	LOAD #5, R3
 	CMP R3, R2
-	BNE debutSinon20
+	BNE debutSinon2.0
 	WSTR "je suis dans elseif1"
 	LOAD R0, R1
 	WNL
@@ -54,11 +60,11 @@ debutSinon10:
 	WINT
 	WNL
 	BRA finSinon0
-debutSinon20:
+debutSinon2.0:
 	LOAD 4(GB), R2
 	LOAD #6, R3
 	CMP R3, R2
-	BNE debutSinon30
+	BNE debutSinon3.0
 	WSTR "je suis dans elseif2"
 	LOAD R0, R1
 	WNL
@@ -67,7 +73,7 @@ debutSinon20:
 	WINT
 	WNL
 	BRA finSinon0
-debutSinon30:
+debutSinon3.0:
 	WSTR "je suis dans else"
 	LOAD R0, R1
 	WNL

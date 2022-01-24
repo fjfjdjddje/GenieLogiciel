@@ -46,7 +46,6 @@ public class Return extends AbstractInst {
         // TODO Auto-generated method stub
         if(currentClass != null){
             Type exprType = expression.verifyExpr(compiler, localEnv, currentClass);
-            System.out.println(exprType.getName().getName());
             if(exprType.isClass() ){
                 if(!returnType.isClass()){
                     throw new ContextualError("Type de retour incompatible", getLocation());

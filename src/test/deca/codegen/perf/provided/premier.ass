@@ -9,22 +9,32 @@ debutProg:
 	STORE R0, 1(GB)
 	LOAD code.Object.equals, R0
 	STORE R0, 2(GB)
+	TSTO #3
+	BOV pile_pleine
 	ADDSP #3
 	BRA debutMain
 debutMain:
 ; Beginning of main instructions:
 	LOAD #1, R2
 	STORE R2, 3(GB)
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	LOAD #1, R2
 	STORE R2, 4(GB)
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	RINT
 	LOAD R1, R2
 	STORE R2, 5(GB)
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	LOAD #0, R2
 	STORE R2, 6(GB)
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	WSTR "la vérification de la primalité des"
 	LOAD R0, R1
@@ -52,7 +62,7 @@ debutWhile2:
 	REM R3, R2
 	LOAD #0, R3
 	CMP R3, R2
-	BNE debutSinon10
+	BNE debutSinon1.0
 	LOAD 3(GB), R2
 	LOAD R2, R1
 	WINT
@@ -62,7 +72,7 @@ debutWhile2:
 	LOAD #1, R2
 	STORE R2, 6(GB)
 	BRA finSinon0
-debutSinon10:
+debutSinon1.0:
 finSinon0:
 	LOAD 4(GB), R2
 	LOAD #1, R3
@@ -77,7 +87,7 @@ finWhile2:
 	LOAD R0, R1
 	WNL
 	BRA finSinon1
-debutSinon11:
+debutSinon1.1:
 	LOAD 3(GB), R2
 	LOAD R2, R1
 	WINT

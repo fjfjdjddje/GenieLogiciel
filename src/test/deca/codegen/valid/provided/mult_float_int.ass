@@ -9,6 +9,8 @@ debutProg:
 	STORE R0, 1(GB)
 	LOAD code.Object.equals, R0
 	STORE R0, 2(GB)
+	TSTO #3
+	BOV pile_pleine
 	ADDSP #3
 	BRA debutMain
 debutMain:
@@ -17,9 +19,13 @@ debutMain:
 	LOAD R2, R0
 	FLOAT R0, R2
 	STORE R2, 3(GB)
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	LOAD #4, R2
 	STORE R2, 4(GB)
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	LOAD 3(GB), R2
 	LOAD 4(GB), R3
@@ -27,6 +33,8 @@ debutMain:
 	FLOAT R0, R3
 	MUL R3, R2
 	STORE R2, 5(GB)
+	TSTO #1
+	BOV pile_pleine
 	ADDSP #1
 	LOAD 5(GB), R2
 	LOAD R2, R1
