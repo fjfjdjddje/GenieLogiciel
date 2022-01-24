@@ -52,7 +52,7 @@ public class IfThenElse extends AbstractInst {
         it2++;
         Label lab2 = new Label("finSinon"+it3);
         //System.out.println(it2);    
-        Label lab1 = new Label("debutSinon"+it2+it3);
+        Label lab1 = new Label("debutSinon"+it2+"."+it3);
         ((Condition)this.condition).codeGenCond(compiler,lab1);
         thenBranch.codeGenListInst(compiler);
         compiler.addInstruction(new BRA(lab2));

@@ -12,12 +12,14 @@ import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.ADDSP;
 import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.BOV;
 import fr.ensimag.ima.pseudocode.instructions.BSR;
 import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LEA;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 import fr.ensimag.ima.pseudocode.instructions.SUBSP;
+import fr.ensimag.ima.pseudocode.instructions.TSTO;
 
 public class Instanceof extends AbstractBinaryExpr implements Condition{
     public Instanceof(AbstractExpr expr, AbstractIdentifier ident){
@@ -47,6 +49,8 @@ public class Instanceof extends AbstractBinaryExpr implements Condition{
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
         int reg = super.getLeftOperand().codeGenExpr(compiler);
+        compiler.addInstruction(new TSTO(2));
+        compiler.addInstruction(new BOV(new Label("pile_pleine")));
         compiler.addInstruction(new ADDSP(2));
         compiler.addInstruction(new STORE(Register.getR(reg), new RegisterOffset(0, Register.SP)));
         compiler.addInstruction(new LEA(((Identifier)super.getRightOperand()).getClassDefinition().getAdresseClass(), Register.getR(reg)));
@@ -61,6 +65,8 @@ public class Instanceof extends AbstractBinaryExpr implements Condition{
     @Override
     public void codeGenCond(DecacCompiler compiler, Label lab2) {
         int reg = super.getLeftOperand().codeGenExpr(compiler);
+        compiler.addInstruction(new TSTO(2));
+        compiler.addInstruction(new BOV(new Label("pile_pleine")));
         compiler.addInstruction(new ADDSP(2));
         compiler.addInstruction(new STORE(Register.getR(reg), new RegisterOffset(0, Register.SP)));
         compiler.addInstruction(new LEA(((Identifier)super.getRightOperand()).getClassDefinition().getAdresseClass(), Register.getR(reg)));

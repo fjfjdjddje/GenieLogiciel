@@ -123,38 +123,60 @@ public class MathCordic{
 		}
 	}
 
-	/*public static float ulp(float f){
-		int relatifToAbsolute = 1;
+	
+float ulp(float f){
+		int relatifToAbsolute = 0;
+		int reverseRelatifToAbsolute;
 		int absolutePower = 24;
 		f = absolute(f);
 		if(f == 0){
 			return lowestEver;
 		}
-		else if(f < lowestEver){
+		if(f < lowestEver){
 			return lowestEver;
 		}
-		else if(f > biggestEver){
+		if(f > biggestEver){
 			return biggestEver;
 		}
-		else{
-			if(f < twoPower(absolutePower)){
-				while(f < twoPower(absolutePower - 1)){
-					absolutePower = absolutePower - 1;
-					relatifToAbsolute = relatifToAbsolute - 1;
-				}
+		if((f <= twoPower(absolutePower - 1) && f < byTwoPower(1 - absolutePower)) || (f >= twoPower(absolutePower) && f >= byTwoPower(-absolutePower))){
+			while(f < twoPower(absolutePower - 1) && (f < byTwoPower(1 - absolutePower))){
+				absolutePower = absolutePower - 1;
+				relatifToAbsolute = relatifToAbsolute - 1;
+			}
+			if(relatifToAbsolute >= 0){
 				return(twoPower(relatifToAbsolute));
-				
+
 			}
 			else{
-				while(f >= twoPower(absolutePower)){
-					absolutePower = absolutePower + 1;
-					relatifToAbsolute = relatifToAbsolute + 1;
-				}
+				return(byTwoPower(relatifToAbsolute));
+			}
+		}
+		else if(f >= twoPower(absolutePower)){
+			while(f >= twoPower(absolutePower) && f >= byTwoPower(-absolutePower)){
+			absolutePower = absolutePower + 1;
+			relatifToAbsolute = relatifToAbsolute + 1;
+			}
+			if(relatifToAbsolute >= 0){
 				return(twoPower(relatifToAbsolute));
+
+			}
+			else{
+				reverseRelatifToAbsolute = -relatifToAbsolute;
+				return(byTwoPower(reverseRelatifToAbsolute));
+			}			
+		}
+		else{
+			if(relatifToAbsolute >= 0){
+				return(twoPower(relatifToAbsolute));
+
+			}
+			else{
+				reverseRelatifToAbsolute = -relatifToAbsolute;
+				return(byTwoPower(reverseRelatifToAbsolute));
 			}
 		}
 	}
-	*/
+	
 
 	public static CircularVector cordicDirect(float theta){
 		float x = 0.6072529350088f;

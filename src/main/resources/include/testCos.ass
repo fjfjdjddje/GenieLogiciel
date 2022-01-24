@@ -1,0 +1,3531 @@
+; start main program
+	BRA debutProg
+erreurDiv0:
+	WSTR "Arret de l'execution: division par zéro impossible."
+	ERROR
+debutProg:
+; Main program
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 4(GB)
+	LOAD code.Math.tan, R0
+	STORE R0, 10(GB)
+	LOAD code.Math.asin, R0
+	STORE R0, 8(GB)
+	LOAD code.Math.multadd, R0
+	STORE R0, 5(GB)
+	LOAD code.Math.acos, R0
+	STORE R0, 11(GB)
+	LOAD code.Math.sin, R0
+	STORE R0, 6(GB)
+	LOAD code.Math.cos, R0
+	STORE R0, 7(GB)
+	LOAD code.Math.atan, R0
+	STORE R0, 9(GB)
+	LOAD code.Math.ulp, R0
+	STORE R0, 12(GB)
+	TSTO #13
+	BOV pile_pleine
+	ADDSP #13
+	BRA debutMain
+init.Math:
+	RTS
+code.Math.multadd:
+	TSTO #13
+	BOV pile_pleine
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+
+    		 LOAD -3(LB), R1
+    		 LOAD -4(LB), R2
+    		 LOAD -5(LB), R3
+    		 FMA R2, R3
+    		 LOAD R3, R0
+    		 RTS
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Math.multadd
+	WSTR "Erreur : sortie de la methodecode.Math.multaddsans return"
+	WNL
+	ERROR
+fincode.Math.multadd:
+	RTS
+code.Math.sin:
+	TSTO #13
+	BOV pile_pleine
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD #0x1.921fb6p-1, R2
+	STORE R2, 1(LB)
+	ADDSP #1
+	LOAD #0x1.dac67p-2, R2
+	STORE R2, 2(LB)
+	ADDSP #1
+	LOAD #0x1.f5b76p-3, R2
+	STORE R2, 3(LB)
+	ADDSP #1
+	LOAD #0x1.fd5baap-4, R2
+	STORE R2, 4(LB)
+	ADDSP #1
+	LOAD #0x1.ff55bcp-5, R2
+	STORE R2, 5(LB)
+	ADDSP #1
+	LOAD #0x1.ffd55cp-6, R2
+	STORE R2, 6(LB)
+	ADDSP #1
+	LOAD #0x1.fff556p-7, R2
+	STORE R2, 7(LB)
+	ADDSP #1
+	LOAD #0x1.fffd56p-8, R2
+	STORE R2, 8(LB)
+	ADDSP #1
+	LOAD #0x1.ffff56p-9, R2
+	STORE R2, 9(LB)
+	ADDSP #1
+	LOAD #0x1.ffffd6p-10, R2
+	STORE R2, 10(LB)
+	ADDSP #1
+	LOAD #0x1.fffff6p-11, R2
+	STORE R2, 11(LB)
+	ADDSP #1
+	LOAD #0x1.fffffep-12, R2
+	STORE R2, 12(LB)
+	ADDSP #1
+	LOAD #0x1.0p-12, R2
+	STORE R2, 13(LB)
+	ADDSP #1
+	LOAD #0x1.0p-13, R2
+	STORE R2, 14(LB)
+	ADDSP #1
+	LOAD #0x1.0p-14, R2
+	STORE R2, 15(LB)
+	ADDSP #1
+	LOAD #0x1.0p-15, R2
+	STORE R2, 16(LB)
+	ADDSP #1
+	LOAD #0x1.0p-16, R2
+	STORE R2, 17(LB)
+	ADDSP #1
+	LOAD #0x1.0p-17, R2
+	STORE R2, 18(LB)
+	ADDSP #1
+	LOAD #0x1.0p-18, R2
+	STORE R2, 19(LB)
+	ADDSP #1
+	LOAD #0x1.0p-19, R2
+	STORE R2, 20(LB)
+	ADDSP #1
+	LOAD #0x1.0p-20, R2
+	STORE R2, 21(LB)
+	ADDSP #1
+	LOAD #0x1.0p-21, R2
+	STORE R2, 22(LB)
+	ADDSP #1
+	LOAD #0x1.0p-22, R2
+	STORE R2, 23(LB)
+	ADDSP #1
+	LOAD #0x1.0p-23, R2
+	STORE R2, 24(LB)
+	ADDSP #1
+	LOAD #0x1.0p-24, R2
+	STORE R2, 25(LB)
+	ADDSP #1
+	LOAD #0x1.0p-25, R2
+	STORE R2, 26(LB)
+	ADDSP #1
+	LOAD #0x1.0p-26, R2
+	STORE R2, 27(LB)
+	ADDSP #1
+	LOAD #0x1.0p-27, R2
+	STORE R2, 28(LB)
+	ADDSP #1
+	LOAD #0x1.0p-28, R2
+	STORE R2, 29(LB)
+	ADDSP #1
+	LOAD #0x1.0p-29, R2
+	STORE R2, 30(LB)
+	ADDSP #1
+	LOAD #0x1.921fb6p1, R2
+	STORE R2, 31(LB)
+	ADDSP #1
+	LOAD -3(LB), R2
+	STORE R2, 32(LB)
+	ADDSP #1
+	LOAD #50, R2
+	STORE R2, 33(LB)
+	ADDSP #1
+	LOAD #0x1.0p0, R2
+	STORE R2, 34(LB)
+	ADDSP #1
+	NEW #1, R1
+	LEA 3(GB), R0
+	STORE R0, 0(R1)
+	PUSH R1
+	BSR init.Math
+	LOAD 0(SP), R1
+	STORE R1, 35(LB)
+	ADDSP #1
+	LOAD #0x1.36e9dcp-1, R2
+	STORE R2, 36(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R2
+	STORE R2, 37(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 38(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 39(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 40(LB)
+	ADDSP #1
+	LOAD #1, R2
+	OPP R2, R2
+	LOAD R2, R0
+	FLOAT R0, R2
+	STORE R2, 41(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 42(LB)
+	ADDSP #1
+	LOAD 32(LB), R2
+	STORE R2, 43(LB)
+	ADDSP #1
+	LOAD #0, R2
+	STORE R2, 44(LB)
+	ADDSP #1
+debutWhile1:
+	LOAD 43(LB), R2
+	LOAD 31(LB), R3
+	OPP R3, R3
+	CMP R3, R2
+	SLT R2
+	LOAD 43(LB), R3
+	LOAD 31(LB), R4
+	CMP R4, R3
+	SGT R3
+	ADD R3, R2
+	LOAD #1, R3
+	CMP R3, R2
+	SGE R2
+	LOAD #0, R3
+	CMP R2, R3
+	BEQ finWhile1
+	LOAD 43(LB), R2
+	LOAD 31(LB), R3
+	OPP R3, R3
+	CMP R3, R2
+	BGE debutSinon1.0
+	LOAD 43(LB), R2
+	LOAD #2, R3
+	LOAD R3, R0
+	FLOAT R0, R3
+	LOAD 31(LB), R4
+	MUL R4, R3
+	ADD R3, R2
+	STORE R2, 43(LB)
+	BRA finSinon0
+debutSinon1.0:
+finSinon0:
+	LOAD 43(LB), R2
+	LOAD 31(LB), R3
+	CMP R3, R2
+	BLE debutSinon1.1
+	LOAD 43(LB), R2
+	LOAD #2, R3
+	LOAD R3, R0
+	FLOAT R0, R3
+	LOAD 31(LB), R4
+	MUL R4, R3
+	SUB R3, R2
+	STORE R2, 43(LB)
+	BRA finSinon1
+debutSinon1.1:
+finSinon1:
+	BRA debutWhile1
+finWhile1:
+	LOAD 43(LB), R2
+	LOAD 31(LB), R3
+	OPP R3, R3
+	LOAD #2, R4
+	LOAD R4, R0
+	FLOAT R0, R4
+	LOAD #0x0.0p0, R0
+	CMP R0, R4
+	BEQ erreurDiv0
+	DIV R4, R3
+	CMP R3, R2
+	BGE debutSinon1.2
+	LOAD 43(LB), R2
+	LOAD 31(LB), R3
+	ADD R3, R2
+	STORE R2, 43(LB)
+	BRA finSinon2
+debutSinon1.2:
+	LOAD 43(LB), R2
+	LOAD 31(LB), R3
+	LOAD #2, R4
+	LOAD R4, R0
+	FLOAT R0, R4
+	LOAD #0x0.0p0, R0
+	CMP R0, R4
+	BEQ erreurDiv0
+	DIV R4, R3
+	CMP R3, R2
+	BLE debutSinon2.2
+	LOAD 43(LB), R2
+	LOAD 31(LB), R3
+	SUB R3, R2
+	STORE R2, 43(LB)
+	BRA finSinon2
+debutSinon2.2:
+	LOAD #1, R2
+	LOAD R2, R0
+	FLOAT R0, R2
+	STORE R2, 41(LB)
+finSinon2:
+debutWhile2:
+	LOAD 44(LB), R2
+	LOAD 33(LB), R3
+	CMP R3, R2
+	BGT finWhile2
+	LOAD 44(LB), R2
+	LOAD #0, R3
+	CMP R3, R2
+	BNE debutSinon1.3
+	LOAD 1(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon1.3:
+	LOAD 44(LB), R2
+	LOAD #1, R3
+	CMP R3, R2
+	BNE debutSinon2.3
+	LOAD 2(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon2.3:
+	LOAD 44(LB), R2
+	LOAD #2, R3
+	CMP R3, R2
+	BNE debutSinon3.3
+	LOAD 3(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon3.3:
+	LOAD 44(LB), R2
+	LOAD #3, R3
+	CMP R3, R2
+	BNE debutSinon4.3
+	LOAD 4(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon4.3:
+	LOAD 44(LB), R2
+	LOAD #4, R3
+	CMP R3, R2
+	BNE debutSinon5.3
+	LOAD 5(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon5.3:
+	LOAD 44(LB), R2
+	LOAD #5, R3
+	CMP R3, R2
+	BNE debutSinon6.3
+	LOAD 6(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon6.3:
+	LOAD 44(LB), R2
+	LOAD #6, R3
+	CMP R3, R2
+	BNE debutSinon7.3
+	LOAD 7(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon7.3:
+	LOAD 44(LB), R2
+	LOAD #7, R3
+	CMP R3, R2
+	BNE debutSinon8.3
+	LOAD 8(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon8.3:
+	LOAD 44(LB), R2
+	LOAD #8, R3
+	CMP R3, R2
+	BNE debutSinon9.3
+	LOAD 9(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon9.3:
+	LOAD 44(LB), R2
+	LOAD #9, R3
+	CMP R3, R2
+	BNE debutSinon10.3
+	LOAD 10(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon10.3:
+	LOAD 44(LB), R2
+	LOAD #10, R3
+	CMP R3, R2
+	BNE debutSinon11.3
+	LOAD 11(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon11.3:
+	LOAD 44(LB), R2
+	LOAD #11, R3
+	CMP R3, R2
+	BNE debutSinon12.3
+	LOAD 12(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon12.3:
+	LOAD 44(LB), R2
+	LOAD #12, R3
+	CMP R3, R2
+	BNE debutSinon13.3
+	LOAD 13(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon13.3:
+	LOAD 44(LB), R2
+	LOAD #13, R3
+	CMP R3, R2
+	BNE debutSinon14.3
+	LOAD 14(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon14.3:
+	LOAD 44(LB), R2
+	LOAD #14, R3
+	CMP R3, R2
+	BNE debutSinon15.3
+	LOAD 15(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon15.3:
+	LOAD 44(LB), R2
+	LOAD #15, R3
+	CMP R3, R2
+	BNE debutSinon16.3
+	LOAD 16(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon16.3:
+	LOAD 44(LB), R2
+	LOAD #16, R3
+	CMP R3, R2
+	BNE debutSinon17.3
+	LOAD 17(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon17.3:
+	LOAD 44(LB), R2
+	LOAD #17, R3
+	CMP R3, R2
+	BNE debutSinon18.3
+	LOAD 18(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon18.3:
+	LOAD 44(LB), R2
+	LOAD #18, R3
+	CMP R3, R2
+	BNE debutSinon19.3
+	LOAD 19(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon19.3:
+	LOAD 44(LB), R2
+	LOAD #19, R3
+	CMP R3, R2
+	BNE debutSinon20.3
+	LOAD 20(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon20.3:
+	LOAD 44(LB), R2
+	LOAD #20, R3
+	CMP R3, R2
+	BNE debutSinon21.3
+	LOAD 21(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon21.3:
+	LOAD 44(LB), R2
+	LOAD #21, R3
+	CMP R3, R2
+	BNE debutSinon22.3
+	LOAD 22(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon22.3:
+	LOAD 44(LB), R2
+	LOAD #22, R3
+	CMP R3, R2
+	BNE debutSinon23.3
+	LOAD 23(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon23.3:
+	LOAD 44(LB), R2
+	LOAD #23, R3
+	CMP R3, R2
+	BNE debutSinon24.3
+	LOAD 24(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon24.3:
+	LOAD 44(LB), R2
+	LOAD #24, R3
+	CMP R3, R2
+	BNE debutSinon25.3
+	LOAD 25(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon25.3:
+	LOAD 44(LB), R2
+	LOAD #25, R3
+	CMP R3, R2
+	BNE debutSinon26.3
+	LOAD 26(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon26.3:
+	LOAD 44(LB), R2
+	LOAD #26, R3
+	CMP R3, R2
+	BNE debutSinon27.3
+	LOAD 27(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon27.3:
+	LOAD 44(LB), R2
+	LOAD #27, R3
+	CMP R3, R2
+	BNE debutSinon28.3
+	LOAD 28(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon28.3:
+	LOAD 44(LB), R2
+	LOAD #28, R3
+	CMP R3, R2
+	BNE debutSinon29.3
+	LOAD 29(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon29.3:
+	LOAD 44(LB), R2
+	LOAD #29, R3
+	CMP R3, R2
+	BNE debutSinon30.3
+	LOAD 30(LB), R2
+	STORE R2, 42(LB)
+	BRA finSinon3
+debutSinon30.3:
+	LOAD 34(LB), R2
+	STORE R2, 42(LB)
+finSinon3:
+	LOAD 43(LB), R2
+	LOAD #0, R3
+	LOAD R3, R0
+	FLOAT R0, R3
+	CMP R3, R2
+	BLT debutSinon1.4
+	TSTO #4
+	BOV pile_pleine
+	ADDSP #4
+	LOAD 35(LB), R2
+	LOAD R2, R0
+	STORE R0, 0(SP)
+	LOAD 36(LB), R3
+	STORE R3, -1(SP)
+	LOAD 37(LB), R3
+	OPP R3, R3
+	STORE R3, -2(SP)
+	LOAD 34(LB), R3
+	STORE R3, -3(SP)
+	LOAD 0(SP), R1
+	LOAD 0(R1), R1
+	BSR 2(R1)
+	SUBSP #4
+	LOAD R0, R3
+	STORE R3, 38(LB)
+	LOAD 37(LB), R3
+	LOAD 36(LB), R4
+	LOAD 34(LB), R5
+	MUL R5, R4
+	ADD R4, R3
+	STORE R3, 39(LB)
+	LOAD 43(LB), R3
+	LOAD 42(LB), R4
+	SUB R4, R3
+	STORE R3, 40(LB)
+	BRA finSinon4
+debutSinon1.4:
+	LOAD 36(LB), R3
+	LOAD 37(LB), R4
+	LOAD 34(LB), R5
+	MUL R5, R4
+	ADD R4, R3
+	STORE R3, 38(LB)
+	LOAD 37(LB), R3
+	LOAD 36(LB), R4
+	LOAD 34(LB), R5
+	MUL R5, R4
+	SUB R4, R3
+	STORE R3, 39(LB)
+	LOAD 43(LB), R3
+	LOAD 42(LB), R4
+	ADD R4, R3
+	STORE R3, 40(LB)
+finSinon4:
+	LOAD 38(LB), R3
+	STORE R3, 36(LB)
+	LOAD 39(LB), R3
+	STORE R3, 37(LB)
+	LOAD 40(LB), R3
+	STORE R3, 43(LB)
+	LOAD 34(LB), R3
+	LOAD #2, R4
+	LOAD R4, R0
+	FLOAT R0, R4
+	LOAD #0x0.0p0, R0
+	CMP R0, R4
+	BEQ erreurDiv0
+	DIV R4, R3
+	STORE R3, 34(LB)
+	LOAD 44(LB), R3
+	LOAD #1, R4
+	ADD R4, R3
+	STORE R3, 44(LB)
+	BRA debutWhile2
+finWhile2:
+	LOAD 41(LB), R3
+	LOAD 37(LB), R4
+	MUL R4, R3
+	LOAD R3, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Math.sin
+	WSTR "Erreur : sortie de la methodecode.Math.sinsans return"
+	WNL
+	ERROR
+fincode.Math.sin:
+	RTS
+code.Math.cos:
+	TSTO #13
+	BOV pile_pleine
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD #0x1.921fb6p-1, R4
+	STORE R4, 1(LB)
+	ADDSP #1
+	LOAD #0x1.dac67p-2, R4
+	STORE R4, 2(LB)
+	ADDSP #1
+	LOAD #0x1.f5b76p-3, R4
+	STORE R4, 3(LB)
+	ADDSP #1
+	LOAD #0x1.fd5baap-4, R4
+	STORE R4, 4(LB)
+	ADDSP #1
+	LOAD #0x1.ff55bcp-5, R4
+	STORE R4, 5(LB)
+	ADDSP #1
+	LOAD #0x1.ffd55cp-6, R4
+	STORE R4, 6(LB)
+	ADDSP #1
+	LOAD #0x1.fff556p-7, R4
+	STORE R4, 7(LB)
+	ADDSP #1
+	LOAD #0x1.fffd56p-8, R4
+	STORE R4, 8(LB)
+	ADDSP #1
+	LOAD #0x1.ffff56p-9, R4
+	STORE R4, 9(LB)
+	ADDSP #1
+	LOAD #0x1.ffffd6p-10, R4
+	STORE R4, 10(LB)
+	ADDSP #1
+	LOAD #0x1.fffff6p-11, R4
+	STORE R4, 11(LB)
+	ADDSP #1
+	LOAD #0x1.fffffep-12, R4
+	STORE R4, 12(LB)
+	ADDSP #1
+	LOAD #0x1.0p-12, R4
+	STORE R4, 13(LB)
+	ADDSP #1
+	LOAD #0x1.0p-13, R4
+	STORE R4, 14(LB)
+	ADDSP #1
+	LOAD #0x1.0p-14, R4
+	STORE R4, 15(LB)
+	ADDSP #1
+	LOAD #0x1.0p-15, R4
+	STORE R4, 16(LB)
+	ADDSP #1
+	LOAD #0x1.0p-16, R4
+	STORE R4, 17(LB)
+	ADDSP #1
+	LOAD #0x1.0p-17, R4
+	STORE R4, 18(LB)
+	ADDSP #1
+	LOAD #0x1.0p-18, R4
+	STORE R4, 19(LB)
+	ADDSP #1
+	LOAD #0x1.0p-19, R4
+	STORE R4, 20(LB)
+	ADDSP #1
+	LOAD #0x1.0p-20, R4
+	STORE R4, 21(LB)
+	ADDSP #1
+	LOAD #0x1.0p-21, R4
+	STORE R4, 22(LB)
+	ADDSP #1
+	LOAD #0x1.0p-22, R4
+	STORE R4, 23(LB)
+	ADDSP #1
+	LOAD #0x1.0p-23, R4
+	STORE R4, 24(LB)
+	ADDSP #1
+	LOAD #0x1.0p-24, R4
+	STORE R4, 25(LB)
+	ADDSP #1
+	LOAD #0x1.0p-25, R4
+	STORE R4, 26(LB)
+	ADDSP #1
+	LOAD #0x1.0p-26, R4
+	STORE R4, 27(LB)
+	ADDSP #1
+	LOAD #0x1.0p-27, R4
+	STORE R4, 28(LB)
+	ADDSP #1
+	LOAD #0x1.0p-28, R4
+	STORE R4, 29(LB)
+	ADDSP #1
+	LOAD #0x1.0p-29, R4
+	STORE R4, 30(LB)
+	ADDSP #1
+	LOAD #0x1.921fb6p1, R4
+	STORE R4, 31(LB)
+	ADDSP #1
+	LOAD -3(LB), R4
+	STORE R4, 32(LB)
+	ADDSP #1
+	LOAD #50, R4
+	STORE R4, 33(LB)
+	ADDSP #1
+	LOAD #1, R4
+	LOAD R4, R0
+	FLOAT R0, R4
+	STORE R4, 34(LB)
+	ADDSP #1
+	LOAD #0x1.36e9dcp-1, R4
+	STORE R4, 35(LB)
+	ADDSP #1
+	LOAD #0, R4
+	LOAD R4, R0
+	FLOAT R0, R4
+	STORE R4, 36(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 37(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 38(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 39(LB)
+	ADDSP #1
+	LOAD #1, R4
+	OPP R4, R4
+	LOAD R4, R0
+	FLOAT R0, R4
+	STORE R4, 40(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 41(LB)
+	ADDSP #1
+	LOAD 32(LB), R4
+	STORE R4, 42(LB)
+	ADDSP #1
+	LOAD #0, R4
+	STORE R4, 43(LB)
+	ADDSP #1
+debutWhile3:
+	LOAD 42(LB), R4
+	LOAD 31(LB), R5
+	OPP R5, R5
+	CMP R5, R4
+	SLT R4
+	LOAD 42(LB), R5
+	LOAD 31(LB), R6
+	CMP R6, R5
+	SGT R5
+	ADD R5, R4
+	LOAD #1, R5
+	CMP R5, R4
+	SGE R4
+	LOAD #0, R5
+	CMP R4, R5
+	BEQ finWhile3
+	LOAD 42(LB), R4
+	LOAD 31(LB), R5
+	OPP R5, R5
+	CMP R5, R4
+	BGE debutSinon1.5
+	LOAD 42(LB), R4
+	LOAD #2, R5
+	LOAD R5, R0
+	FLOAT R0, R5
+	LOAD 31(LB), R6
+	MUL R6, R5
+	ADD R5, R4
+	STORE R4, 42(LB)
+	BRA finSinon5
+debutSinon1.5:
+finSinon5:
+	LOAD 42(LB), R4
+	LOAD 31(LB), R5
+	CMP R5, R4
+	BLE debutSinon1.6
+	LOAD 42(LB), R4
+	LOAD #2, R5
+	LOAD R5, R0
+	FLOAT R0, R5
+	LOAD 31(LB), R6
+	MUL R6, R5
+	SUB R5, R4
+	STORE R4, 42(LB)
+	BRA finSinon6
+debutSinon1.6:
+finSinon6:
+	BRA debutWhile3
+finWhile3:
+	LOAD 42(LB), R4
+	LOAD 31(LB), R5
+	OPP R5, R5
+	LOAD #2, R6
+	LOAD R6, R0
+	FLOAT R0, R6
+	LOAD #0x0.0p0, R0
+	CMP R0, R6
+	BEQ erreurDiv0
+	DIV R6, R5
+	CMP R5, R4
+	BGE debutSinon1.7
+	LOAD 42(LB), R4
+	LOAD 31(LB), R5
+	ADD R5, R4
+	STORE R4, 42(LB)
+	BRA finSinon7
+debutSinon1.7:
+	LOAD 42(LB), R4
+	LOAD 31(LB), R5
+	LOAD #2, R6
+	LOAD R6, R0
+	FLOAT R0, R6
+	LOAD #0x0.0p0, R0
+	CMP R0, R6
+	BEQ erreurDiv0
+	DIV R6, R5
+	CMP R5, R4
+	BLE debutSinon2.7
+	LOAD 42(LB), R4
+	LOAD 31(LB), R5
+	SUB R5, R4
+	STORE R4, 42(LB)
+	BRA finSinon7
+debutSinon2.7:
+	LOAD #1, R4
+	LOAD R4, R0
+	FLOAT R0, R4
+	STORE R4, 40(LB)
+finSinon7:
+debutWhile4:
+	LOAD 43(LB), R4
+	LOAD 33(LB), R5
+	CMP R5, R4
+	BGT finWhile4
+	LOAD 43(LB), R4
+	LOAD #0, R5
+	CMP R5, R4
+	BNE debutSinon1.8
+	LOAD 1(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon1.8:
+	LOAD 43(LB), R4
+	LOAD #1, R5
+	CMP R5, R4
+	BNE debutSinon2.8
+	LOAD 2(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon2.8:
+	LOAD 43(LB), R4
+	LOAD #2, R5
+	CMP R5, R4
+	BNE debutSinon3.8
+	LOAD 3(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon3.8:
+	LOAD 43(LB), R4
+	LOAD #3, R5
+	CMP R5, R4
+	BNE debutSinon4.8
+	LOAD 4(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon4.8:
+	LOAD 43(LB), R4
+	LOAD #4, R5
+	CMP R5, R4
+	BNE debutSinon5.8
+	LOAD 5(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon5.8:
+	LOAD 43(LB), R4
+	LOAD #5, R5
+	CMP R5, R4
+	BNE debutSinon6.8
+	LOAD 6(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon6.8:
+	LOAD 43(LB), R4
+	LOAD #6, R5
+	CMP R5, R4
+	BNE debutSinon7.8
+	LOAD 7(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon7.8:
+	LOAD 43(LB), R4
+	LOAD #7, R5
+	CMP R5, R4
+	BNE debutSinon8.8
+	LOAD 8(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon8.8:
+	LOAD 43(LB), R4
+	LOAD #8, R5
+	CMP R5, R4
+	BNE debutSinon9.8
+	LOAD 9(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon9.8:
+	LOAD 43(LB), R4
+	LOAD #9, R5
+	CMP R5, R4
+	BNE debutSinon10.8
+	LOAD 10(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon10.8:
+	LOAD 43(LB), R4
+	LOAD #10, R5
+	CMP R5, R4
+	BNE debutSinon11.8
+	LOAD 11(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon11.8:
+	LOAD 43(LB), R4
+	LOAD #11, R5
+	CMP R5, R4
+	BNE debutSinon12.8
+	LOAD 12(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon12.8:
+	LOAD 43(LB), R4
+	LOAD #12, R5
+	CMP R5, R4
+	BNE debutSinon13.8
+	LOAD 13(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon13.8:
+	LOAD 43(LB), R4
+	LOAD #13, R5
+	CMP R5, R4
+	BNE debutSinon14.8
+	LOAD 14(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon14.8:
+	LOAD 43(LB), R4
+	LOAD #14, R5
+	CMP R5, R4
+	BNE debutSinon15.8
+	LOAD 15(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon15.8:
+	LOAD 43(LB), R4
+	LOAD #15, R5
+	CMP R5, R4
+	BNE debutSinon16.8
+	LOAD 16(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon16.8:
+	LOAD 43(LB), R4
+	LOAD #16, R5
+	CMP R5, R4
+	BNE debutSinon17.8
+	LOAD 17(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon17.8:
+	LOAD 43(LB), R4
+	LOAD #17, R5
+	CMP R5, R4
+	BNE debutSinon18.8
+	LOAD 18(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon18.8:
+	LOAD 43(LB), R4
+	LOAD #18, R5
+	CMP R5, R4
+	BNE debutSinon19.8
+	LOAD 19(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon19.8:
+	LOAD 43(LB), R4
+	LOAD #19, R5
+	CMP R5, R4
+	BNE debutSinon20.8
+	LOAD 20(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon20.8:
+	LOAD 43(LB), R4
+	LOAD #20, R5
+	CMP R5, R4
+	BNE debutSinon21.8
+	LOAD 21(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon21.8:
+	LOAD 43(LB), R4
+	LOAD #21, R5
+	CMP R5, R4
+	BNE debutSinon22.8
+	LOAD 22(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon22.8:
+	LOAD 43(LB), R4
+	LOAD #22, R5
+	CMP R5, R4
+	BNE debutSinon23.8
+	LOAD 23(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon23.8:
+	LOAD 43(LB), R4
+	LOAD #23, R5
+	CMP R5, R4
+	BNE debutSinon24.8
+	LOAD 24(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon24.8:
+	LOAD 43(LB), R4
+	LOAD #24, R5
+	CMP R5, R4
+	BNE debutSinon25.8
+	LOAD 25(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon25.8:
+	LOAD 43(LB), R4
+	LOAD #25, R5
+	CMP R5, R4
+	BNE debutSinon26.8
+	LOAD 26(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon26.8:
+	LOAD 43(LB), R4
+	LOAD #26, R5
+	CMP R5, R4
+	BNE debutSinon27.8
+	LOAD 27(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon27.8:
+	LOAD 43(LB), R4
+	LOAD #27, R5
+	CMP R5, R4
+	BNE debutSinon28.8
+	LOAD 28(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon28.8:
+	LOAD 43(LB), R4
+	LOAD #28, R5
+	CMP R5, R4
+	BNE debutSinon29.8
+	LOAD 29(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon29.8:
+	LOAD 43(LB), R4
+	LOAD #29, R5
+	CMP R5, R4
+	BNE debutSinon30.8
+	LOAD 30(LB), R4
+	STORE R4, 41(LB)
+	BRA finSinon8
+debutSinon30.8:
+	LOAD 34(LB), R4
+	STORE R4, 41(LB)
+finSinon8:
+	LOAD 42(LB), R4
+	LOAD #0, R5
+	LOAD R5, R0
+	FLOAT R0, R5
+	CMP R5, R4
+	BLT debutSinon1.9
+	LOAD 35(LB), R4
+	LOAD 36(LB), R5
+	LOAD 34(LB), R6
+	MUL R6, R5
+	SUB R5, R4
+	STORE R4, 37(LB)
+	LOAD 36(LB), R4
+	LOAD 35(LB), R5
+	LOAD 34(LB), R6
+	MUL R6, R5
+	ADD R5, R4
+	STORE R4, 38(LB)
+	LOAD 42(LB), R4
+	LOAD 41(LB), R5
+	SUB R5, R4
+	STORE R4, 39(LB)
+	BRA finSinon9
+debutSinon1.9:
+	LOAD 35(LB), R4
+	LOAD 36(LB), R5
+	LOAD 34(LB), R6
+	MUL R6, R5
+	ADD R5, R4
+	STORE R4, 37(LB)
+	LOAD 36(LB), R4
+	LOAD 35(LB), R5
+	LOAD 34(LB), R6
+	MUL R6, R5
+	SUB R5, R4
+	STORE R4, 38(LB)
+	LOAD 42(LB), R4
+	LOAD 41(LB), R5
+	ADD R5, R4
+	STORE R4, 39(LB)
+finSinon9:
+	LOAD 37(LB), R4
+	STORE R4, 35(LB)
+	LOAD 38(LB), R4
+	STORE R4, 36(LB)
+	LOAD 39(LB), R4
+	STORE R4, 42(LB)
+	LOAD 34(LB), R4
+	LOAD #2, R5
+	LOAD R5, R0
+	FLOAT R0, R5
+	LOAD #0x0.0p0, R0
+	CMP R0, R5
+	BEQ erreurDiv0
+	DIV R5, R4
+	STORE R4, 34(LB)
+	LOAD 43(LB), R4
+	LOAD #1, R5
+	ADD R5, R4
+	STORE R4, 43(LB)
+	BRA debutWhile4
+finWhile4:
+	LOAD 40(LB), R4
+	LOAD 35(LB), R5
+	MUL R5, R4
+	LOAD R4, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Math.cos
+	WSTR "Erreur : sortie de la methodecode.Math.cossans return"
+	WNL
+	ERROR
+fincode.Math.cos:
+	RTS
+code.Math.asin:
+	TSTO #13
+	BOV pile_pleine
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD #0x1.921fb6p-1, R5
+	STORE R5, 1(LB)
+	ADDSP #1
+	LOAD #0x1.dac67p-2, R5
+	STORE R5, 2(LB)
+	ADDSP #1
+	LOAD #0x1.f5b76p-3, R5
+	STORE R5, 3(LB)
+	ADDSP #1
+	LOAD #0x1.fd5baap-4, R5
+	STORE R5, 4(LB)
+	ADDSP #1
+	LOAD #0x1.ff55bcp-5, R5
+	STORE R5, 5(LB)
+	ADDSP #1
+	LOAD #0x1.ffd55cp-6, R5
+	STORE R5, 6(LB)
+	ADDSP #1
+	LOAD #0x1.fff556p-7, R5
+	STORE R5, 7(LB)
+	ADDSP #1
+	LOAD #0x1.fffd56p-8, R5
+	STORE R5, 8(LB)
+	ADDSP #1
+	LOAD #0x1.ffff56p-9, R5
+	STORE R5, 9(LB)
+	ADDSP #1
+	LOAD #0x1.ffffd6p-10, R5
+	STORE R5, 10(LB)
+	ADDSP #1
+	LOAD #0x1.fffff6p-11, R5
+	STORE R5, 11(LB)
+	ADDSP #1
+	LOAD #0x1.fffffep-12, R5
+	STORE R5, 12(LB)
+	ADDSP #1
+	LOAD #0x1.0p-12, R5
+	STORE R5, 13(LB)
+	ADDSP #1
+	LOAD #0x1.0p-13, R5
+	STORE R5, 14(LB)
+	ADDSP #1
+	LOAD #0x1.0p-14, R5
+	STORE R5, 15(LB)
+	ADDSP #1
+	LOAD #0x1.0p-15, R5
+	STORE R5, 16(LB)
+	ADDSP #1
+	LOAD #0x1.0p-16, R5
+	STORE R5, 17(LB)
+	ADDSP #1
+	LOAD #0x1.0p-17, R5
+	STORE R5, 18(LB)
+	ADDSP #1
+	LOAD #0x1.0p-18, R5
+	STORE R5, 19(LB)
+	ADDSP #1
+	LOAD #0x1.0p-19, R5
+	STORE R5, 20(LB)
+	ADDSP #1
+	LOAD #0x1.0p-20, R5
+	STORE R5, 21(LB)
+	ADDSP #1
+	LOAD #0x1.0p-21, R5
+	STORE R5, 22(LB)
+	ADDSP #1
+	LOAD #0x1.0p-22, R5
+	STORE R5, 23(LB)
+	ADDSP #1
+	LOAD #0x1.0p-23, R5
+	STORE R5, 24(LB)
+	ADDSP #1
+	LOAD #0x1.0p-24, R5
+	STORE R5, 25(LB)
+	ADDSP #1
+	LOAD #0x1.0p-25, R5
+	STORE R5, 26(LB)
+	ADDSP #1
+	LOAD #0x1.0p-26, R5
+	STORE R5, 27(LB)
+	ADDSP #1
+	LOAD #0x1.0p-27, R5
+	STORE R5, 28(LB)
+	ADDSP #1
+	LOAD #0x1.0p-28, R5
+	STORE R5, 29(LB)
+	ADDSP #1
+	LOAD #0x1.0p-29, R5
+	STORE R5, 30(LB)
+	ADDSP #1
+	LOAD #0x1.921fb6p1, R5
+	STORE R5, 31(LB)
+	ADDSP #1
+	LOAD #1, R5
+	LOAD R5, R0
+	FLOAT R0, R5
+	STORE R5, 32(LB)
+	ADDSP #1
+	LOAD #50, R5
+	STORE R5, 33(LB)
+	ADDSP #1
+	LOAD -3(LB), R5
+	STORE R5, 34(LB)
+	ADDSP #1
+	LOAD #1, R5
+	LOAD R5, R0
+	FLOAT R0, R5
+	STORE R5, 35(LB)
+	ADDSP #1
+	LOAD #0, R5
+	LOAD R5, R0
+	FLOAT R0, R5
+	STORE R5, 36(LB)
+	ADDSP #1
+	LOAD 34(LB), R5
+	STORE R5, 37(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 38(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 39(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 40(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 41(LB)
+	ADDSP #1
+	LOAD #0, R5
+	LOAD R5, R0
+	FLOAT R0, R5
+	STORE R5, 42(LB)
+	ADDSP #1
+	LOAD #0, R5
+	STORE R5, 43(LB)
+	ADDSP #1
+debutWhile5:
+	LOAD 43(LB), R5
+	LOAD 33(LB), R6
+	CMP R6, R5
+	BGT finWhile5
+	LOAD 43(LB), R5
+	LOAD #0, R6
+	CMP R6, R5
+	BNE debutSinon1.10
+	LOAD 1(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon1.10:
+	LOAD 43(LB), R5
+	LOAD #1, R6
+	CMP R6, R5
+	BNE debutSinon2.10
+	LOAD 2(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon2.10:
+	LOAD 43(LB), R5
+	LOAD #2, R6
+	CMP R6, R5
+	BNE debutSinon3.10
+	LOAD 3(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon3.10:
+	LOAD 43(LB), R5
+	LOAD #3, R6
+	CMP R6, R5
+	BNE debutSinon4.10
+	LOAD 4(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon4.10:
+	LOAD 43(LB), R5
+	LOAD #4, R6
+	CMP R6, R5
+	BNE debutSinon5.10
+	LOAD 5(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon5.10:
+	LOAD 43(LB), R5
+	LOAD #5, R6
+	CMP R6, R5
+	BNE debutSinon6.10
+	LOAD 6(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon6.10:
+	LOAD 43(LB), R5
+	LOAD #6, R6
+	CMP R6, R5
+	BNE debutSinon7.10
+	LOAD 7(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon7.10:
+	LOAD 43(LB), R5
+	LOAD #7, R6
+	CMP R6, R5
+	BNE debutSinon8.10
+	LOAD 8(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon8.10:
+	LOAD 43(LB), R5
+	LOAD #8, R6
+	CMP R6, R5
+	BNE debutSinon9.10
+	LOAD 9(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon9.10:
+	LOAD 43(LB), R5
+	LOAD #9, R6
+	CMP R6, R5
+	BNE debutSinon10.10
+	LOAD 10(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon10.10:
+	LOAD 43(LB), R5
+	LOAD #10, R6
+	CMP R6, R5
+	BNE debutSinon11.10
+	LOAD 11(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon11.10:
+	LOAD 43(LB), R5
+	LOAD #11, R6
+	CMP R6, R5
+	BNE debutSinon12.10
+	LOAD 12(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon12.10:
+	LOAD 43(LB), R5
+	LOAD #12, R6
+	CMP R6, R5
+	BNE debutSinon13.10
+	LOAD 13(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon13.10:
+	LOAD 43(LB), R5
+	LOAD #13, R6
+	CMP R6, R5
+	BNE debutSinon14.10
+	LOAD 14(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon14.10:
+	LOAD 43(LB), R5
+	LOAD #14, R6
+	CMP R6, R5
+	BNE debutSinon15.10
+	LOAD 15(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon15.10:
+	LOAD 43(LB), R5
+	LOAD #15, R6
+	CMP R6, R5
+	BNE debutSinon16.10
+	LOAD 16(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon16.10:
+	LOAD 43(LB), R5
+	LOAD #16, R6
+	CMP R6, R5
+	BNE debutSinon17.10
+	LOAD 17(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon17.10:
+	LOAD 43(LB), R5
+	LOAD #17, R6
+	CMP R6, R5
+	BNE debutSinon18.10
+	LOAD 18(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon18.10:
+	LOAD 43(LB), R5
+	LOAD #18, R6
+	CMP R6, R5
+	BNE debutSinon19.10
+	LOAD 19(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon19.10:
+	LOAD 43(LB), R5
+	LOAD #19, R6
+	CMP R6, R5
+	BNE debutSinon20.10
+	LOAD 20(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon20.10:
+	LOAD 43(LB), R5
+	LOAD #20, R6
+	CMP R6, R5
+	BNE debutSinon21.10
+	LOAD 21(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon21.10:
+	LOAD 43(LB), R5
+	LOAD #21, R6
+	CMP R6, R5
+	BNE debutSinon22.10
+	LOAD 22(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon22.10:
+	LOAD 43(LB), R5
+	LOAD #22, R6
+	CMP R6, R5
+	BNE debutSinon23.10
+	LOAD 23(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon23.10:
+	LOAD 43(LB), R5
+	LOAD #23, R6
+	CMP R6, R5
+	BNE debutSinon24.10
+	LOAD 24(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon24.10:
+	LOAD 43(LB), R5
+	LOAD #24, R6
+	CMP R6, R5
+	BNE debutSinon25.10
+	LOAD 25(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon25.10:
+	LOAD 43(LB), R5
+	LOAD #25, R6
+	CMP R6, R5
+	BNE debutSinon26.10
+	LOAD 26(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon26.10:
+	LOAD 43(LB), R5
+	LOAD #26, R6
+	CMP R6, R5
+	BNE debutSinon27.10
+	LOAD 27(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon27.10:
+	LOAD 43(LB), R5
+	LOAD #27, R6
+	CMP R6, R5
+	BNE debutSinon28.10
+	LOAD 28(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon28.10:
+	LOAD 43(LB), R5
+	LOAD #28, R6
+	CMP R6, R5
+	BNE debutSinon29.10
+	LOAD 29(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon29.10:
+	LOAD 43(LB), R5
+	LOAD #29, R6
+	CMP R6, R5
+	BNE debutSinon30.10
+	LOAD 30(LB), R5
+	STORE R5, 41(LB)
+	BRA finSinon10
+debutSinon30.10:
+	LOAD 35(LB), R5
+	STORE R5, 41(LB)
+finSinon10:
+	LOAD #1, R5
+	LOAD R5, R0
+	FLOAT R0, R5
+	LOAD 35(LB), R6
+	LOAD 35(LB), R7
+	MUL R7, R6
+	ADD R6, R5
+	STORE R5, 40(LB)
+	LOAD 32(LB), R5
+	LOAD #0, R6
+	LOAD R6, R0
+	FLOAT R0, R6
+	CMP R6, R5
+	SLT R5
+	LOAD 36(LB), R6
+	LOAD 37(LB), R7
+	CMP R7, R6
+	SLE R6
+	MUL R6, R5
+	LOAD 32(LB), R6
+	LOAD #0, R7
+	LOAD R7, R0
+	FLOAT R0, R7
+	CMP R7, R6
+	SGE R6
+	LOAD 37(LB), R7
+	LOAD 36(LB), R8
+	CMP R8, R7
+	SLT R7
+	MUL R7, R6
+	ADD R6, R5
+	LOAD #1, R6
+	CMP R6, R5
+	SGE R5
+	LOAD #0, R6
+	CMP R5, R6
+	BEQ debutSinon1.11
+	LOAD 32(LB), R5
+	LOAD 36(LB), R6
+	LOAD 35(LB), R7
+	MUL R7, R6
+	ADD R6, R5
+	STORE R5, 38(LB)
+	LOAD 36(LB), R5
+	LOAD 32(LB), R6
+	LOAD 35(LB), R7
+	MUL R7, R6
+	SUB R6, R5
+	STORE R5, 39(LB)
+	LOAD 38(LB), R5
+	LOAD 39(LB), R6
+	LOAD 35(LB), R7
+	MUL R7, R6
+	ADD R6, R5
+	STORE R5, 32(LB)
+	LOAD 39(LB), R5
+	LOAD 38(LB), R6
+	LOAD 35(LB), R7
+	MUL R7, R6
+	SUB R6, R5
+	STORE R5, 36(LB)
+	LOAD 42(LB), R5
+	LOAD #2, R6
+	LOAD R6, R0
+	FLOAT R0, R6
+	LOAD 41(LB), R7
+	MUL R7, R6
+	SUB R6, R5
+	STORE R5, 42(LB)
+	BRA finSinon11
+debutSinon1.11:
+	LOAD 32(LB), R5
+	LOAD 36(LB), R6
+	LOAD 35(LB), R7
+	MUL R7, R6
+	SUB R6, R5
+	STORE R5, 38(LB)
+	LOAD 36(LB), R5
+	LOAD 32(LB), R6
+	LOAD 35(LB), R7
+	MUL R7, R6
+	ADD R6, R5
+	STORE R5, 39(LB)
+	LOAD 38(LB), R5
+	LOAD 39(LB), R6
+	LOAD 35(LB), R7
+	MUL R7, R6
+	SUB R6, R5
+	STORE R5, 32(LB)
+	LOAD 39(LB), R5
+	LOAD 38(LB), R6
+	LOAD 35(LB), R7
+	MUL R7, R6
+	ADD R6, R5
+	STORE R5, 36(LB)
+	LOAD 42(LB), R5
+	LOAD #2, R6
+	LOAD R6, R0
+	FLOAT R0, R6
+	LOAD 41(LB), R7
+	MUL R7, R6
+	ADD R6, R5
+	STORE R5, 42(LB)
+finSinon11:
+	LOAD 40(LB), R5
+	LOAD 37(LB), R6
+	MUL R6, R5
+	STORE R5, 37(LB)
+	LOAD 35(LB), R5
+	LOAD #2, R6
+	LOAD R6, R0
+	FLOAT R0, R6
+	LOAD #0x0.0p0, R0
+	CMP R0, R6
+	BEQ erreurDiv0
+	DIV R6, R5
+	STORE R5, 35(LB)
+	LOAD 43(LB), R5
+	LOAD #1, R6
+	ADD R6, R5
+	STORE R5, 43(LB)
+	BRA debutWhile5
+finWhile5:
+	LOAD 42(LB), R5
+	LOAD R5, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Math.asin
+	WSTR "Erreur : sortie de la methodecode.Math.asinsans return"
+	WNL
+	ERROR
+fincode.Math.asin:
+	RTS
+code.Math.atan:
+	TSTO #13
+	BOV pile_pleine
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD #0x1.921fb6p-1, R6
+	STORE R6, 1(LB)
+	ADDSP #1
+	LOAD #0x1.dac67p-2, R6
+	STORE R6, 2(LB)
+	ADDSP #1
+	LOAD #0x1.f5b76p-3, R6
+	STORE R6, 3(LB)
+	ADDSP #1
+	LOAD #0x1.fd5baap-4, R6
+	STORE R6, 4(LB)
+	ADDSP #1
+	LOAD #0x1.ff55bcp-5, R6
+	STORE R6, 5(LB)
+	ADDSP #1
+	LOAD #0x1.ffd55cp-6, R6
+	STORE R6, 6(LB)
+	ADDSP #1
+	LOAD #0x1.fff556p-7, R6
+	STORE R6, 7(LB)
+	ADDSP #1
+	LOAD #0x1.fffd56p-8, R6
+	STORE R6, 8(LB)
+	ADDSP #1
+	LOAD #0x1.ffff56p-9, R6
+	STORE R6, 9(LB)
+	ADDSP #1
+	LOAD #0x1.ffffd6p-10, R6
+	STORE R6, 10(LB)
+	ADDSP #1
+	LOAD #0x1.fffff6p-11, R6
+	STORE R6, 11(LB)
+	ADDSP #1
+	LOAD #0x1.fffffep-12, R6
+	STORE R6, 12(LB)
+	ADDSP #1
+	LOAD #0x1.0p-12, R6
+	STORE R6, 13(LB)
+	ADDSP #1
+	LOAD #0x1.0p-13, R6
+	STORE R6, 14(LB)
+	ADDSP #1
+	LOAD #0x1.0p-14, R6
+	STORE R6, 15(LB)
+	ADDSP #1
+	LOAD #0x1.0p-15, R6
+	STORE R6, 16(LB)
+	ADDSP #1
+	LOAD #0x1.0p-16, R6
+	STORE R6, 17(LB)
+	ADDSP #1
+	LOAD #0x1.0p-17, R6
+	STORE R6, 18(LB)
+	ADDSP #1
+	LOAD #0x1.0p-18, R6
+	STORE R6, 19(LB)
+	ADDSP #1
+	LOAD #0x1.0p-19, R6
+	STORE R6, 20(LB)
+	ADDSP #1
+	LOAD #0x1.0p-20, R6
+	STORE R6, 21(LB)
+	ADDSP #1
+	LOAD #0x1.0p-21, R6
+	STORE R6, 22(LB)
+	ADDSP #1
+	LOAD #0x1.0p-22, R6
+	STORE R6, 23(LB)
+	ADDSP #1
+	LOAD #0x1.0p-23, R6
+	STORE R6, 24(LB)
+	ADDSP #1
+	LOAD #0x1.0p-24, R6
+	STORE R6, 25(LB)
+	ADDSP #1
+	LOAD #0x1.0p-25, R6
+	STORE R6, 26(LB)
+	ADDSP #1
+	LOAD #0x1.0p-26, R6
+	STORE R6, 27(LB)
+	ADDSP #1
+	LOAD #0x1.0p-27, R6
+	STORE R6, 28(LB)
+	ADDSP #1
+	LOAD #0x1.0p-28, R6
+	STORE R6, 29(LB)
+	ADDSP #1
+	LOAD #0x1.0p-29, R6
+	STORE R6, 30(LB)
+	ADDSP #1
+	LOAD #32, R6
+	STORE R6, 31(LB)
+	ADDSP #1
+	LOAD #1, R6
+	LOAD R6, R0
+	FLOAT R0, R6
+	STORE R6, 32(LB)
+	ADDSP #1
+	LOAD -3(LB), R6
+	STORE R6, 33(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 34(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 35(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 36(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 37(LB)
+	ADDSP #1
+	LOAD #1, R6
+	LOAD R6, R0
+	FLOAT R0, R6
+	STORE R6, 38(LB)
+	ADDSP #1
+	LOAD #0, R6
+	LOAD R6, R0
+	FLOAT R0, R6
+	STORE R6, 39(LB)
+	ADDSP #1
+	LOAD #1, R6
+	LOAD R6, R0
+	FLOAT R0, R6
+	STORE R6, 40(LB)
+	ADDSP #1
+	LOAD #0, R6
+	STORE R6, 41(LB)
+	ADDSP #1
+	LOAD 33(LB), R6
+	LOAD #0, R7
+	LOAD R7, R0
+	FLOAT R0, R7
+	CMP R7, R6
+	BGE debutSinon1.12
+	LOAD #1, R6
+	OPP R6, R6
+	LOAD R6, R0
+	FLOAT R0, R6
+	STORE R6, 38(LB)
+	BRA finSinon12
+debutSinon1.12:
+finSinon12:
+	LOAD 38(LB), R6
+	LOAD 33(LB), R7
+	MUL R7, R6
+	STORE R6, 34(LB)
+debutWhile6:
+	LOAD 41(LB), R6
+	LOAD 31(LB), R7
+	CMP R7, R6
+	BGT finWhile6
+	LOAD 41(LB), R6
+	LOAD #0, R7
+	CMP R7, R6
+	BNE debutSinon1.13
+	LOAD 1(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon1.13:
+	LOAD 41(LB), R6
+	LOAD #1, R7
+	CMP R7, R6
+	BNE debutSinon2.13
+	LOAD 2(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon2.13:
+	LOAD 41(LB), R6
+	LOAD #2, R7
+	CMP R7, R6
+	BNE debutSinon3.13
+	LOAD 3(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon3.13:
+	LOAD 41(LB), R6
+	LOAD #3, R7
+	CMP R7, R6
+	BNE debutSinon4.13
+	LOAD 4(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon4.13:
+	LOAD 41(LB), R6
+	LOAD #4, R7
+	CMP R7, R6
+	BNE debutSinon5.13
+	LOAD 5(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon5.13:
+	LOAD 41(LB), R6
+	LOAD #5, R7
+	CMP R7, R6
+	BNE debutSinon6.13
+	LOAD 6(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon6.13:
+	LOAD 41(LB), R6
+	LOAD #6, R7
+	CMP R7, R6
+	BNE debutSinon7.13
+	LOAD 7(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon7.13:
+	LOAD 41(LB), R6
+	LOAD #7, R7
+	CMP R7, R6
+	BNE debutSinon8.13
+	LOAD 8(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon8.13:
+	LOAD 41(LB), R6
+	LOAD #8, R7
+	CMP R7, R6
+	BNE debutSinon9.13
+	LOAD 9(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon9.13:
+	LOAD 41(LB), R6
+	LOAD #9, R7
+	CMP R7, R6
+	BNE debutSinon10.13
+	LOAD 10(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon10.13:
+	LOAD 41(LB), R6
+	LOAD #10, R7
+	CMP R7, R6
+	BNE debutSinon11.13
+	LOAD 11(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon11.13:
+	LOAD 41(LB), R6
+	LOAD #11, R7
+	CMP R7, R6
+	BNE debutSinon12.13
+	LOAD 12(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon12.13:
+	LOAD 41(LB), R6
+	LOAD #12, R7
+	CMP R7, R6
+	BNE debutSinon13.13
+	LOAD 13(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon13.13:
+	LOAD 41(LB), R6
+	LOAD #13, R7
+	CMP R7, R6
+	BNE debutSinon14.13
+	LOAD 14(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon14.13:
+	LOAD 41(LB), R6
+	LOAD #14, R7
+	CMP R7, R6
+	BNE debutSinon15.13
+	LOAD 15(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon15.13:
+	LOAD 41(LB), R6
+	LOAD #15, R7
+	CMP R7, R6
+	BNE debutSinon16.13
+	LOAD 16(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon16.13:
+	LOAD 41(LB), R6
+	LOAD #16, R7
+	CMP R7, R6
+	BNE debutSinon17.13
+	LOAD 17(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon17.13:
+	LOAD 41(LB), R6
+	LOAD #17, R7
+	CMP R7, R6
+	BNE debutSinon18.13
+	LOAD 18(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon18.13:
+	LOAD 41(LB), R6
+	LOAD #18, R7
+	CMP R7, R6
+	BNE debutSinon19.13
+	LOAD 19(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon19.13:
+	LOAD 41(LB), R6
+	LOAD #19, R7
+	CMP R7, R6
+	BNE debutSinon20.13
+	LOAD 20(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon20.13:
+	LOAD 41(LB), R6
+	LOAD #20, R7
+	CMP R7, R6
+	BNE debutSinon21.13
+	LOAD 21(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon21.13:
+	LOAD 41(LB), R6
+	LOAD #21, R7
+	CMP R7, R6
+	BNE debutSinon22.13
+	LOAD 22(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon22.13:
+	LOAD 41(LB), R6
+	LOAD #22, R7
+	CMP R7, R6
+	BNE debutSinon23.13
+	LOAD 23(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon23.13:
+	LOAD 41(LB), R6
+	LOAD #23, R7
+	CMP R7, R6
+	BNE debutSinon24.13
+	LOAD 24(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon24.13:
+	LOAD 41(LB), R6
+	LOAD #24, R7
+	CMP R7, R6
+	BNE debutSinon25.13
+	LOAD 25(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon25.13:
+	LOAD 41(LB), R6
+	LOAD #25, R7
+	CMP R7, R6
+	BNE debutSinon26.13
+	LOAD 26(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon26.13:
+	LOAD 41(LB), R6
+	LOAD #26, R7
+	CMP R7, R6
+	BNE debutSinon27.13
+	LOAD 27(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon27.13:
+	LOAD 41(LB), R6
+	LOAD #27, R7
+	CMP R7, R6
+	BNE debutSinon28.13
+	LOAD 28(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon28.13:
+	LOAD 41(LB), R6
+	LOAD #28, R7
+	CMP R7, R6
+	BNE debutSinon29.13
+	LOAD 29(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon29.13:
+	LOAD 41(LB), R6
+	LOAD #29, R7
+	CMP R7, R6
+	BNE debutSinon30.13
+	LOAD 30(LB), R6
+	STORE R6, 37(LB)
+	BRA finSinon13
+debutSinon30.13:
+	LOAD 40(LB), R6
+	STORE R6, 37(LB)
+finSinon13:
+	LOAD 34(LB), R6
+	LOAD #0, R7
+	LOAD R7, R0
+	FLOAT R0, R7
+	CMP R7, R6
+	BLE debutSinon1.14
+	LOAD 32(LB), R6
+	LOAD 34(LB), R7
+	LOAD 40(LB), R8
+	MUL R8, R7
+	ADD R7, R6
+	STORE R6, 35(LB)
+	LOAD 34(LB), R6
+	LOAD 32(LB), R7
+	LOAD 40(LB), R8
+	MUL R8, R7
+	SUB R7, R6
+	STORE R6, 36(LB)
+	LOAD 39(LB), R6
+	LOAD 37(LB), R7
+	ADD R7, R6
+	STORE R6, 39(LB)
+	LOAD 35(LB), R6
+	STORE R6, 32(LB)
+	LOAD 36(LB), R6
+	STORE R6, 34(LB)
+	LOAD 40(LB), R6
+	LOAD #2, R7
+	LOAD R7, R0
+	FLOAT R0, R7
+	LOAD #0x0.0p0, R0
+	CMP R0, R7
+	BEQ erreurDiv0
+	DIV R7, R6
+	STORE R6, 40(LB)
+	BRA finSinon14
+debutSinon1.14:
+	LOAD 32(LB), R6
+	LOAD 34(LB), R7
+	LOAD 40(LB), R8
+	MUL R8, R7
+	SUB R7, R6
+	STORE R6, 35(LB)
+	LOAD 34(LB), R6
+	LOAD 32(LB), R7
+	LOAD 40(LB), R8
+	MUL R8, R7
+	ADD R7, R6
+	STORE R6, 36(LB)
+	LOAD 39(LB), R6
+	LOAD 37(LB), R7
+	SUB R7, R6
+	STORE R6, 39(LB)
+	LOAD 35(LB), R6
+	STORE R6, 32(LB)
+	LOAD 36(LB), R6
+	STORE R6, 34(LB)
+	LOAD 40(LB), R6
+	LOAD #2, R7
+	LOAD R7, R0
+	FLOAT R0, R7
+	LOAD #0x0.0p0, R0
+	CMP R0, R7
+	BEQ erreurDiv0
+	DIV R7, R6
+	STORE R6, 40(LB)
+finSinon14:
+	LOAD 41(LB), R6
+	LOAD #1, R7
+	ADD R7, R6
+	STORE R6, 41(LB)
+	BRA debutWhile6
+finWhile6:
+	LOAD 38(LB), R6
+	LOAD 39(LB), R7
+	MUL R7, R6
+	LOAD R6, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Math.atan
+	WSTR "Erreur : sortie de la methodecode.Math.atansans return"
+	WNL
+	ERROR
+fincode.Math.atan:
+	RTS
+code.Math.tan:
+	TSTO #13
+	BOV pile_pleine
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD #0x1.921fb6p-1, R7
+	STORE R7, 1(LB)
+	ADDSP #1
+	LOAD #0x1.dac67p-2, R7
+	STORE R7, 2(LB)
+	ADDSP #1
+	LOAD #0x1.f5b76p-3, R7
+	STORE R7, 3(LB)
+	ADDSP #1
+	LOAD #0x1.fd5baap-4, R7
+	STORE R7, 4(LB)
+	ADDSP #1
+	LOAD #0x1.ff55bcp-5, R7
+	STORE R7, 5(LB)
+	ADDSP #1
+	LOAD #0x1.ffd55cp-6, R7
+	STORE R7, 6(LB)
+	ADDSP #1
+	LOAD #0x1.fff556p-7, R7
+	STORE R7, 7(LB)
+	ADDSP #1
+	LOAD #0x1.fffd56p-8, R7
+	STORE R7, 8(LB)
+	ADDSP #1
+	LOAD #0x1.ffff56p-9, R7
+	STORE R7, 9(LB)
+	ADDSP #1
+	LOAD #0x1.ffffd6p-10, R7
+	STORE R7, 10(LB)
+	ADDSP #1
+	LOAD #0x1.fffff6p-11, R7
+	STORE R7, 11(LB)
+	ADDSP #1
+	LOAD #0x1.fffffep-12, R7
+	STORE R7, 12(LB)
+	ADDSP #1
+	LOAD #0x1.0p-12, R7
+	STORE R7, 13(LB)
+	ADDSP #1
+	LOAD #0x1.0p-13, R7
+	STORE R7, 14(LB)
+	ADDSP #1
+	LOAD #0x1.0p-14, R7
+	STORE R7, 15(LB)
+	ADDSP #1
+	LOAD #0x1.0p-15, R7
+	STORE R7, 16(LB)
+	ADDSP #1
+	LOAD #0x1.0p-16, R7
+	STORE R7, 17(LB)
+	ADDSP #1
+	LOAD #0x1.0p-17, R7
+	STORE R7, 18(LB)
+	ADDSP #1
+	LOAD #0x1.0p-18, R7
+	STORE R7, 19(LB)
+	ADDSP #1
+	LOAD #0x1.0p-19, R7
+	STORE R7, 20(LB)
+	ADDSP #1
+	LOAD #0x1.0p-20, R7
+	STORE R7, 21(LB)
+	ADDSP #1
+	LOAD #0x1.0p-21, R7
+	STORE R7, 22(LB)
+	ADDSP #1
+	LOAD #0x1.0p-22, R7
+	STORE R7, 23(LB)
+	ADDSP #1
+	LOAD #0x1.0p-23, R7
+	STORE R7, 24(LB)
+	ADDSP #1
+	LOAD #0x1.0p-24, R7
+	STORE R7, 25(LB)
+	ADDSP #1
+	LOAD #0x1.0p-25, R7
+	STORE R7, 26(LB)
+	ADDSP #1
+	LOAD #0x1.0p-26, R7
+	STORE R7, 27(LB)
+	ADDSP #1
+	LOAD #0x1.0p-27, R7
+	STORE R7, 28(LB)
+	ADDSP #1
+	LOAD #0x1.0p-28, R7
+	STORE R7, 29(LB)
+	ADDSP #1
+	LOAD #0x1.0p-29, R7
+	STORE R7, 30(LB)
+	ADDSP #1
+	LOAD #0x1.921fb6p1, R7
+	STORE R7, 31(LB)
+	ADDSP #1
+	LOAD -3(LB), R7
+	STORE R7, 32(LB)
+	ADDSP #1
+	LOAD #50, R7
+	STORE R7, 33(LB)
+	ADDSP #1
+	LOAD #1, R7
+	LOAD R7, R0
+	FLOAT R0, R7
+	STORE R7, 34(LB)
+	ADDSP #1
+	LOAD #0x1.36e9dcp-1, R7
+	STORE R7, 35(LB)
+	ADDSP #1
+	LOAD #0, R7
+	LOAD R7, R0
+	FLOAT R0, R7
+	STORE R7, 36(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 37(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 38(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 39(LB)
+	ADDSP #1
+	LOAD #1, R7
+	OPP R7, R7
+	LOAD R7, R0
+	FLOAT R0, R7
+	STORE R7, 40(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 41(LB)
+	ADDSP #1
+	LOAD 32(LB), R7
+	STORE R7, 42(LB)
+	ADDSP #1
+	LOAD #0, R7
+	STORE R7, 43(LB)
+	ADDSP #1
+debutWhile7:
+	LOAD 42(LB), R7
+	LOAD 31(LB), R8
+	OPP R8, R8
+	CMP R8, R7
+	SLT R7
+	LOAD 42(LB), R8
+	LOAD 31(LB), R9
+	CMP R9, R8
+	SGT R8
+	ADD R8, R7
+	LOAD #1, R8
+	CMP R8, R7
+	SGE R7
+	LOAD #0, R8
+	CMP R7, R8
+	BEQ finWhile7
+	LOAD 42(LB), R7
+	LOAD 31(LB), R8
+	OPP R8, R8
+	CMP R8, R7
+	BGE debutSinon1.15
+	LOAD 42(LB), R7
+	LOAD #2, R8
+	LOAD R8, R0
+	FLOAT R0, R8
+	LOAD 31(LB), R9
+	MUL R9, R8
+	ADD R8, R7
+	STORE R7, 42(LB)
+	BRA finSinon15
+debutSinon1.15:
+finSinon15:
+	LOAD 42(LB), R7
+	LOAD 31(LB), R8
+	CMP R8, R7
+	BLE debutSinon1.16
+	LOAD 42(LB), R7
+	LOAD #2, R8
+	LOAD R8, R0
+	FLOAT R0, R8
+	LOAD 31(LB), R9
+	MUL R9, R8
+	SUB R8, R7
+	STORE R7, 42(LB)
+	BRA finSinon16
+debutSinon1.16:
+finSinon16:
+	BRA debutWhile7
+finWhile7:
+	LOAD 42(LB), R7
+	LOAD 31(LB), R8
+	OPP R8, R8
+	LOAD #2, R9
+	LOAD R9, R0
+	FLOAT R0, R9
+	LOAD #0x0.0p0, R0
+	CMP R0, R9
+	BEQ erreurDiv0
+	DIV R9, R8
+	CMP R8, R7
+	BGE debutSinon1.17
+	LOAD 42(LB), R7
+	LOAD 31(LB), R8
+	ADD R8, R7
+	STORE R7, 42(LB)
+	BRA finSinon17
+debutSinon1.17:
+	LOAD 42(LB), R7
+	LOAD 31(LB), R8
+	LOAD #2, R9
+	LOAD R9, R0
+	FLOAT R0, R9
+	LOAD #0x0.0p0, R0
+	CMP R0, R9
+	BEQ erreurDiv0
+	DIV R9, R8
+	CMP R8, R7
+	BLE debutSinon2.17
+	LOAD 42(LB), R7
+	LOAD 31(LB), R8
+	SUB R8, R7
+	STORE R7, 42(LB)
+	BRA finSinon17
+debutSinon2.17:
+	LOAD #1, R7
+	LOAD R7, R0
+	FLOAT R0, R7
+	STORE R7, 40(LB)
+finSinon17:
+debutWhile8:
+	LOAD 43(LB), R7
+	LOAD 33(LB), R8
+	CMP R8, R7
+	BGT finWhile8
+	LOAD 43(LB), R7
+	LOAD #0, R8
+	CMP R8, R7
+	BNE debutSinon1.18
+	LOAD 1(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon1.18:
+	LOAD 43(LB), R7
+	LOAD #1, R8
+	CMP R8, R7
+	BNE debutSinon2.18
+	LOAD 2(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon2.18:
+	LOAD 43(LB), R7
+	LOAD #2, R8
+	CMP R8, R7
+	BNE debutSinon3.18
+	LOAD 3(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon3.18:
+	LOAD 43(LB), R7
+	LOAD #3, R8
+	CMP R8, R7
+	BNE debutSinon4.18
+	LOAD 4(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon4.18:
+	LOAD 43(LB), R7
+	LOAD #4, R8
+	CMP R8, R7
+	BNE debutSinon5.18
+	LOAD 5(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon5.18:
+	LOAD 43(LB), R7
+	LOAD #5, R8
+	CMP R8, R7
+	BNE debutSinon6.18
+	LOAD 6(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon6.18:
+	LOAD 43(LB), R7
+	LOAD #6, R8
+	CMP R8, R7
+	BNE debutSinon7.18
+	LOAD 7(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon7.18:
+	LOAD 43(LB), R7
+	LOAD #7, R8
+	CMP R8, R7
+	BNE debutSinon8.18
+	LOAD 8(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon8.18:
+	LOAD 43(LB), R7
+	LOAD #8, R8
+	CMP R8, R7
+	BNE debutSinon9.18
+	LOAD 9(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon9.18:
+	LOAD 43(LB), R7
+	LOAD #9, R8
+	CMP R8, R7
+	BNE debutSinon10.18
+	LOAD 10(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon10.18:
+	LOAD 43(LB), R7
+	LOAD #10, R8
+	CMP R8, R7
+	BNE debutSinon11.18
+	LOAD 11(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon11.18:
+	LOAD 43(LB), R7
+	LOAD #11, R8
+	CMP R8, R7
+	BNE debutSinon12.18
+	LOAD 12(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon12.18:
+	LOAD 43(LB), R7
+	LOAD #12, R8
+	CMP R8, R7
+	BNE debutSinon13.18
+	LOAD 13(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon13.18:
+	LOAD 43(LB), R7
+	LOAD #13, R8
+	CMP R8, R7
+	BNE debutSinon14.18
+	LOAD 14(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon14.18:
+	LOAD 43(LB), R7
+	LOAD #14, R8
+	CMP R8, R7
+	BNE debutSinon15.18
+	LOAD 15(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon15.18:
+	LOAD 43(LB), R7
+	LOAD #15, R8
+	CMP R8, R7
+	BNE debutSinon16.18
+	LOAD 16(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon16.18:
+	LOAD 43(LB), R7
+	LOAD #16, R8
+	CMP R8, R7
+	BNE debutSinon17.18
+	LOAD 17(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon17.18:
+	LOAD 43(LB), R7
+	LOAD #17, R8
+	CMP R8, R7
+	BNE debutSinon18.18
+	LOAD 18(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon18.18:
+	LOAD 43(LB), R7
+	LOAD #18, R8
+	CMP R8, R7
+	BNE debutSinon19.18
+	LOAD 19(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon19.18:
+	LOAD 43(LB), R7
+	LOAD #19, R8
+	CMP R8, R7
+	BNE debutSinon20.18
+	LOAD 20(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon20.18:
+	LOAD 43(LB), R7
+	LOAD #20, R8
+	CMP R8, R7
+	BNE debutSinon21.18
+	LOAD 21(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon21.18:
+	LOAD 43(LB), R7
+	LOAD #21, R8
+	CMP R8, R7
+	BNE debutSinon22.18
+	LOAD 22(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon22.18:
+	LOAD 43(LB), R7
+	LOAD #22, R8
+	CMP R8, R7
+	BNE debutSinon23.18
+	LOAD 23(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon23.18:
+	LOAD 43(LB), R7
+	LOAD #23, R8
+	CMP R8, R7
+	BNE debutSinon24.18
+	LOAD 24(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon24.18:
+	LOAD 43(LB), R7
+	LOAD #24, R8
+	CMP R8, R7
+	BNE debutSinon25.18
+	LOAD 25(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon25.18:
+	LOAD 43(LB), R7
+	LOAD #25, R8
+	CMP R8, R7
+	BNE debutSinon26.18
+	LOAD 26(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon26.18:
+	LOAD 43(LB), R7
+	LOAD #26, R8
+	CMP R8, R7
+	BNE debutSinon27.18
+	LOAD 27(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon27.18:
+	LOAD 43(LB), R7
+	LOAD #27, R8
+	CMP R8, R7
+	BNE debutSinon28.18
+	LOAD 28(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon28.18:
+	LOAD 43(LB), R7
+	LOAD #28, R8
+	CMP R8, R7
+	BNE debutSinon29.18
+	LOAD 29(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon29.18:
+	LOAD 43(LB), R7
+	LOAD #29, R8
+	CMP R8, R7
+	BNE debutSinon30.18
+	LOAD 30(LB), R7
+	STORE R7, 41(LB)
+	BRA finSinon18
+debutSinon30.18:
+	LOAD 34(LB), R7
+	STORE R7, 41(LB)
+finSinon18:
+	LOAD 42(LB), R7
+	LOAD #0, R8
+	LOAD R8, R0
+	FLOAT R0, R8
+	CMP R8, R7
+	BLT debutSinon1.19
+	LOAD 35(LB), R7
+	LOAD 36(LB), R8
+	LOAD 34(LB), R9
+	MUL R9, R8
+	SUB R8, R7
+	STORE R7, 37(LB)
+	LOAD 36(LB), R7
+	LOAD 35(LB), R8
+	LOAD 34(LB), R9
+	MUL R9, R8
+	ADD R8, R7
+	STORE R7, 38(LB)
+	LOAD 42(LB), R7
+	LOAD 41(LB), R8
+	SUB R8, R7
+	STORE R7, 39(LB)
+	BRA finSinon19
+debutSinon1.19:
+	LOAD 35(LB), R7
+	LOAD 36(LB), R8
+	LOAD 34(LB), R9
+	MUL R9, R8
+	ADD R8, R7
+	STORE R7, 37(LB)
+	LOAD 36(LB), R7
+	LOAD 35(LB), R8
+	LOAD 34(LB), R9
+	MUL R9, R8
+	SUB R8, R7
+	STORE R7, 38(LB)
+	LOAD 42(LB), R7
+	LOAD 41(LB), R8
+	ADD R8, R7
+	STORE R7, 39(LB)
+finSinon19:
+	LOAD 37(LB), R7
+	STORE R7, 35(LB)
+	LOAD 38(LB), R7
+	STORE R7, 36(LB)
+	LOAD 39(LB), R7
+	STORE R7, 42(LB)
+	LOAD 34(LB), R7
+	LOAD #2, R8
+	LOAD R8, R0
+	FLOAT R0, R8
+	LOAD #0x0.0p0, R0
+	CMP R0, R8
+	BEQ erreurDiv0
+	DIV R8, R7
+	STORE R7, 34(LB)
+	LOAD 43(LB), R7
+	LOAD #1, R8
+	ADD R8, R7
+	STORE R7, 43(LB)
+	BRA debutWhile8
+finWhile8:
+	LOAD 36(LB), R7
+	LOAD 35(LB), R8
+	LOAD #0x0.0p0, R0
+	CMP R0, R8
+	BEQ erreurDiv0
+	DIV R8, R7
+	LOAD R7, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Math.tan
+	WSTR "Erreur : sortie de la methodecode.Math.tansans return"
+	WNL
+	ERROR
+fincode.Math.tan:
+	RTS
+code.Math.acos:
+	TSTO #13
+	BOV pile_pleine
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD #0x1.921fb6p-1, R8
+	STORE R8, 1(LB)
+	ADDSP #1
+	LOAD #0x1.dac67p-2, R8
+	STORE R8, 2(LB)
+	ADDSP #1
+	LOAD #0x1.f5b76p-3, R8
+	STORE R8, 3(LB)
+	ADDSP #1
+	LOAD #0x1.fd5baap-4, R8
+	STORE R8, 4(LB)
+	ADDSP #1
+	LOAD #0x1.ff55bcp-5, R8
+	STORE R8, 5(LB)
+	ADDSP #1
+	LOAD #0x1.ffd55cp-6, R8
+	STORE R8, 6(LB)
+	ADDSP #1
+	LOAD #0x1.fff556p-7, R8
+	STORE R8, 7(LB)
+	ADDSP #1
+	LOAD #0x1.fffd56p-8, R8
+	STORE R8, 8(LB)
+	ADDSP #1
+	LOAD #0x1.ffff56p-9, R8
+	STORE R8, 9(LB)
+	ADDSP #1
+	LOAD #0x1.ffffd6p-10, R8
+	STORE R8, 10(LB)
+	ADDSP #1
+	LOAD #0x1.fffff6p-11, R8
+	STORE R8, 11(LB)
+	ADDSP #1
+	LOAD #0x1.fffffep-12, R8
+	STORE R8, 12(LB)
+	ADDSP #1
+	LOAD #0x1.0p-12, R8
+	STORE R8, 13(LB)
+	ADDSP #1
+	LOAD #0x1.0p-13, R8
+	STORE R8, 14(LB)
+	ADDSP #1
+	LOAD #0x1.0p-14, R8
+	STORE R8, 15(LB)
+	ADDSP #1
+	LOAD #0x1.0p-15, R8
+	STORE R8, 16(LB)
+	ADDSP #1
+	LOAD #0x1.0p-16, R8
+	STORE R8, 17(LB)
+	ADDSP #1
+	LOAD #0x1.0p-17, R8
+	STORE R8, 18(LB)
+	ADDSP #1
+	LOAD #0x1.0p-18, R8
+	STORE R8, 19(LB)
+	ADDSP #1
+	LOAD #0x1.0p-19, R8
+	STORE R8, 20(LB)
+	ADDSP #1
+	LOAD #0x1.0p-20, R8
+	STORE R8, 21(LB)
+	ADDSP #1
+	LOAD #0x1.0p-21, R8
+	STORE R8, 22(LB)
+	ADDSP #1
+	LOAD #0x1.0p-22, R8
+	STORE R8, 23(LB)
+	ADDSP #1
+	LOAD #0x1.0p-23, R8
+	STORE R8, 24(LB)
+	ADDSP #1
+	LOAD #0x1.0p-24, R8
+	STORE R8, 25(LB)
+	ADDSP #1
+	LOAD #0x1.0p-25, R8
+	STORE R8, 26(LB)
+	ADDSP #1
+	LOAD #0x1.0p-26, R8
+	STORE R8, 27(LB)
+	ADDSP #1
+	LOAD #0x1.0p-27, R8
+	STORE R8, 28(LB)
+	ADDSP #1
+	LOAD #0x1.0p-28, R8
+	STORE R8, 29(LB)
+	ADDSP #1
+	LOAD #0x1.0p-29, R8
+	STORE R8, 30(LB)
+	ADDSP #1
+	LOAD #0x1.921fb6p1, R8
+	STORE R8, 31(LB)
+	ADDSP #1
+	LOAD #1, R8
+	LOAD R8, R0
+	FLOAT R0, R8
+	STORE R8, 32(LB)
+	ADDSP #1
+	LOAD #50, R8
+	STORE R8, 33(LB)
+	ADDSP #1
+	LOAD -3(LB), R8
+	STORE R8, 34(LB)
+	ADDSP #1
+	LOAD #1, R8
+	LOAD R8, R0
+	FLOAT R0, R8
+	STORE R8, 35(LB)
+	ADDSP #1
+	LOAD #0, R8
+	LOAD R8, R0
+	FLOAT R0, R8
+	STORE R8, 36(LB)
+	ADDSP #1
+	LOAD 34(LB), R8
+	STORE R8, 37(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 38(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 39(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 40(LB)
+	ADDSP #1
+	LOAD #0x0.0p0, R0
+	STORE R0, 41(LB)
+	ADDSP #1
+	LOAD #0, R8
+	LOAD R8, R0
+	FLOAT R0, R8
+	STORE R8, 42(LB)
+	ADDSP #1
+	LOAD #0, R8
+	STORE R8, 43(LB)
+	ADDSP #1
+debutWhile9:
+	LOAD 43(LB), R8
+	LOAD 33(LB), R9
+	CMP R9, R8
+	BGT finWhile9
+	LOAD 43(LB), R8
+	LOAD #0, R9
+	CMP R9, R8
+	BNE debutSinon1.20
+	LOAD 1(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon1.20:
+	LOAD 43(LB), R8
+	LOAD #1, R9
+	CMP R9, R8
+	BNE debutSinon2.20
+	LOAD 2(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon2.20:
+	LOAD 43(LB), R8
+	LOAD #2, R9
+	CMP R9, R8
+	BNE debutSinon3.20
+	LOAD 3(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon3.20:
+	LOAD 43(LB), R8
+	LOAD #3, R9
+	CMP R9, R8
+	BNE debutSinon4.20
+	LOAD 4(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon4.20:
+	LOAD 43(LB), R8
+	LOAD #4, R9
+	CMP R9, R8
+	BNE debutSinon5.20
+	LOAD 5(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon5.20:
+	LOAD 43(LB), R8
+	LOAD #5, R9
+	CMP R9, R8
+	BNE debutSinon6.20
+	LOAD 6(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon6.20:
+	LOAD 43(LB), R8
+	LOAD #6, R9
+	CMP R9, R8
+	BNE debutSinon7.20
+	LOAD 7(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon7.20:
+	LOAD 43(LB), R8
+	LOAD #7, R9
+	CMP R9, R8
+	BNE debutSinon8.20
+	LOAD 8(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon8.20:
+	LOAD 43(LB), R8
+	LOAD #8, R9
+	CMP R9, R8
+	BNE debutSinon9.20
+	LOAD 9(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon9.20:
+	LOAD 43(LB), R8
+	LOAD #9, R9
+	CMP R9, R8
+	BNE debutSinon10.20
+	LOAD 10(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon10.20:
+	LOAD 43(LB), R8
+	LOAD #10, R9
+	CMP R9, R8
+	BNE debutSinon11.20
+	LOAD 11(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon11.20:
+	LOAD 43(LB), R8
+	LOAD #11, R9
+	CMP R9, R8
+	BNE debutSinon12.20
+	LOAD 12(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon12.20:
+	LOAD 43(LB), R8
+	LOAD #12, R9
+	CMP R9, R8
+	BNE debutSinon13.20
+	LOAD 13(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon13.20:
+	LOAD 43(LB), R8
+	LOAD #13, R9
+	CMP R9, R8
+	BNE debutSinon14.20
+	LOAD 14(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon14.20:
+	LOAD 43(LB), R8
+	LOAD #14, R9
+	CMP R9, R8
+	BNE debutSinon15.20
+	LOAD 15(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon15.20:
+	LOAD 43(LB), R8
+	LOAD #15, R9
+	CMP R9, R8
+	BNE debutSinon16.20
+	LOAD 16(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon16.20:
+	LOAD 43(LB), R8
+	LOAD #16, R9
+	CMP R9, R8
+	BNE debutSinon17.20
+	LOAD 17(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon17.20:
+	LOAD 43(LB), R8
+	LOAD #17, R9
+	CMP R9, R8
+	BNE debutSinon18.20
+	LOAD 18(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon18.20:
+	LOAD 43(LB), R8
+	LOAD #18, R9
+	CMP R9, R8
+	BNE debutSinon19.20
+	LOAD 19(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon19.20:
+	LOAD 43(LB), R8
+	LOAD #19, R9
+	CMP R9, R8
+	BNE debutSinon20.20
+	LOAD 20(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon20.20:
+	LOAD 43(LB), R8
+	LOAD #20, R9
+	CMP R9, R8
+	BNE debutSinon21.20
+	LOAD 21(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon21.20:
+	LOAD 43(LB), R8
+	LOAD #21, R9
+	CMP R9, R8
+	BNE debutSinon22.20
+	LOAD 22(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon22.20:
+	LOAD 43(LB), R8
+	LOAD #22, R9
+	CMP R9, R8
+	BNE debutSinon23.20
+	LOAD 23(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon23.20:
+	LOAD 43(LB), R8
+	LOAD #23, R9
+	CMP R9, R8
+	BNE debutSinon24.20
+	LOAD 24(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon24.20:
+	LOAD 43(LB), R8
+	LOAD #24, R9
+	CMP R9, R8
+	BNE debutSinon25.20
+	LOAD 25(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon25.20:
+	LOAD 43(LB), R8
+	LOAD #25, R9
+	CMP R9, R8
+	BNE debutSinon26.20
+	LOAD 26(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon26.20:
+	LOAD 43(LB), R8
+	LOAD #26, R9
+	CMP R9, R8
+	BNE debutSinon27.20
+	LOAD 27(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon27.20:
+	LOAD 43(LB), R8
+	LOAD #27, R9
+	CMP R9, R8
+	BNE debutSinon28.20
+	LOAD 28(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon28.20:
+	LOAD 43(LB), R8
+	LOAD #28, R9
+	CMP R9, R8
+	BNE debutSinon29.20
+	LOAD 29(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon29.20:
+	LOAD 43(LB), R8
+	LOAD #29, R9
+	CMP R9, R8
+	BNE debutSinon30.20
+	LOAD 30(LB), R8
+	STORE R8, 41(LB)
+	BRA finSinon20
+debutSinon30.20:
+	LOAD 35(LB), R8
+	STORE R8, 41(LB)
+finSinon20:
+	LOAD #1, R8
+	LOAD R8, R0
+	FLOAT R0, R8
+	LOAD 35(LB), R9
+	LOAD 35(LB), R10
+	MUL R10, R9
+	ADD R9, R8
+	STORE R8, 40(LB)
+	LOAD 36(LB), R8
+	LOAD #0, R9
+	LOAD R9, R0
+	FLOAT R0, R9
+	CMP R9, R8
+	SGE R8
+	LOAD 37(LB), R9
+	LOAD 32(LB), R10
+	CMP R10, R9
+	SLE R9
+	MUL R9, R8
+	LOAD 36(LB), R9
+	LOAD #0, R10
+	LOAD R10, R0
+	FLOAT R0, R10
+	CMP R10, R9
+	SLT R9
+	LOAD 37(LB), R10
+	LOAD 32(LB), R11
+	CMP R11, R10
+	SGT R10
+	MUL R10, R9
+	ADD R9, R8
+	LOAD #1, R9
+	CMP R9, R8
+	SGE R8
+	LOAD #0, R9
+	CMP R8, R9
+	BEQ debutSinon1.21
+	LOAD 32(LB), R8
+	LOAD 36(LB), R9
+	LOAD 35(LB), R10
+	MUL R10, R9
+	SUB R9, R8
+	STORE R8, 38(LB)
+	LOAD 36(LB), R8
+	LOAD 32(LB), R9
+	LOAD 35(LB), R10
+	MUL R10, R9
+	ADD R9, R8
+	STORE R8, 39(LB)
+	LOAD 38(LB), R8
+	LOAD 39(LB), R9
+	LOAD 35(LB), R10
+	MUL R10, R9
+	SUB R9, R8
+	STORE R8, 32(LB)
+	LOAD 39(LB), R8
+	LOAD 38(LB), R9
+	LOAD 35(LB), R10
+	MUL R10, R9
+	ADD R9, R8
+	STORE R8, 36(LB)
+	LOAD 42(LB), R8
+	LOAD #2, R9
+	LOAD R9, R0
+	FLOAT R0, R9
+	LOAD 41(LB), R10
+	MUL R10, R9
+	ADD R9, R8
+	STORE R8, 42(LB)
+	BRA finSinon21
+debutSinon1.21:
+	LOAD 32(LB), R8
+	LOAD 36(LB), R9
+	LOAD 35(LB), R10
+	MUL R10, R9
+	ADD R9, R8
+	STORE R8, 38(LB)
+	LOAD 36(LB), R8
+	LOAD 32(LB), R9
+	LOAD 35(LB), R10
+	MUL R10, R9
+	SUB R9, R8
+	STORE R8, 39(LB)
+	LOAD 38(LB), R8
+	LOAD 39(LB), R9
+	LOAD 35(LB), R10
+	MUL R10, R9
+	ADD R9, R8
+	STORE R8, 32(LB)
+	LOAD 39(LB), R8
+	LOAD 38(LB), R9
+	LOAD 35(LB), R10
+	MUL R10, R9
+	SUB R9, R8
+	STORE R8, 36(LB)
+	LOAD 42(LB), R8
+	LOAD #2, R9
+	LOAD R9, R0
+	FLOAT R0, R9
+	LOAD 41(LB), R10
+	MUL R10, R9
+	SUB R9, R8
+	STORE R8, 42(LB)
+finSinon21:
+	LOAD 40(LB), R8
+	LOAD 37(LB), R9
+	MUL R9, R8
+	STORE R8, 37(LB)
+	LOAD 35(LB), R8
+	LOAD #2, R9
+	LOAD R9, R0
+	FLOAT R0, R9
+	LOAD #0x0.0p0, R0
+	CMP R0, R9
+	BEQ erreurDiv0
+	DIV R9, R8
+	STORE R8, 35(LB)
+	LOAD 43(LB), R8
+	LOAD #1, R9
+	ADD R9, R8
+	STORE R8, 43(LB)
+	BRA debutWhile9
+finWhile9:
+	LOAD 42(LB), R8
+	LOAD R8, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Math.acos
+	WSTR "Erreur : sortie de la methodecode.Math.acossans return"
+	WNL
+	ERROR
+fincode.Math.acos:
+	RTS
+code.Math.ulp:
+	TSTO #13
+	BOV pile_pleine
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	WSTR "ulp(f) not yet implemented"
+	LOAD R0, R1
+	WNL
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.Math.ulp
+	WSTR "Erreur : sortie de la methodecode.Math.ulpsans return"
+	WNL
+	ERROR
+fincode.Math.ulp:
+	RTS
+debutMain:
+; Beginning of main instructions:
+	NEW #1, R1
+	LEA 3(GB), R0
+	STORE R0, 0(R1)
+	PUSH R1
+	BSR init.Math
+	LOAD 0(SP), R1
+	STORE R1, 13(GB)
+	TSTO #1
+	BOV pile_pleine
+	ADDSP #1
+	TSTO #2
+	BOV pile_pleine
+	ADDSP #2
+	LOAD 13(GB), R9
+	LOAD R9, R0
+	STORE R0, 0(SP)
+	LOAD #0x0.0p0, R10
+	STORE R10, -1(SP)
+	LOAD 0(SP), R1
+	LOAD 0(R1), R1
+	BSR 3(R1)
+	SUBSP #2
+	LOAD R0, R10
+	LOAD R10, R1
+	WFLOAT
+	HALT
+code.Object.equals:
+	LOAD -2(LB), R0
+	LOAD -3(LB), R1
+	CMP R0, R1
+	SEQ R0
+	RTS
+code.instanceOf:
+	LOAD -2(LB), R0
+	LOAD 0(R0), R0
+	LOAD -3(LB), R1
+	CMP R0, R1
+	SEQ R0
+	RTS
+deferencement_null:
+	WSTR "Erreur : deferencement_null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile_pleine"
+	WNL
+	ERROR
+tas_pleine:
+	WSTR "Erreur : tas_pleine"
+	WNL
+	ERROR
+; end main program

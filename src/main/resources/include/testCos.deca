@@ -1,0 +1,5 @@
+#include "Math.decah"
+{
+Math m = new Math();
+print(m.sin(0.0));
+}

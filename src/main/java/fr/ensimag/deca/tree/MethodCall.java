@@ -20,12 +20,14 @@ import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.ADDSP;
 import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.BOV;
 import fr.ensimag.ima.pseudocode.instructions.BSR;
 import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.POP;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 import fr.ensimag.ima.pseudocode.instructions.SUBSP;
+import fr.ensimag.ima.pseudocode.instructions.TSTO;
 
 public class MethodCall extends AbstractExpr implements Condition{
     private final AbstractExpr objectName;
@@ -86,6 +88,8 @@ public class MethodCall extends AbstractExpr implements Condition{
     @Override
     public int codeGenExpr(DecacCompiler compiler) {
         //Register.pushAll(compiler);
+        compiler.addInstruction(new TSTO(this.listParameters.size()+1));
+        compiler.addInstruction(new BOV(new Label("pile_pleine")));
         compiler.addInstruction(new ADDSP(this.listParameters.size()+1));
         int reg2 = objectName.codeGenExpr(compiler);
         compiler.addInstruction(new LOAD(Register.getR(reg2), Register.getR(0)));
@@ -143,8 +147,13 @@ public class MethodCall extends AbstractExpr implements Condition{
     }
     @Override
     public void codeGenCond(DecacCompiler compiler, Label lab2) {
+        compiler.addInstruction(new TSTO(this.listParameters.size()+1));
+        compiler.addInstruction(new BOV(new Label("pile_pleine")));
         compiler.addInstruction(new ADDSP(this.listParameters.size()+1));
         int reg2 = objectName.codeGenExpr(compiler);
+        compiler.addInstruction(new LOAD(new NullOperand(), Register.R0));
+        compiler.addInstruction(new CMP(Register.getR(reg2), Register.getR(0)));
+        compiler.addInstruction(new BEQ(new Label("deferencement_null")));
         compiler.addInstruction(new LOAD(Register.getR(reg2), Register.getR(0)));
         if(Register.getR(reg2).getIsPushed()){
             compiler.addInstruction(new POP(Register.getR(reg2)));

@@ -134,40 +134,7 @@ class Before{
 
 
 
-	//Rend l'ulp d'un flottant donné
-	/*public float ulp(float f){
-		int relatifToAbsolute = 1;
-		int absolutePower = 24;
-		f = absolute(f);
-		if(f == 0){
-			return lowestEver;
-		}
-		else if(f < lowestEver){
-			return lowestEver;
-		}
-		else if(f > biggestEver){
-			return biggestEver;
-		}
-		else if(f < twoPower(absolutePower - 1)){
-			while(f < twoPower(absolutePower - 1)){
-				absolutePower = absolutePower - 1;
-				relatifToAbsolute = relatifToAbsolute - 1;
-				System.out.println("hhh");
-			}
-			return(twoPower(relatifToAbsolute));
 
-		}
-		else if(f >= twoPower(absolutePower)){
-			while(f >= twoPower(absolutePower)){
-				absolutePower = absolutePower + 1;
-				relatifToAbsolute = relatifToAbsolute + 1;
-			}
-			return(twoPower(relatifToAbsolute));
-		}
-		else{
-			return(twoPower(relatifToAbsolute));
-		}
-	}*/
 
 	//Rend l'objet ayant pour attributs le cosinus, sinus et tan calculés à l'issue de l'algorithme Cordic.
 	CircularVector cordicDirect(float theta){

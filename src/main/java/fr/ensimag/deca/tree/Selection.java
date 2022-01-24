@@ -13,8 +13,12 @@ import fr.ensimag.deca.context.FieldDefinition;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.NullOperand;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LEA;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
@@ -58,6 +62,9 @@ public class Selection extends AbstractLValue{
     public int codeGenExpr(DecacCompiler compiler) {
         // TODO Auto-generated method stub
         int reg = expr.codeGenExpr(compiler);
+        compiler.addInstruction(new LOAD(new NullOperand(), Register.R0));
+        compiler.addInstruction(new CMP(Register.getR(reg), Register.getR(0)));
+        compiler.addInstruction(new BEQ(new Label("deferencement_null")));
         int off = ident.getFieldDefinition().getIndex();
         compiler.addInstruction(new LOAD(Register.getR(reg), Register.R0));
         compiler.addInstruction(new LEA(new RegisterOffset(off, Register.R0),Register.getR(reg)));

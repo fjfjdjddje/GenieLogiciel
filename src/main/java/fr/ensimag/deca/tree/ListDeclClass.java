@@ -9,8 +9,10 @@ import fr.ensimag.ima.pseudocode.NullOperand;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.ADDSP;
+import fr.ensimag.ima.pseudocode.instructions.BOV;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
+import fr.ensimag.ima.pseudocode.instructions.TSTO;
 
 import org.apache.log4j.Logger;
 
@@ -73,6 +75,8 @@ public class ListDeclClass extends TreeList<AbstractDeclClass> {
         for( AbstractDeclClass declclass : this.getList()){
             declclass.codeGenDeclClass(compiler);
         }
+        compiler.addInstruction(new TSTO(RegisterOffset.lastReg));
+        compiler.addInstruction(new BOV(new Label("pile_pleine")));
         compiler.addInstruction(new ADDSP(RegisterOffset.lastReg));
     }
     public void codeGenInitFields(DecacCompiler compiler){

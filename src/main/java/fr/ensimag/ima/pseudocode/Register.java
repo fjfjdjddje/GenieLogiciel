@@ -3,8 +3,10 @@ package fr.ensimag.ima.pseudocode;
 import java.util.ArrayList;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.ima.pseudocode.instructions.BOV;
 import fr.ensimag.ima.pseudocode.instructions.POP;
 import fr.ensimag.ima.pseudocode.instructions.PUSH;
+import fr.ensimag.ima.pseudocode.instructions.TSTO;
 
 /**
  * Register operand (including special registers like SP).
@@ -23,6 +25,8 @@ public class Register extends DVal {
 
     public static void pushAll(DecacCompiler compiler){
         int maxRegister = compiler.getCompilerOptions().getNombreRegisters() -1;
+        compiler.addInstruction(new TSTO(maxRegister-2));
+        compiler.addInstruction(new BOV(new Label("pile_pleine")));
         for (int i = 2; i <= maxRegister; i++) {
             compiler.addInstruction(new PUSH(R[i]));
         }
@@ -101,6 +105,8 @@ public class Register extends DVal {
             }
         }
         R[maxRegister].setIsPushed(true);
+        compiler.addInstruction(new TSTO(1));
+        compiler.addInstruction(new BOV(new Label("pile_pleine")));
         compiler.addInstruction(new PUSH(R[maxRegister]));
         return maxRegister;
     }
