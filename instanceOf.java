@@ -66,17 +66,17 @@ class A3 extends A{
     A2 x2 = new A2();
     A3 x3 = new A3();
     B y = new B();
-
-    println("true ==", x1.instanceof(A1));
-    println("true ==", x1.instanceof(Object));
-    println("true ==", x2.instanceof(A2));
-    println("true ==", x1.instanceof(A));
-    println("true ==", x3.instanceof(A));
-    println("false == ", y.instanceof(A));
+    int a = x.getA();
+    println("true ==", x1 instanceof A1);
+    println("true ==", x1 instanceof Object );
+    println("true ==", x2 instanceof A2 );
+    println("true ==", x1 instanceof A );
+    println("true ==", x3 instanceof A );
+    println("false == ", y instanceof A );
 
     //Verification de l'override des environnement et l'accès aux environnements parents
 
-    int a = x.getA();
+   
     if(a==5){
         println("C'est juste");
     }else{
@@ -97,7 +97,7 @@ class A3 extends A{
         println("C'est faux");
     }
 
-    a=x3.getAsec();
+    a=x3.getA();
     if(a==2){
         println("C'est juste");
     }else{

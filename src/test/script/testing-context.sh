@@ -19,7 +19,6 @@ test_context_valide () {
     	echo "Succes attendu de test_context "
 	fi
 }
-
 if test_context condition_if5.deca 2>&1 | \
 grep -q -e "condition_if5.deca:11:11: This condition is not a bool
 "
@@ -148,6 +147,15 @@ else
 fi
 if test_context affect-incompatible5.deca 2>&1 | \
 grep -q -e "affect-incompatible5.deca:15:7: Assign incorrect: types différents
+"
+then
+    echo "Echec attendu pour test_context"
+else
+    echo "Succes inattendu de test_context"
+    exit 1
+fi
+if test_context doubledeclvarclass.deca 2>&1 | \
+grep -q -e "doubledeclvarclass.deca:3:10: Field x already declared.
 "
 then
     echo "Echec attendu pour test_context"
@@ -362,6 +370,15 @@ else
     echo "Succes inattendu de test_context"
     exit 1
 fi
+if test_context instanceof2.deca 2>&1 | \
+grep -q -e "instanceof2.deca:11:16: A used but not declared.
+"
+then
+    echo "Echec attendu pour test_context"
+else
+    echo "Succes inattendu de test_context"
+    exit 1
+fi
 if test_context class40.java 2>&1 | \
 grep -q -e "class40.java:5:4: method name already declared
 "
@@ -434,6 +451,15 @@ else
     echo "Succes inattendu de test_context"
     exit 1
 fi
+if test_context stringmethod.deca 2>&1 | \
+grep -q -e "stringmethod.deca:2:4: String cannot be declared as a Class field.
+"
+then
+    echo "Echec attendu pour test_context"
+else
+    echo "Succes inattendu de test_context"
+    exit 1
+fi
 if test_context class3.java 2>&1 | \
 grep -q -e "class3.java:1:8: Superclass B undefined.
 "
@@ -463,6 +489,15 @@ else
 fi
 if test_context class33.java 2>&1 | \
 grep -q -e "class33.java:1:0: boolean is not a class
+"
+then
+    echo "Echec attendu pour test_context"
+else
+    echo "Succes inattendu de test_context"
+    exit 1
+fi
+if test_context voidmethod.deca 2>&1 | \
+grep -q -e "voidmethod.deca:2:4: Void cannot be declared as a Class field.
 "
 then
     echo "Echec attendu pour test_context"
@@ -641,6 +676,15 @@ else
     echo "Succes inattendu de test_context"
     exit 1
 fi
+if test_context undeclaredvarclass.deca 2>&1 | \
+grep -q -e "undeclaredvarclass.deca:6:20: r used but not declared.
+"
+then
+    echo "Echec attendu pour test_context"
+else
+    echo "Succes inattendu de test_context"
+    exit 1
+fi
 if test_context class25.java 2>&1 | \
 grep -q -e "class25.java:1:8: Superclass A undefined.
 "
@@ -731,8 +775,35 @@ else
     echo "Succes inattendu de test_context"
     exit 1
 fi
+if test_context unknowntypeclass.deca 2>&1 | \
+grep -q -e "unknowntypeclass.deca:4:4: Inexisting type.
+"
+then
+    echo "Echec attendu pour test_context"
+else
+    echo "Succes inattendu de test_context"
+    exit 1
+fi
 if test_context initialisation-incompatible2.deca 2>&1 | \
 grep -q -e "initialisation-incompatible2.deca:10:8: Assign incorrect: types différents
+"
+then
+    echo "Echec attendu pour test_context"
+else
+    echo "Succes inattendu de test_context"
+    exit 1
+fi
+if test_context stringdeclmeth.deca 2>&1 | \
+grep -q -e "stringdeclmeth.deca:4:8: String cannot be declared as a variable.
+"
+then
+    echo "Echec attendu pour test_context"
+else
+    echo "Succes inattendu de test_context"
+    exit 1
+fi
+if test_context instanceof1.deca 2>&1 | \
+grep -q -e "instanceof1.deca:11:16: Left operand of InstanceOf should be an Object.
 "
 then
     echo "Echec attendu pour test_context"
@@ -931,6 +1002,15 @@ else
 fi
 if test_context comp-incompatible2.deca 2>&1 | \
 grep -q -e "comp-incompatible2.deca:16:15: Cannot compare a int and a string
+"
+then
+    echo "Echec attendu pour test_context"
+else
+    echo "Succes inattendu de test_context"
+    exit 1
+fi
+if test_context voiddeclmeth.deca 2>&1 | \
+grep -q -e "voiddeclmeth.deca:4:8: Void cannot be declared as a variable.
 "
 then
     echo "Echec attendu pour test_context"

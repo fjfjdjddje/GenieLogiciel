@@ -1,0 +1,14 @@
+class A{
+    int x;
+    float t;
+
+    int set(){
+        return this.r;
+    }
+}
+
+class B {
+    int r;
+}
+{
+}

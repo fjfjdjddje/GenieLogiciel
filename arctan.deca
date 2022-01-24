@@ -1,0 +1,169 @@
+{
+	float angle0 = 0.7853981633974483f;
+	float angle1 = 0.46364760900080615f;
+	float angle2 = 0.24497866312686414f;
+	float angle3 = 0.12435499454676144f;
+	float angle4 = 0.06241880999595735f ;
+	float angle5 = 0.031239833430268277f;
+	float angle6 = 0.015623728620476831f;
+	float angle7 = 0.007812341060101111f;
+	float angle8 = 0.0039062301319669718f;
+	float angle9 = 0.0019531225164788188f;
+	float angle10 = 0.0009765621895593195f;
+	float angle11 = 0.0004882812111948983f;
+	float angle12 = 0.00024414062014936177f;
+	float angle13 = 0.00012207031189367021f;
+	float angle14 = 6.103515617420877e-05f;
+	float angle15 = 3.0517578115526096e-05f;
+	float angle16 = 1.5258789061315762e-05f;
+	float angle17 = 7.62939453110197e-06f;
+	float angle18 = 3.814697265606496e-06f;
+	float angle19 = 1.907348632810187e-06f;
+	float angle20 = 9.536743164059608e-07f;
+	float angle21 = 4.7683715820308884e-07f;
+	float angle22 = 2.3841857910155797e-07f;
+	float angle23 = 1.1920928955078068e-07f;
+	float angle24 = 5.960464477539055e-08f;
+	float angle25 = 2.9802322387695303e-08f;
+	float angle26 = 1.4901161193847655e-08f;
+	float angle27 = 7.450580596923828e-09f;
+	float angle28 = 3.725290298461914e-09f;
+	float angle29 = 1.862645149230957e-09f;
+
+	int n = 32;
+	float x = 1;
+	float t = 0.5;
+		float y, xi, yi, angleStep;
+		float testParite = 1;
+		float theta = 0;
+		float twoFactor = 1;
+		int i = 0;
+		if(t < 0){
+			testParite = -1;
+		}
+		y = testParite*t;
+		while(i <= n){
+			if(i == 0){
+				angleStep = angle0;
+			}
+			else if(i == 1){
+				angleStep = angle1;
+			}
+			else if(i == 2){
+				angleStep = angle2;
+			}
+			else if(i == 3){
+				angleStep = angle3;
+			}
+			else if(i == 4){
+				angleStep = angle4;
+			}
+			else if(i == 5){
+				angleStep = angle5;
+			}
+			else if(i == 6){
+				angleStep = angle6;
+			}
+			else if(i == 7){
+				angleStep = angle7;
+			}
+			else if(i == 8){
+				angleStep = angle8;
+			}
+			else if(i == 9){
+				angleStep = angle9;
+			}
+			else if(i == 10){
+				angleStep = angle10;
+			}
+			else if(i == 11){
+				angleStep = angle11;
+			}
+			else if(i == 12){
+				angleStep = angle12;
+			}
+			else if(i == 13){
+				angleStep = angle13;
+			}
+			else if(i == 14){
+				angleStep = angle14;
+			}
+			else if(i == 15){
+				angleStep = angle15;
+			}
+			else if(i == 16){
+				angleStep = angle16;
+			}
+			else if(i == 17){
+				angleStep = angle17;
+			}
+			else if(i == 18){
+				angleStep = angle18;
+			}
+
+			else if(i == 19){
+				angleStep = angle19;
+			}
+			else if(i == 20){
+				angleStep = angle20;
+			}
+			else if(i == 21){
+				angleStep = angle21;
+			}
+			else if(i == 22){
+				angleStep = angle22;
+			}
+			else if(i == 23){
+				angleStep = angle23;
+			}
+			else if(i == 24){
+				angleStep = angle24;
+			}
+			else if(i == 25){
+				angleStep = angle25;
+			}
+			else if(i == 26){
+				angleStep = angle26;
+			}
+			else if(i == 27){
+				angleStep = angle27;
+			}
+			else if(i == 28){
+				angleStep = angle28;
+			}
+			else if(i == 29){
+				angleStep = angle29;
+			}
+			else{
+				angleStep = twoFactor;
+			}
+			if(y > 0){
+				xi = x + y*twoFactor;
+				yi = y - x*twoFactor;
+				theta = theta + angleStep;
+				x = xi;
+				y = yi;
+
+				twoFactor = twoFactor/2;
+				
+			}
+			else{
+				xi = x - y*twoFactor;
+				yi = y + x*twoFactor;
+				theta = theta - angleStep;
+				x = xi;
+				y = yi;
+
+				twoFactor = twoFactor/2;
+			}
+			i = i + 1;
+		}
+		print(testParite*theta);
+//println(b.cordicDirect(45*pi/180));
+//println(b.arccos(0.5));
+//println(b.arctan(1));
+//println(b.arcsin(0.5));
+
+
+
+}

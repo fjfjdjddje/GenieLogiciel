@@ -9,14 +9,148 @@ debutProg:
 	STORE R0, 1(GB)
 	LOAD code.Object.equals, R0
 	STORE R0, 2(GB)
-	ADDSP #3
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 4(GB)
+	LOAD code.A.getX, R0
+	STORE R0, 6(GB)
+	LOAD code.A.setX, R0
+	STORE R0, 5(GB)
+	LEA 3(GB), R0
+	STORE R0, 7(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 8(GB)
+	LOAD code.A.getX, R0
+	STORE R0, 10(GB)
+	LOAD code.A.setX, R0
+	STORE R0, 9(GB)
+	ADDSP #11
 	BRA debutMain
+init.A:
+	LOAD #7, R2
+	LOAD -2(LB), R1
+	STORE R2, 1(R1)
+	LOAD #1, R2
+	LOAD -2(LB), R1
+	STORE R2, 2(R1)
+	RTS
+init.B:
+	LOAD -2(LB), R0
+	PUSH R0
+	BSR init.A
+	SUBSP #1
+	RTS
+code.A.setX:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -3(LB), R2
+	LOAD -2(LB), R3
+	LOAD R3, R0
+	LEA 1(R0), R3
+	STORE R2, 0(R3)
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.A.setX
+	WSTR "Erreur : sortie de la methodecode.A.setXsans return"
+	WNL
+	ERROR
+fincode.A.setX:
+	RTS
+code.A.getX:
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -2(LB), R2
+	LOAD R2, R0
+	LEA 1(R0), R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fincode.A.getX
+	WSTR "Erreur : sortie de la methodecode.A.getXsans return"
+	WNL
+	ERROR
+fincode.A.getX:
+	RTS
 debutMain:
 ; Beginning of main instructions:
-	NEW #1, R1
-	LOAD #null, R0
+	NEW #3, R1
+	LEA 3(GB), R0
 	STORE R0, 0(R1)
-	STORE R1, 3(GB)
+	PUSH R1
+	BSR init.A
+	LOAD 0(SP), R1
+	STORE R1, 11(GB)
+	LOAD 11(GB), R3
+	LOAD R3, R0
+	LEA 1(R0), R3
+	LOAD 0(R3), R1
+	WINT
+	WNL
+	ADDSP #2
+	LOAD 11(GB), R3
+	LOAD R3, R0
+	STORE R0, 0(SP)
+	LOAD #1000, R4
+	STORE R4, -1(SP)
+	LOAD 0(SP), R1
+	LOAD 0(R1), R1
+	BSR 2(R1)
+	SUBSP #2
+	LOAD R0, R4
+	LOAD 11(GB), R5
+	LOAD R5, R0
+	LEA 1(R0), R5
+	LOAD 0(R5), R1
+	WINT
 	HALT
 code.Object.equals:
 	LOAD -2(LB), R0

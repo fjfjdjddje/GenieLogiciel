@@ -12,7 +12,7 @@ class A{
         this.isFull=b;
     }
 
-    void setInteger(float t){
+    void setFloat(float t){
         this.x=t;
     }
 
@@ -24,7 +24,7 @@ class A{
         return this.isFull;
     }
     
-    int getFloat(){
+    float getFloat(){
         return this.x;
     }
 
@@ -32,9 +32,6 @@ class A{
 
 {   
     A a = new A();
-    while(a.isFull){
-        a.isFull=false;
-        a.x=a.x+3+a.n;
-    }
+    
     print(a.getFloat());
 }
